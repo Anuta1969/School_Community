@@ -6,7 +6,7 @@ import {setUser} from "../../redux/actionCreators/actionCreator";
 function Login(props) {
 
     const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [password, setPassword] =  useState("")
     const dispatch = useDispatch()
 
     const loginHandler = (e)=>{
