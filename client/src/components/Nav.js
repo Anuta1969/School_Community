@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux";
-import {logout} from "../../redux/actionCreators/actionCreator";
+import {logout} from "../redux/actionCreators/actionCreator";
 
 function Nav(props) {
     const isAuth = useSelector(state => state.user.isAuth)
