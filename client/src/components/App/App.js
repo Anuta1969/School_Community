@@ -1,11 +1,11 @@
 import './App.css';
 import React, {useEffect} from 'react';
-import Nav from "../Nav/Nav";
+import Nav from "../Nav";
 import {BrowserRouter,Switch,Route,Redirect} from "react-router-dom";
-import Registration from "../Registration/Registration";
-import Login from "../Login/Login";
+import Registration from "../Auth/Registration";
+import Login from "../Auth/Login";
 import Post from "../Post/Post";
-import Profile from "../Profile/Profile";
+import Profile from "../Profile";
 import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/Thunk";
 
@@ -39,7 +39,7 @@ function App() {
         </div>
     </div>
       </BrowserRouter>
-  );
+  )
 }
 
 export default App;
