@@ -10,13 +10,15 @@ const Student = mongoose.model('Student',{
     language: {type: String},
     socialLinkedin: {type: String},
     socialGitHab: {type: String},
-    placeWork:{type: String},
-    vacancy:[{type:mongoose.Schema.Types.ObjectId , ref: "Vacansion"}],
+
+    placeWork:String,
+    vacancy:[{type:mongoose.Schema.Types.ObjectId , ref: "Vacantion"}],
     commit:[{type:mongoose.Schema.Types.ObjectId , ref: "Commit"}],
-    resume:{type: String},
-    phone: {type: Number},
-    student:{type:Boolean, default:false},
-    admin:{type:Boolean, default:true},
+    resume:String,
+    phone: Number,
+    isAuth:{type:Boolean, default:false},
+    admin:{type:Boolean, default:false},
+
 })
 
 export default Student
