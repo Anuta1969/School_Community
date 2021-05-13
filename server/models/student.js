@@ -2,16 +2,16 @@ import mongoose from "mongoose";
 
 
 const Student = mongoose.model('Student',{
-    foto:{type:String},
+    photo:{type:String},
     name:{type:String,trim:true},
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
-    steck: {type: String, required: true},
+    stack: {type: String, required: true},
     language: {type: String},
     socialLinkedin: {type: String},
     socialGitHab: {type: String},
     placeWork:String,
-    vacancy:[{type:mongoose.Schema.Types.ObjectId , ref: "Vacansion"}],
+    vacancy:[{type:mongoose.Schema.Types.ObjectId , ref: "Vacantion"}],
     commit:[{type:mongoose.Schema.Types.ObjectId , ref: "Commit"}],
     resume:String,
     fon: Number,
