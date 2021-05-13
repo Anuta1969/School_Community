@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
-import { connect, connection } from "mongoose";
+import pkg from 'mongoose';
+const { connect, connection } = pkg;
+
 import Organization  from './organization.js';
 
 async function orgSeeder() {

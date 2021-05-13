@@ -14,9 +14,9 @@ const Student = mongoose.model('Student',{
     vacancy:[{type:mongoose.Schema.Types.ObjectId , ref: "Vacantion"}],
     commit:[{type:mongoose.Schema.Types.ObjectId , ref: "Commit"}],
     resume:String,
-    fon: Number,
-    student:{type:Boolean, default:false},
-    admin:{type:Boolean, default:true},
+    phone: Number,
+    isAuth:{type:Boolean, default:false},
+    admin:{type:Boolean, default:false},
 })
 
 export default Student

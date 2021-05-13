@@ -16,13 +16,13 @@ function Registration(props) {
             {email, password,name,phone})
             .then(data => {
                 console.log(data)
-                if (data.data.user) {
-                    dispatch(setUser(data.data))
-                    localStorage.setItem('token', data.data.token)
-                    alert(data.data.message)
-                }else {
-                    alert(`User with email ${email} already exist`)
-                }})
+                // if (data.data.student) {
+                //     dispatch(setUser(data.data))
+                //     localStorage.setItem('token', data.data.token)
+                //     alert(data.data.message)
+                // }else {
+                //     alert(`User with email ${email} already exist`)
+                })
             .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
     }
         const emailRegHandler = (e) => {

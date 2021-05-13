@@ -1,7 +1,7 @@
 import {SET_USER,LOGOUT} from "../actionTypes/actionTypes";
 
 const defaultState = {
-    currentUser: {},
+    currentStudent: {},
     isAuth: false,
 }
 
@@ -10,7 +10,7 @@ export default function userReducer(state = defaultState, action) {
         case SET_USER:
             return {
                 ...state,
-                currentUser: action.payload.user,
+                currentStudent: action.payload.student,
                 isAuth: true,
 
             }
@@ -18,7 +18,7 @@ export default function userReducer(state = defaultState, action) {
             localStorage.removeItem('token')
             return {
                 ...state,
-                currentUser: {},
+                currentStudent: {},
                 isAuth: false,
 
             }
