@@ -67,7 +67,7 @@ router.get('/auth', authMiddleware,
     async (req, res) => {
         try {
             const student = await Student.findOne({_id: req.student.id})
-            console.log(student)
+            // console.log(student)
 
              const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return res.json({

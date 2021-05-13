@@ -5,9 +5,13 @@ import {BrowserRouter,Switch,Route,Redirect} from "react-router-dom";
 import Registration from "../Auth/Registration";
 import Login from "../Auth/Login";
 import Post from "../Post";
-import Profile from "../Profile";
+
+import Profile from "../Profile/Profile";
+
+
 import Vacantion from "../Vacantions";
 import VacantionsForm from "../VacantionForm";
+
 import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/Thunk";
 import Student from "../Student";
@@ -37,6 +41,7 @@ function App() {
                 <Switch>
                     <Route path="/registration" component={Registration}/>
                     <Route exact path="/" component={Login}/>
+
                 </Switch>
                 :
                 <Switch>
