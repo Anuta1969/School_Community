@@ -39,7 +39,7 @@ function App() {
                     <Route exact path="/posts" component={Post}/>
                     <Route exact path="/profile" component={Profile}/>
                     <Route path='/student' component ={Student} />
-                    <Route path='/vacantion' component ={Vacantion} />
+                    <Route path='/vacantions' component ={Vacantion} />
                     <Redirect to="/posts"/>
                 </Switch>
             }
