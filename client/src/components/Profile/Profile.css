@@ -1,0 +1,10 @@
+.student-box{
+  display: flex;
+  justify-content: space-between;
+}
+.student-about{
+  min-width: 35%;
+}
+.student-form{
+  min-width: 65%;
+}

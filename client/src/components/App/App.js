@@ -5,7 +5,7 @@ import {BrowserRouter,Switch,Route,Redirect} from "react-router-dom";
 import Registration from "../Auth/Registration";
 import Login from "../Auth/Login";
 import Post from "../Post";
-import Profile from "../Profile";
+import Profile from "../Profile/Profile";
 import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/Thunk";
 import Student from "../Student";
