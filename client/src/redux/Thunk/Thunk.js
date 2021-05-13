@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-import {addPhotoAC} from '../actionCreators/actionCreator'
+import {addPhotoAC} from '../actionCreators/actionCreatorUser'
 
 import {setUser} from "../actionCreators/actionCreatorAuth";
 
