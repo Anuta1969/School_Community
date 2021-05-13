@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import config from 'config'
 import {check,validationResult} from "express-validator";
 import {authMiddleware} from '../middleware/authMiddleware.js'
-import Student from "../models/user.js";
+import Student from "../models/student.js";
 const router = express.Router()
 
 
