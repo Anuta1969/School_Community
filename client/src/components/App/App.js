@@ -10,10 +10,13 @@ import Vacantion from "../Vacantions";
 import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/Thunk";
 import Student from "../Student";
+import AdminList from "../AdminList";
+
 
 function App() {
     const isAuth = useSelector(state => state.student.isAuth)
     const dispatch = useDispatch()
+    const admin = useSelector(state =>state.student.currentStudent.admin)
 
 
     useEffect(() => {
@@ -39,6 +42,14 @@ function App() {
                     <Route path='/vacantion' component ={Vacantion} />
                     <Redirect to="/posts"/>
                 </Switch>
+            }
+            {admin?
+                <Switch>
+                    <Route path='/adminList' component = {AdminList}/>
+
+
+                </Switch>:null
+
             }
         </div>
     </div>
