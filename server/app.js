@@ -8,7 +8,7 @@ const app = express()
 
 mongoose.connect(
   // 'mongodb://localhost:27017/elbrus',
-  `mongodb+srv://Alex:tB9hbppbaKG_vJr@cluster0.5agzc.mongodb.net/todo-reducer?retryWrites=true&w=majority`
+  `mongodb+srv://Alex:tB9hbppbaKG_vJr@cluster0.5agzc.mongodb.net/elbrus?retryWrites=true&w=majority`
 
 , {useNewUrlParser: true, useUnifiedTopology: true});
 app.use(logger('dev'));

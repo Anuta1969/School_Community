@@ -11,6 +11,7 @@ function Nav(props) {
             <ul className="navbar-nav">
                 {isAuth && <li className="nav-item"><Link to='/student' className="nav-link">Student</Link></li>}
                 {isAuth && <li className="nav-item"><Link to='/profile' className="nav-link">Profile</Link></li>}
+                {isAuth && <li className="nav-item"><Link to='/vacantion' className="nav-link">Vacantion</Link></li>}
                 {isAuth && <li className="nav-item"><Link to = '/' className="nav-link" onClick={()=>dispatch(logout())}>logout</Link></li>}
                 {!isAuth && <li className="nav-item"><Link to='/registration' className="nav-link">Register</Link></li>}
                 {!isAuth && <li className="nav-item"><Link to = '/' className="nav-link">Login</Link></li>}

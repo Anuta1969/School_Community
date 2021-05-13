@@ -6,6 +6,7 @@ import Registration from "../Auth/Registration";
 import Login from "../Auth/Login";
 import Post from "../Post";
 import Profile from "../Profile";
+import Vacantion from "../Vacantions";
 import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/Thunk";
 import Student from "../Student";
@@ -35,6 +36,7 @@ function App() {
                     <Route exact path="/posts" component={Post}/>
                     <Route exact path="/profile" component={Profile}/>
                     <Route path='/student' component ={Student} />
+                    <Route path='/vacantion' component ={Vacantion} />
                     <Redirect to="/posts"/>
                 </Switch>
             }
