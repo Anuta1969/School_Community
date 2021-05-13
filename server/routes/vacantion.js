@@ -3,19 +3,19 @@ import Vacantion from '../models/vacantion.js';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-  const { name, organization, date, relevance, description, contacts } =
+  const { vacantion, organization, date, relevance, description} =
     req.body;
-  console.log(req.body + '123456');
-  const vacantion = await Vacantion.create(
-    name,
+  console.log(vacantion);
+  const vacantions = await Vacantion.create(
+    vacantion,
     organization,
     date,
     relevance,
     description,
-    contacts
+   
   );
 
-  res.status(201).json({vacantion})
+  // res.status(201).json({vacantions})
 });
 
 export default router;

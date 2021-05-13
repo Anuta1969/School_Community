@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
-const Vacansion = mongoose.model('Vacansion',{
-  name:{type:String,trim:true,required: true},
+const Vacantion = mongoose.model('Vacantion',{
+  vacantion:{type:String,trim:true,required: true},
   organization: {type: String, required: true},
   date:{type:Date},
-  relevance: {type:Boolean,default:true},
+  relevance: {type:String},
   description: {type:String,required: true},
   contacts: {type:String},
 })
 
-export default Vacansion
+export default Vacantion

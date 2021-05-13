@@ -1,7 +1,7 @@
 // import {SET_USER,LOGOUT} from "../actionTypes/actionTypes";
 
 const defaultState = {
-    vacantion: {},
+    vacantion: [],
 }
 
 export default function userReducer(state = defaultState, action) {

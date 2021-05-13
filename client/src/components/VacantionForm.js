@@ -1,42 +1,77 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 
 function VacantionsForm(props) {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const organization = useRef();
+  const vacantion = useRef();
+  const date = useRef();
+  const description = useRef();
+
+  const formHandler = (event) => {
+    event.preventDefault();
+const actuality = event.target.actuality.value
+console.log(actuality+'1111');
+    fetch('/vacantion', {
+      method: 'POST',
+      headers: { 'Content-Type': 'Application/json' },
+      body: JSON.stringify({
+        organization: organization.current.value,
+        vacantion: vacantion.current.value,
+        date:date.current.value,
+        description:description.current.value,
+        relevance:actuality
+      }),
+    })
+      .then((res) => res.json())
+        .then((data) => dispatch({type:'ADD_VACANTION',payload:data}));
+
+    // После Redux Thunk
+    //dispatch(fetchAddStudent(nameInput.current.value, ageInput.current.value))
+
+    // После Redux Saga
+    //dispatch(sagaAddStudents({name:nameInput.current.value, age:ageInput.current.value}))
+
+    history.push('/vacantions');
+  };
+
   return (
     <div className="vacantion container d-flex flex-column">
-      <form method="POST">
+      <form method="POST" onSubmit={formHandler}>
         <h3>Добавить Вакансию</h3>
         <input
+        ref={organization}
           className="form-control"
           name="organization"
           type="text"
           placeholder="введите организацию"
         />
         <input
-          name="name"
+        ref={vacantion}
+          name="vacantion"
           className="form-control"
           type="text"
           placeholder="введите вакансию"
         />
         <input
+        ref={date}
           name="date"
           className="form-control"
-          type="text"
+          type="date"
           placeholder="введите дату"
         />
 
         <input
+        ref={description}
           name=""
           className="form-control"
           type="text"
           placeholder="введите описание"
         />
-        <input type="text" className="form-control" placeholder="enter email" />
-        <input
-          type="password"
-          className="form-control"
-          placeholder="enter password"
-        />
-        <div class="form-check">
+        <div class="form-check container d-flex flex-column">
           <input
             class="form-check-input"
             type="radio"
@@ -47,9 +82,8 @@ function VacantionsForm(props) {
           />
           <label class="form-check-label" for="flexRadioDefault1">
             actual
-          </label>
-        </div>
-        <div class="form-check">
+          </label>        
+        
           <input
             class="form-check-input"
             type="radio"
@@ -62,7 +96,7 @@ function VacantionsForm(props) {
           </label>
         </div>
 
-        <button>Добавить</button>
+        <button type="submit">Добавить</button>
       </form>
     </div>
   );
