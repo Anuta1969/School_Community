@@ -6,6 +6,8 @@ import Registration from "../Auth/Registration";
 import Login from "../Auth/Login";
 import Post from "../Post";
 import Profile from "../Profile";
+import Vacantion from "../Vacantions";
+import VacantionsForm from "../VacantionForm";
 import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/Thunk";
 import Student from "../Student";
@@ -41,6 +43,9 @@ function App() {
                     <Route exact path="/" component={Profile}/>
                     <Route path='/search' component ={Search}/>
                     <Route path='/student' component ={Student} />
+                    <Route path='/vacantions' component ={Vacantion} />
+                    <Route path='/vacantionsForm' component ={VacantionsForm} />
+                    <Redirect to="/posts"/>
                 </Switch>
             }
             {admin?
