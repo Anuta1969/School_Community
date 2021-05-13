@@ -20,15 +20,15 @@ router.post('/registration',
             if (!errors.isEmpty()) {
                 return res.status(400).json({message: "Incorrect request", errors})
             }
-            const {email, password} = req.body
+            const {email, password,name,phone} = req.body
             const candidate = await User.findOne({email})
             if(candidate) {
                 return res.status(201).json({message: `User with email ${email} already exist`})
             }
             const hashPassword = await bcrypt.hash(password, 8)
-            const user = await User.create({email, password: hashPassword})
-            const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"})
-            return   res.json({message: "User was created",token,user})
+            const user = await User.create({email, password: hashPassword,name,phone})
+            // const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"})
+            return   res.json({message: "заявка на рассмотрении",user})
         } catch (e) {
             res.send({message: "Server error"})
         }
