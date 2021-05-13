@@ -40,7 +40,7 @@ function App() {
                     <Route path='/student' component ={Student} />
                     <Redirect to="/posts"/>
                 </Switch>
-            }
+           }
         </div>
     </div>
       </BrowserRouter>
