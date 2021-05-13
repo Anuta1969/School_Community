@@ -23,7 +23,7 @@ router.post('/registration',
             const {email, password,name,phone} = req.body
 
 
-            const candidate = await Student.findOne({email})
+            const candidate = await Student.findOne({email}); 
             if(candidate) {
                 return res.status(201).json({message: `Student with email ${email} already exist`})
             }
