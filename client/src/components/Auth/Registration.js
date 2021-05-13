@@ -10,8 +10,10 @@ function Registration(props) {
     const dispatch = useDispatch()
     const registerHandler = (e) => {
         e.preventDefault()
+        const name = e.target.name.value
+        const phone = e.target.phone.value
         axios.post('/registration',
-            {email, password})
+            {email, password,name,phone})
             .then(data => {
                 console.log(data)
                 if (data.data.user) {
@@ -35,8 +37,11 @@ function Registration(props) {
             <div className='registration'>
                 <form onSubmit={registerHandler} method='POST'>
                     <h3>Registration</h3>
+                    <input name='name' type="text" placeholder='enter your name'/>
+                    <input name='phone' type="number" placeholder='enter  phone number'/>
                     <input onChange={emailRegHandler} type="text" placeholder='enter email'/>
                     <input onChange={passwordRegHandler} type="password" placeholder='enter password'/>
+
                     <button>Registration</button>
                 </form>
             </div>
