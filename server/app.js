@@ -6,7 +6,7 @@ import authRouter from './routes/auth.js'
 
 const app = express()
 
-mongoose.connect('mongodb://localhost:27017/auth', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/elbrus', {useNewUrlParser: true, useUnifiedTopology: true});
 app.use(logger('dev'));
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
