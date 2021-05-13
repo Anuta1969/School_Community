@@ -2,8 +2,8 @@ import express from 'express'
 import mongoose from 'mongoose'
 import logger from 'morgan'
 import createError from 'http-errors'
-import authRouter from './routes/auth.js'
-
+import authRouter from './routes/authRouter.js'
+import adminRouter from './routes/adminRouter.js'
 const app = express()
 
 mongoose.connect(
@@ -15,6 +15,7 @@ app.use(logger('dev'));
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use('/', authRouter);
+app.use('/',adminRouter)
 app.use(function (req, res, next) {
     next(createError(404));
 });
