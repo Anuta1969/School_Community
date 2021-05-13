@@ -2,7 +2,7 @@ import {SET_USER,LOGOUT} from "../actionTypes/actionTypes";
 
 const defaultState = {
     currentStudent: {},
-    isAuth: false,
+    // isAuth: false,
 }
 
 export default function userReducer(state = defaultState, action) {
@@ -12,7 +12,7 @@ export default function userReducer(state = defaultState, action) {
             return {
                 ...state,
                 currentStudent: action.payload.student,
-                isAuth: true,
+                // isAuth: true,
 
             }
         case LOGOUT:
@@ -20,7 +20,7 @@ export default function userReducer(state = defaultState, action) {
             return {
                 ...state,
                 currentStudent: {},
-                isAuth: false,
+                // isAuth: false,
 
             }
         default:

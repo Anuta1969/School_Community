@@ -10,7 +10,6 @@ const Student = mongoose.model('Student',{
     language: {type: String},
     socialLinkedin: {type: String},
     socialGitHab: {type: String},
-
     placeWork:String,
     vacancy:[{type:mongoose.Schema.Types.ObjectId , ref: "Vacantion"}],
     commit:[{type:mongoose.Schema.Types.ObjectId , ref: "Commit"}],
