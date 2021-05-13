@@ -25,6 +25,7 @@ router.post('/registration',
             }
             const hashPassword = await bcrypt.hash(password, 8)
             const student = await Student.create({email, password:hashPassword,name,phone})
+            console.log(student);
             const request = await AdminList.create({userId:student})
             // const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return   res.json({message: "заявка на рассмотрении",request,student})
