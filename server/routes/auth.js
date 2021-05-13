@@ -27,10 +27,8 @@ router.post('/registration',
                 return res.status(201).json({message: `Student with email ${email} already exist`})
             }
             const hashPassword = await bcrypt.hash(password, 8)
-            console.log(hashPassword)
             const student = await Student.create({email, password:hashPassword,name,phone})
             const request = await AdminList.create({userId:student})
-            console.log(request)
             // const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return   res.json({message: "заявка на рассмотрении",request,student})
         } catch (e) {
