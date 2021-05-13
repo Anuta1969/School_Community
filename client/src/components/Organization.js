@@ -1,36 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
-function Organization({organization}) {
+function Organization({ org }) {
   return (
-    
-      <div className="card">
-        <div class="card-header">
-        <h5 className="card-title">ООО "Рога и копыта"&nbsp; &nbsp;  *****</h5>
-          <ul class="nav nav-pills card-header-pills d-flex justify-content-around">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Информация</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Вакансии</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/posts">Отзывы</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/posts">Оставить отзыв</a>
-            </li>
-          </ul>
+    <Link to={`/organization:${org._id}`}>
+      <div className="card h-100">
+        <div className="card h-100">
+          <div className="card-body">
+            <div className="card-header">
+              <h5 className="card-title">{org.name}</h5>
+              <p>Рейтинг: {org.rate}</p>
+            </div>
+            <p className="card-text">
+              This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+              {org.comment[0]}
+              </p>
+          </div>
+          <div className="card-footer">
+            <small className="text-muted">
+              Текущая вакансия: "Middle Frontend developer"
+              {/* {org.vacantion[0]} */}
+              </small>
+          </div>
         </div>
-        <div className="card-body">
-          {/* <h5 className="card-title">ООО "Рога и копыта"</h5>
-          <p class="card-text">Рейтинг *****</p>
-          <p class="card-text">г.Москва</p>
-          <a href="#" class="btn btn-primary">ОСТАВИТЬ ОТЗЫВ</a> */}
-        </div>   
       </div>
-
-  );
+    </Link>
+  )
 }
 
 export default Organization;

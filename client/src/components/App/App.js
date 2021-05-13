@@ -8,13 +8,16 @@ import Post from "../Post";
 import Profile from "../Profile";
 import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/Thunk";
-import Organization from '../Organization';
 import OrganizationList from '../OrganizationList';
 import Student from "../Student";
+import AdminList from "../AdminList";
+import OrganizationView from '../OrganizationView';
+
 
 function App() {
     const isAuth = useSelector(state => state.student.isAuth)
     const dispatch = useDispatch()
+    const admin = useSelector(state =>state.student.currentStudent.admin)
 
 
     useEffect(() => {
@@ -36,11 +39,20 @@ function App() {
                 <Switch>
                     <Route exact path="/posts" component={Post}/>
                     <Route exact path="/profile" component={Profile}/>
-                    <Route exact path="/org" component={OrganizationList}/>
+                    <Route exact path="/organizations" component={OrganizationList}/>
+                    <Route exact path="/organization:id" component={OrganizationView}/>
                     <Route path='/student' component ={Student} />
                     <Redirect to="/posts"/>
                 </Switch>
-           }
+            }
+            {admin?
+                <Switch>
+                    <Route path='/adminList' component = {AdminList}/>
+
+
+                </Switch>:null
+
+            }
         </div>
     </div>
       </BrowserRouter>

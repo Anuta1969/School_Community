@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import {setUser} from "../../redux/actionCreators/actionCreator";
-import {useDispatch} from "react-redux";
+// import {setUser} from "../../redux/actionCreators/actionCreator";
+// import {useDispatch} from "react-redux";
 
 function Registration(props) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const registerHandler = (e) => {
         e.preventDefault()
         const name = e.target.name.value

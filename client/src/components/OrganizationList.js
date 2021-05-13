@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { INIT_ORGANIZATIONS } from '../redux/actionTypes/actionTypes';
 import Organization from './Organization';
 
 function OrganizationList() {
+  
+  const {organization} = useSelector((state) => state.organization); 
+  const dispatch = useDispatch();
+// console.log(organization);
 
-  // const response = await fetch {
-  //   method: 'POST',
-  //   headers: {'Content-Type': application/json },
-  // }
+  useEffect(() => {
+    fetch('/organizations')
+    .then(response => response.json() )
+    .then(body => {
+      // console.log(body);
+      dispatch({
+        type: INIT_ORGANIZATIONS,
+        payload: body
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+  }, [dispatch])
 
-  // console.log(organizations);
 
   return (
-    <div className="container">
-      <div className="card">
-        <ul name="emploerList" className="list-group list-group-flush">
-        {/* { organizations.map(organization =>  */}
-        <Organization />
-        {/* ) } */}
-        </ul>
-      </div>
+    <div className="row row-cols-1 row-cols-md-3 g-4">
+       { organization.map(org => 
+        <Organization org={org} key={org._id}/>
+      ) }
     </div>
+
   );
 }
 

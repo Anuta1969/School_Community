@@ -12,7 +12,7 @@ export const authMiddleware = (req, res, next) => {
             return res.status(401).json({message: 'Auth error'})
         }
         const decoded = jwt.verify(token, config.get('secretKey'))
-        req.user = decoded
+        req.student = decoded
         next()
     } catch (e) {
         return res.status(401).json({message: 'Auth error'})

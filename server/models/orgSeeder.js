@@ -4,7 +4,7 @@ const { connect, connection } = pkg;
 import Organization  from './organization.js';
 
 async function orgSeeder() {
-  await connect('mongodb://localhost:27017/elbrus', {
+  await connect('mongodb+srv://Alex:tB9hbppbaKG_vJr@cluster0.5agzc.mongodb.net/elbrus?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

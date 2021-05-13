@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const Organization = mongoose.model('Organization',{
+
     name:{type:String,trim:true},
     rate: {type: Number, required: true},
 
