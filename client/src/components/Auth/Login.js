@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import {setUser} from "../../redux/actionCreators/actionCreator";
+import {setUser} from "../../redux/actionCreators/actionCreatorAuth";
 
 function Login(props) {
 

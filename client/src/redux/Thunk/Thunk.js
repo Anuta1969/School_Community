@@ -1,6 +1,11 @@
 import axios from "axios";
-import {setUser} from "../actionCreators/actionCreator";
+
+
 import {addPhotoAC} from '../actionCreators/actionCreator'
+
+import {setUser} from "../actionCreators/actionCreatorAuth";
+
+
 
 export const axiosAuth = () => {
     return (dispatch)=>{
