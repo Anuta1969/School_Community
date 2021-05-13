@@ -8,9 +8,10 @@ import Post from "../Post";
 import Profile from "../Profile";
 import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/Thunk";
+import Student from "../Student";
 
 function App() {
-    const isAuth = useSelector(state => state.user.isAuth)
+    const isAuth = useSelector(state => state.student.isAuth)
     const dispatch = useDispatch()
 
 
@@ -33,6 +34,7 @@ function App() {
                 <Switch>
                     <Route exact path="/posts" component={Post}/>
                     <Route exact path="/profile" component={Profile}/>
+                    <Route path='/student' component ={Student} />
                     <Redirect to="/posts"/>
                 </Switch>
             }
