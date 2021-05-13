@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import {setUser} from "../../redux/actionCreators/actionCreator";
 import {useDispatch} from "react-redux";
 
 function Registration(props) {
@@ -16,13 +15,13 @@ function Registration(props) {
             {email, password,name,phone})
             .then(data => {
                 console.log(data)
-                // if (data.data.student) {
-                //     dispatch(setUser(data.data))
-                //     localStorage.setItem('token', data.data.token)
-                //     alert(data.data.message)
-                // }else {
-                //     alert(`User with email ${email} already exist`)
-                })
+                if (data.data.student) {
+                    alert(data.data.message)
+                    e.target.reset()
+                }else {
+                    alert(`User with email ${email} already exist`)
+                    e.target.reset()
+                }})
             .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
     }
         const emailRegHandler = (e) => {
