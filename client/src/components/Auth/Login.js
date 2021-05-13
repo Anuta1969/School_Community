@@ -13,6 +13,7 @@ function Login(props) {
         e.preventDefault()
            axios.post('/login',
                {email, password})
+               // .then(data => console.log(data.data))
                .then(data=> dispatch(setUser(data.data)))
                .then((data)=>localStorage.setItem('token', data.payload.token))
                .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))

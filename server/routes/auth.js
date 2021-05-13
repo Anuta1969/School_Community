@@ -29,10 +29,8 @@ router.post('/registration',
                 return res.status(201).json({message: `Student with email ${email} already exist`})
             }
             const hashPassword = await bcrypt.hash(password, 8)
-            console.log(hashPassword)
             const student = await Student.create({email, password:hashPassword,name,phone})
             const request = await AdminList.create({userId:student})
-            console.log(request)
             // const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return   res.json({message: "заявка на рассмотрении",request,student})
         } catch (e) {
@@ -59,6 +57,7 @@ router.post('/login',
                 student: {
                     id: student.id,
                     email: student.email,
+                    admin:student.admin
                 }
             })
         } catch (e) {
@@ -68,19 +67,20 @@ router.post('/login',
 
 router.get('/auth', authMiddleware,
     async (req, res) => {
-
         try {
-            const user = await Student.findOne({_id: req.user.id})
-            const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"})
+            const student = await Student.findOne({_id: req.student.id})
+            console.log(student)
+
+             const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return res.json({
                 token,
-                user: {
-                    id: user.id,
-                    email: user.email,
+                student: {
+                    id: student.id,
+                    email: student.email,
+                    admin:student.admin
                 }
             })
         } catch (e) {
-            console.log(e)
             res.send({message: "Server error"})
         }
     })
