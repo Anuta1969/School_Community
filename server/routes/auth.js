@@ -22,7 +22,9 @@ router.post('/registration',
             }
             const {email, password,name,phone} = req.body
 
+
             const candidate = await Student.findOne({email})
+
             if(candidate) {
                 return res.status(201).json({message: `Student with email ${email} already exist`})
             }
@@ -55,6 +57,7 @@ router.post('/login',
                 student: {
                     id: student.id,
                     email: student.email,
+                    admin:student.admin
                 }
             })
         } catch (e) {
@@ -64,19 +67,20 @@ router.post('/login',
 
 router.get('/auth', authMiddleware,
     async (req, res) => {
-
         try {
-            const user = await Student.findOne({_id: req.user.id})
-            const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"})
+            const student = await Student.findOne({_id: req.student.id})
+            console.log(student)
+
+             const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return res.json({
                 token,
-                user: {
-                    id: user.id,
-                    email: user.email,
+                student: {
+                    id: student.id,
+                    email: student.email,
+                    admin:student.admin
                 }
             })
         } catch (e) {
-            console.log(e)
             res.send({message: "Server error"})
         }
     })
