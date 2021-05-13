@@ -56,11 +56,7 @@ router.post('/login',
             const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return res.json({
                 token,
-                student: {
-                    id: student.id,
-                    email: student.email,
-                    admin:student.admin
-                }
+                student
             })
         } catch (e) {
             res.send({message: "Server error"})
@@ -76,11 +72,7 @@ router.get('/auth', authMiddleware,
              const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return res.json({
                 token,
-                student: {
-                    id: student.id,
-                    email: student.email,
-                    admin:student.admin
-                }
+                student
             })
         } catch (e) {
             res.send({message: "Server error"})

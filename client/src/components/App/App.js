@@ -12,10 +12,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/Thunk";
 import Student from "../Student";
 import AdminList from "../AdminList";
+import RequestStudent from "../RequestStudent";
+import RequestStudentParams from "../RequestStudentParams";
+import Vacantions from "../Vacantions";
+import Search from "../Search";
 
 
 function App() {
-    const isAuth = useSelector(state => state.student.isAuth)
+    const isAuth = useSelector(state => state.student.currentStudent.isAuth)
     const dispatch = useDispatch()
     const admin = useSelector(state =>state.student.currentStudent.admin)
 
@@ -33,12 +37,11 @@ function App() {
                 <Switch>
                     <Route path="/registration" component={Registration}/>
                     <Route exact path="/" component={Login}/>
-                    {/*<Redirect to='/login'/>*/}
                 </Switch>
                 :
                 <Switch>
-                    <Route exact path="/posts" component={Post}/>
-                    <Route exact path="/profile" component={Profile}/>
+                    <Route exact path="/" component={Profile}/>
+                    <Route path='/search' component ={Search}/>
                     <Route path='/student' component ={Student} />
                     <Route path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
@@ -47,7 +50,8 @@ function App() {
             }
             {admin?
                 <Switch>
-                    <Route path='/adminList' component = {AdminList}/>
+                    <Route exact path='/adminList' component = {AdminList}/>
+                    <Route path='/admin/student/:id' component ={RequestStudentParams}/>
 
 
                 </Switch>:null
