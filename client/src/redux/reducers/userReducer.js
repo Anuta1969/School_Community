@@ -1,4 +1,4 @@
-import {SET_USER,LOGOUT} from "../actionTypes/actionTypes";
+import {SET_USER,LOGOUT,ADDPHOTO} from "../actionTypes/actionTypes";
 
 const defaultState = {
     currentStudent: {},
@@ -13,6 +13,7 @@ export default function userReducer(state = defaultState, action) {
                 ...state,
                 currentStudent: action.payload.student,
                 isAuth: true,
+                
 
             }
         case LOGOUT:
@@ -23,6 +24,19 @@ export default function userReducer(state = defaultState, action) {
                 isAuth: false,
 
             }
+
+        case ADDPHOTO:
+          return{
+            ...state,
+            currentStudent:{
+              ...state.currentStudent,
+              photo:action.payload
+            }
+          }
+
+
+
+
         default:
             return state
     }

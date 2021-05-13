@@ -10,12 +10,11 @@ const Student = mongoose.model('Student',{
     language: {type: String},
     socialLinkedin: {type: String},
     socialGitHab: {type: String},
-
-    placeWork:String,
+    placeWork:{type: String},
     vacancy:[{type:mongoose.Schema.Types.ObjectId , ref: "Vacantion"}],
     commit:[{type:mongoose.Schema.Types.ObjectId , ref: "Commit"}],
-    resume:String,
-    phone: Number,
+    resume:{type: String},
+    phone: {type: Number},
     isAuth:{type:Boolean, default:false},
     admin:{type:Boolean, default:false},
 

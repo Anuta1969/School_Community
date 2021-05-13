@@ -1,6 +1,6 @@
 import axios from "axios";
 import {setUser} from "../actionCreators/actionCreator";
-
+import {addPhotoAC} from '../actionCreators/actionCreator'
 
 export const axiosAuth = () => {
     return (dispatch)=>{
@@ -19,3 +19,17 @@ export const axiosAuth = () => {
 }
 
 
+export const addPhotoUser = (idUser,dats) => {
+  return (dispatch)=>{
+    fetch(`/student/addphoto/${idUser}`, {
+        method: "POST",
+  
+        body: dats,
+      })
+      .then((res) => res.json())
+      // .then(data=>console.log(data.UserOne.photo))
+      .then(data=> dispatch(addPhotoAC(data.UserOne.photo))) 
+
+
+  }
+}

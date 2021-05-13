@@ -31,14 +31,14 @@ function App() {
                 <Switch>
                     <Route path="/registration" component={Registration}/>
                     <Route exact path="/" component={Login}/>
-                    {/*<Redirect to='/login'/>*/}
+                   
                 </Switch>
                 :
                 <Switch>
                     <Route exact path="/posts" component={Post}/>
                     <Route exact path="/profile" component={Profile}/>
                     <Route path='/student' component ={Student} />
-                    <Redirect to="/posts"/>
+                   
                 </Switch>
             }
             {admin?
