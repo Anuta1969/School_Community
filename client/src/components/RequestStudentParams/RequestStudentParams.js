@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useHistory, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
-import {initRequestStudentParamsAC} from "../redux/actionCreators/actionCreatorAdmin";
+import {initRequestStudentParamsAC} from "../../redux/actionCreators/actionCreatorAdmin";
 
 function RequestStudent(props) {
 
