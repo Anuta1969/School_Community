@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { addVacantionAC } from '../../redux/actionCreators/actionCreatorVacantion';
 
 function VacantionsForm(props) {
   const history = useHistory();
@@ -27,8 +28,8 @@ console.log(actuality+'1111');
       }),
     })
       .then((res) => res.json())
-        .then((data) => dispatch({type:'ADD_VACANTION',payload:data}));
-
+      .then((data) => dispatch(addVacantionAC(data.vacantions) ));
+      event.target.reset()
     // После Redux Thunk
     //dispatch(fetchAddStudent(nameInput.current.value, ageInput.current.value))
 

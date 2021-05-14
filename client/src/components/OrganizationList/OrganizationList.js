@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { INIT_ORGANIZATIONS } from '../../redux/actionTypes/actionTypes';
+import { initOrganizationsAC } from '../../redux/actionCreators/actionCreatorOrganization';
 import Organization from '../Organization/Organization';
 
 function OrganizationList() {
@@ -12,10 +12,7 @@ function OrganizationList() {
     fetch('/organizations')
     .then(response => response.json() )
     .then(body => {
-      dispatch({
-        type: INIT_ORGANIZATIONS,
-        payload: body
-      })
+      dispatch( initOrganizationsAC(body) )
     })
     .catch((error) => {
       console.log(error)
