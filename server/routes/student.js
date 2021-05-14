@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
   }
 })
-console.log("1111111", storage);
+// console.log("1111111", storage);
 const upload = multer({ storage: storage })
 
 router.post('/addphoto/:id',upload.single('avatar'), async(req,res)=>{

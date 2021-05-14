@@ -3,7 +3,6 @@ import axios from "axios";
 import {useDispatch} from "react-redux";
 
 function Registration(props) {
-
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
@@ -47,5 +46,18 @@ function Registration(props) {
             </div>
         );
     }
-
     export default Registration;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
