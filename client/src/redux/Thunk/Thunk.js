@@ -26,13 +26,13 @@ export const axiosAuth = () => {
 
 export const addPhotoUser = (idUser,dats) => {
   return (dispatch)=>{
-    fetch(`/student/addphoto/${idUser}`, {
+   fetch(`/student/addphoto/${idUser}`, {
         method: "POST",
   
         body: dats,
       })
       .then((res) => res.json())
-      // .then(data=>console.log(data.UserOne.photo))
+      // .then(data=>console.log(data))
       .then(data=> dispatch(addPhotoAC(data.UserOne.photo))) 
 
 
