@@ -30,7 +30,7 @@ function RequestStudent(props) {
         e.preventDefault()
         axios.delete(`/admin/student/${id}`)
             .then(data => console.log(data))
-            .then(el => history.push('/adminList'))
+            .then(el => history.push('/'))
             .catch(err => console.log(err))
 
     }

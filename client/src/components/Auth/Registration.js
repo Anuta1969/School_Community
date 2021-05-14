@@ -17,38 +17,32 @@ function Registration(props) {
         fetch('/registration',{
             method:"POST",
             body:info
-        })
+        }).then(res => res.json())
             .then(data => {
                 console.log(data)
-                if (data.data.student) {
-                    alert(data.data.message)
+                if (data.student) {
+                    alert(data.message)
                     e.target.reset()
                 }else {
-                    alert(`User with email ${email} already exist`)
+                    alert(data.errors.errors[0].msg)
                     e.target.reset()
                 }})
-            // .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
+            .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
     }
-        // const emailRegHandler = (e) => {
-        //     setEmail(e.target.value)
-        // }
-        //
-        // const passwordRegHandler = (e) => {
-        //     setPassword(e.target.value)
-        // }
+
 
         return (
             <div className='registration'>
-                <form onSubmit={(e)=>registerHandler(e)} method='POST'  encType="multipart/form-data"
+                <form onSubmit={(e)=>registerHandler(e)} method='POST'
+                      encType="multipart/form-data"
                 >
-                    <h3>Registration</h3>
+                    <h3>Регистрация</h3>
                     <input name='name' type="text" placeholder='enter your name'/>
                     <input name='phone' type="number" placeholder='enter  phone number'/>
                     <input  type="email" name='email' placeholder='enter email'/>
                     <input  type="password" name='password' placeholder='enter password'/>
-                    <input type="file" name="photo" placeholder='добавьте фото' />
-
-                    <button type='submit'>Registration</button>
+                    <input type="file" name="photo"  />
+                    <button type='submit'>Регистрация</button>
                 </form>
             </div>
         );
