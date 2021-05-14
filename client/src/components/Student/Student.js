@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Post(props) {
+function Student(props) {
   return (
     <div>
-      
+      hi
     </div>
   );
 }
 
-export default Post;
+export default Student;

@@ -1,20 +1,22 @@
 import React,{useState} from 'react';
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import {setUser} from "../../redux/actionCreators/actionCreator";
+import {setUser} from "../../redux/actionCreators/actionCreatorAuth";
 
 function Login(props) {
 
     const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [password, setPassword] =  useState("")
     const dispatch = useDispatch()
 
     const loginHandler = (e)=>{
         e.preventDefault()
            axios.post('/login',
                {email, password})
+               // .then(data => console.log(data.data))
                .then(data=> dispatch(setUser(data.data)))
                .then((data)=>localStorage.setItem('token', data.payload.token))
+               .then(data =>console.log(data))
                .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
     }
 
