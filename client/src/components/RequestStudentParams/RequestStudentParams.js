@@ -9,7 +9,7 @@ function RequestStudent(props) {
     const history  = useHistory()
     const dispatch = useDispatch()
     const {id} = useParams()
-    const admin = useSelector(state => state.admin).filter(el =>el._id ==id)[0]
+    const admin = useSelector(state => state.admin).filter(el => el._id === id)[0]
     useEffect(()=>{
         axios.get(`/admin/student/${id}`)
             // .then(data => console.log(data))

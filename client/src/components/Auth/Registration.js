@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import  './Registration.css'
 import {useDispatch} from "react-redux";
 
 function Registration(props) {
-
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
@@ -34,18 +34,31 @@ function Registration(props) {
         return (
             <div className='registration'>
                 <form onSubmit={(e)=>registerHandler(e)} method='POST'
-                      encType="multipart/form-data"
+                      encType="multipart/form-data" className='formRegister'
                 >
                     <h3>Регистрация</h3>
-                    <input name='name' type="text" placeholder='enter your name'/>
-                    <input name='phone' type="number" placeholder='enter  phone number'/>
-                    <input  type="email" name='email' placeholder='enter email'/>
-                    <input  type="password" name='password' placeholder='enter password'/>
-                    <input type="file" name="photo"  />
-                    <button type='submit'>Регистрация</button>
+                    <input className='inputRegister' name='name' type="text" placeholder='enter your name' required/>
+                    <input className='inputRegister' name='phone' type="number" placeholder='enter  phone number' required/>
+                    <input className='inputRegister' type="email" name='email' placeholder='enter email' required/>
+                    <input className='inputRegister' type="password" name='password' placeholder='enter password' required/>
+                    <input className='addPhoto' type="file" name="photo" required />
+                    <button className='btnRegister' type='submit'>Регистрация</button>
                 </form>
             </div>
         );
     }
-
     export default Registration;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

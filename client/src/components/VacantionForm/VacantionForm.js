@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { addVacantionAC } from '../../redux/actionCreators/actionCreatorVacantion';
 
 function VacantionsForm(props) {
   const history = useHistory();
@@ -27,8 +28,8 @@ console.log(actuality+'1111');
       }),
     })
       .then((res) => res.json())
-        .then((data) => dispatch({type:'ADD_VACANTION',payload:data}));
-
+      .then((data) => dispatch(addVacantionAC(data.vacantions) ));
+      event.target.reset()
     // После Redux Thunk
     //dispatch(fetchAddStudent(nameInput.current.value, ageInput.current.value))
 
@@ -42,19 +43,21 @@ console.log(actuality+'1111');
     <div className="vacantion container d-flex flex-column">
       <form method="POST" onSubmit={formHandler}>
         <h3>Добавить Вакансию</h3>
-        <input
-        ref={organization}
-          className="form-control"
-          name="organization"
-          type="text"
-          placeholder="введите организацию"
-        />
+        
         <input
         ref={vacantion}
           name="vacantion"
           className="form-control"
           type="text"
           placeholder="введите вакансию"
+        />
+
+<input
+        ref={organization}
+          className="form-control"
+          name="organization"
+          type="text"
+          placeholder="введите организацию"
         />
         <input
         ref={date}
@@ -66,32 +69,32 @@ console.log(actuality+'1111');
 
         <input
         ref={description}
-          name=""
+          name="description"
           className="form-control"
           type="text"
           placeholder="введите описание"
         />
-        <div class="form-check container d-flex flex-column">
+        <div className="form-check container d-flex flex-column">
           <input
-            class="form-check-input"
+            className="form-check-input"
             type="radio"
             name="actuality"
             id="flexRadioDefault1"
-            checked
+            defaultChecked
             value="actual"
           />
-          <label class="form-check-label" for="flexRadioDefault1">
+          <label className="form-check-label" htmlFor="flexRadioDefault1">
             actual
           </label>        
         
           <input
-            class="form-check-input"
+            className="form-check-input"
             type="radio"
             name="actuality"
             id="flexRadioDefault2"
             value="not_actual"
           />
-          <label class="form-check-label" for="flexRadioDefault2">
+          <label className="form-check-label" htmlFor="flexRadioDefault2">
             not actual
           </label>
         </div>

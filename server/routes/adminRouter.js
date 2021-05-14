@@ -2,6 +2,8 @@ import express from "express";
 import Student from "../models/student.js";
 import AdminList from "../models/adminList.js";
 import mongoose from "mongoose";
+import nodemailer from 'nodemailer'
+
 const router = express.Router()
 
 
@@ -34,9 +36,32 @@ router
     .delete('/admin/student/:id',async (req,res)=>{
         try {
             const {id} = req.params
+            const student = await Student.findById(id)
+
             const newId = new  mongoose.Types.ObjectId(id)
             let request = await AdminList.findOneAndDelete({userId:newId})
+            async function mail(){
+                let transporter =  nodemailer.createTransport({
+                    service: 'Mail.ru',
+                    port: 587,
+                    secure: true,
+                    auth: {
+                        user: 'mr_bono1997@mail.ru', // generated ethereal user
+                        pass: 'bono1997', // generated ethereal password
+                    }
+                })
+                await transporter.sendMail({
+                    from: 'mr_bono1997@mail.ru',
+                    to: student.email,
+                    subject:'Ответ',
+                    text:`Заявка отклонена ElbrusIn`,
+                    html:`Заявка отклонена ElbrusIn`
+                })
+
+            }
+            mail().catch(console.error)
             await Student.findByIdAndDelete(id)
+
             res.status(200).json({succes: true, request});
 
         }catch (error){
@@ -52,9 +77,30 @@ router
             // const user = await User.findById(student.user)
             student.isAuth = true
             await student.save()
-            console.log(student)
             const newId = new  mongoose.Types.ObjectId(id)
             let request = await AdminList.findOneAndDelete({userId:newId})
+            console.log(student)
+            async function mail(){
+                let transporter =  nodemailer.createTransport({
+                    service: 'Mail.ru',
+                    port: 587,
+                    secure: true,
+                    auth: {
+                        user: 'mr_bono1997@mail.ru', // generated ethereal user
+                        pass: 'bono1997', // generated ethereal password
+                    }
+                })
+                await transporter.sendMail({
+                    from: 'mr_bono1997@mail.ru',
+                    to: student.email,
+                    subject:'Заявка',
+                    text:`Заявка одобрена в ElbrusIn`,
+                    html:`Заявка одобрена в ElbrusIn`
+                })
+
+            }
+            mail().catch(console.error)
+
             res.status(200).json({succes: true,request});
         }catch (error){
             res.status(400).json({succes: false, msg: error.message});
