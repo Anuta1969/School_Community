@@ -7,11 +7,11 @@ import StudentAbout from "./StudentAbout";
 
 function Profile(props) {
   const dispatch = useDispatch();
-  const store = useSelector((store) => store);
+  const student = useSelector(store => store.student.currentStudent);
 
-  const idUser = store.student.currentStudent._id;
+  const idUser = student._id;
   console.log(idUser, "idUser");
-  const user = store.student.currentStudent;
+ 
 
   const [photo, setPhoto] = useState(false);
   const [rezume, setRezume] = useState(false);
@@ -45,7 +45,7 @@ function Profile(props) {
           <div className="student-about">
             <div className="student-img__box">
               <div className="student-img">
-                <img src={`/img/${user.photo}`} alt="Ваше фото" />
+                <img src={`/img/${student.photo}`} alt="Ваше фото" />
               </div>
 
               <div className="student-btn__photo-btn">
@@ -80,7 +80,7 @@ function Profile(props) {
               </div>
               <div className="student-about-text">
                 <ul className="student-about__title">
-                  <StudentAbout key={user._id} user={user} />
+                  <StudentAbout key={student._id} student={student} />
                 </ul>
               </div>
               <div className="student-add__rezume">

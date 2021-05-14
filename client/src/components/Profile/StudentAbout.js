@@ -4,13 +4,13 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/actionCreators/actionCreatorAuth";
 import { apdateUserProfile } from "../../redux/Thunk/Thunk";
 
-function StudentAbout({ user }) {
+function StudentAbout({ student }) {
   const [btnApdete, setbtnApdete] = useState(false);
   const dispatch = useDispatch();
   const btnApdeteHandler = () => {
     setbtnApdete(true);
   };
-  const id = user._id;
+  const id = student._id;
 
   const btnFormHandler = (e) => {
     setbtnApdete(false);
@@ -53,19 +53,19 @@ function StudentAbout({ user }) {
 
       {!btnApdete && (
         <>
-          <li className="student-about__item">{user.name}</li>
-          <li className="student-about__item">{user.phone} </li>
-          <li className="student-about__item">{user.email} </li>
-          <li className="student-about__item"> {user.year}</li>
-          <li className="student-about__item"> {user.group}</li>
-          <li className="student-about__item"> {user.city}</li>
-          <li className="student-about__item"> {user.stack}</li>
-          <li className="student-about__item"> {user.language}</li>
-          <li className="student-about__item"> {user.socialLinkedin}</li>
-          <li className="student-about__item"> {user.socialGitHab}</li>
-          <li className="student-about__item">{user.placeWork} </li>
+          <li className="student-about__item">{student.name}</li>
+          <li className="student-about__item">{student.phone} </li>
+          <li className="student-about__item">{student.email} </li>
+          <li className="student-about__item"> {student.year}</li>
+          <li className="student-about__item"> {student.group}</li>
+          <li className="student-about__item"> {student.city}</li>
+          <li className="student-about__item"> {student.stack}</li>
+          <li className="student-about__item"> {student.language}</li>
+          <li className="student-about__item"> {student.socialLinkedin}</li>
+          <li className="student-about__item"> {student.socialGitHab}</li>
+          <li className="student-about__item">{student.placeWork} </li>
           <li className="student-about__item">
-          <a href={`/img/${user.resume}`}>download</a>
+          <a href={`/img/${student.resume}`}>download</a>
             {/* <iframe src={`/img/${user.resume}`} style="width:300px; height:300px;" ></iframe> */}
             {/* <embed src={`/img/${user.resume}`} width="200px" height="100px" /> */}
           </li>
@@ -81,26 +81,26 @@ function StudentAbout({ user }) {
               className="about-item__change"
               type="text"
               name="name"
-              defaultValue={user.name}
+              defaultValue={student.name}
             />
             <input
               className="about-item__change"
               type="text"
               name="phone"
-              defaultValue={user.phone}
+              defaultValue={student.phone}
             />
             <input
               className="about-item__change"
               type="text"
               name="email"
-              defaultValue={user.email}
+              defaultValue={student.email}
             />
             <input
               className="about-item__change"
               type="text"
               name="year"
               placeholder="Год поступления"
-              defaultValue={user.year}
+              defaultValue={student.year}
             />
 
             <select
@@ -108,7 +108,7 @@ function StudentAbout({ user }) {
               aria-label="Default select example"
               name="group"
             >
-              <option selected>{user.group}</option>
+              <option selected>{student.group}</option>
               <option value="Ежи">Ежи</option>
               <option value="Пчелы">Пчелы</option>
               <option value="Бобры">Бобры</option>
@@ -130,7 +130,7 @@ function StudentAbout({ user }) {
               aria-label="Default select example"
               name="city"
             >
-              <option selected>{user.city}</option>
+              <option selected>{student.city}</option>
               <option value="Москва">Москва</option>
               <option value="Санкт-Петербург">Санкт-Петербург</option>
             </select>
@@ -140,35 +140,35 @@ function StudentAbout({ user }) {
               type="text"
               name="stack"
               placeholder="Языки програмирования"
-              defaultValue={user.stack}
+              defaultValue={student.stack}
             />
             <input
               className="about-item__change"
               type="text"
               name="language"
               placeholder="Иностранные языки"
-              defaultValue={user.language}
+              defaultValue={student.language}
             />
             <input
               className="about-item__change"
               type="text"
               name="socialLinkedin"
               placeholder="Linkedin"
-              defaultValue={user.socialLinkedin}
+              defaultValue={student.socialLinkedin}
             />
             <input
               className="about-item__change"
               type="text"
               name="socialGitHab"
               placeholder="GitHub"
-              defaultValue={user.socialGitHab}
+              defaultValue={student.socialGitHab}
             />
             <input
               className="about-item__change"
               type="text"
               name="placeWork"
               placeholder="Место работы"
-              defaultValue={user.placeWork}
+              defaultValue={student.placeWork}
             />
             
             <button className="about-item-btn">Сохранить</button>
