@@ -22,7 +22,7 @@ function RequestStudent(props) {
         e.preventDefault()
             axios.post(`/admin/student/${id}`)
             .then(data => console.log(data))
-            .then(el => history.push('/adminList'))
+            .then(el => history.push('/'))
             .catch(err => console.log(err))
     }
 
@@ -34,11 +34,12 @@ function RequestStudent(props) {
             .catch(err => console.log(err))
 
     }
-
+    console.log(admin)
     return (
         <>
             <div>RequestForm</div>
             <div className="cardInfo">
+                <img src= {`/img/${admin?.photo}`} />
                 <h5 className="item-title">{admin?.email}</h5>
                 <h5 className="item-price">{admin?.name}</h5>
                 <h5 className="item-price">{admin?.phone}</h5>
