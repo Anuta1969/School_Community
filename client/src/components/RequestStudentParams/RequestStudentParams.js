@@ -2,14 +2,14 @@ import React, {useEffect} from 'react';
 import {useHistory, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
-import {initRequestStudentParamsAC} from "../redux/actionCreators/actionCreatorAdmin";
+import {initRequestStudentParamsAC} from "../../redux/actionCreators/actionCreatorAdmin";
 
 function RequestStudent(props) {
 
     const history  = useHistory()
     const dispatch = useDispatch()
     const {id} = useParams()
-    const admin = useSelector(state => state.admin).filter(el =>el._id ==id)[0]
+    const admin = useSelector(state => state.admin).filter(el => el._id === id)[0]
     useEffect(()=>{
         axios.get(`/admin/student/${id}`)
             // .then(data => console.log(data))
@@ -22,7 +22,7 @@ function RequestStudent(props) {
         e.preventDefault()
             axios.post(`/admin/student/${id}`)
             .then(data => console.log(data))
-            .then(el => history.push('/adminList'))
+            .then(el => history.push('/'))
             .catch(err => console.log(err))
     }
 
@@ -30,15 +30,16 @@ function RequestStudent(props) {
         e.preventDefault()
         axios.delete(`/admin/student/${id}`)
             .then(data => console.log(data))
-            .then(el => history.push('/adminList'))
+            .then(el => history.push('/'))
             .catch(err => console.log(err))
 
     }
-
+    console.log(admin)
     return (
         <>
             <div>RequestForm</div>
             <div className="cardInfo">
+                <img src= {`/img/${admin?.photo}`} />
                 <h5 className="item-title">{admin?.email}</h5>
                 <h5 className="item-price">{admin?.name}</h5>
                 <h5 className="item-price">{admin?.phone}</h5>

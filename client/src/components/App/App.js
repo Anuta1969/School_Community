@@ -1,25 +1,27 @@
 import './App.css';
 import React, {useEffect} from 'react';
-import Nav from "../Nav";
+import Nav from "../Nav/Nav";
 import {BrowserRouter,Switch,Route,Redirect} from "react-router-dom";
 import Registration from "../Auth/Registration";
 import Login from "../Auth/Login";
-import Post from "../Post";
+import Post from "../Post/Post";
 
 import Profile from "../Profile/Profile";
 
 
-import Vacantion from "../Vacantions";
-import VacantionsForm from "../VacantionForm";
+import Vacantion from "../Vacantions/Vacantions";
+import VacantionsForm from "../VacantionForm/VacantionForm";
 
 import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/Thunk";
-import Student from "../Student";
-import AdminList from "../AdminList";
-import RequestStudent from "../RequestStudent";
-import RequestStudentParams from "../RequestStudentParams";
-import Vacantions from "../Vacantions";
-import Search from "../Search";
+import Student from "../Student/Student";
+import AdminList from "../AdminList/AdminList";
+import RequestStudent from "../RequestStudent/RequestStudent";
+import RequestStudentParams from "../RequestStudentParams/RequestStudentParams";
+import Vacantions from "../Vacantions/Vacantions";
+import Search from "../Search/Search";
+import OrganizationList  from '../OrganizationList/OrganizationList'
+import OrganizationView from '../OrganizationView/OrganizationView';
 
 
 function App() {
@@ -37,31 +39,30 @@ function App() {
     <div className="App">
         <Nav/>
         <div className="wrap">
-            {!isAuth ?
+            {!isAuth?
                 <Switch>
                     <Route path="/registration" component={Registration}/>
                     <Route exact path="/" component={Login}/>
-
                 </Switch>
-                :
+                :null}
+            {isAuth && !admin?
                 <Switch>
                     <Route exact path="/" component={Profile}/>
                     <Route path='/search' component ={Search}/>
                     <Route path='/student' component ={Student} />
-                    <Route path='/vacantions' component ={Vacantion} />
+                    <Route exact path="/organizations" component={OrganizationList}/>
+                    <Route path="/organizations/org/:id" component={OrganizationView}/>
+                    <Route exact path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
-                    <Redirect to="/posts"/>
-                </Switch>
+                </Switch>:null
             }
             {admin?
                 <Switch>
-                    <Route exact path='/adminList' component = {AdminList}/>
-                    <Route path='/admin/student/:id' component ={RequestStudentParams}/>
-
-
-                </Switch>:null
-
+                    <Route exact path='/' component={AdminList}/>
+                    <Route path='/admin/student/:id' component={RequestStudentParams}/>
+                </Switch> : null
             }
+
         </div>
     </div>
       </BrowserRouter>

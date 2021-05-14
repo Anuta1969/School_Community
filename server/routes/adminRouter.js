@@ -52,7 +52,7 @@ router
             // const user = await User.findById(student.user)
             student.isAuth = true
             await student.save()
-            console.log(student)
+            // console.log(student)
             const newId = new  mongoose.Types.ObjectId(id)
             let request = await AdminList.findOneAndDelete({userId:newId})
             res.status(200).json({succes: true,request});

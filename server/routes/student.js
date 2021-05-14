@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
   }
 })
-console.log("1111111", storage);
+// console.log("1111111", storage);
 const upload = multer({ storage: storage })
 
 router.post('/addphoto/:id',upload.single('avatar'), async(req,res)=>{
@@ -21,12 +21,13 @@ router.post('/addphoto/:id',upload.single('avatar'), async(req,res)=>{
   const img = req.file.filename
   
   // console.log(img);
-  const {idUser} = req.params
+  const idUser = req.params
+  // console.log("idUser",idUser.id);
   try {
-    const UserOne = await User.findOne(idUser) 
+    const UserOne = await User.findOne({_id:idUser.id}) 
     UserOne.photo=img
-    await UserOne.save()
-    console.log(UserOne);
+   await UserOne.save()
+    // console.log("UserOne",UserOne);
     res.status(200).json({UserOne})
     
   } catch (error) {

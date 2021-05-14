@@ -16,6 +16,7 @@ function Login(props) {
                // .then(data => console.log(data.data))
                .then(data=> dispatch(setUser(data.data)))
                .then((data)=>localStorage.setItem('token', data.payload.token))
+               .then(data =>console.log(data))
                .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
     }
 
@@ -30,7 +31,7 @@ function Login(props) {
     return (
         <div className='login'>
             <form onSubmit={loginHandler} method='POST'>
-                <h3>Login</h3>
+                <h3>Вход</h3>
                 <input onChange={emailRegHandler} type="text" placeholder='enter email' />
                 <input  onChange={passwordRegHandler} type="password" placeholder='enter password'/>
                 <button >Login</button>
