@@ -28,9 +28,9 @@ app.use(express.static(path.join(__dirname,  "public")));
 app.use('/', authRouter);
 
 app.use('/student',studentRouter)
-// app.use(function (req, res, next) {
-//     next(createError(404));
-// });
+app.use(function (req, res, next) {
+    next(createError(404));
+});
 
 app.use('/',adminRouter)
 app.use(function (req, res, next) {

@@ -4,6 +4,7 @@
 }
 .student-about{
   min-width: 35%;
+  padding-top: 10px;
 }
 .student-form{
   min-width: 65%;
@@ -22,5 +23,32 @@ img{
   height: 300px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: 0% 15%;
   /* padding-top: 10px; */
+}
+.student-add__photo{
+display: flex;
+justify-content: flex-start;
+
+}
+.student-form__photo{
+  display: flex;
+justify-content: flex-start;
+flex-direction: column;
+}
+.student-btn__photo-btn{
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5px;
+  
+}
+.student-form__photo-btn{
+  max-width: 40%;
+  margin-top: 10px;
+}
+.student-form__photo-input{
+  border: 1px solid black;
+}
+.student-about__title{
+  text-align: start;
 }
