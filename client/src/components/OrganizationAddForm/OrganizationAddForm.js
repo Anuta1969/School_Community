@@ -22,13 +22,13 @@ function OrganizationAddForm(props) {
   };
 
   return (
-    <div className="vacantion container d-flex flex-column">
+    <div className="organization container d-flex flex-column">
       <form method="POST" onSubmit={formHandler}>
         <h3>Добавить организацию</h3>
-        
         <input
+        
           name="organization"
-          className="form-control"
+          className="form-control m-3"
           type="text"
           placeholder="введите название организации"
         />

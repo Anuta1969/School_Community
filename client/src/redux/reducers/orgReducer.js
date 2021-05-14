@@ -7,7 +7,7 @@ export default function orgReducer(state = [], action) {
           return action.payload
 
       case ADD_ORGANIZATION:
-          return  action.payload
+          return  [...state, action.payload]
 
       default:
           return state

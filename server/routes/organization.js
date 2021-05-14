@@ -5,7 +5,7 @@ const router = express.Router()
 router.get('/',
      async (req, res) => {
         try {
-           const organization = await Organization.find()
+          const organization = await Organization.find()
            return res.json( organization )
 
         } catch (e) {
