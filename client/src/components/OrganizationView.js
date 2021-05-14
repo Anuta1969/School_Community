@@ -26,6 +26,9 @@ function OrganizationView(props) {
   return (
     <div>
       {organization.name}
+      {organization.rate}
+      {organization.comment}
+      {organization.vacansion}
     </div>
   );
 }
