@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { INIT_ORGANIZATIONS } from '../redux/actionTypes/actionTypes';
-import Organization from './Organization';
+import { INIT_ORGANIZATIONS } from '../../redux/actionTypes/actionTypes';
+import Organization from '../Organization/Organization';
 
 function OrganizationList() {
   

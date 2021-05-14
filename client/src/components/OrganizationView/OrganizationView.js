@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router';
-import { INIT_ONE_ORGANIZATION } from '../redux/actionTypes/actionTypes';
+import { INIT_ONE_ORGANIZATION } from '../../redux/actionTypes/actionTypes';
 
 function OrganizationView(props) {
 

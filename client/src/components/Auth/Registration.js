@@ -6,12 +6,17 @@ function Registration(props) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
+
+
     const registerHandler = (e) => {
         e.preventDefault()
-        const name = e.target.name.value
-        const phone = e.target.phone.value
-        axios.post('/registration',
-            {email, password,name,phone})
+        const info = new FormData(e.target);
+        // const name = e.target.name.value
+        // const phone = e.target.phone.value
+        fetch('/registration',{
+            method:"POST",
+            body:info
+        })
             .then(data => {
                 console.log(data)
                 if (data.data.student) {
@@ -23,21 +28,26 @@ function Registration(props) {
                 }})
             .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
     }
-        const emailRegHandler = (e) => {
-            setEmail(e.target.value)
-        }
-        const passwordRegHandler = (e) => {
-            setPassword(e.target.value)
-        }
+        // const emailRegHandler = (e) => {
+        //     setEmail(e.target.value)
+        // }
+        //
+        // const passwordRegHandler = (e) => {
+        //     setPassword(e.target.value)
+        // }
+
         return (
             <div className='registration'>
-                <form onSubmit={registerHandler} method='POST'>
+                <form onSubmit={(e)=>registerHandler(e)} method='POST'  encType="multipart/form-data"
+                >
                     <h3>Registration</h3>
                     <input name='name' type="text" placeholder='enter your name'/>
                     <input name='phone' type="number" placeholder='enter  phone number'/>
-                    <input onChange={emailRegHandler} type="text" placeholder='enter email'/>
-                    <input onChange={passwordRegHandler} type="password" placeholder='enter password'/>
-                    <button>Registration</button>
+                    <input  type="email" name='email' placeholder='enter email'/>
+                    <input  type="password" name='password' placeholder='enter password'/>
+                    <input type="file" name="photo" placeholder='добавьте фото' />
+
+                    <button type='submit'>Registration</button>
                 </form>
             </div>
         );
