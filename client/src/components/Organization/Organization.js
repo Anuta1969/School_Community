@@ -7,7 +7,7 @@ function Organization({ org }) {
     <div className="card h-100">
         <div className="card h-100">
           <div className="card-body">
-           <Link to={`/organizations/org:${org._id}`}>
+           <Link to={`/organizations/org/${org._id}`}>
             <div className="card-header">
               <h5 className="card-title">{org.name}</h5>
               <p>Рейтинг: {org.rate}</p>

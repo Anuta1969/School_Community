@@ -38,11 +38,11 @@ function Nav(props) {
             {isAuth &&
                 <li className="nav-item"><Link to='/vacantions' className="nav-link">Вакансии</Link></li>}
             {isAuth &&
-                <li className="nav-item"><Link to='/' className="nav-link">Поиск</Link></li>}
+                <li className="nav-item"><Link to='/search' className="nav-link">Поиск</Link></li>}
             {isAuth &&
-                <li className="nav-item"><Link to='/' className="nav-link">Организации</Link></li>}
+                <li className="nav-item"><Link to='/organizations' className="nav-link">Организации</Link></li>}
             {isAuth &&
-                <li className="nav-item"><Link to='/' className="nav-link">Добавить Организацию</Link></li>}
+                <li className="nav-item"><Link to='/addOrganizations' className="nav-link">Добавить Организацию</Link></li>}
 
             {isAuth && <li className="nav-item"><Link to='/' className="nav-link"
                 onClick={() => dispatch(logout())}>Выход</Link></li>}

@@ -50,9 +50,9 @@ function App() {
                     <Route exact path="/" component={Profile}/>
                     <Route path='/search' component ={Search}/>
                     <Route path='/student' component ={Student} />
-                    <Route path="/organizations" component={OrganizationList}/>
-                    <Route path="/organizations/org:id" component={OrganizationView}/>
-                    <Route path='/vacantions' component ={Vacantion} />
+                    <Route exact path="/organizations" component={OrganizationList}/>
+                    <Route path="/organizations/org/:id" component={OrganizationView}/>
+                    <Route exact path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
                 </Switch>:null
             }

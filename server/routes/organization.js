@@ -13,12 +13,13 @@ router.get('/',
         }
     })
 
-router.get('/org:id',
+router.get('/org/:id',
   async (req, res) => {
 
-    const re = /[^:]+/
-    const id = re.exec(req.params.id)
-
+    // const re = /[^:]+/
+    // const id = re.exec(req.params.id)
+    const id = req.params.id
+    console.log(id);
     try {
       const organization = await Organization.find({_id: id})
       return res.json( organization )
