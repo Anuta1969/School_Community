@@ -87,6 +87,7 @@ function Profile(props) {
             
             
             2</div>
+          {/*<div className="student-form">2</div>*/}
         </div>
 
         <div>Profile</div>
