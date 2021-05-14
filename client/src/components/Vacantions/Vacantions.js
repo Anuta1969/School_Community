@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Vacantions(props) {
 
-
+console.log('1234');
   
   return (
     <div className="vacantion container d-flex flex-column flex-wrap">

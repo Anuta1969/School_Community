@@ -12,6 +12,7 @@ import { fileURLToPath } from 'url';
 import authRouter from './routes/authRouter.js'
 import orgRouter from './routes/organization.js'
 import adminRouter from './routes/adminRouter.js'
+import vacantionRouter from './routes/vacantion.js'
 
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -26,14 +27,17 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 // app.use(express.static('public'))
 app.use(express.static(path.join(__dirname,  "public")));
-app.use('/', authRouter);
+
+app.use('/',authRouter)
+
+
+app.use('/vacantion', vacantionRouter);
 app.use('/organizations', orgRouter);
 
 app.use('/student',studentRouter)
-
 app.use('/',adminRouter)
 app.use(function (req, res, next) {
-    next(createError(404));
+  next(createError(404));
 });
 
 
