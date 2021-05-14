@@ -14,28 +14,28 @@ function Profile(props) {
  
 
   const [photo, setPhoto] = useState(false);
-  const [rezume, setRezume] = useState(false);
+  const [resume, setResume] = useState(false);
 
   const addPhotoHandler = (e) => {
     e.preventDefault();
     setPhoto(false);
     const dats = new FormData(e.target);
-    // console.log("rezume", dats);
+    // console.log("resume", dats);
     dispatch(addPhotoUser(idUser, dats));
   };
 
-  const saveRezumehandler = (e) => {
+  const saveResumehandler = (e) => {
     e.preventDefault();
-    setRezume(false);
+    setResume(false);
     const dats = new FormData(e.target);
-    console.log("rezume", dats);
+    console.log("resume", dats);
     dispatch(addResumeUser(idUser, dats));
   };
   const btnPhotoHandler = () => {
     setPhoto(true);
   };
-  const addRezumeHandler = () => {
-    setRezume(true);
+  const addResumeHandler = () => {
+    setResume(true);
   };
 
   return (
@@ -84,9 +84,9 @@ function Profile(props) {
                 </ul>
               </div>
               <div className="student-add__rezume">
-                {rezume && 
+                {resume && 
                   <form
-                  onSubmit={saveRezumehandler}
+                  onSubmit={saveResumehandler}
                     className="student-form__photo"                    
                     encType="multipart/form-data"
                     action="/profile"
@@ -95,16 +95,16 @@ function Profile(props) {
                     <input
                       className="student-form__photo-input form-control"
                       type="file"
-                      name="rezume"
+                      name="resume"
                     />
                     <button className="student-form__photo-btn btn btn-outline-primary">
                       Сохранить
                     </button>
                   </form>
                 }
-                 {!rezume &&
+                 {!resume &&
                   <button
-                    onClick={addRezumeHandler}
+                    onClick={addResumeHandler}
                     className="student-form__photo-btn btn btn-outline-primary"
                   >
                     📃

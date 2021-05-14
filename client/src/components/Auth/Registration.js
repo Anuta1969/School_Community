@@ -4,16 +4,10 @@ import  './Registration.css'
 import {useDispatch} from "react-redux";
 
 function Registration(props) {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const dispatch = useDispatch()
-
-
-    const registerHandler = (e) => {
+      const registerHandler = (e) => {
         e.preventDefault()
         const info = new FormData(e.target);
-        // const name = e.target.name.value
-        // const phone = e.target.phone.value
+       
         fetch('/registration',{
             method:"POST",
             body:info

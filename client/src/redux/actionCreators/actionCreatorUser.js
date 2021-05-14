@@ -14,7 +14,7 @@ export const apdateUserProfileAC = (payload)=>{
 }
 
 
-export const addRezumeUserAC = (payload)=>{
+export const addResumeUserAC = (payload)=>{
   return {
     type: ADDREZUME,
     payload
