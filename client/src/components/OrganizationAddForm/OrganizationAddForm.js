@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { addOrganizationAC } from '../../redux/actionCreators/actionCreatorOrganization';
 
 function OrganizationAddForm(props) {
   
@@ -16,7 +17,8 @@ function OrganizationAddForm(props) {
       }),
     })
       .then((res) => res.json())
-      .then((data) => dispatch({type:'ADD_ORGANIZATION',payload:data}))
+      .then((data) => dispatch(addOrganizationAC(data.newOrganization)))
+      event.target.reset()
   };
 
   return (
