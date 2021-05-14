@@ -43,7 +43,9 @@ router.post('/login',
     async (req, res) => {
         try {
             const {email, password} = req.body
+            console.log(req.body);
             const student = await Student.findOne({email})
+            console.log(student+'111');
             if (!student || !student.isAuth) {
                 return res.status(404).json({message: "User not found"})
             }
