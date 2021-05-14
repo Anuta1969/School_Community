@@ -16,6 +16,7 @@ import RequestStudentParams from "../RequestStudentParams/RequestStudentParams";
 import Search from "../Search/Search";
 import OrganizationList  from '../OrganizationList/OrganizationList'
 import OrganizationView from '../OrganizationView/OrganizationView';
+import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
 function App() {
     const isAuth = useSelector(state => state.student.currentStudent.isAuth)
     const dispatch = useDispatch()
@@ -43,6 +44,8 @@ function App() {
                     <Route path="/organizations/org/:id" component={OrganizationView}/>
                     <Route exact path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
+                    <Route path='/organizations/add' component ={OrganizationAddForm} />
+                    
                 </Switch>:null
             }
             {admin?
@@ -55,6 +58,7 @@ function App() {
                     <Route path="/organizations/org/:id" component={OrganizationView}/>
                     <Route exact path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
+                    <Route path='/organizations/add' component ={OrganizationAddForm} />
                 </Switch> : null
             }
         </div>
