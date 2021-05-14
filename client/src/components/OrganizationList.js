@@ -7,13 +7,11 @@ function OrganizationList() {
   
   const {organization} = useSelector((state) => state.organization); 
   const dispatch = useDispatch();
-// console.log(organization);
 
   useEffect(() => {
     fetch('/organizations')
     .then(response => response.json() )
     .then(body => {
-      // console.log(body);
       dispatch({
         type: INIT_ORGANIZATIONS,
         payload: body

@@ -6,14 +6,26 @@ router.get('/',
      async (req, res) => {
         try {
            const organization = await Organization.find()
-          // console.log(organization);
-            return res.json(
-                organization
-          )
+           return res.json( organization )
 
         } catch (e) {
             res.send({message: "Server error"})
         }
     })
+
+router.get('/org:id',
+  async (req, res) => {
+
+    const re = /[^:]+/
+    const id = re.exec(req.params.id)
+
+    try {
+      const organization = await Organization.find({_id: id})
+      return res.json( organization )
+    } catch (error) { 
+      res.send( {message: "Server error"} )          
+    }
+  }
+)
 
 export default router

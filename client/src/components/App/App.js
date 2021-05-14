@@ -50,7 +50,7 @@ function App() {
                     <Route path='/search' component ={Search}/>
                     <Route path='/student' component ={Student} />
                     <Route exact path="/organizations" component={OrganizationList}/>
-                    <Route exact path="/organization:id" component={OrganizationView}/>
+                    <Route exact path="/organizations/org:id" component={OrganizationView}/>
                     <Route path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
                     <Redirect to="/posts"/>

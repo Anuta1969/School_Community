@@ -27,9 +27,9 @@ router.post('/registration',
                   return res.status(201).json({message: `Student with email ${email} already exist`})
               }
               const hashPassword = await bcrypt.hash(password, 8)
-              console.log(hashPassword);
+              // console.log(hashPassword);
             const student = await Student.create({email, password:hashPassword, name, phone})
-            console.log(student);
+            // console.log(student);
             const request = await AdminList.create({userId:student})
             // const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
           
@@ -65,7 +65,7 @@ router.get('/auth', authMiddleware,
     async (req, res) => {
         try {
             const student = await Student.findOne({_id: req.student.id})
-            console.log(student)
+            // console.log(student)
 
              const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return res.json({

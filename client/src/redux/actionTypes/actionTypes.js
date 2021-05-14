@@ -1,6 +1,8 @@
 export const SET_USER = "SET_USER"
 export const LOGOUT = "LOGOUT"
+
 export const INIT_ORGANIZATIONS = "INIT_ORGANIZATIONS"
+export const INIT_ONE_ORGANIZATION = "INIT_ONE_ORGANIZATION"
 
 export const ADDPHOTO = "ADDPHOTO"
 
