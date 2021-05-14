@@ -4,15 +4,15 @@ import logger from 'morgan'
 import createError from 'http-errors'
 
 
-import studentRouter from './routes/student.js'
+import studentRouter from './routes/studentRouter.js'
 import path from 'path'
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import authRouter from './routes/authRouter.js'
-import orgRouter from './routes/organization.js'
+import orgRouter from './routes/organizationRouter.js'
 import adminRouter from './routes/adminRouter.js'
-import vacantionRouter from './routes/vacantion.js'
+import vacantionRouter from './routes/vacantionRouter.js'
 
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url));
