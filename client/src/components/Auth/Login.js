@@ -31,7 +31,7 @@ function Login(props) {
     return (
         <div className='login'>
             <form onSubmit={loginHandler} method='POST'>
-                <h3>Login</h3>
+                <h3>Вход</h3>
                 <input onChange={emailRegHandler} type="text" placeholder='enter email' />
                 <input  onChange={passwordRegHandler} type="password" placeholder='enter password'/>
                 <button >Login</button>
