@@ -27,7 +27,7 @@ function Registration(props) {
                     alert(`User with email ${email} already exist`)
                     e.target.reset()
                 }})
-            .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
+            // .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
     }
         // const emailRegHandler = (e) => {
         //     setEmail(e.target.value)
