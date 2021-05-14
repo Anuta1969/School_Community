@@ -1,23 +1,16 @@
-// import {SET_USER,LOGOUT} from "../actionTypes/actionTypes";
+import { ADD_VACANTION, INIT_VACANTION } from "../actionTypes/actionTypes";
 
-const defaultState = {
-    vacantion: [],
-}
-
-export default function userReducer(state = defaultState, action) {
+ const vacantionReducer = (state = [], action) => {
     switch (action.type) {
-        case 'INIT_VACANTION':
-          
-            return {
-                ...state,
-                vacantion: action.payload.vacantion,
-                
-
-            }
-        case 'ADD_VACANTION':
+        case INIT_VACANTION:
+            return  action.payload.vacantion
             
-          return { ...state, vacantion: [...state.vacantion, action.payload] };
+        case ADD_VACANTION:
+          return action.payload
+
         default:
             return state
     }
 }
+
+export default vacantionReducer

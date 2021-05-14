@@ -1,18 +1,13 @@
 import { ADD_ORGANIZATION, INIT_ORGANIZATIONS } from "../actionTypes/actionTypes"
 
-const defaultState = {
-  organization: [],
-}
 
-export default function orgReducer(state = defaultState, action) {
+export default function orgReducer(state = [], action) {
   switch (action.type) {
       case INIT_ORGANIZATIONS:
-          return {
-              ...state,
-              organization: action.payload,
-          }
+          return action.payload
+
       case ADD_ORGANIZATION:
-          return { ...state, vacantion: [...state.organization, action.payload] };
+          return  action.payload
 
       default:
           return state
