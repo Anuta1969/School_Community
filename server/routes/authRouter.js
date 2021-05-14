@@ -7,6 +7,8 @@ import {authMiddleware} from '../middleware/authMiddleware.js'
 import Student from "../models/student.js";
 const router = express.Router()
 import AdminList from "../models/adminList.js";
+
+
 router.post('/registration',
     [
         check('email', "Uncorrect email").isEmail(),
@@ -14,20 +16,23 @@ router.post('/registration',
     ],
     async (req, res) => {
         try {
+        
             const errors = validationResult(req)
             if (!errors.isEmpty()) {
                 return res.status(400).json({message: "Incorrect request", errors})
             }
-            const {email, password,name,phone} = req.body
+            const {email, password, name, phone} = req.body
             const candidate = await Student.findOne({email})
             if(candidate) {
-                return res.status(201).json({message: `Student with email ${email} already exist`})
-            }
-            const hashPassword = await bcrypt.hash(password, 8)
-            const student = await Student.create({email, password:hashPassword,name,phone})
+                  return res.status(201).json({message: `Student with email ${email} already exist`})
+              }
+              const hashPassword = await bcrypt.hash(password, 8)
+              console.log(hashPassword);
+            const student = await Student.create({email, password:hashPassword, name, phone})
             console.log(student);
             const request = await AdminList.create({userId:student})
             // const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
+          
             return   res.json({message: "заявка на рассмотрении",request,student})
         } catch (e) {
             res.send({message: "Server error"})
@@ -37,7 +42,9 @@ router.post('/login',
     async (req, res) => {
         try {
             const {email, password} = req.body
+            // console.log(req.body);
             const student = await Student.findOne({email})
+            // console.log(student+'111');
             if (!student || !student.isAuth) {
                 return res.status(404).json({message: "User not found"})
             }
@@ -59,6 +66,7 @@ router.get('/auth', authMiddleware,
         try {
             const student = await Student.findOne({_id: req.student.id})
             console.log(student)
+
              const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return res.json({
                 token,

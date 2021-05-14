@@ -5,7 +5,13 @@ import {BrowserRouter,Switch,Route,Redirect} from "react-router-dom";
 import Registration from "../Auth/Registration";
 import Login from "../Auth/Login";
 import Post from "../Post";
-import Profile from "../Profile";
+
+import Profile from "../Profile/Profile";
+
+
+import Vacantion from "../Vacantions";
+import VacantionsForm from "../VacantionForm";
+
 import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/Thunk";
 import OrganizationList from '../OrganizationList';
@@ -37,7 +43,6 @@ function App() {
                 <Switch>
                     <Route path="/registration" component={Registration}/>
                     <Route exact path="/" component={Login}/>
-                    <Redirect to='/login'/>
                 </Switch>
                 :
                 <Switch>
@@ -46,6 +51,9 @@ function App() {
                     <Route path='/student' component ={Student} />
                     <Route exact path="/organizations" component={OrganizationList}/>
                     <Route exact path="/organization:id" component={OrganizationView}/>
+                    <Route path='/vacantions' component ={Vacantion} />
+                    <Route path='/vacantionsForm' component ={VacantionsForm} />
+                    <Redirect to="/posts"/>
                 </Switch>
             }
             {admin?

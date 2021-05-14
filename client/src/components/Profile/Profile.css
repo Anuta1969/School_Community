@@ -1,0 +1,26 @@
+.student-box{
+  display: flex;
+  justify-content: space-between;
+}
+.student-about{
+  min-width: 35%;
+}
+.student-form{
+  min-width: 65%;
+}
+.student-img{
+  background-color: rgb(175, 167, 167);
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 50%;
+ 
+}
+img{
+  /* max-width: 100%;
+  max-height: 100%; */
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* padding-top: 10px; */
+}

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import {useDispatch} from "react-redux";
+
 function Registration(props) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -18,7 +19,7 @@ function Registration(props) {
                     e.target.reset()
                 }else {
                     alert(`Hello`)
-                    e.target.reset()
+                    // e.target.reset()
                 }})
             .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
     }
