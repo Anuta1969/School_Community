@@ -21,7 +21,7 @@ function AdminList(props) {
     return (
         <>
             <div className='adminListTitle'>
-            <h3>AdminList</h3>
+            <h3>Заявки</h3>
             <div className='adminList'>
                 {admin?.map(el => <RequestStudent key={el._id} student ={el}/>)}
             </div>

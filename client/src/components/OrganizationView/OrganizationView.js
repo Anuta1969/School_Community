@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 function OrganizationView(props) {
-    const {id} = useParams()
+  const {id} = useParams()
 
-  const [oneOrgazition,setoneOrgazition] = useState('') 
+  const [oneOrgazition,setoneOrgazition] = useState('')
 
   useEffect(() => {
    fetch(`/organizations/org/${id}`)

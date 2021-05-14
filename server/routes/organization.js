@@ -17,7 +17,7 @@ router.get('/org/:id',
   async (req, res) => {
 
     const id = req.params.id
-
+  
     try {
       const organization = await Organization.find({_id: id})     
       res.json(organization)
@@ -25,5 +25,18 @@ router.get('/org/:id',
       res.send( {message: "Server error"} )          
     }
   })
+
+ router.post('/add', async (req, res) => {
+  let { organization } =
+    req.body;
+  
+  const newOrganization = await Organization.create({
+    name: organization,
+    });
+
+   res.status(201).json({newOrganization})
+});
+
+
 
 export default router
