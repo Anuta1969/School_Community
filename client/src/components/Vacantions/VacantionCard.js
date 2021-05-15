@@ -1,9 +1,7 @@
-import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router";
 
 
-function VacantionCard({vacantion}) {
-  const student = useSelector(state=>state.student.currentStudent)
+function VacantionCard({vacantion}) { 
   const history = useHistory()
 console.log(vacantion);
   

@@ -1,14 +1,14 @@
 import './App.css';
 import React, {useEffect} from 'react';
 import Nav from "../Nav/Nav";
-import {BrowserRouter,Switch,Route} from "react-router-dom";
+import {BrowserRouter,Switch,Route,Redirect} from "react-router-dom";
 import Registration from "../Auth/Registration";
 import Login from "../Auth/Login";
 import Profile from "../Profile/Profile";
 import Vacantion from "../Vacantions/Vacantions";
 import VacantionsForm from "../VacantionForm/VacantionForm";
 import {useDispatch, useSelector} from "react-redux";
-import {axiosAuth} from "../../redux/Thunk/Thunk";
+import {axiosAuth} from "../../redux/Thunk/ThunkAuth";
 import Student from "../Student/Student";
 import AdminList from "../AdminList/AdminList";
 
@@ -19,9 +19,11 @@ import OrganizationView from '../OrganizationView/OrganizationView';
 import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
 import Post from '../Post/Post';
 function App() {
-    const isAuth = useSelector(state => state.student.currentStudent.isAuth)
+    const isAuth = useSelector(state => state.student.isAuth)
     const dispatch = useDispatch()
-    const admin = useSelector(state =>state.student.currentStudent.admin)
+    const admin = useSelector(state =>state.student.admin)
+
+
     useEffect(() => {
         dispatch(axiosAuth())
     }, [dispatch])
@@ -34,6 +36,8 @@ function App() {
                 <Switch>
                     <Route path="/registration" component={Registration}/>
                     <Route exact path="/" component={Login}/>
+                    {/*<Redirect to="/login" />*/}
+
                 </Switch>
                 :null}
             {isAuth && !admin?
@@ -45,9 +49,8 @@ function App() {
                     <Route path="/organizations/org/:id" component={OrganizationView}/>
                     <Route exact path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
-                    <Route path='/organizations/add' component ={OrganizationAddForm}/>
-                    <Route path='/post/:id' component={Post}/>
-                    
+                    <Route path='/organizations/add' component ={OrganizationAddForm} />
+
                 </Switch>:null
             }
             {admin?

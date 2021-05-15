@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Profile.css";
-import { addPhotoUser, addResumeUser } from "../../redux/Thunk/Thunk";
+
+import { ThunkAddPhotoUser, ThunkAddResumeUser } from "../../redux/Thunk/ThunkStudent";
+import { Document, Page } from "react-pdf";
+
 
 import StudentAbout from "./StudentAbout";
+// import StudentAddRusume from './StudentAddRusume'
 
 function Profile(props) {
   const dispatch = useDispatch();
-  const student = useSelector(store => store.student.currentStudent);
+
+  const student = useSelector(state => state.student);
 
   const idUser = student._id;
-  console.log(idUser, "idUser");
- 
+
+
 
   const [photo, setPhoto] = useState(false);
   const [resume, setResume] = useState(false);
@@ -20,8 +25,8 @@ function Profile(props) {
     e.preventDefault();
     setPhoto(false);
     const dats = new FormData(e.target);
-    // console.log("resume", dats);
-    dispatch(addPhotoUser(idUser, dats));
+
+    dispatch(ThunkAddPhotoUser(idUser, dats));
   };
 
   const saveResumehandler = (e) => {
@@ -29,7 +34,7 @@ function Profile(props) {
     setResume(false);
     const dats = new FormData(e.target);
     console.log("resume", dats);
-    dispatch(addResumeUser(idUser, dats));
+    dispatch(ThunkAddResumeUser(idUser, dats));
   };
   const btnPhotoHandler = () => {
     setPhoto(true);
@@ -38,6 +43,15 @@ function Profile(props) {
     setResume(true);
   };
 
+
+  // for resume 
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
+
   return (
     <section>
       <div className="container">
@@ -45,7 +59,7 @@ function Profile(props) {
           <div className="student-about">
             <div className="student-img__box">
               <div className="student-img">
-                <img src={`/img/${student.photo}`} alt="Ваше фото" />
+                <img src={`${process.env.REACT_APP_URL}/img/${student.photo}`} alt="Ваше фото" />
               </div>
 
               <div className="student-btn__photo-btn">
@@ -78,16 +92,25 @@ function Profile(props) {
                   </form>
                 )}
               </div>
+              
+              
+              
+              
               <div className="student-about-text">
                 <ul className="student-about__title">
                   <StudentAbout key={student._id} student={student} />
                 </ul>
               </div>
+
               <div className="student-add__rezume">
-                {resume && 
+
+
+                {resume &&
                   <form
                   onSubmit={saveResumehandler}
-                    className="student-form__photo"                    
+                    className="student-form__photo"
+
+
                     encType="multipart/form-data"
                     action="/profile"
                     method="post"
@@ -101,19 +124,38 @@ function Profile(props) {
                       Сохранить
                     </button>
                   </form>
+
                 }
                  {!resume &&
+
                   <button
                     onClick={addResumeHandler}
                     className="student-form__photo-btn btn btn-outline-primary"
                   >
                     📃
                   </button>
-                  } 
+
+                  }
+
               </div>
+
+
             </div>
           </div>
-          <div className="student-form"></div>
+          <div className="student-form">
+            Student list
+            <div>
+              <Document
+                file={`${process.env.REACT_APP_URL}/resume/${student.resume}`}
+                onLoadSuccess={onDocumentLoadSuccess}
+              >
+                <Page pageNumber={pageNumber} />
+              </Document>
+              <p>
+                Page {pageNumber} of {numPages}
+              </p>
+            </div>
+          </div>
           {/*<div className="student-form">2</div>*/}
         </div>
 
