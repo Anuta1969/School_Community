@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import StudentAboutItem from "./StudentAboutItem";
 import { setUser } from "../../redux/actionCreators/actionCreatorAuth";
-import { updateUserProfile } from "../../redux/Thunk/Thunk";
+import { updateUserProfile } from "../../redux/Thunk/ThunkAuth";
 
 function StudentAbout({ student }) {
   const [btnUpdate, setBtnUpdate] = useState(false);

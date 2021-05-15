@@ -1,14 +1,14 @@
 import './App.css';
 import React, {useEffect} from 'react';
 import Nav from "../Nav/Nav";
-import {BrowserRouter,Switch,Route} from "react-router-dom";
+import {BrowserRouter,Switch,Route,Redirect} from "react-router-dom";
 import Registration from "../Auth/Registration";
 import Login from "../Auth/Login";
 import Profile from "../Profile/Profile";
 import Vacantion from "../Vacantions/Vacantions";
 import VacantionsForm from "../VacantionForm/VacantionForm";
 import {useDispatch, useSelector} from "react-redux";
-import {axiosAuth} from "../../redux/Thunk/Thunk";
+import {axiosAuth} from "../../redux/Thunk/ThunkAuth";
 import Student from "../Student/Student";
 import AdminList from "../AdminList/AdminList";
 
@@ -35,6 +35,8 @@ function App() {
                 <Switch>
                     <Route path="/registration" component={Registration}/>
                     <Route exact path="/" component={Login}/>
+                    {/*<Redirect to="/login" />*/}
+
                 </Switch>
                 :null}
             {isAuth && !admin?
