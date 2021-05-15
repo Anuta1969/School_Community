@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Profile.css";
 
 import { ThunkAddPhotoUser, ThunkAddResumeUser } from "../../redux/Thunk/ThunkStudent";
-import { Document, Page } from "react-pdf";
-
-
+import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack'
 import StudentAbout from "./StudentAbout";
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 // import StudentAddRusume from './StudentAddRusume'
 
 function Profile(props) {
@@ -15,7 +15,7 @@ function Profile(props) {
   const student = useSelector(state => state.student);
 
   const idUser = student._id;
-
+  
 
 
   const [photo, setPhoto] = useState(false);
@@ -33,7 +33,7 @@ function Profile(props) {
     e.preventDefault();
     setResume(false);
     const dats = new FormData(e.target);
-    console.log("resume", dats);
+    console.log("resume-------", dats);
     dispatch(ThunkAddResumeUser(idUser, dats));
   };
   const btnPhotoHandler = () => {
@@ -52,6 +52,20 @@ function Profile(props) {
     setNumPages(numPages);
   }
 
+  const btnPrevHandler =()=>{
+    if(pageNumber < numPages && pageNumber !=1){
+      return setPageNumber(pageNumber -1)
+    }else{
+      setPageNumber(1)
+    }
+  }
+  const btnNextHandler =()=>{
+    if(pageNumber <= numPages){
+      return  setPageNumber( pageNumber +1)
+    }else{
+      setPageNumber(numPages)
+    }
+  }
   return (
     <section>
       <div className="container">
@@ -147,6 +161,7 @@ function Profile(props) {
             <div>
               <Document
                 file={`${process.env.REACT_APP_URL}/resume/${student.resume}`}
+                // file = {student.resume}
                 onLoadSuccess={onDocumentLoadSuccess}
               >
                 <Page pageNumber={pageNumber} />
@@ -155,8 +170,13 @@ function Profile(props) {
                 Page {pageNumber} of {numPages}
               </p>
             </div>
+            <div className="btn-prev">
+              <button onClick={btnPrevHandler} className="prev">Назад</button>
+              <button onClick={btnNextHandler} className="prev">Вперед</button>
+            </div>
+            
           </div>
-          {/*<div className="student-form">2</div>*/}
+        
         </div>
 
         <div>Profile</div>

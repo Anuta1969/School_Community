@@ -4,6 +4,7 @@ import axios from "axios";
 import './SearchList.css'
 import {initAllStudentsAC} from "../../redux/actionCreators/actionCreatorStudent";
 import SearchStudent from "../SearchStudent/SearchStudent";
+import SearchForm from "../SearchForm/SearchForm";
 
 function Search(props) {
     const dispatch = useDispatch()
@@ -19,6 +20,7 @@ function Search(props) {
 
     return (
         <>
+            <SearchForm/>
             <div className='search'>
         <div>Поиск</div>
                 <div className='searchList'>
