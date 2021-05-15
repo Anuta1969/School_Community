@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Profile.css";
-import { addPhotoUser, addResumeUser } from "../../redux/Thunk/Thunk";
+import { addPhotoUser, addResumeUser } from "../../redux/Thunk/ThunkAuth";
 
 import StudentAbout from "./StudentAbout";
 
