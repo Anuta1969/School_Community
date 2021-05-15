@@ -1,41 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addOrganizationAC } from '../../redux/actionCreators/actionCreatorOrganization';
+import { thunkOrgAdd } from '../../redux/Thunk/ThunkOrganization';
+import { Icon } from '@iconify/react';
+import iosStar from '@iconify-icons/ion/ios-star';
+
+const rating = ['','','','','']
 
 function OrganizationAddForm(props) {
   
+  const [addOrgFlag, setaddOrgFlag] = useState(false)
+  const [rate, setRate] = useState(0)
+
   const dispatch = useDispatch();
 
   const formHandler = (event) => {
     event.preventDefault();
 
-    fetch('/organizations/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'Application/json' },
-      body: JSON.stringify({
-        organization: event.target.organization.value,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => dispatch(addOrganizationAC(data.newOrganization)))
+      dispatch(thunkOrgAdd( 
+        event.target.organization.value, 
+        event.target.comment.value, 
+        rate
+        ))
       event.target.reset()
   };
 
+  const addOrgFunction = (event) => {
+    event.preventDefault()
+    setaddOrgFlag(!addOrgFlag)
+  }
+
   return (
-    <div className="vacantion container d-flex flex-column">
+    <>
+        <button onClick={addOrgFunction}><h3>Добавить организацию</h3></button>
+    { addOrgFlag? 
+      
+    <div className="organization container d-flex flex-column">
       <form method="POST" onSubmit={formHandler}>
-        <h3>Добавить организацию</h3>
         
-        <input
-          name="organization"
-          className="form-control"
-          type="text"
-          placeholder="введите название организации"
-        />
+          <input
+            name="organization"
+            className="form-control m-3"
+            type="text"
+            placeholder="название организации"
+          />
+
+           <p> Оцените организацию {rating.map((el,i) => {
+                return <Icon 
+                          name={i} 
+                          key={i} 
+                          style={{color: i <= rate?"red":"initial"}} 
+                          icon={iosStar} onClick={() => setRate(i)} />
+                 })}
+          </p> 
+
+          <div className="form-floating">
+            <textarea className="form-control m-3" name="comment" ></textarea>
+            <label className="ms-2" htmlFor="floatingTextarea2">Ваше мнение об организации</label>
+          </div>
         
-        <button type="submit">Добавить</button>
-      </form>
-    </div>
+          <button type="submit">Добавить</button>  
+          </form>
+          </div>
+        : null}
+        </>
   );
 }
 

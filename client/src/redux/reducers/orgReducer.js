@@ -1,4 +1,4 @@
-import { ADD_ORGANIZATION, INIT_ORGANIZATIONS } from "../actionTypes/actionTypes"
+import { ADD_ORGANIZATION, INIT_ONE_OGRANIZATION, INIT_ORGANIZATIONS } from "../actionTypes/actionTypes"
 
 
 export default function orgReducer(state = [], action) {
@@ -7,12 +7,14 @@ export default function orgReducer(state = [], action) {
           return action.payload
 
       case ADD_ORGANIZATION:
-          return  action.payload
+          return  [...state, action.payload]
+
+      case INIT_ONE_OGRANIZATION:
+        return  action.payload
+           
 
       default:
           return state
   }
-
-  
 }
 

@@ -1,27 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import Icon from '@iconify/react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
+import iosStar from '@iconify-icons/ion/ios-star';
 
 function OrganizationView(props) {
   const {id} = useParams()
-
-  const [oneOrgazition,setoneOrgazition] = useState('')
+  const dispatch = useDispatch()
+  const organization = useSelector(state => state.organization).filter(el => el._id === id)[0]
 
   useEffect(() => {
-   fetch(`/organizations/org/${id}`)
-   .then(res=>res.json())
-   .then(data=>setoneOrgazition(data))
-  }, [setoneOrgazition])
+    dispatch( thunkOrgInit(id) )
+  }, [dispatch])
+
+  const rating = ['']
+  for (let i = 0; i < organization?.rate; i++) {
+     rating.push('') 
+  }
 
   return (
     <>
       <div className="card">
         <div className="card-body">
-          <h4 className="card-title">{oneOrgazition[0]?.name}</h4>
-          <p className="card-text">Текущий рейтинг:&nbsp;{oneOrgazition[0]?.rate}</p>
+          <h4 className="card-title">{organization?.name}</h4>
+          <p className="card-text">Текущий рейтинг:&nbsp;
+            { rating.map((el, i) => {
+              return < Icon name={i} key={i}  icon={iosStar} style={{color: "red"}}/> } ) }
+          </p>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Последний комментарий:&nbsp;{oneOrgazition[0]?.comment}</li>
-          <li className="list-group-item">Активные вакансии:&nbsp;{oneOrgazition[0]?.vacansion}</li>
+          <li className="list-group-item">Последний комментарий:&nbsp;{organization?.comment}</li>
+          <li className="list-group-item">Активные вакансии:&nbsp;{organization?.vacansion}</li>
         </ul>
         <div className="card-body">
           <a href="#" className="card-link">Архив вакансий</a>

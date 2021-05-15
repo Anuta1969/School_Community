@@ -51,7 +51,7 @@ function StudentAbout({ student }) {
       )
     );
   };
-  
+
   return (
     <>
       <button className="student-update__text" onClick={btnUpdateHandler}>
@@ -76,7 +76,6 @@ function StudentAbout({ student }) {
 
           <a href={`/img/${student?.resume}`}>download</a>
 
-      
           </li>
         </>
       )}

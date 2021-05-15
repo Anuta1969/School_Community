@@ -2,6 +2,7 @@ import express from "express";
 import User from "../models/student.js";
 import path from "path";
 import multer from "multer";
+import Student from "../models/student.js";
 const router = express.Router();
 
 
@@ -35,16 +36,12 @@ const pdfUpload = multer({ storage: storagePdf });
 
 
 router.post("/addphoto/:id", upload.single("avatar"), async (req, res) => {
-  console.log("--------------", req.file.filename);
   const img = req.file.filename;
-  console.log(img);
   const idUser = req.params;
-  // console.log("idUser",idUser.id);
   try {
     const UserOne = await User.findOne({ _id: idUser.id });
     UserOne.photo = img;
     await UserOne.save();
-    // console.log("UserOne",UserOne);
     res.status(200).json({ UserOne });
   } catch (error) {
     res.status(404).json({ succes: false, msg: error.message });
@@ -91,6 +88,7 @@ router.put("/changetext", async (req, res) => {
   }
 });
 
+
 router.post('/addresume/:id', pdfUpload.single("resume"), async(req,res)=>{
   const resume = req.file.filename
   const {id} = req.params
@@ -102,9 +100,21 @@ router.post('/addresume/:id', pdfUpload.single("resume"), async(req,res)=>{
     await UserOne.save();
    
     res.status(200).json(resume );
+
   } catch (error) {
     res.status(404).json({ succes: false, msg: error.message });
   }
 });
 
+
+router.get('/inits', async (req,res)=>{
+  try{
+    const list = await Student.find()
+    res.status(200).json( {succes: true,list} );
+
+  }catch (error){
+    res.status(404).json({ succes: false, msg: error.message });
+  }
+
+})
 export default router;
