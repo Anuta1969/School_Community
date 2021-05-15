@@ -74,13 +74,13 @@ router.put("/changetext", async (req, res) => {
   }
 });
 
-router.post('/addrezume/:id', upload.single("rezume"), async(req,res)=>{
+router.post('/addresume/:id', upload.single("resume"), async(req,res)=>{
   console.log("file--------------");
-  const rezume = req.file.filename
+  const resume = req.file.filename
   const idUser = req.params;
   try {
     const UserOne = await User.findOne({ _id: idUser.id });
-    UserOne.resume = rezume;
+    UserOne.resume = resume;
     await UserOne.save();
     console.log("UserOne",UserOne);
     res.status(200).json({ UserOne });

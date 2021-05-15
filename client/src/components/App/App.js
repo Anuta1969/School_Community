@@ -18,9 +18,11 @@ import OrganizationList  from '../OrganizationList/OrganizationList'
 import OrganizationView from '../OrganizationView/OrganizationView';
 import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
 function App() {
-    const isAuth = useSelector(state => state.student.currentStudent.isAuth)
+    const isAuth = useSelector(state => state.student.isAuth)
     const dispatch = useDispatch()
-    const admin = useSelector(state =>state.student.currentStudent.admin)
+    const admin = useSelector(state =>state.student.admin)
+
+
     useEffect(() => {
         dispatch(axiosAuth())
     }, [dispatch])
@@ -45,7 +47,7 @@ function App() {
                     <Route exact path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
                     <Route path='/organizations/add' component ={OrganizationAddForm} />
-                    
+
                 </Switch>:null
             }
             {admin?
