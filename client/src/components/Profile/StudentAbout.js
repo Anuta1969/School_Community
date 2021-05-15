@@ -66,8 +66,6 @@ function StudentAbout({ student }) {
           <li className="student-about__item">{student?.placeWork} </li>
           <li className="student-about__item">
           <a href={`/img/${student?.resume}`}>download</a>
-            {/* <iframe src={`/img/${user.resume}`} style="width:300px; height:300px;" ></iframe> */}
-            {/* <embed src={`/img/${user.resume}`} width="200px" height="100px" /> */}
           </li>
         </>
       )}

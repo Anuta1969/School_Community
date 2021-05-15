@@ -6,7 +6,7 @@ import {
 } from "../actionTypes/actionTypes";
 
 const defaultState = {
-    currentStudent: {},
+    // currentStudent: {},
 
 }
 
