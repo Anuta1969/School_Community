@@ -3,7 +3,7 @@ import React from 'react';
 function Post(props) {
   return (
     <div>
-      
+      wedfgdfg
     </div>
   );
 }

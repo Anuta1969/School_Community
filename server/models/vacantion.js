@@ -4,7 +4,7 @@ const Vacantion = mongoose.model('Vacantion',{
   vacantion:String,
   organization: {type: String},
   date:{type:Date},
-  relevance: {type:String},
+  relevance: {type:Boolean,default:true},
   description: {type:String,required: true},
   contacts: {type:String},
   userID:{type:mongoose.Schema.Types.Object,
