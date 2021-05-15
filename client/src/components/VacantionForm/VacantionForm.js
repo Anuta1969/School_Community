@@ -7,7 +7,7 @@ function VacantionsForm(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const student = useSelector(state=>state.student.currentStudent)
+  const student = useSelector(state=>state.student)
 
   const id = student._id
   const organization = useRef();
