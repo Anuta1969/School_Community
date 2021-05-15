@@ -53,13 +53,8 @@ export default function userReducer(state = {}, action) {
 
             return action.payload
 
-          case ADD_RESUME:
-              console.log(action.payload)
-
-              return{
-              ...state,
-              currentStudent: action.payload,
-            }
+          case ADD_RESUME:            
+              return{...state, resume: action.payload }
 
         default:
             return state

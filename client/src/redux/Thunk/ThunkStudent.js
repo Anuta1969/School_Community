@@ -1,8 +1,9 @@
 import { addPhotoAC,updateUserProfileAC,addResumeUserAC } from "../actionCreators/actionCreatorUser";
 
 export const ThunkAddResumeUser = (idUser, dats)=>{
+  console.log("thunk ");
   return (dispatch)=>{
-    fetch(`${process.env.REACT_APP_URL}/student/addrezume/${idUser}`, {
+    fetch(`${process.env.REACT_APP_URL}/student/addresume/${idUser}`, {
       method: "POST",
       
       body: dats
@@ -10,12 +11,13 @@ export const ThunkAddResumeUser = (idUser, dats)=>{
     })
     .then(res=>res.json())
     // .then(data=>console.log(data))
-    .then(data=>dispatch(addResumeUserAC(data.UserOne)))
+    .then(data=>dispatch(addResumeUserAC(data)))
   }
 }
 
 
 export const ThunkAddPhotoUser = (idUser, dats) => {
+ 
   return (dispatch) => {
     fetch(`${process.env.REACT_APP_URL}/student/addphoto/${idUser}`, {
       method: "POST",
@@ -29,7 +31,7 @@ export const ThunkAddPhotoUser = (idUser, dats) => {
 };
 
 
-export const ThunkUpdateProfile = (id,name,phone,email,year,group,city,stack,language,socialLinkedin,socialGitHab,placeWork) => {
+export const ThunkUpdateProfile = (id,name,lastName,phone,email,year,group,city,stack,language,socialLinkedin,socialGitHab,placeWork) => {
   return (dispatch) => {
     fetch(`${process.env.REACT_APP_URL}/student/changetext`, {
       method: "PUT",
@@ -39,6 +41,7 @@ export const ThunkUpdateProfile = (id,name,phone,email,year,group,city,stack,lan
       body: JSON.stringify({
         id,
         name,
+        lastName,
         phone,
         email,
         year,

@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 const Student = mongoose.model('Student',{
     photo:{type:String},
     name:{type:String,trim:true},
+    lastName:{type:String,trim:true},
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
 

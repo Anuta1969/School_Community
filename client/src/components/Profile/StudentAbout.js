@@ -20,6 +20,7 @@ function StudentAbout({ student }) {
     setBtnUpdate(false);
     const {
       name: { value: name },
+      lastName: { value: lastName },
       phone: { value: phone },
       email: { value: email },
       year: { value: year },
@@ -31,11 +32,12 @@ function StudentAbout({ student }) {
       socialGitHab: { value: socialGitHab },
       placeWork: { value: placeWork },
     } = e.target;
-
+    console.log(group,year);
     dispatch(
       ThunkUpdateProfile(
         id,
         name,
+        lastName,
         phone,
         email,
         year,
@@ -59,6 +61,7 @@ function StudentAbout({ student }) {
       {!btnUpdate && (
         <>
           <li className="student-about__item">{student?.name}</li>
+          <li className="student-about__item">{student?.lastName}</li>
           <li className="student-about__item">{student?.phone} </li>
           <li className="student-about__item">{student?.email} </li>
           <li className="student-about__item"> {student?.year}</li>
@@ -92,6 +95,13 @@ function StudentAbout({ student }) {
             <input
               className="about-item__change"
               type="text"
+              name="lastName"
+              placeholder="Фамилия"
+              defaultValue={student?.lastName}
+            />
+            <input
+              className="about-item__change"
+              type="text"
               name="phone"
               defaultValue={student?.phone}
             />
@@ -100,21 +110,30 @@ function StudentAbout({ student }) {
               type="text"
               name="email"
               defaultValue={student?.email}
-            />
-            <input
-              className="about-item__change"
-              type="text"
+            />            
+              <select
+                className="student-about__item form-select"
+              aria-label="Default select example"
               name="year"
-              placeholder="Год поступления"
-              defaultValue={student?.year}
-            />
+              
+            >
+              <option defaultValue={student?.year}>{!student?.year ? "Введите год обучения"  : student?.year}</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              
+            </select>
 
             <select
                 className="student-about__item form-select"
               aria-label="Default select example"
               name="group"
             >
-              <option defaultValue={student?.group}>{student?.group}</option>
+              <option defaultValue={student?.group}>{!student?.group  ? "Имя группы" : student?.group}</option>
               <option value="Ежи">Ежи</option>
               <option value="Пчелы">Пчелы</option>
               <option value="Бобры">Бобры</option>
@@ -136,7 +155,7 @@ function StudentAbout({ student }) {
               aria-label="Default select example"
               name="city"
             >
-              <option defaultValue={student?.city}>{student?.city}</option>
+              <option defaultValue={student?.city}>{!student?.city ? "Город вашего обучения" : student?.city}</option>
               <option value="Москва">Москва</option>
               <option value="Санкт-Петербург">Санкт-Петербург</option>
             </select>

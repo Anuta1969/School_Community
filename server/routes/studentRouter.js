@@ -55,6 +55,7 @@ router.put("/changetext", async (req, res) => {
   const {
     id,
     name,
+    lastName,
     phone,
     email,
     year,
@@ -71,6 +72,7 @@ router.put("/changetext", async (req, res) => {
     const UserOne = await User.findOne({ _id: id });
     console.log(UserOne);
     UserOne.name = name;
+    UserOne.lastName = lastName;
     UserOne.email = email;
     UserOne.phone = phone;
     UserOne.year = year;
@@ -89,16 +91,17 @@ router.put("/changetext", async (req, res) => {
   }
 });
 
-router.post('/addresume/:id', upload.single("resume"), async(req,res)=>{
-  console.log("file--------------");
+router.post('/addresume/:id', pdfUpload.single("resume"), async(req,res)=>{
   const resume = req.file.filename
-  const idUser = req.params;
+  const {id} = req.params
+ 
   try {
-    const UserOne = await User.findOne({ _id: idUser.id });
+    const UserOne = await User.findById({_id:id});
+    
     UserOne.resume = resume;
     await UserOne.save();
-    console.log("UserOne", UserOne);
-    res.status(200).json({ UserOne });
+   
+    res.status(200).json(resume );
   } catch (error) {
     res.status(404).json({ succes: false, msg: error.message });
   }
