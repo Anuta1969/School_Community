@@ -1,4 +1,4 @@
-import { ADD_ORGANIZATION, INIT_ORGANIZATIONS } from "../actionTypes/actionTypes";
+import { ADD_ORGANIZATION, INIT_ONE_OGRANIZATION, INIT_ORGANIZATIONS } from "../actionTypes/actionTypes";
 
 export const addOrganizationAC = (payload) => ({
   type: ADD_ORGANIZATION,
@@ -10,3 +10,7 @@ export const initOrganizationsAC = (payload) => ({
   payload
 })
 
+export const initOneOrganizationsAC = (payload) => ({
+  type: INIT_ONE_OGRANIZATION,
+  payload
+})
