@@ -12,7 +12,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 function Profile(props) {
   const dispatch = useDispatch();
 
-  const student = useSelector(state => state.student);
+  const student = useSelector((state) => state.student);
 
   const idUser = student._id;
   
@@ -43,10 +43,10 @@ function Profile(props) {
     setResume(true);
   };
 
-
-  // for resume 
+  // for resume
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -73,7 +73,10 @@ function Profile(props) {
           <div className="student-about">
             <div className="student-img__box">
               <div className="student-img">
-                <img src={`${process.env.REACT_APP_URL}/img/${student.photo}`} alt="Ваше фото" />
+                <img
+                  src={`${process.env.REACT_APP_URL}/img/${student.photo}`}
+                  alt="Ваше фото"
+                />
               </div>
 
               <div className="student-btn__photo-btn">
@@ -106,10 +109,7 @@ function Profile(props) {
                   </form>
                 )}
               </div>
-              
-              
-              
-              
+
               <div className="student-about-text">
                 <ul className="student-about__title">
                   <StudentAbout key={student._id} student={student} />
@@ -117,14 +117,10 @@ function Profile(props) {
               </div>
 
               <div className="student-add__rezume">
-
-
-                {resume &&
+                {resume && (
                   <form
-                  onSubmit={saveResumehandler}
+                    onSubmit={saveResumehandler}
                     className="student-form__photo"
-
-
                     encType="multipart/form-data"
                     action="/profile"
                     method="post"
@@ -138,22 +134,16 @@ function Profile(props) {
                       Сохранить
                     </button>
                   </form>
-
-                }
-                 {!resume &&
-
+                )}
+                {!resume && (
                   <button
                     onClick={addResumeHandler}
                     className="student-form__photo-btn btn btn-outline-primary"
                   >
                     📃
                   </button>
-
-                  }
-
+                )}
               </div>
-
-
             </div>
           </div>
           <div className="student-form">
@@ -167,7 +157,8 @@ function Profile(props) {
                 <Page pageNumber={pageNumber} />
               </Document>
               <p>
-                Page {pageNumber} of {numPages}
+                {' '}
+                Страница {pageNumber} из {numPages}{' '}
               </p>
             </div>
             <div className="btn-prev">

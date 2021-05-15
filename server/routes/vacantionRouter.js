@@ -10,21 +10,20 @@ router.get('/',async(req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  let { vacantion, organization, date, relevance, description,id} =
+  let { vacantion, organization, description,id} =
     req.body;
-  console.log(req.body);
+    let dates = Date.now()
   const student = await Student.findById(id)
   console.log(student);
   const vacantions = await Vacantion.create({
     vacantion,
     organization,
-    date,
-    relevance,
     description,
+    date:dates,
     contacts:student.name,
     userID:student._id
   });
-
+console.log(vacantions);
    res.status(201).json({vacantions})
 });
 

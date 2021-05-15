@@ -2,7 +2,7 @@ import { addVacantionAC,initVacantionAC } from '../../redux/actionCreators/actio
 
 
 
-export const addVacantion = (organization,vacantion,date,description,actuality,id)=>{
+export const addVacantion = (organization,vacantion,description,id)=>{
   return (dispatch)=>{
 
     fetch(`${process.env.REACT_APP_URL}/vacantion`, {
@@ -12,9 +12,7 @@ export const addVacantion = (organization,vacantion,date,description,actuality,i
 
         organization: organization,
         vacantion: vacantion,
-        date:date,
         description:description,
-        relevance:actuality,
         id:id
 
       }),
