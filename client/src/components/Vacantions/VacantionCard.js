@@ -2,10 +2,9 @@ import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router";
 
 
-function VacantionCard({vacantion}) { 
+function VacantionCard({vacantion}) {
   const history = useHistory()
-console.log(vacantion);
-  
+
 
   const ClickHandler =()=>{
     history.push(`/post/${vacantion.userID}`)
@@ -20,7 +19,7 @@ console.log(vacantion);
     <p className="card-text">{vacantion.description}</p>
     <p className="card-text">{vacantion.contacts}</p>
 
-   
+
   </div>
 </div>
     </div>

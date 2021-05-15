@@ -1,16 +1,14 @@
-import { addPhotoAC,updateUserProfileAC,addResumeUserAC } from "../actionCreators/actionCreatorUser";
+import { addPhotoAC,updateUserProfileAC,addResumeUserAC } from "../actionCreators/actionCreatorStudent";
 
 export const ThunkAddResumeUser = (idUser, dats)=>{
   return (dispatch)=>{
     fetch(`${process.env.REACT_APP_URL}/student/addresume/${idUser}`, {
       method: "POST",
-      
       body: dats
-      
     })
     .then(res=>res.json())
-    // .then(data=>console.log(data))
     .then(data=>dispatch(addResumeUserAC(data.UserOne)))
+    .catch(err => console.log(err))
   }
 }
 
@@ -19,12 +17,13 @@ export const ThunkAddPhotoUser = (idUser, dats) => {
   return (dispatch) => {
     fetch(`${process.env.REACT_APP_URL}/student/addphoto/${idUser}`, {
       method: "POST",
-
       body: dats,
     })
       .then((res) => res.json())
       // .then(data=>console.log(data))
-      .then((data) => dispatch(addPhotoAC(data.UserOne.photo)));
+      .then((data) => dispatch(addPhotoAC(data.UserOne.photo)))
+    .catch(err => console.log(err))
+
   };
 };
 
@@ -52,7 +51,8 @@ export const ThunkUpdateProfile = (id,name,phone,email,year,group,city,stack,lan
       }),
     })
       .then((res) => res.json())
-      // .then(data=>console.log(data))
-      .then((data) => dispatch(updateUserProfileAC(data.UserOne)));
+      .then((data) => dispatch(updateUserProfileAC(data.UserOne)))
+        .catch(err => console.log(err))
+
   };
 };

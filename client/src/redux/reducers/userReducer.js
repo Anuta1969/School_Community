@@ -2,11 +2,11 @@ import {
     SET_USER,
     LOGOUT,
     UPDATE_USER,
-   ADD_RESUME, ADD_PHOTO
+    ADD_RESUME, ADD_PHOTO, INIT_ALL_STUDENTS
 } from "../actionTypes/actionTypes";
 
 const defaultState = {
-    currentStudent: {},
+    // currentStudent: {},
 
 }
 
@@ -54,7 +54,6 @@ export default function userReducer(state = {}, action) {
             return action.payload
 
           case ADD_RESUME:
-              console.log(action.payload)
 
               return{
               ...state,
