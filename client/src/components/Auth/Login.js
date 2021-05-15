@@ -16,7 +16,7 @@ function Login(props) {
                // .then(data => console.log(data.data))
                .then(data=> dispatch(setUser(data.data)))
                .then((data)=>localStorage.setItem('token', data.payload.token))
-               .then(data =>console.log(data))
+               // .then(data =>console.log(data))
                .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
     }
 

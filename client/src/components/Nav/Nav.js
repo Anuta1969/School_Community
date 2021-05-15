@@ -4,10 +4,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../redux/actionCreators/actionCreatorAuth";
 
 function Nav(props) {
-    const isAuth = useSelector(state => state.student.currentStudent.isAuth)
+    const isAuth = useSelector(state => state.student.isAuth)
     const dispatch = useDispatch()
-    const admin = useSelector(state =>state.student.currentStudent.admin)
-
+    const admin = useSelector(state =>state.student.admin)
     return (
         <>
             {admin?
