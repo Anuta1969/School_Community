@@ -1,12 +1,15 @@
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+
 import { useHistory } from 'react-router';
 import { addVacantionAC } from '../../redux/actionCreators/actionCreatorVacantion';
-
+import {useDispatch, useSelector} from "react-redux";
 function VacantionsForm(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const student = useSelector(state=>state.student.currentStudent)
+
+  const id = student._id
   const organization = useRef();
   const vacantion = useRef();
   const date = useRef();
@@ -24,7 +27,8 @@ console.log(actuality+'1111');
         vacantion: vacantion.current.value,
         date:date.current.value,
         description:description.current.value,
-        relevance:actuality
+        relevance:actuality,
+        id:id
       }),
     })
       .then((res) => res.json())

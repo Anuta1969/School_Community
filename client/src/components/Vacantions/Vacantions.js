@@ -5,7 +5,7 @@ import { initVacantionAC } from '../../redux/actionCreators/actionCreatorVacanti
 import VacantionCard from './VacantionCard'
 function Vacantions(props) {
   const vacantion = useSelector(state=>state.vacantion)
-  console.log(vacantion);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
