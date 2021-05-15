@@ -7,11 +7,10 @@ import StudentAbout from "./StudentAbout";
 
 function Profile(props) {
   const dispatch = useDispatch();
-  const student = useSelector(store => store.student.currentStudent);
+  const student = useSelector(state => state.student);
 
   const idUser = student._id;
-  console.log(idUser, "idUser");
- 
+
 
   const [photo, setPhoto] = useState(false);
   const [resume, setResume] = useState(false);
@@ -20,7 +19,9 @@ function Profile(props) {
     e.preventDefault();
     setPhoto(false);
     const dats = new FormData(e.target);
+
     // console.log("resume", dats);
+
     dispatch(addPhotoUser(idUser, dats));
   };
 
@@ -84,10 +85,12 @@ function Profile(props) {
                 </ul>
               </div>
               <div className="student-add__rezume">
-                {resume && 
+
+                {resume &&
                   <form
                   onSubmit={saveResumehandler}
-                    className="student-form__photo"                    
+                    className="student-form__photo"
+
                     encType="multipart/form-data"
                     action="/profile"
                     method="post"
@@ -109,7 +112,7 @@ function Profile(props) {
                   >
                     📃
                   </button>
-                  } 
+                  }
               </div>
             </div>
           </div>

@@ -37,7 +37,6 @@ router
         try {
             const {id} = req.params
             const student = await Student.findById(id)
-
             const newId = new  mongoose.Types.ObjectId(id)
             let request = await AdminList.findOneAndDelete({userId:newId})
             async function mail(){
@@ -57,7 +56,6 @@ router
                     text:`Заявка отклонена ElbrusIn`,
                     html:`Заявка отклонена ElbrusIn`
                 })
-
             }
             mail().catch(console.error)
             await Student.findByIdAndDelete(id)
@@ -70,11 +68,9 @@ router
     })
 
     .post('/admin/student/:id',async (req,res)=>{
-
         try{
             const {id} = req.params
             const student = await Student.findById(id)
-            // const user = await User.findById(student.user)
             student.isAuth = true
             await student.save()
             const newId = new  mongoose.Types.ObjectId(id)
@@ -97,7 +93,6 @@ router
                     text:`Заявка одобрена в ElbrusIn`,
                     html:`Заявка одобрена в ElbrusIn`
                 })
-
             }
             mail().catch(console.error)
 

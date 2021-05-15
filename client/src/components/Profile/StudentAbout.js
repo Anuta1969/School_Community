@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import StudentAboutItem from "./StudentAboutItem";
 import { setUser } from "../../redux/actionCreators/actionCreatorAuth";
-import { apdateUserProfile } from "../../redux/Thunk/Thunk";
+import { updateUserProfile } from "../../redux/Thunk/Thunk";
 
 function StudentAbout({ student }) {
-  const [btnApdete, setbtnApdete] = useState(false);
+  const [btnUpdate, setBtnUpdate] = useState(false);
   const dispatch = useDispatch();
-  const btnApdeteHandler = () => {
-    setbtnApdete(true);
+  const btnUpdateHandler = () => {
+    setBtnUpdate(true);
   };
   const id = student._id;
 
   const btnFormHandler = (e) => {
-    setbtnApdete(false);
+    setBtnUpdate(false);
     const {
       name: { value: name },
       phone: { value: phone },
@@ -29,7 +29,7 @@ function StudentAbout({ student }) {
     } = e.target;
 
     dispatch(
-      apdateUserProfile(
+      updateUserProfile(
         id,
         name,
         phone,
@@ -47,68 +47,68 @@ function StudentAbout({ student }) {
   };
   return (
     <>
-      <button className="student-apdate__text" onClick={btnApdeteHandler}>
+      <button className="student-update__text" onClick={btnUpdateHandler}>
         ✎
       </button>
 
-      {!btnApdete && (
+      {!btnUpdate && (
         <>
-          <li className="student-about__item">{student.name}</li>
-          <li className="student-about__item">{student.phone} </li>
-          <li className="student-about__item">{student.email} </li>
-          <li className="student-about__item"> {student.year}</li>
-          <li className="student-about__item"> {student.group}</li>
-          <li className="student-about__item"> {student.city}</li>
-          <li className="student-about__item"> {student.stack}</li>
-          <li className="student-about__item"> {student.language}</li>
-          <li className="student-about__item"> {student.socialLinkedin}</li>
-          <li className="student-about__item"> {student.socialGitHab}</li>
-          <li className="student-about__item">{student.placeWork} </li>
+          <li className="student-about__item">{student?.name}</li>
+          <li className="student-about__item">{student?.phone} </li>
+          <li className="student-about__item">{student?.email} </li>
+          <li className="student-about__item"> {student?.year}</li>
+          <li className="student-about__item"> {student?.group}</li>
+          <li className="student-about__item"> {student?.city}</li>
+          <li className="student-about__item"> {student?.stack}</li>
+          <li className="student-about__item"> {student?.language}</li>
+          <li className="student-about__item"> {student?.socialLinkedin}</li>
+          <li className="student-about__item"> {student?.socialGitHab}</li>
+          <li className="student-about__item">{student?.placeWork} </li>
           <li className="student-about__item">
-          <a href={`/img/${student.resume}`}>download</a>
+          <a href={`/img/${student?.resume}`}>download</a>
             {/* <iframe src={`/img/${user.resume}`} style="width:300px; height:300px;" ></iframe> */}
             {/* <embed src={`/img/${user.resume}`} width="200px" height="100px" /> */}
           </li>
         </>
       )}
-      
-       
+
+
       {/* <embed src={`/img/${user.resume}`}  type="application/pdf"   height="700px" width="500"></embed> */}
-      {btnApdete && (
+      {btnUpdate && (
         <>
           <form className="about-form__update" onSubmit={btnFormHandler}>
             <input
               className="about-item__change"
               type="text"
               name="name"
-              defaultValue={student.name}
+              defaultValue={student?.name}
             />
             <input
               className="about-item__change"
               type="text"
               name="phone"
-              defaultValue={student.phone}
+              defaultValue={student?.phone}
             />
             <input
               className="about-item__change"
               type="text"
               name="email"
-              defaultValue={student.email}
+              defaultValue={student?.email}
             />
             <input
               className="about-item__change"
               type="text"
               name="year"
               placeholder="Год поступления"
-              defaultValue={student.year}
+              defaultValue={student?.year}
             />
 
             <select
-              class="student-about__item form-select"
+                className="student-about__item form-select"
               aria-label="Default select example"
               name="group"
             >
-              <option selected>{student.group}</option>
+              <option defaultValue={student?.group}>{student?.group}</option>
               <option value="Ежи">Ежи</option>
               <option value="Пчелы">Пчелы</option>
               <option value="Бобры">Бобры</option>
@@ -126,11 +126,11 @@ function StudentAbout({ student }) {
               <option value="Совы">Совы</option>
             </select>
             <select
-              class="student-about__item form-select"
+                className="student-about__item form-select"
               aria-label="Default select example"
               name="city"
             >
-              <option selected>{student.city}</option>
+              <option defaultValue={student?.city}>{student?.city}</option>
               <option value="Москва">Москва</option>
               <option value="Санкт-Петербург">Санкт-Петербург</option>
             </select>
@@ -140,21 +140,21 @@ function StudentAbout({ student }) {
               type="text"
               name="stack"
               placeholder="Языки програмирования"
-              defaultValue={student.stack}
+              defaultValue={student?.stack}
             />
             <input
               className="about-item__change"
               type="text"
               name="language"
               placeholder="Иностранные языки"
-              defaultValue={student.language}
+              defaultValue={student?.language}
             />
             <input
               className="about-item__change"
               type="text"
               name="socialLinkedin"
               placeholder="Linkedin"
-              defaultValue={student.socialLinkedin}
+              defaultValue={student?.socialLinkedin}
             />
             <input
               className="about-item__change"
@@ -168,14 +168,14 @@ function StudentAbout({ student }) {
               type="text"
               name="placeWork"
               placeholder="Место работы"
-              defaultValue={student.placeWork}
+              defaultValue={student?.placeWork}
             />
-            
+
             <button className="about-item-btn">Сохранить</button>
           </form>
         </>
       )}
-      
+
     </>
   );
 }

@@ -1,14 +1,14 @@
-import {ADDPHOTO,APDATEUSER,ADDREZUME} from "../actionTypes/actionTypes";
+import {UPDATE_USER, ADD_PHOTO, ADD_RESUME} from "../actionTypes/actionTypes";
 
 export const addPhotoAC = (payload)=>{
   return {
-    type: ADDPHOTO,
+    type: ADD_PHOTO,
     payload
   }
 }
-export const apdateUserProfileAC = (payload)=>{
+export const updateUserProfileAC = (payload)=>{
   return {
-    type: APDATEUSER,
+    type: UPDATE_USER,
     payload
   }
 }
@@ -16,7 +16,7 @@ export const apdateUserProfileAC = (payload)=>{
 
 export const addResumeUserAC = (payload)=>{
   return {
-    type: ADDREZUME,
+    type: ADD_RESUME,
     payload
   }
 }

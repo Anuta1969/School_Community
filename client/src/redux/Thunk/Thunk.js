@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { addPhotoAC,apdateUserProfileAC,addResumeUserAC } from "../actionCreators/actionCreatorUser";
+import { addPhotoAC,updateUserProfileAC,addResumeUserAC } from "../actionCreators/actionCreatorUser";
 
 import { setUser } from "../actionCreators/actionCreatorAuth";
 
@@ -32,7 +32,7 @@ export const addPhotoUser = (idUser, dats) => {
   };
 };
 
-export const apdateUserProfile = (id,name,phone,email,year,group,city,stack,language,socialLinkedin,socialGitHab,placeWork) => {
+export const updateUserProfile = (id,name,phone,email,year,group,city,stack,language,socialLinkedin,socialGitHab,placeWork) => {
   return (dispatch) => {
     fetch(`/student/changetext`, {
       method: "PUT",
@@ -56,7 +56,7 @@ export const apdateUserProfile = (id,name,phone,email,year,group,city,stack,lang
     })
       .then((res) => res.json())
       // .then(data=>console.log(data))
-      .then((data) => dispatch(apdateUserProfileAC(data.UserOne)));
+      .then((data) => dispatch(updateUserProfileAC(data.UserOne)));
   };
 };
 
@@ -65,9 +65,9 @@ export const addResumeUser = (idUser, dats)=>{
   return (dispatch)=>{
     fetch(`/student/addresume/${idUser}`, {
       method: "POST",
-      
+
       body: dats
-      
+
     })
     .then(res=>res.json())
     // .then(data=>console.log(data))
