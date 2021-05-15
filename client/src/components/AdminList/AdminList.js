@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import RequestStudent from "../RequestStudent/RequestStudent";
 import {initRequestStudentsAC} from "../../redux/actionCreators/actionCreatorAdmin";
+import {thunkAdminList} from "../../redux/Thunk/ThunkAdmin";
 
 
 
@@ -10,11 +11,10 @@ function AdminList(props) {
     const admin = useSelector(state => state.admin)
     const dispatch = useDispatch()
     useEffect(()=>{
-        axios.get('/admin/request')
-            // .then(data => console.log(data))
-            .then(({data:{result}}) => dispatch(initRequestStudentsAC(result)))
-            .catch((err) => console.log(err))
-
+        // axios.get('/admin/request')
+        //     .then(({data:{result}}) => dispatch(initRequestStudentsAC(result)))
+        //     .catch((err) => console.log(err))
+        dispatch(thunkAdminList())
     },[dispatch])
 
 

@@ -2,7 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import logger from 'morgan'
 import createError from 'http-errors'
-
+import cors from 'cors'
 
 import studentRouter from './routes/studentRouter.js'
 import path from 'path'
@@ -25,6 +25,7 @@ mongoose.connect(
 app.use(logger('dev'));
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(cors())
 // app.use(express.static('public'))
 app.use(express.static(path.join(__dirname,  "public")));
 
