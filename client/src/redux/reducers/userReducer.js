@@ -58,7 +58,7 @@ export default function userReducer(state = {}, action) {
 
               return{
               ...state,
-              currentStudent: action.payload,
+              student: action.payload,
             }
 
         default:
