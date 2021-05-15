@@ -1,42 +1,51 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Profile.css";
-import { addPhotoUser, addResumeUser } from "../../redux/Thunk/Thunk";
-
+import { addPhotoUser, addResumeUser } from "../../redux/Thunk/Student_Thunk";
+import { Document, Page } from "react-pdf";
 import StudentAbout from "./StudentAbout";
+// import StudentAddRusume from './StudentAddRusume'
 
 function Profile(props) {
   const dispatch = useDispatch();
-  const student = useSelector(store => store.student.currentStudent);
+  const student = useSelector((store) => store.student.currentStudent);
 
   const idUser = student._id;
   console.log(idUser, "idUser");
- 
 
   const [photo, setPhoto] = useState(false);
-  const [rezume, setRezume] = useState(false);
+  const [resume, setResume] = useState(false);
 
   const addPhotoHandler = (e) => {
     e.preventDefault();
     setPhoto(false);
     const dats = new FormData(e.target);
-    // console.log("rezume", dats);
+    // console.log("resume", dats);
     dispatch(addPhotoUser(idUser, dats));
   };
 
-  const saveRezumehandler = (e) => {
+  const saveResumehandler = (e) => {
     e.preventDefault();
-    setRezume(false);
+    setResume(false);
     const dats = new FormData(e.target);
-    console.log("rezume", dats);
+    console.log("resume", dats);
     dispatch(addResumeUser(idUser, dats));
   };
   const btnPhotoHandler = () => {
     setPhoto(true);
   };
-  const addRezumeHandler = () => {
-    setRezume(true);
+  const addResumeHandler = () => {
+    setResume(true);
   };
+
+
+  // for resume 
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
 
   return (
     <section>
@@ -78,16 +87,22 @@ function Profile(props) {
                   </form>
                 )}
               </div>
+              
+              
+              
+              
               <div className="student-about-text">
                 <ul className="student-about__title">
                   <StudentAbout key={student._id} student={student} />
                 </ul>
               </div>
+
               <div className="student-add__rezume">
-                {rezume && 
+               {/* <StudentAddRusume idUser={iduser}/> */}
+                {resume && (
                   <form
-                  onSubmit={saveRezumehandler}
-                    className="student-form__photo"                    
+                    onSubmit={saveResumehandler}
+                    className="student-form__photo"
                     encType="multipart/form-data"
                     action="/profile"
                     method="post"
@@ -95,25 +110,40 @@ function Profile(props) {
                     <input
                       className="student-form__photo-input form-control"
                       type="file"
-                      name="rezume"
+                      name="resume"
                     />
                     <button className="student-form__photo-btn btn btn-outline-primary">
                       Сохранить
                     </button>
                   </form>
-                }
-                 {!rezume &&
+                )}
+                {!resume && (
                   <button
-                    onClick={addRezumeHandler}
+                    onClick={addResumeHandler}
                     className="student-form__photo-btn btn btn-outline-primary"
                   >
                     📃
                   </button>
-                  } 
+                )}
               </div>
+
+
             </div>
           </div>
-          <div className="student-form"></div>
+          <div className="student-form">
+            Student list
+            <div>
+              <Document
+                file={`/resume/${student.resume}`}
+                onLoadSuccess={onDocumentLoadSuccess}
+              >
+                <Page pageNumber={pageNumber} />
+              </Document>
+              <p>
+                Page {pageNumber} of {numPages}
+              </p>
+            </div>
+          </div>
           {/*<div className="student-form">2</div>*/}
         </div>
 

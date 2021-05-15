@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import StudentAboutItem from "./StudentAboutItem";
 import { setUser } from "../../redux/actionCreators/actionCreatorAuth";
-import { apdateUserProfile } from "../../redux/Thunk/Thunk";
+import { apdateUserProfile } from "../../redux/Thunk/Student_Thunk";
+
 
 function StudentAbout({ student }) {
   const [btnApdete, setbtnApdete] = useState(false);
@@ -45,6 +46,7 @@ function StudentAbout({ student }) {
       )
     );
   };
+  
   return (
     <>
       <button className="student-apdate__text" onClick={btnApdeteHandler}>
@@ -65,14 +67,14 @@ function StudentAbout({ student }) {
           <li className="student-about__item"> {student.socialGitHab}</li>
           <li className="student-about__item">{student.placeWork} </li>
           <li className="student-about__item">
-          <a href={`/img/${student.resume}`}>download</a>
+            {/* <a href={`/img/${student.resume}`}>download</a> */}
+            
             {/* <iframe src={`/img/${user.resume}`} style="width:300px; height:300px;" ></iframe> */}
             {/* <embed src={`/img/${user.resume}`} width="200px" height="100px" /> */}
           </li>
         </>
       )}
-      
-       
+
       {/* <embed src={`/img/${user.resume}`}  type="application/pdf"   height="700px" width="500"></embed> */}
       {btnApdete && (
         <>
@@ -170,12 +172,11 @@ function StudentAbout({ student }) {
               placeholder="Место работы"
               defaultValue={student.placeWork}
             />
-            
+
             <button className="about-item-btn">Сохранить</button>
           </form>
         </>
       )}
-      
     </>
   );
 }

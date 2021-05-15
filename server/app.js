@@ -12,7 +12,7 @@ import { fileURLToPath } from 'url';
 import authRouter from './routes/authRouter.js'
 import orgRouter from './routes/organization.js'
 import adminRouter from './routes/adminRouter.js'
-import vacantionRouter from './routes/vacantion.js'
+import vacantionRouter from './routes/vacantionRouter.js'
 
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -42,7 +42,7 @@ app.use('/organizations', orgRouter);
 app.use('/student',studentRouter)
 app.use('/',adminRouter)
 app.use(function (req, res, next) {
-  next(createError(404));
+  // next(createError(404));
 });
 
 
