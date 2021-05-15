@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { initOrganizationsAC } from '../../redux/actionCreators/actionCreatorOrganization';
 import Organization from '../Organization/Organization';
 import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
+import { thunkOrgListInit } from '../../redux/Thunk/ThunkOrganization'
 
 function OrganizationList() {
   
@@ -11,14 +11,7 @@ function OrganizationList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch('/organizations')
-    .then(response => response.json() )
-    .then(body => {
-      dispatch( initOrganizationsAC(body) )
-    })
-    .catch((error) => {
-      console.log(error)
-    });
+    dispatch(thunkOrgListInit())
   }, [dispatch])
 
 

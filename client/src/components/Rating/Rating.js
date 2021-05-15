@@ -1,61 +1,68 @@
-import React from "react";
+// import React, { useState } from "react";
 
-class Rating extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      rating: this.props.rating || null,
-      temp_rating: null
-    };
-  }
 
-  handleMouseover(rating) {
-    this.setState(prev => ({
-      rating,
-      temp_rating: prev.rating
-    }));
-  }
+// function Rating(rating) {
 
-  handleMouseout() {
-    // this.state.rating = this.state.temp_rating;
-    // this.setState({ rating: this.state.rating });
-    this.setState(prev => ({
-      rating: prev.temp_rating
-    }));
-  }
+//   const [rate, setRate] = useState()
 
-  rate(rating) {
-    this.setState({
-      rating,
-      temp_rating: rating
-    });
-  }
+//   setRate({
+//     rating: rating,
+//     temp_rating: null
+//   });
 
-  render() {
-    const { rating } = this.state;
-    let stars = [];
-    for (let i = 0; i < 10; i++) {
-      console.log("i", i);
-      let klass = "ion-ios-star-outline";
-      if (this.state.rating >= i && this.state.rating !== null) {
-        klass = "ion-ios-star";
-      }
-      stars.push(
-        <i
-          style={{ display: "inline-block", width: "7px", overflow: "hidden", direction: (i%2===0) ? "ltr" : "rtl"}}
-          className={klass}
-          onMouseOver={() => this.handleMouseover(i)}
-          onClick={() => this.rate(i)}
-          onMouseOut={() => this.handleMouseout()}
-        />
-      );
-    }
-    return (
-      <div className="rating">
-        {stars}
-      </div>
-    );
-  }
-}
+// function handleMouseover(rating) {
+//   setRate(prev => ({
+//     rating,
+//     temp_rating: prev.rating
+//   }));
+// }
 
-export default Rating;
+// function handleMouseout() {
+//   // this.state.rating = this.state.temp_rating;
+//   // this.setState({ rating: this.state.rating });
+//   this.setState(prev => ({
+//     rating: prev.temp_rating
+//   }));
+// }
+
+// function rateRating(rating) {
+//   setRate({
+//     rating,
+//     temp_rating: rating
+//   });
+// }
+
+// function rend() {
+//   // const { rating } = this.state;
+//   let stars = [];
+//   for (let i = 0; i < 10; i++) {
+//     console.log("i", i);
+//     let klass = "ion-ios-star-outline";
+//     if (rating >= i && rating !== null) {
+//       klass = "ion-ios-star";
+//     }
+//     stars.push(
+//       <i
+//         style={{ display: "inline-block", width: "7px", overflow: "hidden", direction: (i%2===0) ? "ltr" : "rtl"}}
+//         className={klass}
+//         onMouseOver={() => handleMouseover(i)}
+//         onClick={() => rateRating(i)}
+//         onMouseOut={() => handleMouseout()}
+//       />
+//     );
+//   }
+
+  
+//   return (
+//     <div className="rating">
+//       {stars}
+//     </div>
+//   );
+// }
+
+// }
+
+
+
+
+// export default Rating;

@@ -19,7 +19,7 @@ router.get('/org/:id',
     const id = req.params.id
   
     try {
-      const organization = await Organization.find({_id: id})     
+      const organization = await Organization.findOne({_id: id})     
       res.json(organization)
     } catch (error) { 
       res.send( {message: "Server error"} )          

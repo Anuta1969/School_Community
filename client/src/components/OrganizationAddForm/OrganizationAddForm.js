@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addOrganizationAC } from '../../redux/actionCreators/actionCreatorOrganization';
-import Rating from '../Rating/Rating';
+// import { addOrganizationAC } from '../../redux/actionCreators/actionCreatorOrganization';
+import { thunkOrgAdd } from '../../redux/Thunk/ThunkOrganization';
+// import Rating from '../Rating/Rating';
 
-const rateStyles = {
-  fontFamily: "sans-serif",
-  textAlign: "center"
-};
+// const rateStyles = {
+//   fontFamily: "sans-serif",
+//   textAlign: "center"
+// };
 
 
 function OrganizationAddForm(props) {
@@ -18,17 +19,11 @@ function OrganizationAddForm(props) {
   const formHandler = (event) => {
     event.preventDefault();
 
-    fetch('/organizations/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'Application/json' },
-      body: JSON.stringify({
-        organization: event.target.organization.value,
-        comment: event.target.comment.value,
-        rate: event.target.rate.value
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => dispatch(addOrganizationAC(data.newOrganization)))
+      dispatch(thunkOrgAdd( 
+        event.target.organization.value, 
+        event.target.comment.value, 
+        event.target.rate.value
+        ))
       event.target.reset()
   };
 
@@ -59,13 +54,15 @@ function OrganizationAddForm(props) {
             placeholder="оцените организацию от 1 до 5"
           />
 
-          <div style={rateStyles}>
-          <Rating rating={5} />
-          </div>
+          {/* <div style={rateStyles}> */}
+          {/* <span className="iconify" data-icon="ion-ios-star" data-inline="false"> */}
+            {/* <Rating key={Date.now} rating={5} /> */}
+          {/* </span> */}
+          {/* </div> */}
 
           <div className="form-floating">
             <textarea className="form-control m-3" name="comment" ></textarea>
-            <label className="ms-2" for="floatingTextarea2">Ваше мнение об организации</label>
+            <label className="ms-2" htmlFor="floatingTextarea2">Ваше мнение об организации</label>
           </div>
         
           <button type="submit">Добавить</button>  
