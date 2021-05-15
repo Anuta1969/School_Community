@@ -27,13 +27,14 @@ router.get('/org/:id',
   })
 
  router.post('/add', async (req, res) => {
-  let { organization } =
+  let { organization, comment, rate } =
     req.body;
   
   const newOrganization = await Organization.create({
     name: organization,
+    comment,
+    rate
     });
-
    res.status(201).json({newOrganization})
 });
 

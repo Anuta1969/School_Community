@@ -27,9 +27,7 @@ function OrganizationList() {
     <OrganizationAddForm />
 
     <div className="container d-flex flex-wrap mt-5">
-       { 
-       organization?.map(el => <Organization org={el} key={el._id} />) 
-      }
+       { organization?.map(el => <Organization org={el} key={el._id} />) }
     </div>
       </>
   );
