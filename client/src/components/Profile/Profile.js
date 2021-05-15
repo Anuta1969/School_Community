@@ -1,14 +1,13 @@
-import React, { useState ,useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './Profile.css';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./Profile.css";
 
-import {
-  ThunkAddPhotoUser,
-  ThunkAddResumeUser,
-} from '../../redux/Thunk/ThunkStudent';
-import { Document, Page,pdfjs } from 'react-pdf';
-import StudentAbout from './StudentAbout';
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import { ThunkAddPhotoUser, ThunkAddResumeUser } from "../../redux/Thunk/ThunkStudent";
+import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack'
+import StudentAbout from "./StudentAbout";
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
+// import StudentAddRusume from './StudentAddRusume'
 
 function Profile(props) {
   const dispatch = useDispatch();
@@ -16,6 +15,8 @@ function Profile(props) {
   const student = useSelector((state) => state.student);
 
   const idUser = student._id;
+  
+
 
   const [photo, setPhoto] = useState(false);
   const [resume, setResume] = useState(false);
@@ -32,6 +33,7 @@ function Profile(props) {
     e.preventDefault();
     setResume(false);
     const dats = new FormData(e.target);
+    console.log("resume-------", dats);
     dispatch(ThunkAddResumeUser(idUser, dats));
   };
   const btnPhotoHandler = () => {
@@ -50,6 +52,20 @@ function Profile(props) {
     setNumPages(numPages);
   }
 
+  const btnPrevHandler =()=>{
+    if(pageNumber < numPages && pageNumber !=1){
+      return setPageNumber(pageNumber -1)
+    }else{
+      setPageNumber(1)
+    }
+  }
+  const btnNextHandler =()=>{
+    if(pageNumber <= numPages){
+      return  setPageNumber( pageNumber +1)
+    }else{
+      setPageNumber(numPages)
+    }
+  }
   return (
     <section>
       <div className="container">
@@ -134,7 +150,8 @@ function Profile(props) {
             Student list
             <div>
               <Document
-                file="somefile.pdf"
+                file={`${process.env.REACT_APP_URL}/resume/${student.resume}`}
+                // file = {student.resume}
                 onLoadSuccess={onDocumentLoadSuccess}
               >
                 <Page pageNumber={pageNumber} />
@@ -144,8 +161,13 @@ function Profile(props) {
                 Страница {pageNumber} из {numPages}{' '}
               </p>
             </div>
+            <div className="btn-prev">
+              <button onClick={btnPrevHandler} className="prev">Назад</button>
+              <button onClick={btnNextHandler} className="prev">Вперед</button>
+            </div>
+            
           </div>
-          {/*<div className="student-form">2</div>*/}
+        
         </div>
 
         <div>Profile</div>

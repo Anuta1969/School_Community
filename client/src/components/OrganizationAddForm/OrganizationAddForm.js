@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { addOrganizationAC } from '../../redux/actionCreators/actionCreatorOrganization';
 import { thunkOrgAdd } from '../../redux/Thunk/ThunkOrganization';
-// import Rating from '../Rating/Rating';
+import { Icon } from '@iconify/react';
+import iosStar from '@iconify-icons/ion/ios-star';
 
-// const rateStyles = {
-//   fontFamily: "sans-serif",
-//   textAlign: "center"
-// };
-
+const rating = ['','','','','']
 
 function OrganizationAddForm(props) {
   
   const [addOrgFlag, setaddOrgFlag] = useState(false)
+  const [rate, setRate] = useState(0)
 
   const dispatch = useDispatch();
 
@@ -22,7 +19,7 @@ function OrganizationAddForm(props) {
       dispatch(thunkOrgAdd( 
         event.target.organization.value, 
         event.target.comment.value, 
-        event.target.rate.value
+        rate
         ))
       event.target.reset()
   };
@@ -47,18 +44,14 @@ function OrganizationAddForm(props) {
             placeholder="название организации"
           />
 
-          <input
-            name="rate"
-            className="form-control m-3"
-            type="number"
-            placeholder="оцените организацию от 1 до 5"
-          />
-
-          {/* <div style={rateStyles}> */}
-          {/* <span className="iconify" data-icon="ion-ios-star" data-inline="false"> */}
-            {/* <Rating key={Date.now} rating={5} /> */}
-          {/* </span> */}
-          {/* </div> */}
+           <p> Оцените организацию {rating.map((el,i) => {
+                return <Icon 
+                          name={i} 
+                          key={i} 
+                          style={{color: i <= rate?"red":"initial"}} 
+                          icon={iosStar} onClick={() => setRate(i)} />
+                 })}
+          </p> 
 
           <div className="form-floating">
             <textarea className="form-control m-3" name="comment" ></textarea>

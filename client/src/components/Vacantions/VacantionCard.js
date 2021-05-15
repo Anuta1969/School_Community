@@ -5,9 +5,13 @@ function VacantionCard({ vacantion }) {
   const history = useHistory();
   console.log(vacantion);
 
-  const ClickHandler = () => {
-    history.push(`/post/${vacantion.userID}`);
-  };
+function VacantionCard({vacantion}) {
+  const history = useHistory()
+
+
+  const ClickHandler =()=>{
+    history.push(`/post/${vacantion.userID}`)
+  }
   return (
     <div>
       <div onClick={ClickHandler} className="card">
