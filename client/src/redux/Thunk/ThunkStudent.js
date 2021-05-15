@@ -2,7 +2,7 @@ import { addPhotoAC,updateUserProfileAC,addResumeUserAC } from "../actionCreator
 
 export const ThunkAddResumeUser = (idUser, dats)=>{
   return (dispatch)=>{
-    fetch(`${process.env.REACT_APP_URL}/student/addrezume/${idUser}`, {
+    fetch(`${process.env.REACT_APP_URL}/student/addresume/${idUser}`, {
       method: "POST",
       
       body: dats
