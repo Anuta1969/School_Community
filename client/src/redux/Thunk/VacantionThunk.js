@@ -5,7 +5,7 @@ import { addVacantionAC,initVacantionAC } from '../../redux/actionCreators/actio
 export const addVacantion = (organization,vacantion,date,description,actuality,id)=>{
   return (dispatch)=>{
 
-    fetch('/vacantion', {
+    fetch(`${process.env.REACT_APP_URL}/vacantion`, {
       method: 'POST',
       headers: { 'Content-Type': 'Application/json' },
       body: JSON.stringify({
@@ -29,7 +29,7 @@ export const addVacantion = (organization,vacantion,date,description,actuality,i
 
 export const ThunkInitVacantion = ()=>{
   return (dispatch)=>{
-    fetch(`/vacantion`)
+    fetch(`${process.env.REACT_APP_URL}/vacantion`)
     .then(res=>res.json())
     .then(data=>dispatch(initVacantionAC(data)))
   }
