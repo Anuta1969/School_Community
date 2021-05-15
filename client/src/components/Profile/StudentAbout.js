@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import StudentAboutItem from "./StudentAboutItem";
 import { setUser } from "../../redux/actionCreators/actionCreatorAuth";
-import { updateUserProfile } from "../../redux/Thunk/ThunkAuth";
+
+import { ThunkUpdateProfile } from "../../redux/Thunk/ThunkStudent";
+
+
+
 
 function StudentAbout({ student }) {
   const [btnUpdate, setBtnUpdate] = useState(false);
@@ -29,7 +33,7 @@ function StudentAbout({ student }) {
     } = e.target;
 
     dispatch(
-      updateUserProfile(
+      ThunkUpdateProfile(
         id,
         name,
         phone,
@@ -45,6 +49,7 @@ function StudentAbout({ student }) {
       )
     );
   };
+  
   return (
     <>
       <button className="student-update__text" onClick={btnUpdateHandler}>
@@ -65,9 +70,10 @@ function StudentAbout({ student }) {
           <li className="student-about__item"> {student?.socialGitHab}</li>
           <li className="student-about__item">{student?.placeWork} </li>
           <li className="student-about__item">
+
           <a href={`/img/${student?.resume}`}>download</a>
-            {/* <iframe src={`/img/${user.resume}`} style="width:300px; height:300px;" ></iframe> */}
-            {/* <embed src={`/img/${user.resume}`} width="200px" height="100px" /> */}
+
+      
           </li>
         </>
       )}

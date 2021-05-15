@@ -4,23 +4,38 @@ import path from "path";
 import multer from "multer";
 const router = express.Router();
 
+
+// for photo
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     console.log(123);
     cb(null, "public/img");
   },
   filename: function (req, file, cb) {
-
     cb(null, Date.now() + path.extname(file.originalname)); //Appending extension
   },
 });
 console.log("1111111", storage);
 const upload = multer({ storage: storage });
 
-  
+
+// for resume
+const storagePdf = multer.diskStorage({
+  destination: function (req, file, cb) {
+    console.log("resume-----------");
+    cb(null, "public/resume");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)); //Appending extension
+  },
+});
+console.log("res-----55", storagePdf);
+const pdfUpload = multer({ storage: storagePdf });
+
+
 
 router.post("/addphoto/:id", upload.single("avatar"), async (req, res) => {
-  console.log("--------------",req.file.filename);
+  console.log("--------------", req.file.filename);
   const img = req.file.filename;
   console.log(img);
   const idUser = req.params;
@@ -82,11 +97,11 @@ router.post('/addresume/:id', upload.single("resume"), async(req,res)=>{
     const UserOne = await User.findOne({ _id: idUser.id });
     UserOne.resume = resume;
     await UserOne.save();
-    console.log("UserOne",UserOne);
+    console.log("UserOne", UserOne);
     res.status(200).json({ UserOne });
   } catch (error) {
     res.status(404).json({ succes: false, msg: error.message });
   }
-})
+});
 
 export default router;

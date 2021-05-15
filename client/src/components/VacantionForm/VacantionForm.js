@@ -1,12 +1,15 @@
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
-import { addVacantionAC } from '../../redux/actionCreators/actionCreatorVacantion';
 
+import { useHistory } from 'react-router';
+import { addVacantion } from '../../redux/Thunk/VacantionThunk';
+import {useDispatch, useSelector} from "react-redux";
 function VacantionsForm(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const student = useSelector(state=>state.student)
+
+  const id = student._id
   const organization = useRef();
   const vacantion = useRef();
   const date = useRef();
@@ -15,27 +18,11 @@ function VacantionsForm(props) {
   const formHandler = (event) => {
     event.preventDefault();
 const actuality = event.target.actuality.value
-console.log(actuality+'1111');
-    fetch('/vacantion', {
-      method: 'POST',
-      headers: { 'Content-Type': 'Application/json' },
-      body: JSON.stringify({
-        organization: organization.current.value,
-        vacantion: vacantion.current.value,
-        date:date.current.value,
-        description:description.current.value,
-        relevance:actuality
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => dispatch(addVacantionAC(data.vacantions) ));
+     
+      dispatch(addVacantion(organization.current.value,vacantion.current.value,
+        date.current.value,
+        description.current.value,actuality,id))
       event.target.reset()
-    // После Redux Thunk
-    //dispatch(fetchAddStudent(nameInput.current.value, ageInput.current.value))
-
-    // После Redux Saga
-    //dispatch(sagaAddStudents({name:nameInput.current.value, age:ageInput.current.value}))
-
     history.push('/vacantions');
   };
 
