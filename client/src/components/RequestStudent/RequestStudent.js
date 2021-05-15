@@ -1,5 +1,6 @@
 import React from 'react';
 import {useHistory} from "react-router-dom";
+import './RequestStudent.css'
 import {useSelector} from "react-redux";
 
 function RequestStudent({student}) {
@@ -13,6 +14,7 @@ function RequestStudent({student}) {
     return (
         <>
             <div onClick={openHandler} className="cardInfo">
+                <img id='imgRequest' src= {`${process.env.REACT_APP_URL}/img/${student?.photo}`}/>
                 <h5 className="item-title">{student?.email}</h5>
                 <h5 className="item-price">{student?.name}</h5>
                 <h5 className="item-price">{student?.phone}</h5>

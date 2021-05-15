@@ -1,26 +1,84 @@
-.student-box{
+.student-box {
   display: flex;
   justify-content: space-between;
 }
-.student-about{
+.student-about {
   min-width: 35%;
+  padding-top: 10px;
 }
-.student-form{
+.student-form {
   min-width: 65%;
 }
-.student-img{
+.student-img {
   background-color: rgb(175, 167, 167);
   max-width: 300px;
   max-height: 300px;
   border-radius: 50%;
- 
 }
-img{
+img {
   /* max-width: 100%;
   max-height: 100%; */
   width: 300px;
   height: 300px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: 0% 15%;
   /* padding-top: 10px; */
+}
+.student-add__photo {
+  display: flex;
+  justify-content: flex-start;
+}
+.student-form__photo {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.student-btn__photo-btn {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5px;
+}
+.student-form__photo-btn {
+  max-width: 40%;
+  margin-top: 10px;
+}
+.student-form__photo-input {
+  border: 1px solid black;
+}
+.student-about__title {
+  text-align: start;
+}
+.student-about__item {
+  display: flex;
+  max-width: 50%;
+}
+.about-item__box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.about-item__change{
+  max-width: 50%;
+}
+.about-item-btn{
+  border:none
+}
+.about-form__update{
+  display: flex;
+  flex-direction: column;
+}
+.student-update__text{
+  border:none
+}
+.react-pdf__Page{
+  width: 80%;
+  height: 75%;
+}
+.react-pdf__Page__canvas {
+  max-height: 100%;
+  margin: 0 auto;
+}
+.react-pdf__Page__annotations{
+  display: none;
 }

@@ -1,100 +1,59 @@
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
 
+import { useHistory } from 'react-router';
+import { addVacantion } from '../../redux/Thunk/VacantionThunk';
+import {useDispatch, useSelector} from "react-redux";
 function VacantionsForm(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const student = useSelector(state=>state.student)
+
+  const id = student._id
   const organization = useRef();
   const vacantion = useRef();
-  const date = useRef();
   const description = useRef();
 
   const formHandler = (event) => {
     event.preventDefault();
-const actuality = event.target.actuality.value
-console.log(actuality+'1111');
-    fetch('/vacantion', {
-      method: 'POST',
-      headers: { 'Content-Type': 'Application/json' },
-      body: JSON.stringify({
-        organization: organization.current.value,
-        vacantion: vacantion.current.value,
-        date:date.current.value,
-        description:description.current.value,
-        relevance:actuality
-      }),
-    })
-      .then((res) => res.json())
-        .then((data) => dispatch({type:'ADD_VACANTION',payload:data}));
 
-    // После Redux Thunk
-    //dispatch(fetchAddStudent(nameInput.current.value, ageInput.current.value))
-
-    // После Redux Saga
-    //dispatch(sagaAddStudents({name:nameInput.current.value, age:ageInput.current.value}))
-
+     
+      dispatch(addVacantion(organization.current.value,vacantion.current.value,
+        description.current.value,id))
+      event.target.reset()
     history.push('/vacantions');
   };
 
   return (
-    <div className="vacantion container d-flex flex-column">
-      <form method="POST" onSubmit={formHandler}>
+    <div className="vacantion container d-flex flex-column text-center" >
+      <form method="POST" onSubmit={formHandler} className='text-center'>
         <h3>Добавить Вакансию</h3>
+        
         <input
+        ref={vacantion}
+          name="vacantion"
+          className="form-control text-center"
+          type="text"
+          placeholder="введите вакансию"
+        />
+
+<input
         ref={organization}
-          className="form-control"
+          className="form-control text-center"
           name="organization"
           type="text"
           placeholder="введите организацию"
         />
-        <input
-        ref={vacantion}
-          name="vacantion"
-          className="form-control"
-          type="text"
-          placeholder="введите вакансию"
-        />
-        <input
-        ref={date}
-          name="date"
-          className="form-control"
-          type="date"
-          placeholder="введите дату"
-        />
+        
 
-        <input
+        <textarea
         ref={description}
-          name=""
-          className="form-control"
+          name="description"
+          className="form-control text-center p-2 m-auto"
           type="text"
           placeholder="введите описание"
+          rows="5" cols="15"
         />
-        <div class="form-check container d-flex flex-column">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="actuality"
-            id="flexRadioDefault1"
-            checked
-            value="actual"
-          />
-          <label class="form-check-label" for="flexRadioDefault1">
-            actual
-          </label>        
-        
-          <input
-            class="form-check-input"
-            type="radio"
-            name="actuality"
-            id="flexRadioDefault2"
-            value="not_actual"
-          />
-          <label class="form-check-label" for="flexRadioDefault2">
-            not actual
-          </label>
-        </div>
 
         <button type="submit">Добавить</button>
       </form>

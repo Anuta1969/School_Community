@@ -1,0 +1,36 @@
+.registration{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #cec658;
+}
+.formRegister{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #61dafb;
+    width: 400px;
+    height: 300px;
+    margin: 40px auto;
+    border-radius: 15px;
+
+}
+.btnRegister{
+    width: 150px;
+    border-radius: 5px;
+    background: green;
+    margin: 5px auto;
+
+}
+.inputRegister{
+    width: 250px;
+    border-radius: 5px;
+    margin: 5px auto;
+}
+.addPhoto{
+    border-radius: 5px;
+    margin: 5px auto;
+    width: 135px;
+
+}

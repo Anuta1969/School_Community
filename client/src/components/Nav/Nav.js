@@ -4,10 +4,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../redux/actionCreators/actionCreatorAuth";
 
 function Nav(props) {
-    const isAuth = useSelector(state => state.student.currentStudent.isAuth)
+    const isAuth = useSelector(state => state.student.isAuth)
     const dispatch = useDispatch()
-    const admin = useSelector(state =>state.student.currentStudent.admin)
-
+    const admin = useSelector(state =>state.student.admin)
     return (
         <>
             {admin?
@@ -23,8 +22,6 @@ function Nav(props) {
                         <li className="nav-item"><Link to='/statistics' className="nav-link">Статистика</Link></li>}
                         {admin &&
                         <li className="nav-item"><Link to='/organizations' className="nav-link">Организации</Link></li>}
-                        {admin &&
-                        <li className="nav-item"><Link to='/addOrganizations' className="nav-link">Добавить организацию</Link></li>}
                         {admin && <li className="nav-item"><Link to='/' className="nav-link"
                                                                   onClick={() => dispatch(logout())}>Выход</Link></li>}
                     </ul>
@@ -38,11 +35,9 @@ function Nav(props) {
             {isAuth &&
                 <li className="nav-item"><Link to='/vacantions' className="nav-link">Вакансии</Link></li>}
             {isAuth &&
-                <li className="nav-item"><Link to='/' className="nav-link">Поиск</Link></li>}
+                <li className="nav-item"><Link to='/search' className="nav-link">Поиск</Link></li>}
             {isAuth &&
-                <li className="nav-item"><Link to='/' className="nav-link">Организации</Link></li>}
-            {isAuth &&
-                <li className="nav-item"><Link to='/' className="nav-link">Добавить Организацию</Link></li>}
+                <li className="nav-item"><Link to='/organizations' className="nav-link">Организации</Link></li>}
 
             {isAuth && <li className="nav-item"><Link to='/' className="nav-link"
                 onClick={() => dispatch(logout())}>Выход</Link></li>}
