@@ -1,17 +1,31 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
+import axios from "axios";
 
 function SearchForm(props) {
     const search = useSelector(state => state.search)
     const dispatch = useDispatch()
+
+    const SearchHandler = (e)=>{
+        e.preventDefault()
+        const name = e.target.name.value
+        const lastName = e.target.lastName.value
+        const group = e.target.group.value
+        const year = e.target.year.value
+        const city = e.target.city.value
+        axios.post(`${process.env.REACT_APP_URL}/student/search`,
+            {name,lastName,group,year,city})
+            .then(data => console.log(data))
+    }
 
     return (
         <>
         <div className='searchComponent'>
           <h3>Поиск студента</h3>
             <div className='searchForm'>
-                <input type="text"/>
-                <input type="text"/>
+                <form onSubmit={SearchHandler} action="">
+                <input name='name' type="text"/>
+                <input name='lastName' type="text"/>
                 <select name="group" id="">
                     <option value=""></option>
                     <option value="Ежи">Ежи</option>
@@ -45,6 +59,8 @@ function SearchForm(props) {
                     <option value="Москва">Москва</option>
                     <option value="Санкт-Петербург">Санкт-Петербург</option>
                 </select>
+                <button className='btnSearch'>Поиск</button>
+                </form>
             </div>
         </div>
         </>

@@ -12,79 +12,48 @@ function VacantionsForm(props) {
   const id = student._id
   const organization = useRef();
   const vacantion = useRef();
-  const date = useRef();
   const description = useRef();
 
   const formHandler = (event) => {
     event.preventDefault();
-const actuality = event.target.actuality.value
+
      
       dispatch(addVacantion(organization.current.value,vacantion.current.value,
-        date.current.value,
-        description.current.value,actuality,id))
+        description.current.value,id))
       event.target.reset()
     history.push('/vacantions');
   };
 
   return (
-    <div className="vacantion container d-flex flex-column">
-      <form method="POST" onSubmit={formHandler}>
+    <div className="vacantion container d-flex flex-column text-center" >
+      <form method="POST" onSubmit={formHandler} className='text-center'>
         <h3>Добавить Вакансию</h3>
         
         <input
         ref={vacantion}
           name="vacantion"
-          className="form-control"
+          className="form-control text-center"
           type="text"
           placeholder="введите вакансию"
         />
 
 <input
         ref={organization}
-          className="form-control"
+          className="form-control text-center"
           name="organization"
           type="text"
           placeholder="введите организацию"
         />
-        <input
-        ref={date}
-          name="date"
-          className="form-control"
-          type="date"
-          placeholder="введите дату"
-        />
+        
 
-        <input
+        <textarea
         ref={description}
           name="description"
-          className="form-control"
+          className="form-control text-center p-2 m-auto"
           type="text"
           placeholder="введите описание"
+          rows="5" cols="15"
         />
-        <div className="form-check container d-flex flex-column">
-          <input
-            className="form-check-input"
-            type="radio"
-            name="actuality"
-            id="flexRadioDefault1"
-            defaultChecked
-            value="actual"
-          />
-          <label className="form-check-label" htmlFor="flexRadioDefault1">
-            actual
-          </label>        
-        
-          <input
-            className="form-check-input"
-            type="radio"
-            name="actuality"
-            id="flexRadioDefault2"
-            value="not_actual"
-          />
-          <label className="form-check-label" htmlFor="flexRadioDefault2">
-            not actual
-          </label>
-        </div>
 
         <button type="submit">Добавить</button>
       </form>

@@ -7,12 +7,10 @@ const Student = mongoose.model('Student',{
     lastName:{type:String,trim:true},
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
-
     year: {type: String},
     group: {type: String},
     city: {type: String},
     stack: {type: String},
-
     language: {type: String},
     socialLinkedin: {type: String},
     socialGitHab: {type: String},
@@ -23,7 +21,6 @@ const Student = mongoose.model('Student',{
     phone: {type: Number},
     isAuth:{type:Boolean, default:false},
     admin:{type:Boolean, default:false},
-
 })
 
 export default Student
