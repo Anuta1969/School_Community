@@ -43,7 +43,7 @@ app.use('/organizations', orgRouter);
 app.use('/student',studentRouter)
 app.use('/',adminRouter)
 app.use(function (req, res, next) {
-  next(createError(404));
+  // next(createError(404));
 });
 
 

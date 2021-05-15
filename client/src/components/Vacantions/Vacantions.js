@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux"
-import { initVacantionAC } from '../../redux/actionCreators/actionCreatorVacantion';
+import { ThunkInitVacantion } from '../../redux/Thunk/VacantionThunk';
 import VacantionCard from './VacantionCard'
 function Vacantions(props) {
   const vacantion = useSelector(state=>state.vacantion)
-  console.log(vacantion);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`/vacantion`)
-    .then(res=>res.json())
-    .then(data=>dispatch(initVacantionAC(data)))
+    
+    
+    dispatch(ThunkInitVacantion())
    }, [dispatch])
   return (
     <>
