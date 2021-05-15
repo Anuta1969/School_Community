@@ -2,33 +2,32 @@ import React, {useState} from 'react';
 import axios from "axios";
 import  './Registration.css'
 import {useDispatch} from "react-redux";
+import {thunkRegister} from "../../redux/Thunk/ThunkAuth";
 
 function Registration(props) {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+
     const dispatch = useDispatch()
-
-
-    const registerHandler = (e) => {
+      const registerHandler = (e) => {
         e.preventDefault()
         const info = new FormData(e.target);
-        // const name = e.target.name.value
-        // const phone = e.target.phone.value
-        fetch('/registration',{
-            method:"POST",
-            body:info
-        }).then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if (data.student) {
-                    alert(data.message)
-                    e.target.reset()
-                }else {
-                    alert(data.errors.errors[0].msg)
-                    e.target.reset()
-                }})
-            .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
-    }
+
+        // fetch('/registration',{
+        //     method:"POST",
+        //     body:info
+        // }).then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         if (data.student) {
+        //             alert(data.message)
+        //             e.target.reset()
+        //         }else {
+        //             alert(data.errors.errors[0].msg)
+        //             e.target.reset()
+        //         }})
+        //     .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
+
+      dispatch(thunkRegister(info,e))
+      }
 
 
         return (

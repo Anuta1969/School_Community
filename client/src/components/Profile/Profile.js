@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Profile.css";
-import { addPhotoUser, addResumeUser } from "../../redux/Thunk/Student_Thunk";
+
+import { addPhotoUser, addResumeUser } from "../../redux/Thunk/ThunkStudent";
 import { Document, Page } from "react-pdf";
+
+
 import StudentAbout from "./StudentAbout";
 // import StudentAddRusume from './StudentAddRusume'
 
 function Profile(props) {
   const dispatch = useDispatch();
-  const student = useSelector((store) => store.student.currentStudent);
+
+  const student = useSelector(state => state.student);
 
   const idUser = student._id;
-  console.log(idUser, "idUser");
+
+
 
   const [photo, setPhoto] = useState(false);
   const [resume, setResume] = useState(false);
@@ -20,7 +25,7 @@ function Profile(props) {
     e.preventDefault();
     setPhoto(false);
     const dats = new FormData(e.target);
-    // console.log("resume", dats);
+
     dispatch(addPhotoUser(idUser, dats));
   };
 
@@ -98,11 +103,14 @@ function Profile(props) {
               </div>
 
               <div className="student-add__rezume">
-               {/* <StudentAddRusume idUser={iduser}/> */}
-                {resume && (
+
+
+                {resume &&
                   <form
-                    onSubmit={saveResumehandler}
+                  onSubmit={saveResumehandler}
                     className="student-form__photo"
+
+
                     encType="multipart/form-data"
                     action="/profile"
                     method="post"
@@ -116,15 +124,19 @@ function Profile(props) {
                       Сохранить
                     </button>
                   </form>
-                )}
-                {!resume && (
+
+                }
+                 {!resume &&
+
                   <button
                     onClick={addResumeHandler}
                     className="student-form__photo-btn btn btn-outline-primary"
                   >
                     📃
                   </button>
-                )}
+
+                  }
+
               </div>
 
 

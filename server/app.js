@@ -2,15 +2,15 @@ import express from 'express'
 import mongoose from 'mongoose'
 import logger from 'morgan'
 import createError from 'http-errors'
+import cors from 'cors'
 
-
-import studentRouter from './routes/student.js'
+import studentRouter from './routes/studentRouter.js'
 import path from 'path'
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import authRouter from './routes/authRouter.js'
-import orgRouter from './routes/organization.js'
+import orgRouter from './routes/organizationRouter.js'
 import adminRouter from './routes/adminRouter.js'
 import vacantionRouter from './routes/vacantionRouter.js'
 
@@ -25,6 +25,7 @@ mongoose.connect(
 app.use(logger('dev'));
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(cors())
 // app.use(express.static('public'))
 app.use(express.static(path.join(__dirname,  "public")));
 

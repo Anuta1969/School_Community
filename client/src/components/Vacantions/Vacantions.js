@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux"
-import { initVacantion } from '../../redux/Thunk/VacantionThunk';
+import { ThunkInitVacantion } from '../../redux/Thunk/VacantionThunk';
 import VacantionCard from './VacantionCard'
 function Vacantions(props) {
   const vacantion = useSelector(state=>state.vacantion)
@@ -11,7 +11,7 @@ function Vacantions(props) {
   useEffect(() => {
     
     
-    dispatch(initVacantion())
+    dispatch(ThunkInitVacantion())
    }, [dispatch])
   return (
     <>
