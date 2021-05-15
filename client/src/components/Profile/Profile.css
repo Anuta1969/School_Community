@@ -71,3 +71,14 @@ img {
 .student-update__text{
   border:none
 }
+.react-pdf__Page{
+  width: 80%;
+  height: 75%;
+}
+.react-pdf__Page__canvas {
+  max-height: 100%;
+  margin: 0 auto;
+}
+.react-pdf__Page__annotations{
+  display: none;
+}
