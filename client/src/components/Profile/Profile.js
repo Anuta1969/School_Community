@@ -171,8 +171,8 @@ function Profile(props) {
               </p>
             </div>
             <div className="btn-prev">
-              <button onClick={btnPrevHandler} className="prev">Назад</button>
-              <button onClick={btnNextHandler} className="prev">Вперед</button>
+              <button onClick={btnPrevHandler} className="pdf-prev">‹</button>
+              <button onClick={btnNextHandler} className="pdf-next">›</button>
             </div>
             
           </div>
