@@ -85,6 +85,13 @@ img {
 .student-form {
   position: relative;
 }
+.react-pdf__Document{
+  display: flex;
+  justify-content: center;
+}
+/* .react-pdf__Page{
+  position: relative;
+} */
 .pdf-prev {
   border: 0;
   background-color: hsla(0, 0%, 100%, 0);

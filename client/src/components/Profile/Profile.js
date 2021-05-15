@@ -44,26 +44,26 @@ function Profile(props) {
   };
 
   // for resume
-  const [numPages, setNumPages] = useState(null);
+  const [totalPage, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   
-
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
+  console.log(pageNumber);
+  function onDocumentLoadSuccess({ totalPage }) {
+    setNumPages(totalPage);
   }
 
   const btnPrevHandler =()=>{
-    if(pageNumber < numPages && pageNumber !=1){
+    if(pageNumber < totalPage && pageNumber !=1){
       return setPageNumber(pageNumber -1)
     }else{
       setPageNumber(1)
     }
   }
   const btnNextHandler =()=>{
-    if(pageNumber <= numPages){
+    if(pageNumber <= totalPage){
       return  setPageNumber( pageNumber +1)
     }else{
-      setPageNumber(numPages)
+      setPageNumber(totalPage)
     }
   }
   return (
@@ -156,14 +156,14 @@ function Profile(props) {
               >
                 <Page pageNumber={pageNumber} />
               </Document>
-              <p>
-                {' '}
-                Страница {pageNumber} из {numPages}{' '}
-              </p>
+              {totalPage>1 && <p>{' '}Страница {pageNumber} из {totalPage}{' '}</p>}
+              
             </div>
             <div className="btn-prev">
-              <button onClick={btnPrevHandler} className="pdf-prev">‹</button>
-              <button onClick={btnNextHandler} className="pdf-next">›</button>
+            { 
+             <button onClick={btnPrevHandler} className="pdf-prev">‹</button>}
+              {
+                <button onClick={btnNextHandler} className="pdf-next">›</button>}
             </div>
             
           </div>
