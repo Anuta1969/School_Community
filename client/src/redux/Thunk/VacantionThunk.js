@@ -27,7 +27,7 @@ export const addVacantion = (organization,vacantion,date,description,actuality,i
 
 
 
-export const initVacantion = ()=>{
+export const ThunkInitVacantion = ()=>{
   return (dispatch)=>{
     fetch(`/vacantion`)
     .then(res=>res.json())

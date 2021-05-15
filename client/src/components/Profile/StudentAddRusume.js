@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPhotoUser, addResumeUser } from "../../redux/Thunk/Student_Thunk";
+import { addPhotoUser, ThunkaddResumeUser } from "../../redux/Thunk/Student_Thunk";
 
 function StudentAddRusume({idUser}) {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ function StudentAddRusume({idUser}) {
     setResume(false);
     const dats = new FormData(e.target);
     console.log("resume", dats);
-    dispatch(addResumeUser(idUser, dats));
+    dispatch(ThunkaddResumeUser(idUser, dats));
   };
   const addResumeHandler = () => {
     setResume(true);

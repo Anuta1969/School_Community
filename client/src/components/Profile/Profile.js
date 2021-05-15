@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Profile.css";
 
-import { addPhotoUser, addResumeUser } from "../../redux/Thunk/ThunkStudent";
+import { ThunkAddPhotoUser, ThunkAddResumeUser } from "../../redux/Thunk/ThunkStudent";
 import { Document, Page } from "react-pdf";
 
 
@@ -26,7 +26,7 @@ function Profile(props) {
     setPhoto(false);
     const dats = new FormData(e.target);
 
-    dispatch(addPhotoUser(idUser, dats));
+    dispatch(ThunkAddPhotoUser(idUser, dats));
   };
 
   const saveResumehandler = (e) => {
@@ -34,7 +34,7 @@ function Profile(props) {
     setResume(false);
     const dats = new FormData(e.target);
     console.log("resume", dats);
-    dispatch(addResumeUser(idUser, dats));
+    dispatch(ThunkAddResumeUser(idUser, dats));
   };
   const btnPhotoHandler = () => {
     setPhoto(true);
@@ -59,7 +59,7 @@ function Profile(props) {
           <div className="student-about">
             <div className="student-img__box">
               <div className="student-img">
-                <img src={`/img/${student.photo}`} alt="Ваше фото" />
+                <img src={`${process.env.REACT_APP_URL}/img/${student.photo}`} alt="Ваше фото" />
               </div>
 
               <div className="student-btn__photo-btn">
@@ -146,7 +146,7 @@ function Profile(props) {
             Student list
             <div>
               <Document
-                file={`/resume/${student.resume}`}
+                file={`${process.env.REACT_APP_URL}/resume/${student.resume}`}
                 onLoadSuccess={onDocumentLoadSuccess}
               >
                 <Page pageNumber={pageNumber} />

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 // import StudentAboutItem from "./StudentAboutItem";
 import { setUser } from "../../redux/actionCreators/actionCreatorAuth";
 
-import { apdateUserProfile } from "../../redux/Thunk/ThunkStudent";
+import { ThunkUpdateProfile } from "../../redux/Thunk/ThunkStudent";
 
 
 
@@ -33,7 +33,7 @@ function StudentAbout({ student }) {
     } = e.target;
 
     dispatch(
-      updateUserProfile(
+      ThunkUpdateProfile(
         id,
         name,
         phone,

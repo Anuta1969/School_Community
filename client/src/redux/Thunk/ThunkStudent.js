@@ -1,8 +1,8 @@
-import { addPhotoAC,apdateUserProfileAC,addRezumeUserAC } from "../actionCreators/actionCreatorUser";
+import { addPhotoAC,updateUserProfileAC,addResumeUserAC } from "../actionCreators/actionCreatorUser";
 
-export const addResumeUser = (idUser, dats)=>{
+export const ThunkAddResumeUser = (idUser, dats)=>{
   return (dispatch)=>{
-    fetch(`/student/addrezume/${idUser}`, {
+    fetch(`${process.env.REACT_APP_URL}/student/addrezume/${idUser}`, {
       method: "POST",
       
       body: dats
@@ -10,14 +10,14 @@ export const addResumeUser = (idUser, dats)=>{
     })
     .then(res=>res.json())
     // .then(data=>console.log(data))
-    .then(data=>dispatch(addRezumeUserAC(data.UserOne)))
+    .then(data=>dispatch(addResumeUserAC(data.UserOne)))
   }
 }
 
 
-export const addPhotoUser = (idUser, dats) => {
+export const ThunkAddPhotoUser = (idUser, dats) => {
   return (dispatch) => {
-    fetch(`/student/addphoto/${idUser}`, {
+    fetch(`${process.env.REACT_APP_URL}/student/addphoto/${idUser}`, {
       method: "POST",
 
       body: dats,
@@ -29,9 +29,9 @@ export const addPhotoUser = (idUser, dats) => {
 };
 
 
-export const apdateUserProfile = (id,name,phone,email,year,group,city,stack,language,socialLinkedin,socialGitHab,placeWork) => {
+export const ThunkUpdateProfile = (id,name,phone,email,year,group,city,stack,language,socialLinkedin,socialGitHab,placeWork) => {
   return (dispatch) => {
-    fetch(`/student/changetext`, {
+    fetch(`${process.env.REACT_APP_URL}/student/changetext`, {
       method: "PUT",
       headers: {
         "Content-type": "Application/json",
@@ -53,6 +53,6 @@ export const apdateUserProfile = (id,name,phone,email,year,group,city,stack,lang
     })
       .then((res) => res.json())
       // .then(data=>console.log(data))
-      .then((data) => dispatch(apdateUserProfileAC(data.UserOne)));
+      .then((data) => dispatch(updateUserProfileAC(data.UserOne)));
   };
 };
