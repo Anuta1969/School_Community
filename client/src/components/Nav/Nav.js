@@ -22,8 +22,6 @@ function Nav(props) {
                         <li className="nav-item"><Link to='/statistics' className="nav-link">Статистика</Link></li>}
                         {admin &&
                         <li className="nav-item"><Link to='/organizations' className="nav-link">Организации</Link></li>}
-                        {admin &&
-                        <li className="nav-item"><Link to='/organizations/add' className="nav-link">Добавить организацию</Link></li>}
                         {admin && <li className="nav-item"><Link to='/' className="nav-link"
                                                                   onClick={() => dispatch(logout())}>Выход</Link></li>}
                     </ul>
@@ -40,8 +38,6 @@ function Nav(props) {
                 <li className="nav-item"><Link to='/search' className="nav-link">Поиск</Link></li>}
             {isAuth &&
                 <li className="nav-item"><Link to='/organizations' className="nav-link">Организации</Link></li>}
-            {isAuth &&
-                <li className="nav-item"><Link to='/organizations/add' className="nav-link">Добавить Организацию</Link></li>}
 
             {isAuth && <li className="nav-item"><Link to='/' className="nav-link"
                 onClick={() => dispatch(logout())}>Выход</Link></li>}

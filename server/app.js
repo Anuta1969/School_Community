@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 import logger from 'morgan'
 import createError from 'http-errors'
 import cors from 'cors'
-
 import studentRouter from './routes/studentRouter.js'
 import path from 'path'
 import { dirname } from 'path';
@@ -22,6 +21,7 @@ mongoose.connect(
   `mongodb+srv://Alex:tB9hbppbaKG_vJr@cluster0.5agzc.mongodb.net/elbrus?retryWrites=true&w=majority`,
    {useNewUrlParser: true, useUnifiedTopology: true});
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
@@ -43,7 +43,7 @@ app.use('/organizations', orgRouter);
 app.use('/student',studentRouter)
 app.use('/',adminRouter)
 app.use(function (req, res, next) {
-  next(createError(404));
+  // next(createError(404));
 });
 
 

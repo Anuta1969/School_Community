@@ -1,0 +1,17 @@
+.searchStudentCard{
+    width: 200px;
+    height: 330px;
+    margin: 50px auto;
+    background: #61dafb;
+    border-radius: 10px;
+    border: black solid 1px;
+}
+#imgSearch{
+    width: 190px;
+    height: 190px;
+
+}
+.searchInput{
+    width: 180px;
+    overflow: hidden;
+}

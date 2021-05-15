@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {addPhotoAC, updateUserProfileAC, addResumeUserAC} from "../actionCreators/actionCreatorUser";
+import {addPhotoAC, updateUserProfileAC, addResumeUserAC} from "../actionCreators/actionCreatorStudent";
 
 import {setUser} from "../actionCreators/actionCreatorAuth";
 
