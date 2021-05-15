@@ -13,7 +13,6 @@ function Search(props) {
     console.log(student)
     useEffect(()=>{
         axios.get(`${process.env.REACT_APP_URL}/student/inits`)
-            // .then(data =>console.log(data))
             .then(({data:{list}})=>dispatch(initAllStudentsAC(list)))
             .catch(err => console.log(err))
     },[dispatch])
