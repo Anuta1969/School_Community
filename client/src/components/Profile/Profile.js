@@ -28,12 +28,13 @@ function Profile(props) {
           </div>
 
           <div id="student-form__id" className="student-form">
-           
+            
             <ProfileShowResume student={student} />
           </div>
         </div>
+            
 
-      
+       
       </div>
     </section>
   );
