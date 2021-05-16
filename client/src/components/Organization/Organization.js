@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Org.css'
-import Icon from '@iconify/react';
-import iosStar from '@iconify-icons/ion/ios-star';
 
-function Organization({ org }) {
 
-  const rating = ['']
-  for (let i = 0; i < org?.rate; i++) {
-     rating.push('') 
+function Organization({ org, ind }) {
+
+  const rate1 = org.rate
+
+  const selector = '.org' + ind + '.ratingActive'
+
+   function setRateActiveWidth(rate) {
+    let ratingActive = document.querySelector(selector)
+    const ratingActiveWidth = rate / 0.05
+    ratingActive.style.width = `${ratingActiveWidth}%`
   }
+  
+  useEffect(() => {
+    setRateActiveWidth(rate1)
+  }, [])
+ 
+
 
   return (
     <div className="card me-5 mb-4 orgCard">
@@ -18,10 +28,21 @@ function Organization({ org }) {
            <Link  to={`/organizations/org/${org?._id}` }>
             <div className="card-header">
               <h5 className="card-title">{org?.name}</h5>
-              <p>
-                { rating.map((el, i) => {
-                   return < Icon name={i} key={i}  icon={iosStar} style={{color: "red"}}/> } ) } 
-              </p>
+      
+                <div className={`  rating`} >
+                  <div className='ratingBody'>
+                    <div className={`${'org' + ind} ratingActive`}></div>
+                      <div className='ratingItems'>
+                        <input type="radio" className='ratingItem' value='1' name="rating" />
+                        <input type="radio" className='ratingItem' value='2' name="rating" />
+                        <input type="radio" className='ratingItem' value='3' name="rating" />
+                        <input type="radio" className='ratingItem' value='4' name="rating" />
+                        <input type="radio" className='ratingItem' value='5' name="rating" />
+                      </div>
+                    </div>
+                  <div className="ratingValue"></div>
+                </div>
+    
             </div>
          </Link>
             <p className="card-text">
@@ -36,6 +57,7 @@ function Organization({ org }) {
         </div>
       </div>
   )
+  
 }
 
 export default Organization;

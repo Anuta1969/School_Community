@@ -1,11 +1,10 @@
+import './OrganizationView.css';
 import React, { useEffect } from 'react';
-import Icon from '@iconify/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
-import iosStar from '@iconify-icons/ion/ios-star';
 
-function OrganizationView(props) {
+function OrganizationView() {
   const {id} = useParams()
   const dispatch = useDispatch()
   const organization = useSelector(state => state.organization).filter(el => el._id === id)[0]
@@ -14,20 +13,40 @@ function OrganizationView(props) {
     dispatch( thunkOrgInit(id) )
   }, [dispatch])
 
-  const rating = ['']
-  for (let i = 0; i < organization?.rate; i++) {
-     rating.push('') 
-  }
+  const rate = organization?.rate
 
+  if (rate) {
+    setRateActiveWidth(rate)
+  }
+  
+ function setRateActiveWidth(rate) {
+    let ratingActive = document.querySelector('.ratingActive')
+    const ratingActiveWidth = rate / 0.05
+    ratingActive.style.width = `${ratingActiveWidth}%`
+  }
+  
   return (
     <>
       <div className="card">
         <div className="card-body">
           <h4 className="card-title">{organization?.name}</h4>
-          <p className="card-text">Текущий рейтинг:&nbsp;
-            { rating.map((el, i) => {
-              return < Icon name={i} key={i}  icon={iosStar} style={{color: "red"}}/> } ) }
-          </p>
+          <div className="card-text">Текущий рейтинг:&nbsp;
+
+            <div className='rating' >
+              <div className='ratingBody'>
+                <div className='ratingActive'></div>
+                  <div className='ratingItems'>
+                    <input type="radio" className='ratingItem' value='1' name="rating" />
+                    <input type="radio" className='ratingItem' value='2' name="rating" />
+                    <input type="radio" className='ratingItem' value='3' name="rating" />
+                    <input type="radio" className='ratingItem' value='4' name="rating" />
+                    <input type="radio" className='ratingItem' value='5' name="rating" />
+                  </div>
+                </div>
+              <div className="ratingValue"></div>
+            </div>
+
+          </div>
         </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">Последний комментарий:&nbsp;{organization?.comment}</li>
