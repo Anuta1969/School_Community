@@ -7,11 +7,11 @@ import searchReducer from "./searchReducer";
 
 
 const rootReducer = combineReducers({
-  student:userReducer,
-  organization: orgReducer,
-  admin:adminReducer,
-  vacantion: vacantionReducer,
-  search:searchReducer
+    student: userReducer,
+    organization: orgReducer,
+    admin: adminReducer,
+    vacantion: vacantionReducer,
+    search: searchReducer
 })
 
 export default rootReducer

@@ -1,9 +1,7 @@
 import {INIT_REQUEST_STUDENT_PARAMS, INIT_REQUEST_STUDENTS} from "../actionTypes/actionTypes";
 
-const adminReducer = (state=[],action)=>{
-
-    switch (action.type){
-
+const adminReducer = (state = [], action) => {
+    switch (action.type) {
         case INIT_REQUEST_STUDENTS:
             return action.payload
 
@@ -13,7 +11,6 @@ const adminReducer = (state=[],action)=>{
         default:
             return state
     }
-
 }
 
 export default adminReducer

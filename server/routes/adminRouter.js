@@ -6,10 +6,8 @@ import nodemailer from 'nodemailer'
 
 const router = express.Router()
 
-
 router
     .get('/admin/request' ,async (req,res)=>{
-
         try {
             const request = await AdminList.find()
             const list = await request.map(el => el.userId)
@@ -27,7 +25,6 @@ router
             const {id} = req.params
             const student = await Student.findById(id)
             res.status(200).json({succes: true, student});
-
         }catch (error){
             res.status(400).json({succes: false, message: error.message});
         }
@@ -59,9 +56,7 @@ router
             }
             mail().catch(console.error)
             await Student.findByIdAndDelete(id)
-
             res.status(200).json({succes: true, request});
-
         }catch (error){
             res.status(400).json({succes: false, message: error.message});
         }
@@ -95,12 +90,10 @@ router
                 })
             }
             mail().catch(console.error)
-
             res.status(200).json({succes: true,request});
         }catch (error){
             res.status(400).json({succes: false, msg: error.message});
         }
     })
-
 
 export default router

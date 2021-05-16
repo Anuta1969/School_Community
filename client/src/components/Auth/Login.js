@@ -1,25 +1,14 @@
 import React from 'react';
-import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import {setUser} from "../../redux/actionCreators/actionCreatorAuth";
 import {thunkLogin} from "../../redux/Thunk/ThunkAuth";
-import {useHistory} from "react-router-dom";
 
 function Login(props) {
     const dispatch = useDispatch()
-    const student = useSelector(state =>state.student)
+
     const loginHandler = (e)=>{
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
-        // axios.post('/login',
-        //        {email, password})
-        //        // .then(data => console.log(data.data))
-        //        .then(data=> dispatch(setUser(data.data)))
-        //        .then((data)=>localStorage.setItem('token', data.payload.token))
-        //        // .then(data =>console.log(data))
-        //        .catch((error)=> alert(`status: ${error.response.status} , ${error.response.data.message}`))
-
         dispatch(thunkLogin(email, password))
     }
 
