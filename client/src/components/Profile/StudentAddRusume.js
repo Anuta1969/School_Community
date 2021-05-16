@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  ThunkAddPhotoUser,
-  ThunkAddResumeUser,
-} from "../../redux/Thunk/ThunkStudent";
+import {ThunkAddResumeUser} from "../../redux/Thunk/ThunkStudent";
 
 function StudentAddRusume() {
   const dispatch = useDispatch();
@@ -28,7 +25,7 @@ function StudentAddRusume() {
     }
 
   },[])
-  const addResumeHandler = () => {    
+  const addResumeHandler = () => {
     setResume(true);
   };
   return (
@@ -43,7 +40,7 @@ function StudentAddRusume() {
             method="post"
           >
             <input
-            
+
               className="student-form__photo-input form-control"
               type="file"
               name="resume"

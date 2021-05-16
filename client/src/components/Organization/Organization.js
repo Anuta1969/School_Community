@@ -2,11 +2,8 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Org.css'
 
-
 function Organization({ org, ind }) {
-
   const rate1 = org.rate
-
   const selector = '.org' + ind + '.ratingActive'
 
    function setRateActiveWidth(rate) {
@@ -14,11 +11,11 @@ function Organization({ org, ind }) {
     const ratingActiveWidth = rate / 0.05
     ratingActive.style.width = `${ratingActiveWidth}%`
   }
-  
+
   useEffect(() => {
     setRateActiveWidth(rate1)
   }, [])
- 
+
 
 
   return (
@@ -28,7 +25,7 @@ function Organization({ org, ind }) {
            <Link  to={`/organizations/org/${org?._id}` }>
             <div className="card-header">
               <h5 className="card-title">{org?.name}</h5>
-      
+
                 <div className={`  rating`} >
                   <div className='ratingBody'>
                     <div className={`${'org' + ind} ratingActive`}></div>
@@ -42,7 +39,7 @@ function Organization({ org, ind }) {
                     </div>
                   <div className="ratingValue"></div>
                 </div>
-    
+
             </div>
          </Link>
             <p className="card-text">
@@ -57,7 +54,7 @@ function Organization({ org, ind }) {
         </div>
       </div>
   )
-  
+
 }
 
 export default Organization;

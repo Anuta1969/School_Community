@@ -33,7 +33,6 @@ router.post('/registration',
     try {
         const {email, password,name,phone} = req.body
         const photoUser = req.file.filename
-            // const {email, password,name,phone} = req.body
             const candidate = await Student.findOne({email})
             if(candidate) {
                 return res.status(201).json({message: `Student with email ${email} already exist`})
@@ -41,7 +40,6 @@ router.post('/registration',
             const hashPassword = await bcrypt.hash(password, 8)
             const student = await Student.create({email, password:hashPassword,name,phone,photo:photoUser})
             const request = await AdminList.create({userId:student})
-            // const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
         async function mail(){
             let transporter =  nodemailer.createTransport({
                 service: 'Mail.ru',
@@ -59,22 +57,20 @@ router.post('/registration',
                 text:`Привет Надежда, меня зовут ${name}, пожалуйста рассмотри мою заявку в ElbrusIn!`,
                 html:`Привет Надежда, меня зовут ${name}, пожалуйста рассмотри мою заявку в ElbrusIn!`
             })
-
         }
         mail().catch(console.error)
-
             return   res.json({message: "заявка на рассмотрении",request,student})
         } catch (e) {
             res.send({message: "Server error"})
         }
     })
+
+
 router.post('/login',
     async (req, res) => {
         try {
             const {email, password} = req.body
-            // console.log(req.body);
             const student = await Student.findOne({email})
-            // console.log(student+'111');
             if (!student || !student.isAuth) {
                 return res.status(404).json({message: "User not found"})
             }
@@ -91,6 +87,7 @@ router.post('/login',
             res.send({message: "Server error"})
         }
     })
+
 router.get('/auth', authMiddleware,
     async (req, res) => {
         try {
@@ -106,4 +103,6 @@ router.get('/auth', authMiddleware,
             res.send({message: "Server error"})
         }
     })
+
+
 export default router
