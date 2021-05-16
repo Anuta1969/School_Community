@@ -9,6 +9,7 @@ function StudentPhoto({student}) {
   // const student = useSelector((state) => state.student);
   const idUser = student._id;
   const [photo, setPhoto] = useState(false);
+
   const addPhotoHandler = (e) => {
     e.preventDefault();
     setPhoto(false);
@@ -16,9 +17,11 @@ function StudentPhoto({student}) {
 
     dispatch(ThunkAddPhotoUser(idUser, dats));
   };
+
   const btnPhotoHandler = () => {
     setPhoto(true);
   };
+
   return (
     <div>
       <div className="student-img">

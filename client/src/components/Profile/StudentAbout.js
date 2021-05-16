@@ -8,7 +8,7 @@ function StudentAbout({ student }) {
   const btnUpdateHandler = () => {
     setBtnUpdate(true);
   };
-  const id = student._id;
+  const id = student?._id;
 
   const btnFormHandler = (e) => {
     setBtnUpdate(false);
@@ -101,6 +101,7 @@ function StudentAbout({ student }) {
           </li>
         </>
       )}
+
       {btnUpdate && (
         <>
           <form className="about-form__update" onSubmit={btnFormHandler}>
