@@ -1,4 +1,4 @@
-import { addVacantionAC,initVacantionAC } from '../../redux/actionCreators/actionCreatorVacantion';
+import { addVacantionAC,initVacantionAC,initOneCardAC } from '../../redux/actionCreators/actionCreatorVacantion';
 
 
 
@@ -30,5 +30,14 @@ export const ThunkInitVacantion = ()=>{
     fetch(`${process.env.REACT_APP_URL}/vacantion`)
     .then(res=>res.json())
     .then(data=>dispatch(initVacantionAC(data)))
+  }
+}
+
+
+export const ThunkInitOneVacantion = (id)=>{
+  return (dispatch)=>{
+    fetch(`${process.env.REACT_APP_URL}/vacantion/${id}`)
+    .then(res=>res.json())
+    .then(data=>dispatch(initOneCardAC([data])))
   }
 }

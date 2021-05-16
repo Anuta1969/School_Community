@@ -9,6 +9,10 @@ router.get('/', async (req, res) => {
   res.json(vacantion);
 });
 
+router.get('/:id', async (req, res) => {
+  const vacantion = await Vacantion.findById(req.params.id);
+  res.json(vacantion);
+});
 router.post('/', async (req, res) => {
   let { vacantion, organization, description, id } = req.body;
   let dates = Date.now();
