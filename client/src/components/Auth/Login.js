@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from "axios";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../redux/actionCreators/actionCreatorAuth";
 import {thunkLogin} from "../../redux/Thunk/ThunkAuth";
+import {useHistory} from "react-router-dom";
 
 function Login(props) {
-
     const dispatch = useDispatch()
-
+    const student = useSelector(state =>state.student)
     const loginHandler = (e)=>{
         e.preventDefault()
         const email = e.target.email.value
