@@ -27,7 +27,6 @@ function App() {
         dispatch(axiosAuth())
     }, [dispatch])
 
-
   return (
       <BrowserRouter>
     <div className="App">
