@@ -119,18 +119,5 @@ router
 
     })
 
-    .post('/search', async (req,res)=>{
-        try {
-            const {name,lastName,group,year,city} = req.body
-            const list = await Student.find()
-            const result =  list.filter(el=>{
-               return (el.name == name && el.group == group )
-            })
-            console.log(result)
-            res.status(200).json({succes: true, result});
 
-        }catch (error){
-            res.status(404).json({succes: false, msg: error.message});
-        }
-    })
 export default router;

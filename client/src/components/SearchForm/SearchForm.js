@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
+import {searchRequestStudentsAC} from "../../redux/actionCreators/actionCreatorStudent";
 
 function SearchForm(props) {
     const search = useSelector(state => state.search)
     const dispatch = useDispatch()
-
     const SearchHandler = (e)=>{
         e.preventDefault()
         const name = e.target.name.value
@@ -13,9 +13,25 @@ function SearchForm(props) {
         const group = e.target.group.value
         const year = e.target.year.value
         const city = e.target.city.value
-        axios.post(`${process.env.REACT_APP_URL}/student/search`,
-            {name,lastName,group,year,city})
-            .then(data => console.log(data))
+
+        const values = [name,lastName,group,year,city]
+
+        const searchFilter = search.all
+            .filter(el =>
+                (el.name === name || !name)
+                &&
+                ((el.lastName === lastName && el.lastName !== undefined) || !lastName)
+                &&
+                (el.group === group || !group)
+                &&
+                (el.year === year || !year)
+                &&
+                (el.city === city || !city)
+            )
+
+        dispatch(searchRequestStudentsAC(searchFilter))
+        e.target.reset()
+
     }
 
     return (

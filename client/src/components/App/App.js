@@ -11,22 +11,22 @@ import {useDispatch, useSelector} from "react-redux";
 import {axiosAuth} from "../../redux/Thunk/ThunkAuth";
 import Student from "../Student/Student";
 import AdminList from "../AdminList/AdminList";
-
 import RequestStudentParams from "../RequestStudentParams/RequestStudentParams";
 import Search from "../Search/Search";
 import OrganizationList  from '../OrganizationList/OrganizationList'
 import OrganizationView from '../OrganizationView/OrganizationView';
 import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
-import Post from '../Post/Post';
 function App() {
     const isAuth = useSelector(state => state.student.isAuth)
     const dispatch = useDispatch()
     const admin = useSelector(state =>state.student.admin)
-
+    const student = useSelector(state =>state.student)
 
     useEffect(() => {
         dispatch(axiosAuth())
     }, [dispatch])
+
+
   return (
       <BrowserRouter>
     <div className="App">
@@ -42,7 +42,7 @@ function App() {
                 :null}
             {isAuth && !admin?
                 <Switch>
-                    <Route exact path="/" component={Profile}/>
+                    <Route exact path={`/profile/${student._id}`} component={Profile}/>
                     <Route path='/search' component ={Search}/>
                     <Route path='/student' component ={Student} />
                     <Route exact path="/organizations" component={OrganizationList}/>
@@ -50,12 +50,12 @@ function App() {
                     <Route exact path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
                     <Route path='/organizations/add' component ={OrganizationAddForm} />
-
+                    <Redirect to ={`/profile/${student._id}`}/>
                 </Switch>:null
             }
             {admin?
                 <Switch>
-                    <Route exact path='/' component={AdminList}/>
+                    <Route exact path='/adminList' component={AdminList}/>
                     <Route path='/admin/student/:id' component={RequestStudentParams}/>
                     <Route path='/search' component ={Search}/>
                     <Route path='/student' component ={Student} />
@@ -64,6 +64,7 @@ function App() {
                     <Route exact path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
                     <Route path='/organizations/add' component ={OrganizationAddForm} />
+                    <Redirect to ='/adminList'/>
                 </Switch> : null
             }
         </div>
