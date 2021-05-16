@@ -18,6 +18,7 @@ import OrganizationList  from '../OrganizationList/OrganizationList'
 import OrganizationView from '../OrganizationView/OrganizationView';
 import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
 import Post from '../Post/Post';
+
 function App() {
     const isAuth = useSelector(state => state.student.isAuth)
     const dispatch = useDispatch()
@@ -50,7 +51,6 @@ function App() {
                     <Route exact path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
                     <Route path='/organizations/add' component ={OrganizationAddForm} />
-
                 </Switch>:null
             }
             {admin?

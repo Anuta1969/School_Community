@@ -10,7 +10,7 @@ function OrganizationAddForm(props) {
   
   const [addOrgFlag, setaddOrgFlag] = useState(false)
   const [rate, setRate] = useState(0)
-
+  const {stars, setStars} = useState(0)
   const dispatch = useDispatch();
 
   const formHandler = (event) => {
@@ -48,8 +48,8 @@ function OrganizationAddForm(props) {
                 return <Icon 
                           name={i} 
                           key={i} 
-                          style={{color: i <= rate?"red":"initial"}} 
-                          icon={iosStar} onClick={() => setRate(i)} />
+                          style={{color: (i+1) <= rate?"red":"initial"}} 
+                          icon={iosStar} onClick={() => {setRate(i+1)}} />
                  })}
           </p> 
 
