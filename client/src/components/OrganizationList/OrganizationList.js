@@ -4,6 +4,7 @@ import Organization from '../Organization/Organization';
 import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
 import { thunkOrgListInit } from '../../redux/Thunk/ThunkOrganization'
 
+
 function OrganizationList() {
   
   const organization = useSelector(state => state.organization); 
@@ -20,7 +21,7 @@ function OrganizationList() {
     <OrganizationAddForm />
 
     <div className="container d-flex flex-wrap mt-5">
-       { organization?.map(el => <Organization org={el} key={el._id} />) }
+       { organization?.map((el,i ) => <Organization org={el} ind={i}id={el._id} key={el._id} />) }
     </div>
       </>
   );

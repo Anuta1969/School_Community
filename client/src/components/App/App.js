@@ -16,6 +16,7 @@ import Search from "../Search/Search";
 import OrganizationList  from '../OrganizationList/OrganizationList'
 import OrganizationView from '../OrganizationView/OrganizationView';
 import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
+import VacantionCardParams from '../Vacantions/VacantionCardParams';
 function App() {
     const isAuth = useSelector(state => state.student.isAuth)
     const dispatch = useDispatch()
@@ -41,12 +42,13 @@ function App() {
                 :null}
             {isAuth && !admin?
                 <Switch>
-                    <Route exact path={`/profile/${student._id}`} component={Profile}/>
+                    <Route exact path='/profile/:id' component={Profile}/>
                     <Route path='/search' component ={Search}/>
                     <Route path='/student' component ={Student} />
                     <Route exact path="/organizations" component={OrganizationList}/>
                     <Route path="/organizations/org/:id" component={OrganizationView}/>
                     <Route exact path='/vacantions' component ={Vacantion} />
+                    <Route exact path='/vacantion/:id' component ={VacantionCardParams} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
                     <Route path='/organizations/add' component ={OrganizationAddForm} />
                     <Redirect to ={`/profile/${student._id}`}/>
@@ -55,6 +57,7 @@ function App() {
             {admin?
                 <Switch>
                     <Route exact path='/adminList' component={AdminList}/>
+                    <Route exact path='/profile/:id' component={Profile}/>
                     <Route path='/admin/student/:id' component={RequestStudentParams}/>
                     <Route path='/search' component ={Search}/>
                     <Route path='/student' component ={Student} />
@@ -63,6 +66,7 @@ function App() {
                     <Route exact path='/vacantions' component ={Vacantion} />
                     <Route path='/vacantionsForm' component ={VacantionsForm} />
                     <Route path='/organizations/add' component ={OrganizationAddForm} />
+                    <Route exact path='/vacantion/:id' component ={VacantionCardParams} />
                     <Redirect to ='/adminList'/>
                 </Switch> : null
             }

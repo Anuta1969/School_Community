@@ -14,7 +14,7 @@ function SearchForm(props) {
         const year = e.target.year.value
         const city = e.target.city.value
 
-        const values = [name,lastName,group,year,city]
+    
 
         const searchFilter = search.all
             .filter(el =>
