@@ -53,21 +53,62 @@ img {
   display: flex;
   max-width: 50%;
 }
-.about-item__box{
+.about-item__box {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
-.about-item__change{
+.about-item__change {
   max-width: 50%;
 }
-.about-item-btn{
-  border:none
+.about-item-btn {
+  border: none;
 }
-.about-form__update{
+.about-form__update {
   display: flex;
   flex-direction: column;
 }
-.student-update__text{
-  border:none
+.student-update__text {
+  border: none;
+}
+.react-pdf__Page {
+  width: 80%;
+  height: 75%;
+}
+.react-pdf__Page__canvas {
+  max-height: 100%;
+  margin: 0 auto;
+}
+.react-pdf__Page__annotations {
+  display: none;
+}
+.student-form {
+  position: relative;
+}
+.react-pdf__Document{
+  display: flex;
+  justify-content: center;
+}
+/* .react-pdf__Page{
+  position: relative;
+} */
+.pdf-prev {
+  border: 0;
+  background-color: hsla(0, 0%, 100%, 0);
+  color: rgb(243, 161, 161);
+  font-size: 5em;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transition: all 0.5s;
+}
+.pdf-next{
+  border: 0;
+  background-color: hsla(0, 0%, 100%, 0);
+  color: rgb(243, 161, 161);
+  font-size: 5em;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transition: all 0.5s;
 }
