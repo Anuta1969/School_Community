@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-// import StudentAboutItem from "./StudentAboutItem";
-import { setUser } from "../../redux/actionCreators/actionCreatorAuth";
-import { Link } from "react-router-dom";
 import { ThunkUpdateProfile } from "../../redux/Thunk/ThunkStudent";
 
 function StudentAbout({ student }) {
@@ -98,16 +95,12 @@ function StudentAbout({ student }) {
           <li className="student-about__item"> {student?.socialGitHab}</li>
           <li className="student-about__item">{student?.placeWork} </li>
           <li className="student-about__item">
-            {/* <a  href={`${process.env.REACT_APP_URL}/resume/${student.resume}`} download>download</a> */}
-            {/* <Link to={`${process.env.REACT_APP_URL}/resume/${student.resume}`} target="_blank" download>Download</Link> */}
             <button  onClick={downLoadResumeHandler}>
               Загрузить резюме
             </button>
           </li>
         </>
       )}
-
-      {/* <embed src={`/img/${user.resume}`}  type="application/pdf"   height="700px" width="500"></embed> */}
       {btnUpdate && (
         <>
           <form className="about-form__update" onSubmit={btnFormHandler}>
