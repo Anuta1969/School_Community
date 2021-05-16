@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const Student = mongoose.model('Student',{
     photo:{type:String},
     name:{type:String,trim:true},
