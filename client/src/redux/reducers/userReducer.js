@@ -28,7 +28,6 @@ export default function userReducer(state = {}, action) {
             //     ...state,
             //     currentStudent: {},
             // }
-            console.log(action.payload)
             return {student:action.payload}
 
 
@@ -54,7 +53,7 @@ export default function userReducer(state = {}, action) {
             return action.payload
 
 
-          case ADD_RESUME:            
+          case ADD_RESUME:
               return{...state, resume: action.payload }
 
 
