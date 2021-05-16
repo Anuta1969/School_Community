@@ -16,8 +16,6 @@ function Organization({ org, ind }) {
     setRateActiveWidth(rate1)
   }, [])
 
-
-
   return (
     <div className="card me-5 mb-4 orgCard">
         <div className="card ">
@@ -39,7 +37,6 @@ function Organization({ org, ind }) {
                     </div>
                   <div className="ratingValue"></div>
                 </div>
-
             </div>
          </Link>
             <p className="card-text">
