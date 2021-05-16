@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-// import StudentAboutItem from "./StudentAboutItem";
-import { setUser } from "../../redux/actionCreators/actionCreatorAuth";
-
 import { ThunkUpdateProfile } from "../../redux/Thunk/ThunkStudent";
-
-
-
 
 function StudentAbout({ student }) {
   const [btnUpdate, setBtnUpdate] = useState(false);
@@ -32,7 +26,7 @@ function StudentAbout({ student }) {
       socialGitHab: { value: socialGitHab },
       placeWork: { value: placeWork },
     } = e.target;
-    console.log(group,year);
+    console.log(group, year);
     dispatch(
       ThunkUpdateProfile(
         id,
@@ -50,6 +44,34 @@ function StudentAbout({ student }) {
         placeWork
       )
     );
+  };
+  
+  // for download resume
+  const downLoadResumeHandler = () => {
+
+    fetch(`${process.env.REACT_APP_URL}/resume/${student.resume}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/pdf",
+      },
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        // Create blob link to download
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `${student.resume}`);
+
+        // Append to html link element page
+        document.body.appendChild(link);
+
+        // Start download
+        link.click();
+
+        // Clean up and remove the link
+        link.parentNode.removeChild(link);
+      });
   };
 
   return (
@@ -73,15 +95,12 @@ function StudentAbout({ student }) {
           <li className="student-about__item"> {student?.socialGitHab}</li>
           <li className="student-about__item">{student?.placeWork} </li>
           <li className="student-about__item">
-
-          <a href={`/img/${student?.resume}`}>download</a>
-
+            <button  onClick={downLoadResumeHandler}>
+              Загрузить резюме
+            </button>
           </li>
         </>
       )}
-
-
-      {/* <embed src={`/img/${user.resume}`}  type="application/pdf"   height="700px" width="500"></embed> */}
       {btnUpdate && (
         <>
           <form className="about-form__update" onSubmit={btnFormHandler}>
@@ -109,14 +128,15 @@ function StudentAbout({ student }) {
               type="text"
               name="email"
               defaultValue={student?.email}
-            />            
-              <select
-                className="student-about__item form-select"
+            />
+            <select
+              className="student-about__item form-select"
               aria-label="Default select example"
               name="year"
-              
             >
-              <option defaultValue={student?.year}>{!student?.year ? "Введите год обучения"  : student?.year}</option>
+              <option defaultValue={student?.year}>
+                {!student?.year ? "Введите год обучения" : student?.year}
+              </option>
               <option value="2019">2019</option>
               <option value="2020">2020</option>
               <option value="2021">2021</option>
@@ -124,15 +144,16 @@ function StudentAbout({ student }) {
               <option value="2023">2023</option>
               <option value="2024">2024</option>
               <option value="2025">2025</option>
-              
             </select>
 
             <select
-                className="student-about__item form-select"
+              className="student-about__item form-select"
               aria-label="Default select example"
               name="group"
             >
-              <option defaultValue={student?.group}>{!student?.group  ? "Имя группы" : student?.group}</option>
+              <option defaultValue={student?.group}>
+                {!student?.group ? "Имя группы" : student?.group}
+              </option>
               <option value="Ежи">Ежи</option>
               <option value="Пчелы">Пчелы</option>
               <option value="Бобры">Бобры</option>
@@ -150,11 +171,13 @@ function StudentAbout({ student }) {
               <option value="Совы">Совы</option>
             </select>
             <select
-                className="student-about__item form-select"
+              className="student-about__item form-select"
               aria-label="Default select example"
               name="city"
             >
-              <option defaultValue={student?.city}>{!student?.city ? "Город вашего обучения" : student?.city}</option>
+              <option defaultValue={student?.city}>
+                {!student?.city ? "Город вашего обучения" : student?.city}
+              </option>
               <option value="Москва">Москва</option>
               <option value="Санкт-Петербург">Санкт-Петербург</option>
             </select>
@@ -199,7 +222,6 @@ function StudentAbout({ student }) {
           </form>
         </>
       )}
-
     </>
   );
 }
