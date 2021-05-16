@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Profile.css";
 
 import { ThunkAddPhotoUser, ThunkAddResumeUser } from "../../redux/Thunk/ThunkStudent";
 import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack'
 import StudentAbout from "./StudentAbout";
+// import {useDropzone} from 'react-dropzone'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 // import StudentAddRusume from './StudentAddRusume'
@@ -16,7 +17,10 @@ function Profile(props) {
 
   const idUser = student._id;
   
-
+  // const onDrop = useCallback(acceptedFiles => {
+  //   // Do something with the files
+  // }, [])
+  // const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   const [photo, setPhoto] = useState(false);
   const [resume, setResume] = useState(false);
