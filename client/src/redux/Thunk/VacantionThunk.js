@@ -18,7 +18,7 @@ export const addVacantion = (organization,vacantion,description,id)=>{
       }),
     })
       .then((res) => res.json())
-      .then((data) => dispatch(addVacantionAC(data.vacantions) ));
+      .then((data) => dispatch(addVacantionAC(data.newVacantions) ));
       
   }
 }

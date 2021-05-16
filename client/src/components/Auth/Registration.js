@@ -37,7 +37,7 @@ function Registration(props) {
                 >
                     <h3>Регистрация</h3>
                     <input className='inputRegister' name='name' type="text" placeholder='enter your name' required/>
-                    <input className='inputRegister' name='phone' type="number" placeholder='enter  phone number' required/>
+                    <input className='inputRegister' name='phone' type="tel" placeholder='enter  phone number' required pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}" placeholder="+7(___)___-__-__"/>
                     <input className='inputRegister' type="email" name='email' placeholder='enter email' required/>
                     <input className='inputRegister' type="password" name='password' placeholder='enter password' required/>
                     <input className='addPhoto' type="file" name="photo" required />
