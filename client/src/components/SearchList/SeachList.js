@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
+
 import './SearchList.css'
-import {initAllStudentsAC} from "../../redux/actionCreators/actionCreatorStudent";
+
 import SearchStudent from "../SearchStudent/SearchStudent";
+import { thunkInitStudents } from '../../redux/Thunk/ThunkSearch';
 
 
 function SearchList(props) {
@@ -11,10 +12,10 @@ function SearchList(props) {
     const search = useSelector(state => state.search)
 
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_URL}/student/inits`)
-            .then(({data:{list}})=>dispatch(initAllStudentsAC(list)))
-            .catch(err => console.log(err))
-    },[dispatch])
+  
+      dispatch(thunkInitStudents())
+      
+},[dispatch])
 
     return (
         <>

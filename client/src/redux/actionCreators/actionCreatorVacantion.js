@@ -1,4 +1,4 @@
-import { ADD_VACANTION ,INIT_VACANTION} from "../actionTypes/actionTypes"
+import { ADD_VACANTION ,INIT_VACANTION,INIT_ONE_VACANTION} from "../actionTypes/actionTypes"
 
 export const addVacantionAC = (payload) => ({
   type:ADD_VACANTION,
@@ -7,5 +7,11 @@ export const addVacantionAC = (payload) => ({
 
 export const initVacantionAC = (payload) => ({
   type:INIT_VACANTION,
+  payload
+})
+
+
+export const initOneCardAC = (payload) => ({
+  type:INIT_ONE_VACANTION,
   payload
 })

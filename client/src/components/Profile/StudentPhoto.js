@@ -3,10 +3,10 @@ import {ThunkAddPhotoUser} from "../../redux/Thunk/ThunkStudent";
 import { useDispatch, useSelector } from "react-redux";
 
 
-function StudentPhoto(props) {
+function StudentPhoto({student}) {
 
   const dispatch = useDispatch();
-  const student = useSelector((state) => state.student);
+  // const student = useSelector((state) => state.student);
   const idUser = student._id;
   const [photo, setPhoto] = useState(false);
   const addPhotoHandler = (e) => {
