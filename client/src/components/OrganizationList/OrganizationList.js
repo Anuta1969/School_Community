@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Organization from '../Organization/Organization';
 import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
 import { thunkOrgListInit } from '../../redux/Thunk/ThunkOrganization'
+import Rating from '../Rating/Rating';
 
 function OrganizationList() {
   
@@ -17,6 +18,7 @@ function OrganizationList() {
 
   return (
     <>
+  <p><Rating /></p>
     <OrganizationAddForm />
 
     <div className="container d-flex flex-wrap mt-5">
