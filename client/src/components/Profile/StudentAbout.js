@@ -26,8 +26,10 @@ function StudentAbout({ student, id }) {
       city: { value: city },
       stack: { value: stack },
       language: { value: language },
-      socialLinkedin: { value: socialLinkedin },
+      socialTelegramm: { value: socialTelegramm },
       socialGitHab: { value: socialGitHab },
+      instagramm: { value: instagramm },
+     
       placeWork: { value: placeWork },
     } = e.target;
     console.log(group, year);
@@ -44,8 +46,10 @@ function StudentAbout({ student, id }) {
         city,
         stack,
         language,
-        socialLinkedin,
+        socialTelegramm,
         socialGitHab,
+        instagramm,
+       
         placeWork
       )
     );
@@ -53,7 +57,7 @@ function StudentAbout({ student, id }) {
   
   // for download resume
   const downLoadResumeHandler = () => {
-    console.log("student.resume",student.resume);
+    // console.log("student.resume",student.resume);
     fetch(`${process.env.REACT_APP_URL}/resume/${student.resume}`, {
       method: "GET",
       headers: {
@@ -92,19 +96,20 @@ function StudentAbout({ student, id }) {
         <>
           <li className="student-about__item">{student?.name}</li>
           <li className="student-about__item">{student?.lastName}</li>
-          <li className="student-about__item">{student?.phone} </li>
+          <li className="student-about__item">+{student?.phone} </li>
           <li className="student-about__item">{student?.email} </li>
           <li className="student-about__item"> {student?.year}</li>
           <li className="student-about__item"> {student?.group}</li>
           <li className="student-about__item"> {student?.city}</li>
           <li className="student-about__item"> {student?.stack}</li>
           <li className="student-about__item"> {student?.language}</li>
-          <li className="student-about__item"> {student?.socialLinkedin}</li>
+          {/* <li className="student-about__item"> {student?.socialTelegramm}</li>
           <li className="student-about__item"> {student?.socialGitHab}</li>
+          <li className="student-about__item"> {student?.instagramm}</li> */}
           <li className="student-about__item">{student?.placeWork} </li>
           <li className="student-about__item">
             <button  onClick={downLoadResumeHandler}>
-              Загрузить резюме
+              Сохранить резюме
             </button>
           </li>
         </>
@@ -208,16 +213,23 @@ function StudentAbout({ student, id }) {
             <input
               className="about-item__change"
               type="text"
-              name="socialLinkedin"
-              placeholder="Linkedin"
-              defaultValue={student?.socialLinkedin}
+              name="socialTelegramm"
+              placeholder="telegram"
+              defaultValue={student?.socialTelegramm}
             />
             <input
               className="about-item__change"
               type="text"
               name="socialGitHab"
               placeholder="GitHub"
-              defaultValue={student.socialGitHab}
+              defaultValue={student?.socialGitHab}
+            />
+            <input
+              className="about-item__change"
+              type="text"
+              name="instagramm"
+              placeholder="instagramm"
+              defaultValue={student?.instagramm}
             />
             <input
               className="about-item__change"
