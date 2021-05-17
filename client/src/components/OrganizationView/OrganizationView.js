@@ -11,8 +11,8 @@ function OrganizationView() {
   const {id} = useParams()
 
   const organization = useSelector(state => state.organization).filter(el => el._id === id)[0]
-  const activeVacantion = useSelector(state => state.vacantion).filter(el => el.organization.toLowerCase() == organization.findName).filter(el => el.relevance == true)
-  const archiveVacantion = useSelector(state => state.vacantion).filter(el => el.organization.toLowerCase() == organization.findName).filter(el => el.relevance == false)
+  const activeVacantion = useSelector(state => state.vacantion).filter(el => el.organization.toLowerCase() === organization.findName).filter(el => el.relevance != true)
+  const archiveVacantion = useSelector(state => state.vacantion).filter(el => el.organization.toLowerCase() === organization.findName).filter(el => el.relevance === false)
 
   const [showArchiveFlag, setShowArchiveFlag] = useState(false)
   const [showCommentFlag, setShowCommentFlag] = useState(false)
