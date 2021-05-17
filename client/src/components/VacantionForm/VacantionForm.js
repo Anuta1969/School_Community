@@ -12,11 +12,11 @@ function VacantionsForm(props) {
     const organization = useRef();
     const vacantion = useRef();
     const description = useRef();
-
+    const salary = useRef()
     const formHandler = (event) => {
         event.preventDefault();
         dispatch(addVacantion(organization.current.value, vacantion.current.value,
-            description.current.value, id))
+            description.current.value,salary.current.value, id))
         event.target.reset()
         history.push('/vacantions');
     };
@@ -36,7 +36,11 @@ function VacantionsForm(props) {
                        name="organization"
                        type="text"
                        placeholder="введите организацию"/>
-
+                <input ref={salary}
+                       className="form-control text-center"
+                       name="salary"
+                       type="text"
+                       placeholder="введите зарплату"/>
                 <textarea
                     ref={description}
                     name="description"

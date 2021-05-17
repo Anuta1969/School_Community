@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link, useParams} from 'react-router-dom';
 import ReactTimeAgo from 'react-time-ago';
-import {ThunkInitOneVacantion} from '../../redux/Thunk/VacantionThunk';
+import {ThunkInitOneVacantion, ThunkInitVacantion} from '../../redux/Thunk/VacantionThunk';
 
 function VacantionCardParams() {
 
@@ -12,6 +12,7 @@ function VacantionCardParams() {
 
     useEffect(() => {
         dispatch(ThunkInitOneVacantion(id))
+        return (()=>dispatch(ThunkInitVacantion()))
     }, [dispatch]);
 
     return (
