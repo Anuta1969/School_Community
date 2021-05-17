@@ -44,7 +44,6 @@ function OrganizationView() {
     dispatch( ThunkInitVacantion() )
 }, [dispatch])
 
-
   if (organization) {
     setRateActiveWidth(rate)
   }
