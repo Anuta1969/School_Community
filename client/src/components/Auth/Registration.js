@@ -13,6 +13,7 @@ function Registration(props) {
         dispatch(thunkRegister(info, e))
     }
     return (
+
         <>
             {/*<button onClick={() => setIsShowing((isShowing) => !isShowing)}>Регистрация</button>*/}
             {/*<div className='video'>*/}
@@ -43,10 +44,11 @@ function Registration(props) {
                     <button className='btnRegister' type='submit'>Регистрация</button>
                 </form>
             </div>
+        </div>
             {/*<div className="video">*/}
             {/*    <video className="video__media" src={`${process.env.REACT_APP_URL}/back.mp4`} autoPlay muted loop></video>*/}
             {/*</div>*/}
-        </div>
+
             </Transition>
         </>
     );

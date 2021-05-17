@@ -10,12 +10,14 @@ function Login(props) {
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
+        console.log(password,email)
         dispatch(thunkLogin(email, password))
     }
 
     return (
         <>
         <div className='login'>
+
             <div className="registr__form">
             <form className='formRegister' onSubmit={loginHandler} method='POST'>
                 <h3>Вход</h3>
