@@ -46,17 +46,21 @@ router
         let {organization, newComment, newRate, student} = req.body
         let updatedOrg = await Organization.findOne({_id: organization._id})
 
-        await updatedOrg.comment.push(newComment)
-        await updatedOrg.rate.push(newRate)
-        await updatedOrg.save()
-
-        const newDBComment = await Comment.create({
+        await Comment.create({
           text: newComment,
           author: student,
           organization: organization._id
         })
 
-        res.status(201).json({newDBComment})
+        await updatedOrg.comment.push(newComment)
+        await updatedOrg.rate.push(newRate)
+        await updatedOrg.save()
+
+        // const newDBComment = 
+       
+
+        // res.status(201).json({newDBComment})
+        res.status(201)
       } catch (error) {
         res.send({message: "Server error"})
       }
