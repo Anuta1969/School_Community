@@ -2,7 +2,7 @@ import './OrganizationView.css';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
+import { thunkAddComment, thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
 import { ThunkInitVacantion } from '../../redux/Thunk/VacantionThunk';
 import Icon from '@iconify/react';
 import iosStar from '@iconify-icons/ion/ios-star';
@@ -16,8 +16,16 @@ function OrganizationView() {
   const {id} = useParams()
 
   const organization = useSelector(state => state.organization).filter(el => el._id === id)[0]
-  const activeVacantion = useSelector(state => state.vacantion).filter(el => el.organization.toLowerCase() == organization.findName).filter(el => el.relevance == true)
-  const archiveVacantion = useSelector(state => state.vacantion).filter(el => el.organization.toLowerCase() == organization.findName).filter(el => el.relevance == false)
+  // const activeVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == true)
+  // const archiveVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == false)
+
+  console.log(organization.vacantion);
+
+  const activeVacantion = organization.vacantion.filter(el => el.relevance === true)
+  const archiveVacantion = organization.vacantion.filter(el => el.relevance === false)
+
+  console.log('active', activeVacantion);
+  console.log('ARCHIVE', archiveVacantion);
 
   const [showArchiveFlag, setShowArchiveFlag] = useState(false)
   const [showCommentFlag, setShowCommentFlag] = useState(false)
@@ -62,11 +70,11 @@ const formCommentHandler = (event) => {
   event.preventDefault();
   console.log('рейтинг: ', newRateInComment);
   console.log('комментарий: ', event.target.comment.value);
-    // dispatch(thunkAddComment(
-    //   organization, 
-    //   event.target.comment.value, 
-    //   newRateInComment, 
-    //   ))
+    dispatch(thunkAddComment(
+      organization, 
+      event.target.comment.value, 
+      newRateInComment, 
+      ))
 
     setAddCommentFlag(!addCommentFlag)
 };
