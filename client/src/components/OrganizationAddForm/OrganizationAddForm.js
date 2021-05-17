@@ -6,7 +6,7 @@ import iosStar from '@iconify-icons/ion/ios-star';
 
 const rating = ['','','','','']
 
-function OrganizationAddForm(props) {
+function OrganizationAddForm() {
   
   const dispatch = useDispatch();
   
