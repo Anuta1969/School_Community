@@ -17,8 +17,6 @@ export const addVacantion = (organization,vacantion,description,salary,id)=>{
   }
 }
 
-
-
 export const ThunkInitVacantion = ()=>{
   return (dispatch)=>{
     fetch(`${process.env.REACT_APP_URL}/vacantion`)

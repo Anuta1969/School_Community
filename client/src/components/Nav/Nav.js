@@ -21,8 +21,6 @@ function Nav(props) {
                         {admin &&
                         <li className="nav-item"><Link to='/search' className="nav-link">Поиск</Link></li>}
                         {admin &&
-                        <li className="nav-item"><Link to='/statistics' className="nav-link">Статистика</Link></li>}
-                        {admin &&
                         <li className="nav-item"><Link to='/organizations' className="nav-link">Организации</Link></li>}
                         {admin && <li className="nav-item"><Link to='/' className="nav-link"
                                                                  onClick={() => dispatch(logout())}>Выход</Link></li>}

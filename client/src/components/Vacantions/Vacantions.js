@@ -26,7 +26,7 @@ function Vacantions(props) {
             setNewState(()=>[...vacantion].sort((a, b) => (a.salary - b.salary)))
         } else if (sortInput.current.value === 'уменьшению зарплаты') {
             setNewState(()=>[...vacantion].sort((a, b) => (b.salary - a.salary)))
-        } else if (sortInput.current.value == 'по умолчанию')
+        } else if (sortInput.current.value == 'новизне')
             setNewState(vacantion)
     }
 
@@ -41,11 +41,13 @@ function Vacantions(props) {
             <div className='sort'>
                 Сортировать по:
                 <select onChange={sortHandler} ref={sortInput} className='selectSort'>
-                    <option>умолчанию</option>
+                    <option>новизне</option>
                     <option>увеличению зарплаты</option>
                     <option>уменьшению зарплаты</option>
                 </select>
             </div>
+
+
 
             <div className='container d-flex flex-wrap'>
                 {newState?.map(vac => <VacantionCard vacantion={vac} key={vac._id}/>)}

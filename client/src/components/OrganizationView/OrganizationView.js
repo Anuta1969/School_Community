@@ -17,16 +17,14 @@ function OrganizationView() {
 
   const organization = useSelector(state => state.organization).filter(el => el._id === id)[0]
   // const activeVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == true)
-  
+
   // const archiveVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == false)
 
-  console.log(organization.vacantion);
+
 
   const activeVacantion = organization.vacantion.filter(el => el.relevance === true)
   const archiveVacantion = organization.vacantion.filter(el => el.relevance === false)
 
-  console.log('active', activeVacantion);
-  console.log('ARCHIVE', archiveVacantion);
 
   const [showArchiveFlag, setShowArchiveFlag] = useState(false)
   const [showCommentFlag, setShowCommentFlag] = useState(false)
@@ -66,19 +64,21 @@ function OrganizationView() {
     dispatch( ThunkInitVacantion() )
 }, [dispatch])
 
+
 // обработка добавления отзыва и рейтинга
 const formCommentHandler = (event) => {
   event.preventDefault();
   console.log('рейтинг: ', newRateInComment);
   console.log('комментарий: ', event.target.comment.value);
     dispatch(thunkAddComment(
-      organization, 
-      event.target.comment.value, 
-      newRateInComment, 
+      organization,
+      event.target.comment.value,
+      newRateInComment,
       ))
 
     setAddCommentFlag(!addCommentFlag)
 };
+
 
 
   if (organization) {
@@ -124,22 +124,22 @@ const formCommentHandler = (event) => {
             {addCommentFlag
               ? <div className="organization container d-flex flex-column">
                 <form method="POST" onSubmit={formCommentHandler}>
-                  
+
                     <p> Оцените организацию {rating.map((el,i) => {
-                          return <Icon 
-                                    name={i} 
-                                    key={i} 
-                                    style={{color: (i+1) <= newRateInComment?"red":"initial"}} 
+                          return <Icon
+                                    name={i}
+                                    key={i}
+                                    style={{color: (i+1) <= newRateInComment?"red":"initial"}}
                                     icon={iosStar} onClick={() => {setNewRateInComment(i+1);}} />
                           })}
-                    </p> 
-          
+                    </p>
+
                     <div className="form-floating">
                       <textarea className="form-control m-3" name="comment" ></textarea>
                       <label className="ms-2" htmlFor="floatingTextarea2">Ваше мнение об организации</label>
                     </div>
-                  
-                    <button type="submit">Добавить</button>  
+
+                    <button type="submit">Добавить</button>
                     </form>
                  </div>
 
