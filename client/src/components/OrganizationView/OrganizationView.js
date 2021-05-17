@@ -17,6 +17,7 @@ function OrganizationView() {
 
   const organization = useSelector(state => state.organization).filter(el => el._id === id)[0]
   // const activeVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == true)
+  
   // const archiveVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == false)
 
   console.log(organization.vacantion);
