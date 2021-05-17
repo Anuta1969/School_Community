@@ -28,7 +28,7 @@ export const ThunkAddPhotoUser = (id, dats) => {
 };
 
 
-export const ThunkUpdateProfile = (id, name, lastName, phone, email, year, group, city, stack, language, socialLinkedin, socialGitHab, placeWork) => {
+export const ThunkUpdateProfile = (id, name, lastName, phone, email, year, group, city, stack, language, socialTelegramm, socialGitHab,instagramm, placeWork) => {
     return async (dispatch) => {
       const response= await  fetch(`${process.env.REACT_APP_URL}/student/changetext`, {
             method: "PUT",
@@ -44,8 +44,9 @@ export const ThunkUpdateProfile = (id, name, lastName, phone, email, year, group
                 city,
                 stack,
                 language,
-                socialLinkedin,
+                socialTelegramm,
                 socialGitHab,
+                instagramm,                
                 placeWork,
             }),
         })
