@@ -103,13 +103,13 @@ function StudentAbout({ student, id }) {
           <li className="student-about__item"> {student?.city}</li>
           <li className="student-about__item"> {student?.stack}</li>
           <li className="student-about__item"> {student?.language}</li>
-          <li className="student-about__item"> {student?.socialTelegramm}</li>
+          {/* <li className="student-about__item"> {student?.socialTelegramm}</li>
           <li className="student-about__item"> {student?.socialGitHab}</li>
-          <li className="student-about__item"> {student?.instagramm}</li>
+          <li className="student-about__item"> {student?.instagramm}</li> */}
           <li className="student-about__item">{student?.placeWork} </li>
           <li className="student-about__item">
             <button  onClick={downLoadResumeHandler}>
-              Загрузить резюме
+              Сохранить резюме
             </button>
           </li>
         </>
