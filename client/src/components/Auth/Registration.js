@@ -28,6 +28,7 @@ function Registration(props) {
                 <input className='addPhoto' type="file" name="photo" required/>
                 <button className='btnRegister' type='submit'>Регистрация</button>
             </form>
+            <video src={`${process.env.REACT_APP_URL}/`}></video>
         </div>
     );
 }
