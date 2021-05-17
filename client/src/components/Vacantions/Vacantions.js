@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux"
 import {ThunkInitVacantion} from '../../redux/Thunk/VacantionThunk';
@@ -8,10 +8,15 @@ function Vacantions(props) {
 
     const vacantion = useSelector(state => state.vacantion)
     const dispatch = useDispatch();
+    const[newState,setNewState] = useState(null)
 
     useEffect(() => {
         dispatch(ThunkInitVacantion())
     }, [dispatch])
+
+    useEffect(() => {
+      setNewState(() => vacantion)
+    }, [vacantion])
 
     return (
         <>
@@ -21,7 +26,7 @@ function Vacantions(props) {
                 </Link>
             </div>
             <div className='container d-flex flex-wrap'>
-                {vacantion?.map(vac => <VacantionCard vacantion={vac} key={vac._id}/>)}
+                {newState?.map(vac => <VacantionCard vacantion={vac} key={vac._id}/>)}
             </div>
         </>
     );
