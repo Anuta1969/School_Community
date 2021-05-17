@@ -34,4 +34,20 @@ export const thunkOrgInit = (id) => {
         .then((data) => dispatch(addOrganizationAC(data.newOrganization)))
         .catch(err => console.log(err))
     }
+
+    // export const thunkAddComment = (organization, comment, newRate ) => {
+    //   return (dispatch) => {
+    //       fetch(`${process.env.REACT_APP_URL}/organizations/add`, {
+    //       method: 'POST',
+    //       headers: { 'Content-Type': 'Application/json' },
+    //       body: JSON.stringify({
+    //         organization: organization,
+    //         comment: comment,
+    //         rate: newRate
+    //       }),
+    //     })
+    //       .then((res) => res.json())
+    //       .then((data) => dispatch(addOrganizationAC(data.newOrganization)))
+    //       .catch(err => console.log(err))
+    //   }
   }
