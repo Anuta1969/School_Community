@@ -2,8 +2,13 @@ import './OrganizationView.css';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
+import { thunkAddComment, thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
 import { ThunkInitVacantion } from '../../redux/Thunk/VacantionThunk';
+import Icon from '@iconify/react';
+import iosStar from '@iconify-icons/ion/ios-star';
+
+
+const rating = ['','','','','']  //массив для отрисовки звезд в рейтинге
 
 function OrganizationView() {
 
@@ -11,13 +16,25 @@ function OrganizationView() {
   const {id} = useParams()
 
   const organization = useSelector(state => state.organization).filter(el => el._id === id)[0]
-  const activeVacantion = useSelector(state => state.vacantion).filter(el => el.organization.toLowerCase() == organization.findName).filter(el => el.relevance == true)
-  const archiveVacantion = useSelector(state => state.vacantion).filter(el => el.organization.toLowerCase() == organization.findName).filter(el => el.relevance == false)
+  // const activeVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == true)
+  
+  // const archiveVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == false)
+
+  console.log(organization.vacantion);
+
+  const activeVacantion = organization.vacantion.filter(el => el.relevance === true)
+  const archiveVacantion = organization.vacantion.filter(el => el.relevance === false)
+
+  console.log('active', activeVacantion);
+  console.log('ARCHIVE', archiveVacantion);
 
   const [showArchiveFlag, setShowArchiveFlag] = useState(false)
   const [showCommentFlag, setShowCommentFlag] = useState(false)
+  const [addCommentFlag, setAddCommentFlag] = useState(false)
   const [rate, setRate] = useState(organization?.rate)
-  console.log(activeVacantion );
+  const [newRateInComment, setNewRateInComment] = useState(0)
+  // console.log(organization?.rate );
+
   // код для расчета среднего арифметического рейтинга из массива
   // const [rate, setRate] = useState( organization?.rate.reduce( (a, b) => a + b ) / organization?.rate.length + 1  )
 
@@ -29,6 +46,11 @@ function OrganizationView() {
   const showCommentFunction = (event) => {
     event.preventDefault()
     setShowCommentFlag(!showCommentFlag)
+  }
+
+  const addCommentFunction = (event) => {
+    event.preventDefault()
+    setAddCommentFlag(!addCommentFlag)
   }
 
 
@@ -43,6 +65,20 @@ function OrganizationView() {
   useEffect( () => {
     dispatch( ThunkInitVacantion() )
 }, [dispatch])
+
+// обработка добавления отзыва и рейтинга
+const formCommentHandler = (event) => {
+  event.preventDefault();
+  console.log('рейтинг: ', newRateInComment);
+  console.log('комментарий: ', event.target.comment.value);
+    dispatch(thunkAddComment(
+      organization, 
+      event.target.comment.value, 
+      newRateInComment, 
+      ))
+
+    setAddCommentFlag(!addCommentFlag)
+};
 
 
   if (organization) {
@@ -83,7 +119,31 @@ function OrganizationView() {
 
         <ul className="list-group list-group-flush">
           <li className="list-group-item">Последний отзыв:&nbsp;{organization?.comment}
-            <button>оставить отзыв</button>
+               <button onClick={addCommentFunction}> {!addCommentFlag? <h6>оставить отзыв</h6> : <h6>скрыть</h6>  } </button>
+
+            {addCommentFlag
+              ? <div className="organization container d-flex flex-column">
+                <form method="POST" onSubmit={formCommentHandler}>
+                  
+                    <p> Оцените организацию {rating.map((el,i) => {
+                          return <Icon 
+                                    name={i} 
+                                    key={i} 
+                                    style={{color: (i+1) <= newRateInComment?"red":"initial"}} 
+                                    icon={iosStar} onClick={() => {setNewRateInComment(i+1);}} />
+                          })}
+                    </p> 
+          
+                    <div className="form-floating">
+                      <textarea className="form-control m-3" name="comment" ></textarea>
+                      <label className="ms-2" htmlFor="floatingTextarea2">Ваше мнение об организации</label>
+                    </div>
+                  
+                    <button type="submit">Добавить</button>  
+                    </form>
+                 </div>
+
+                : null }
           </li>
 
           <li className="list-group-item">Активные вакансии:&nbsp;
