@@ -3,22 +3,25 @@ import {ThunkAddPhotoUser} from "../../redux/Thunk/ThunkStudent";
 import { useDispatch, useSelector } from "react-redux";
 
 
-function StudentPhoto({student}) {
+function StudentPhoto({student, id}) {
 
   const dispatch = useDispatch();
   // const student = useSelector((state) => state.student);
-  const idUser = student._id;
+  // const idUser = student._id;
   const [photo, setPhoto] = useState(false);
+  const initialUser = useSelector(state=>state.student)
   const addPhotoHandler = (e) => {
     e.preventDefault();
     setPhoto(false);
     const dats = new FormData(e.target);
 
-    dispatch(ThunkAddPhotoUser(idUser, dats));
+    dispatch(ThunkAddPhotoUser(id, dats));
   };
+
   const btnPhotoHandler = () => {
     setPhoto(true);
   };
+
   return (
     <div>
       <div className="student-img">
@@ -28,7 +31,15 @@ function StudentPhoto({student}) {
         />
       </div>
       <div className="student-btn__photo-btn">
-        {!photo && (
+        {!photo && initialUser._id==id && (
+          <button
+            onClick={btnPhotoHandler}
+            className="student-btn__photo btn btn-outline-primary"
+          >
+            Изменить фото
+          </button>
+        )}
+        { initialUser.admin &&(
           <button
             onClick={btnPhotoHandler}
             className="student-btn__photo btn btn-outline-primary"

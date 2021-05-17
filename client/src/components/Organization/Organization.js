@@ -20,25 +20,26 @@ function Organization({ org, ind }) {
     <div className="card me-5 mb-4 orgCard">
         <div className="card ">
           <div className="card-body">
-           <Link  to={`/organizations/org/${org?._id}` }>
-            <div className="card-header">
-              <h5 className="card-title">{org?.name}</h5>
+            <Link  to={`/organizations/org/${org?._id}` }>
+              <div className="card-header">
+                <h5 className="card-title">{org?.name}</h5>
 
-                <div className={`  rating`} >
-                  <div className='ratingBody'>
-                    <div className={`${'org' + ind} ratingActive`}></div>
-                      <div className='ratingItems'>
-                        <input type="radio" className='ratingItem' value='1' name="rating" />
-                        <input type="radio" className='ratingItem' value='2' name="rating" />
-                        <input type="radio" className='ratingItem' value='3' name="rating" />
-                        <input type="radio" className='ratingItem' value='4' name="rating" />
-                        <input type="radio" className='ratingItem' value='5' name="rating" />
+                {/* Блок для отрисовки рейтинга */}
+                  <div className={`  rating`} >
+                    <div className='ratingBody'>
+                      <div className={`${'org' + ind} ratingActive`}></div>
+                        <div className='ratingItems'>
+                          <input type="radio" className='ratingItem' value='1' name="rating" />
+                          <input type="radio" className='ratingItem' value='2' name="rating" />
+                          <input type="radio" className='ratingItem' value='3' name="rating" />
+                          <input type="radio" className='ratingItem' value='4' name="rating" />
+                          <input type="radio" className='ratingItem' value='5' name="rating" />
+                        </div>
                       </div>
-                    </div>
-                  <div className="ratingValue"></div>
-                </div>
-            </div>
-         </Link>
+                    <div className="ratingValue"></div>
+                  </div>
+              </div>
+            </Link>
             <p className="card-text">
               Последний комментарий: {org?.comment}
               </p>

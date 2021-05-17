@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import ReactTimeAgo from 'react-time-ago';
-import { ThunkInitOneVacantion ,editVacantion} from '../../redux/Thunk/VacantionThunk';
+import { ThunkInitOneVacantion ,ThunkEditVacantion} from '../../redux/Thunk/VacantionThunk';
 
 function VacantionCardParams() {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function VacantionCardParams() {
     event.preventDefault();
     setActual(!actual)
     console.log(actual);
-    dispatch(editVacantion(id,actual))
+    dispatch(ThunkEditVacantion(id,actual))
     
   };
 

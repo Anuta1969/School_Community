@@ -17,7 +17,7 @@ router
   })
 
   .post('/', async (req, res) => {
-    let { vacantion, organization, description, id } = req.body;
+    let { vacantion, organization, salary,description, id } = req.body;
     let dates = Date.now();
   const searchName = organization.toLowerCase()
     const organizations = await Organization.find({ findName: searchName });
@@ -27,6 +27,7 @@ router
       vacantion,
       organization,
       description,
+      salary,
       date: dates,
       contacts: student.name,
       userID: student._id,

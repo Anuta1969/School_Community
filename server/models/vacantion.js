@@ -7,7 +7,8 @@ const Vacantion = mongoose.model('Vacantion', {
     relevance: {type: Boolean, default: true},
     description: {type: String, required: true},
     contacts: {type: String},
-    userID: {type: mongoose.Schema.Types.Object, ref: 'Student'}
+    userID: {type: mongoose.Schema.Types.Object, ref: 'Student'},
+    salary:{type:String}
 })
 
 export default Vacantion
