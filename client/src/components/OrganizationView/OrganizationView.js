@@ -1,23 +1,39 @@
 import './OrganizationView.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
+import { ThunkInitOneVacantion } from '../../redux/Thunk/VacantionThunk';
+import VacantionCard from '../Vacantions/VacantionCard';
 
 function OrganizationView() {
-  const {id} = useParams()
+  
   const dispatch = useDispatch()
+  const {id} = useParams()
   const organization = useSelector(state => state.organization).filter(el => el._id === id)[0]
+  const activeVacantion = useSelector(state => state.vacantion)
+  console.log(organization?.vacantion);
+  const [showArchiveFlag, setShowArchiveFlag] = useState(false)
+  
+  const showArchiveFunction = (event) => {
+    event.preventDefault()
+    setShowArchiveFlag(!showArchiveFlag)
+  }
 
   useEffect(() => {
     dispatch( thunkOrgInit(id) )
   }, [dispatch])
 
+  useEffect(() => {
+   dispatch( ThunkInitOneVacantion(organization?.vacantion[0]) )
+ },[organization]);
+  
   const rate = organization?.rate
 
-  if (rate) {
+  if (organization) {
     setRateActiveWidth(rate)
   }
+
   
  function setRateActiveWidth(rate) {
     let ratingActive = document.querySelector('.ratingActive')
@@ -49,14 +65,29 @@ function OrganizationView() {
           </div>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Последний комментарий:&nbsp;{organization?.comment}</li>
-          <li className="list-group-item">Активные вакансии:&nbsp;{organization?.vacansion}</li>
+
+          <li className="list-group-item">Последний отзыв:&nbsp;{organization?.comment}
+          <button>оставить отзыв</button>
+          </li>
+
+          <li className="list-group-item">Активные вакансии:&nbsp;
+            <a href={`http://localhost:3000/vacantion/${activeVacantion[0]?._id}`}>{activeVacantion[0]?.vacantion}</a>
+          </li>
         </ul>
         <div className="card-body">
-          <a href="#" className="card-link">Архив вакансий</a>
+          <button onClick={showArchiveFunction} className="card-link">Архив вакансий</button>
           <a href="#" className="card-link">Все отзывы</a>
         </div>
       </div>
+    
+    {showArchiveFlag
+      ?   <div className='container d-flex flex-wrap'>
+            {organization?.vacantion.map(vac=>{
+              return  <VacantionCard vacantion={vac} key={vac._id}/>
+            })}
+          </div>
+    :null
+  }
     </>
   );
 }

@@ -8,10 +8,10 @@ const rating = ['','','','','']
 
 function OrganizationAddForm(props) {
   
+  const dispatch = useDispatch();
+  
   const [addOrgFlag, setaddOrgFlag] = useState(false)
   const [rate, setRate] = useState(0)
-  const {stars, setStars} = useState(0)
-  const dispatch = useDispatch();
 
   const formHandler = (event) => {
     event.preventDefault();
