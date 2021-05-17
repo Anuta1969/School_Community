@@ -1,6 +1,7 @@
 import { addVacantionAC,initVacantionAC,initOneCardAC } from '../../redux/actionCreators/actionCreatorVacantion';
+import {useState} from "react";
 
-export const addVacantion = (organization,vacantion,description,id)=>{
+export const addVacantion = (organization,vacantion,description,salary,id)=>{
   return (dispatch)=>{
     fetch(`${process.env.REACT_APP_URL}/vacantion`, {
       method: 'POST',
@@ -9,6 +10,7 @@ export const addVacantion = (organization,vacantion,description,id)=>{
         organization: organization,
         vacantion: vacantion,
         description:description,
+        salary:salary,
         id:id})})
       .then((res) => res.json())
       .then((data) => dispatch(addVacantionAC(data.newVacantions) ))

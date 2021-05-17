@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Organization from '../Organization/Organization';
 import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
@@ -6,9 +6,7 @@ import { thunkOrgListInit } from '../../redux/Thunk/ThunkOrganization'
 
 
 function OrganizationList() {
-  
-  const organization = useSelector(state => state.organization); 
-  
+  const organization = useSelector(state => state.organization);
   const dispatch = useDispatch();
 
   useEffect(() => {
