@@ -6,7 +6,7 @@ import { thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
 import { ThunkInitVacantion } from '../../redux/Thunk/VacantionThunk';
 
 function OrganizationView() {
-  
+
   const dispatch = useDispatch()
   const {id} = useParams()
 
@@ -33,7 +33,6 @@ function OrganizationView() {
 
 
   useEffect( () => {
-    
     setRate( organization?.rate )
   }, [organization])
 
@@ -56,7 +55,7 @@ function OrganizationView() {
     const ratingActiveWidth = rate / 0.05
     ratingActive.style.width = `${ratingActiveWidth}%`
   }
-  
+
   return (
     <>
       <div className="card">
@@ -97,20 +96,20 @@ function OrganizationView() {
           <button onClick={showCommentFunction} className="card-link">Все отзывы</button>
         </div>
       </div>
-    
+
     {/* блок орисовки архивных вакансий */}
     {showArchiveFlag
-      ?   archiveVacantion.length 
+      ?   archiveVacantion.length
             ? <div className='container '>
               Cписок неактивных вакансий:
               <h4>{archiveVacantion.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}</h4>
              </div>
             : <h3>У текущей организации пока нет вакансий в архиве</h3>
-      
+
       :null
     }
       {/* блок отрисовки всех комментариев */}
-    {showCommentFlag 
+    {showCommentFlag
       ? <h2>Все отзывы</h2>
       : null
     }

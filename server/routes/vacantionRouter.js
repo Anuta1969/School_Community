@@ -17,7 +17,7 @@ router
     })
 
     .post('/', async (req, res) => {
-        let {vacantion, organization, description, id} = req.body;
+        let {vacantion, organization, description,salary, id} = req.body;
         let dates = Date.now();
         const organizations = await Organization.find({name: organization});
         const student = await Student.findById(id);
@@ -25,6 +25,7 @@ router
             vacantion,
             organization,
             description,
+            salary,
             date: dates,
             contacts: student.name,
             userID: student._id,

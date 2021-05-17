@@ -12,8 +12,9 @@ function VacantionCard({vacantion}) {
         <div onClick={ClickHandler}>
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title">{vacantion.vacantion}</h5>
-                    <p className="card-text">{vacantion.organization}</p>
+                    <h5 className="card-title">{vacantion?.vacantion}</h5>
+                    <p className="card-text">{vacantion?.organization}</p>
+                    <p>{vacantion?.salary}</p>
                     <p className="card-text">
                         <ReactTimeAgo date={vacantion.date} locale="ru"/>{' '}</p>
                 </div>
