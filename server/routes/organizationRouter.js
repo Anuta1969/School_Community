@@ -29,7 +29,8 @@ router
         const newOrganization = await Organization.create({
             name: organization,
             comment,
-            rate
+            rate,
+            findName:organization.toLowerCase()
         });
         res.status(201).json({newOrganization})
       } catch (error){

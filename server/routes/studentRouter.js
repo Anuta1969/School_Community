@@ -40,9 +40,9 @@ router
         }
     })
 
-    .put("/changetext", async (req, res) => {
+    .put("/:id", async (req, res) => {
+                const id = req.params.id
         const {
-            id,
             name,
             lastName,
             phone,

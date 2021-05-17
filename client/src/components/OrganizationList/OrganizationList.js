@@ -30,8 +30,6 @@ function OrganizationList() {
       setNewState(organization)
   }
 
-  console.log(newState)
-  console.log(organization)
   return (
     <>
     <OrganizationAddForm />

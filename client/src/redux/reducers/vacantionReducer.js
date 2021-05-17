@@ -1,4 +1,4 @@
-import {ADD_VACANTION, INIT_VACANTION, INIT_ONE_VACANTION} from "../actionTypes/actionTypes";
+import {ADD_VACANTION, INIT_VACANTION, INIT_ONE_VACANTION,EDIT_ACTUAL_VACANTION} from "../actionTypes/actionTypes";
 
 const vacantionReducer = (state = [], action) => {
     switch (action.type) {
@@ -10,6 +10,10 @@ const vacantionReducer = (state = [], action) => {
 
         case INIT_ONE_VACANTION:
             return action.payload
+
+            case EDIT_ACTUAL_VACANTION:
+              console.log(action.payload);
+              return [...state, action.payload]
 
         default:
             return state
