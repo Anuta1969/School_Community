@@ -17,27 +17,32 @@ function OrganizationView() {
 
   const organization = useSelector(state => state.organization).filter(el => el._id === id)[0]
   // const activeVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == true)
-  
   // const archiveVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == false)
+  const student = useSelector(state => state.student._id)
 
-  console.log(organization.vacantion);
+  const [activeVacantion, setActiveVacantion] = useState([])
+  const [archiveVacantion, setArchiveVacantion] = useState([])
+  
+  // const activeVacantion = organization.vacantion.filter(el => el.relevance === true)
+  // const archiveVacantion = organization.vacantion.filter(el => el.relevance === false)
 
-  const activeVacantion = organization.vacantion.filter(el => el.relevance === true)
-  const archiveVacantion = organization.vacantion.filter(el => el.relevance === false)
+    useEffect( () => {
+    setActiveVacantion( organization?.vacantion.filter(el => el.relevance === true) )
+  }, [organization])
 
-  console.log('active', activeVacantion);
-  console.log('ARCHIVE', archiveVacantion);
-
+    useEffect( () => {
+    setArchiveVacantion( organization?.vacantion.filter(el => el.relevance === false) )
+  }, [organization])
+ 
   const [showArchiveFlag, setShowArchiveFlag] = useState(false)
-  const [showCommentFlag, setShowCommentFlag] = useState(false)
+  const [showCommentFlag, setShowCommentFlag] = useState(true)
   const [addCommentFlag, setAddCommentFlag] = useState(false)
-  const [rate, setRate] = useState(organization?.rate)
+  const [rate, setRate] = useState(0)
   const [newRateInComment, setNewRateInComment] = useState(0)
-  // console.log(organization?.rate );
-
+ 
   // код для расчета среднего арифметического рейтинга из массива
-  // const [rate, setRate] = useState( organization?.rate.reduce( (a, b) => a + b ) / organization?.rate.length + 1  )
-
+  // const rating = organization?.rate.reduce( (a, b) => ( (a + b)  / organization?.rate.length ) )
+ 
   const showArchiveFunction = (event) => {
     event.preventDefault()
     setShowArchiveFlag(!showArchiveFlag)
@@ -54,9 +59,21 @@ function OrganizationView() {
   }
 
 
+  // useEffect( () => {
+  //   setRate( organization?.rate )
+  // }, [organization])
+
+  // console.log(organization?.rate);
   useEffect( () => {
-    setRate( organization?.rate )
-  }, [organization])
+      if (organization?.rate.length !== 0) {
+        const currentRating = ( organization?.rate.reduce( (a, b) =>  (a + b) ) / organization?.rate.length  )
+        setRate( currentRating )
+      } else {
+        setRate(0)
+      }
+    }, [organization])
+  
+
 
   useEffect( () => {
     dispatch( thunkOrgInit(id) )
@@ -64,29 +81,27 @@ function OrganizationView() {
 
   useEffect( () => {
     dispatch( ThunkInitVacantion() )
-}, [dispatch])
+  }, [dispatch])
 
 // обработка добавления отзыва и рейтинга
-const formCommentHandler = (event) => {
-  event.preventDefault();
-  console.log('рейтинг: ', newRateInComment);
-  console.log('комментарий: ', event.target.comment.value);
-    dispatch(thunkAddComment(
-      organization, 
-      event.target.comment.value, 
-      newRateInComment, 
-      ))
+  const formCommentHandler = (event) => {
+    event.preventDefault();
+      dispatch(thunkAddComment(
+        organization, 
+        event.target.comment.value, 
+        newRateInComment,
+        student 
+        ))
 
     setAddCommentFlag(!addCommentFlag)
-};
-
+  };
 
   if (organization) {
     setRateActiveWidth(rate)
   }
 
   // функция, отрисовывающая рейтинг звездами:
- function setRateActiveWidth(rate) {
+  function setRateActiveWidth(rate) {
     let ratingActive = document.querySelector('.ratingActive')
     const ratingActiveWidth = rate / 0.05
     ratingActive.style.width = `${ratingActiveWidth}%`
@@ -118,8 +133,8 @@ const formCommentHandler = (event) => {
         </div>
 
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Последний отзыв:&nbsp;{organization?.comment}
-               <button onClick={addCommentFunction}> {!addCommentFlag? <h6>оставить отзыв</h6> : <h6>скрыть</h6>  } </button>
+          <li className="list-group-item">Последний отзыв:&nbsp;{organization?.comment[organization?.comment.length - 1]}
+             <p>  <button onClick={addCommentFunction}> {!addCommentFlag? <h6>оставить отзыв</h6> : <h6>скрыть</h6>  } </button> </p>
 
             {addCommentFlag
               ? <div className="organization container d-flex flex-column">
@@ -147,13 +162,19 @@ const formCommentHandler = (event) => {
           </li>
 
           <li className="list-group-item">Активные вакансии:&nbsp;
-            {activeVacantion.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}
+            {activeVacantion?.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}
           </li>
         </ul>
 
         <div className="card-body">
           <button onClick={showArchiveFunction} className="card-link">Архив вакансий</button>
-          <button onClick={showCommentFunction} className="card-link">Все отзывы</button>
+
+          {
+           showCommentFlag 
+              ? <button onClick={showCommentFunction} className="card-link">Скрыть отзывы</button> 
+              : <button onClick={showCommentFunction} className="card-link">Показать отзывы</button> 
+          }
+
         </div>
       </div>
 
@@ -170,7 +191,13 @@ const formCommentHandler = (event) => {
     }
       {/* блок отрисовки всех комментариев */}
     {showCommentFlag
-      ? <h2>Все отзывы</h2>
+      ? <div>
+        {organization?.comment
+         ? <div> {organization?.comment.map(el => {return <div key={el}>{`${el}`} Автор отзыва {`${el.author}`}</div> } )}  </div> 
+              
+         : <p>Отзывов пока нет</p>
+        }
+          </div>
       : null
     }
 

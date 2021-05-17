@@ -1,13 +1,15 @@
 import express from 'express'
+import Comment from '../models/comment.js'
 import Organization from '../models/organization.js'
 import Vacantion from '../models/vacantion.js'
+
 
 const router = express.Router()
 
 router
     .get('/', async (req, res) => {
             try {
-                const organization = await Organization.find()
+                const organization = await Organization.find().populate({path:'vacantion', model:Vacantion})
                 return res.json(organization)
             } catch (e) {
                 res.send({message: "Server error"})
@@ -17,7 +19,7 @@ router
     .get('/org/:id', async (req, res) => {
             const id = req.params.id
             try {
-                const organization = await Organization.findOne({_id: id}).populate({path:'vacantion', model:Vacantion});
+                const organization = await Organization.findOne({_id: id}).populate({path:'vacantion', model:Vacantion}).populate('Comment');
                 res.json(organization)
             } catch (error) {
                 res.send({message: "Server error"})
@@ -41,13 +43,20 @@ router
 
     .post('/update', async (req, res) => {
       try {
-        let {organization, comment, newRate} = req.body
-        // console.log(newRate, ">>>>>>>>>>>>>>>>.");
-        let updatedOrg = await Organization.findOneAndUpdate({_id: organization._id}, {
-          comment,
-          rate: rate.push(newRate)
+        let {organization, newComment, newRate, student} = req.body
+        let updatedOrg = await Organization.findOne({_id: organization._id})
+
+        await updatedOrg.comment.push(newComment)
+        await updatedOrg.rate.push(newRate)
+        await updatedOrg.save()
+
+        const newDBComment = await Comment.create({
+          text: newComment,
+          author: student,
+          organization: organization._id
         })
-        console.log(updatedOrg);
+
+        res.status(201).json({newDBComment})
       } catch (error) {
         res.send({message: "Server error"})
       }

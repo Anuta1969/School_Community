@@ -36,15 +36,16 @@ export const thunkOrgInit = (id) => {
     }
   }
 
-    export const thunkAddComment = (organization, comment, newRate ) => {
+    export const thunkAddComment = (organization, comment, newRate, student ) => {
       return (dispatch) => {
           fetch(`${process.env.REACT_APP_URL}/organizations/update`, {
           method: 'POST',
           headers: { 'Content-Type': 'Application/json' },
           body: JSON.stringify({
             organization: organization,
-            comment: comment,
-            newRate: newRate
+            newComment: comment,
+            newRate: newRate,
+            student: student
           }),
         })
           .then((res) => res.json())

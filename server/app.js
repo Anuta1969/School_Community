@@ -19,7 +19,7 @@ console.log("__dirname",path.join(__dirname,  "public"));
 mongoose.connect(
   // 'mongodb://localhost:27017/elbrus',
   `mongodb+srv://Alex:tB9hbppbaKG_vJr@cluster0.5agzc.mongodb.net/elbrus?retryWrites=true&w=majority`,
-   {useNewUrlParser: true, useUnifiedTopology: true});
+   {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true});
 
 app.use(cors())
 app.use(logger('dev'));
