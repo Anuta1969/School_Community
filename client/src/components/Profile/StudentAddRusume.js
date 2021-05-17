@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {ThunkAddResumeUser} from "../../redux/Thunk/ThunkStudent";
 
-function StudentAddRusume() {
+function StudentAddRusume({student,id}) {
   const dispatch = useDispatch();
-  const student = useSelector((state) => state.student);
-  const idUser = student._id;
+  // const student = useSelector((state) => state.student);
+  // const idUser = ;
   const resumeStudent= student.resume
   const [resume, setResume] = useState(false);
+  const initialUser = useSelector(state=>state.student)
 
+  // console.log("initialUser-",initialUser,"idUser",idUser);
   const saveResumehandler = (e) => {
     e.preventDefault();
     setResume(false);
     const dats = new FormData(e.target);
-    console.log("resume-------", dats);
-    dispatch(ThunkAddResumeUser(idUser, dats));
+    // console.log("resume-------", dats);
+    dispatch(ThunkAddResumeUser(id, dats));
     document.getElementById('student-form__id').classList.toggle('blockBackground')
   };
   useEffect(()=>{
@@ -50,7 +52,16 @@ function StudentAddRusume() {
             </button>
           </form>
         )}
-        {!resume && (
+        
+        {!resume && initialUser._id == id &&  (
+          <button
+            onClick={addResumeHandler}
+            className="student-form__photo-btn btn btn-outline-primary"
+          >
+            📃
+          </button>
+        )}
+        {!resume &&initialUser.admin && (
           <button
             onClick={addResumeHandler}
             className="student-form__photo-btn btn btn-outline-primary"

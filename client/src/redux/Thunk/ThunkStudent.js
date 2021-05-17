@@ -1,32 +1,36 @@
-import {addPhotoAC, updateUserProfileAC, addResumeUserAC} from "../actionCreators/actionCreatorStudent";
+import {addPhotoAC, updateUserProfileAC, addResumeUserAC,updateUserFromAllState,addPhotoUserFromAllAC,addResumeUserFromAllAC} from "../actionCreators/actionCreatorStudent";
 
-export const ThunkAddResumeUser = (idUser, dats) => {
-    return (dispatch) => {
-        fetch(`${process.env.REACT_APP_URL}/student/addresume/${idUser}`, {
+export const ThunkAddResumeUser = (id, dats) => {
+    return async(dispatch) => {
+       const response = await fetch(`${process.env.REACT_APP_URL}/student/addresume/${id}`, {
             method: "POST",
             body: dats
         })
-            .then(res => res.json())
-            .then(data => dispatch(addResumeUserAC(data)))
+            const result = await response.json()
+            console.log("result",result);
+            dispatch(addResumeUserAC(result.resume))
+            dispatch(addResumeUserFromAllAC(result))
     }
 }
 
-export const ThunkAddPhotoUser = (idUser, dats) => {
-    return (dispatch) => {
-        fetch(`${process.env.REACT_APP_URL}/student/addphoto/${idUser}`, {
+export const ThunkAddPhotoUser = (id, dats) => {
+    return async(dispatch) => {
+      const response = await  fetch(`${process.env.REACT_APP_URL}/student/addphoto/${id}`, {
             method: "POST",
             body: dats,
         })
-            .then((res) => res.json())
-            .then((data) => dispatch(addPhotoAC(data.UserOne.photo)))
-            .catch(err => console.log(err))
+        const result = await response.json()
+        dispatch(addPhotoAC(result.UserOne.photo))
+        dispatch(addPhotoUserFromAllAC(result.UserOne))
+
+          
     };
 };
 
 
 export const ThunkUpdateProfile = (id, name, lastName, phone, email, year, group, city, stack, language, socialLinkedin, socialGitHab, placeWork) => {
-    return (dispatch) => {
-        fetch(`${process.env.REACT_APP_URL}/student/changetext`, {
+    return async (dispatch) => {
+      const response= await  fetch(`${process.env.REACT_APP_URL}/student/changetext`, {
             method: "PUT",
             headers: {"Content-type": "Application/json"},
             body: JSON.stringify({
@@ -45,8 +49,9 @@ export const ThunkUpdateProfile = (id, name, lastName, phone, email, year, group
                 placeWork,
             }),
         })
-            .then((res) => res.json())
-            .then((data) => dispatch(updateUserProfileAC(data.UserOne)))
-            .catch(err => console.log(err))
+        const result = await response.json()
+        dispatch(updateUserProfileAC(result.UserOne))
+        dispatch(updateUserFromAllState(result.UserOne ))
+            
     };
 };

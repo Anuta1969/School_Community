@@ -1,4 +1,4 @@
-import {INIT_ALL_STUDENTS, INIT_SEARCH_STUDENTS} from "../actionTypes/actionTypes";
+import {INIT_ALL_STUDENTS, INIT_SEARCH_STUDENTS,UPDATE_USER_From_ALL,ADD_PHOTO_USER_FROM_ALL,ADD_RESUME_USER_FROM_ALL} from "../actionTypes/actionTypes";
 
 const defaultState = {
     filter: [],
@@ -11,8 +11,29 @@ const searchReducer = (state = defaultState, action) => {
             return {...state, all: action.payload}
 
         case INIT_SEARCH_STUDENTS:
-            console.log(action.payload)
             return {...state, filter: action.payload}
+
+        case UPDATE_USER_From_ALL:         
+        return {...state,
+           all:           
+           state.all.map(el=>el._id !== action.payload._id ? el: action.payload)
+          }
+        case ADD_PHOTO_USER_FROM_ALL:
+          // console.log(action.payload);
+          return {...state,
+            all:           
+            state.all.map(el=>el._id !== action.payload._id ? el: action.payload)
+           }
+        case ADD_RESUME_USER_FROM_ALL:
+         
+          return {...state,
+            all:           
+            state.all.map(el=>el._id !== action.payload._id ? el : {
+              ...el,
+              resume:action.payload.resume
+            })
+           }
+
 
         default:
             return state
