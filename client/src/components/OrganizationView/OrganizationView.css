@@ -1,5 +1,6 @@
 .rating {
   display: flex;
+  justify-content: center;
   align-items: flex-end;
   font-size: 40px;
   line-height: 0.75;
