@@ -16,9 +16,7 @@ function Registration(props) {
 
         <>
             {/*<button onClick={() => setIsShowing((isShowing) => !isShowing)}>Регистрация</button>*/}
-            {/*<div className='video'>*/}
-            {/*    <video className="video__media" src={`${process.env.REACT_APP_URL}/back.mp4`} autoPlay muted loop></video>*/}
-            {/*</div>*/}
+
             <Transition
                 show={isShowing}
                 enter="transition-opacity duration-75"
