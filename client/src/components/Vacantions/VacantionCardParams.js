@@ -10,6 +10,7 @@ function VacantionCardParams() {
   const vacantion = useSelector((state) => state.vacantion).filter(
     (el) => el._id === id
   )[0];
+  console.log(vacantion);
   const student = useSelector((state)=>state.student)
   
   let [actual, setActual] = useState(null)
@@ -19,7 +20,7 @@ function VacantionCardParams() {
  const idStudent = student._id
   useEffect(() => {
     if(vacantion){
-  setActual(vacantion.relevance)
+  setActual(true)
 }
     dispatch(ThunkInitOneVacantion(id));
   }, [dispatch]);
