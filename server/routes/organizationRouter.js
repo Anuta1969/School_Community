@@ -42,7 +42,7 @@ router
     .post('/update', async (req, res) => {
       try {
         let {organization, comment, newRate} = req.body
-        console.log(newRate, ">>>>>>>>>>>>>>>>.");
+        // console.log(newRate, ">>>>>>>>>>>>>>>>.");
         let updatedOrg = await Organization.findOneAndUpdate({_id: organization._id}, {
           comment,
           rate: rate.push(newRate)
