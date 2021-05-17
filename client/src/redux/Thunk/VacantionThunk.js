@@ -1,5 +1,4 @@
-import { addVacantionAC,initVacantionAC,initOneCardAC } from '../../redux/actionCreators/actionCreatorVacantion';
-import {useState} from "react";
+import { addVacantionAC,initVacantionAC,initOneCardAC,editActualVacantionAC } from '../../redux/actionCreators/actionCreatorVacantion';
 
 export const addVacantion = (organization,vacantion,description,salary,id)=>{
   return (dispatch)=>{
@@ -38,3 +37,20 @@ export const ThunkInitOneVacantion = (id)=>{
     .catch(err => console.log(err))
   }
 }
+
+
+export const ThunkEditVacantion = (id,relevance)=>{
+  return (dispatch)=>{
+    fetch(`${process.env.REACT_APP_URL}/vacantion/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'Application/json' },
+      body: JSON.stringify({
+      
+        relevance:relevance})})
+      .then((res) => res.json())
+      .then((data) => dispatch(editActualVacantionAC(data)))
+      .catch(err => console.log(err))
+  }
+}
+
+// dispatch(editActualVacantionAC(data.actualVacantion) )
