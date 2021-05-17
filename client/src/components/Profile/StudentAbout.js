@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { ThunkUpdateProfile } from "../../redux/Thunk/ThunkStudent";
+import { useDispatch,useSelector } from "react-redux";
+import { ThunkUpdateProfile, } from "../../redux/Thunk/ThunkStudent";
+import {thunkInitStudents} from "../../redux/Thunk/ThunkSearch";
 
-function StudentAbout({ student }) {
+
+function StudentAbout({ student, id }) {
   const [btnUpdate, setBtnUpdate] = useState(false);
   const dispatch = useDispatch();
+  
   const btnUpdateHandler = () => {
     setBtnUpdate(true);
   };
-  const id = student?._id;
-
+  // const id = student?._id;
+  const initialUser = useSelector(state=>state.student)
+  // console.log("log-",initialUser, "user-", id);
   const btnFormHandler = (e) => {
     setBtnUpdate(false);
     const {
@@ -27,7 +31,8 @@ function StudentAbout({ student }) {
       placeWork: { value: placeWork },
     } = e.target;
     console.log(group, year);
-    dispatch(
+
+   dispatch(
       ThunkUpdateProfile(
         id,
         name,
@@ -48,7 +53,7 @@ function StudentAbout({ student }) {
   
   // for download resume
   const downLoadResumeHandler = () => {
-
+    console.log("student.resume",student.resume);
     fetch(`${process.env.REACT_APP_URL}/resume/${student.resume}`, {
       method: "GET",
       headers: {
@@ -76,9 +81,12 @@ function StudentAbout({ student }) {
 
   return (
     <>
-      <button className="student-update__text" onClick={btnUpdateHandler}>
+     {initialUser._id == id && <button className="student-update__text" onClick={btnUpdateHandler}>
         ✎
-      </button>
+      </button>}
+      {initialUser.admin && <button className="student-update__text" onClick={btnUpdateHandler}>
+        ✎
+      </button>}
 
       {!btnUpdate && (
         <>

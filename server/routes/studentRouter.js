@@ -87,7 +87,7 @@ router
             const UserOne = await User.findById({_id: id});
             UserOne.resume = resume;
             await UserOne.save();
-            res.status(200).json(resume);
+            res.status(200).json(UserOne);
         } catch (error) {
             res.status(404).json({succes: false, msg: error.message});
         }

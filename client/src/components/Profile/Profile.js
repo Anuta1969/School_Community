@@ -7,7 +7,7 @@ import StudentAddRusume from "./StudentAddRusume";
 import StudentPhoto from './StudentPhoto'
 import {useParams} from "react-router";
 import {thunkInitStudents} from "../../redux/Thunk/ThunkSearch";
-
+import StudentLinck from './StudentLinck'
 
 function Profile(props) {
 
@@ -19,7 +19,7 @@ function Profile(props) {
     useEffect(() => {
         dispatch(thunkInitStudents())
     }, [dispatch])
-
+    
     return (
         student ?
             <section>
@@ -27,13 +27,14 @@ function Profile(props) {
                     <div className="student-box">
                         <div className="student-about">
                             <div className="student-img__box">
-                                <StudentPhoto student={student}/>
+                                <StudentPhoto student={student} id={id}/>
                                 <div className="student-about-text">
                                     <ul className="student-about__title">
-                                        <StudentAbout key={student._id} student={student}/>
+                                        <StudentAbout key={student._id} id={id} student={student}/>
                                     </ul>
                                 </div>
-                                <StudentAddRusume/>
+                                <StudentAddRusume student={student} id={id}/>
+                                <StudentLinck student={student}/>
                             </div>
                         </div>
                         <div id="student-form__id" className="student-form">
