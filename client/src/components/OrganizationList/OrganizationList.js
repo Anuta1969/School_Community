@@ -30,6 +30,7 @@ function OrganizationList() {
       setNewState(organization)
   }
 
+
   return (
     <>
     <OrganizationAddForm />

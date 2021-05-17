@@ -67,6 +67,9 @@ function App() {
                         </Switch> : null
                     }
                 </div>
+                {!isAuth? <div className="video">
+                    <video className="video__media" src={`${process.env.REACT_APP_URL}/back.mp4`} autoPlay muted loop></video>
+                </div>:null}
             </div>
         </BrowserRouter>
     )

@@ -52,8 +52,9 @@ router
             city,
             stack,
             language,
-            socialLinkedin,
+            socialTelegramm,
             socialGitHab,
+            instagramm,            
             placeWork,
         } = req.body;
         try {
@@ -68,8 +69,9 @@ router
             UserOne.city = city;
             UserOne.stack = stack;
             UserOne.language = language;
-            UserOne.socialLinkedin = socialLinkedin;
+            UserOne.socialTelegramm = socialTelegramm;
             UserOne.socialGitHab = socialGitHab;
+            UserOne.instagramm = instagramm;
             UserOne.placeWork = placeWork;
 
             await UserOne.save();
