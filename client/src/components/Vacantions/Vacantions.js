@@ -55,34 +55,3 @@ function Vacantions(props) {
 }
 
 export default Vacantions;
-
-// const [newState, setNewState] = useState(null)
-// const sortInput = useRef()
-//
-//
-// useEffect(() => {
-//     setNewState(() => organization)
-// }, [organization])
-//
-// const sortHandler = (e) => {
-//     e.preventDefault()
-//     if (sortInput.current.value === 'увеличению рейтинга') {
-//         setNewState(()=>[...organization].sort((a, b) => (a.rate - b.rate)))
-//     } else if (sortInput.current.value === 'уменьшению рейтинга') {
-//         setNewState(()=>[...organization].sort((a, b) => (b.rate - a.rate)))
-//     } else if (sortInput.current.value == 'по умолчанию')
-//         setNewState(organization)
-// }
-//
-// <div className='sort'>
-//     Сортировать по:
-//     <select onChange={sortHandler} ref={sortInput} className='selectSort'>
-//         <option>умолчанию</option>
-//         <option>увеличению рейтинга</option>
-//         <option>уменьшению рейтинга</option>
-//     </select>
-
-// { newState?.map((el,i ) => <Organization org={el} ind={i}id={el._id} key={el._id} />) }
-
-
-// </div>

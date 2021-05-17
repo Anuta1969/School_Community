@@ -22,7 +22,7 @@ function VacantionCardParams() {
                     <h5 className="card-title">{vacantion?.vacantion}</h5>
                     <p className="card-text">{vacantion?.organization}</p>
                     <p className="card-text">{vacantion?.description}</p>
-                    {/*<p className="card-text">{vacantion?.date}</p>*/}
+                    <p className="card-text">{vacantion?.date}</p>
                     <h3>
                         <Link to={`/profile/${vacantion?.userID}`}>
                             {vacantion?.contacts}

@@ -15,8 +15,8 @@ function VacantionCard({vacantion}) {
                     <h5 className="card-title">{vacantion?.vacantion}</h5>
                     <p className="card-text">{vacantion?.organization}</p>
                     <p>{vacantion?.salary}</p>
-                    {/*<p className="card-text">*/}
-                        {/*<ReactTimeAgo date={vacantion.date} locale="ru"/>{' '}</p>*/}
+                    <p className="card-text">
+                        <ReactTimeAgo date={vacantion.date} locale="ru"/>{' '}</p>
                 </div>
             </div>
         </div>
