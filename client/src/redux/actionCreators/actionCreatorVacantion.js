@@ -10,7 +10,6 @@ export const initVacantionAC = (payload) => ({
   payload
 })
 
-
 export const initOneCardAC = (payload) => ({
   type:INIT_ONE_VACANTION,
   payload
