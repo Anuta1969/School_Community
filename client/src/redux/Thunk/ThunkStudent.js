@@ -29,12 +29,11 @@ export const ThunkAddPhotoUser = (id, dats) => {
 
 
 export const ThunkUpdateProfile = (id, name, lastName, phone, email, year, group, city, stack, language, socialLinkedin, socialGitHab, placeWork) => {
-    return async (dispatch) => {
-      const response= await  fetch(`${process.env.REACT_APP_URL}/student/changetext`, {
+    return async(dispatch) => {
+      const response = await  fetch(`${process.env.REACT_APP_URL}/student/${id}`, {
             method: "PUT",
             headers: {"Content-type": "Application/json"},
             body: JSON.stringify({
-                id,
                 name,
                 lastName,
                 phone,
