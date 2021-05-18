@@ -1,21 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Org.css'
 
 function Organization({ org, ind }) {
-  const rate1 = org.rate
+
+  const [rate, setRate] = useState(org.rate)
+  const [activeVacantion, setActiveVacantion] = useState([])
+
   const selector = '.org' + ind + '.ratingActive'
 
-   function setRateActiveWidth(rate) {
+  
+  useEffect( () => {
+    if (org.rate.length !== 0) {
+      const currentRating = ( org.rate.reduce( (a, b) =>  (a + b) ) / org?.rate.length  )
+      setRate( currentRating )
+    } else {
+      setRate(0)
+    }
+  }, [org.rate])
+  
+  useEffect(() => {
+    setRateActiveWidth(rate)
+  }, [rate])
+  
+  function setRateActiveWidth(rate) {
     let ratingActive = document.querySelector(selector)
     const ratingActiveWidth = rate / 0.05
     ratingActive.style.width = `${ratingActiveWidth}%`
-  }
+ }
 
-  useEffect(() => {
-    setRateActiveWidth(rate1)
+  
+  useEffect( () => {
+    setActiveVacantion( org?.vacantion )
   }, [])
-
+  
   return (
     <div className="card me-5 mb-4 orgCard">
         <div className="card ">
@@ -41,12 +59,15 @@ function Organization({ org, ind }) {
               </div>
             </Link>
             <p className="card-text">
-              Последний комментарий: {org?.comment}
+              Последний отзыв: {org?.comment[org?.comment.length - 1]}
               </p>
           </div>
           <div className="card-footer">
             <small className="text-muted">
-              Текущая вакансия: {org?.vacansion}
+            {activeVacantion.length !== 0
+              ? <p> Последняя вакансия: {`${activeVacantion[activeVacantion.length - 1].vacantion}`} </p>
+              : <p> Вакансии еще не размещались </p>
+              }
               </small>
           </div>
         </div>
