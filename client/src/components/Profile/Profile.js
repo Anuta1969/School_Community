@@ -23,11 +23,12 @@ function Profile(props) {
     return (
         student ?
             <section className="section-student">
-                <div className="container">
+                <div className="container student-container">
                     <div className="student-box">
                         <div className="student-about">
                             <div className="student-img__box">
                                 <StudentPhoto student={student} id={id}/>
+                                <StudentLinck student={student}/>
                                 <div className="student-about-text">
                                     <ul className="student-about__title">
                                         <StudentAbout key={student._id} id={id} student={student}/>
@@ -35,11 +36,11 @@ function Profile(props) {
                                 </div>
                                 <div className="student-add">
                                   <StudentAddRusume student={student} id={id}/>
-                                  <StudentLinck student={student}/>
+                                  
                                 </div>
                             </div>
                         </div>
-                        <div id="student-form__id" className="student-form">
+                        <div  className="student-form">
 
                             <ProfileShowResume student={student}/>
                         </div>
