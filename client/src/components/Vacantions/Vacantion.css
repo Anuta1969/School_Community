@@ -1,14 +1,12 @@
 
 .vacantion_container{
-  margin-top: 60px;
+  margin-top: 120px;
  
  
 }
 
 
-.vacantion{
-margin-top: 70px;
-}
+
 
 
 .card{
@@ -45,4 +43,34 @@ margin-top: 70px;
 
 .card_info{
   background-color: #5f3fb9;
+
+
+}
+
+
+
+
+
+.vacantion {
+    animation: show-loader 1.2s forwards;
+    margin-top: 70px;
+}
+
+
+@keyframes show-loader {
+    0% {
+        opacity: 0;
+        transform: translateY(-200px)
+        /*transform: translate3d(-200px,-200px,0);*/
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        /*transform: translate3d(0,0,0);*/
+    }
+}
+
+
+.vacantion-box{
+  padding-top: 6%;
 }

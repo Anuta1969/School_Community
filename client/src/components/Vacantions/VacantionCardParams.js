@@ -2,11 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import ReactTimeAgo from 'react-time-ago';
-import {
-  ThunkInitOneVacantion,
-  ThunkEditVacantion,
-} from '../../redux/Thunk/VacantionThunk';
-import './Vacantion.css'
+import { ThunkInitOneVacantion ,ThunkEditVacantion} from '../../redux/Thunk/VacantionThunk';
 
 function VacantionCardParams() {
   const dispatch = useDispatch();
@@ -15,15 +11,17 @@ function VacantionCardParams() {
     (el) => el._id === id
   )[0];
   console.log(vacantion);
-  const student = useSelector((state) => state.student);
+  const student = useSelector((state)=>state.student)
+  
+  let [actual, setActual] = useState(null)
 
-  let [actual, setActual] = useState(null);
 
-  const idStudent = student._id;
+  
+ const idStudent = student._id
   useEffect(() => {
-    if (vacantion) {
-      setActual(() => true);
-    }
+    if(vacantion){
+  setActual(true)
+}
     dispatch(ThunkInitOneVacantion(id));
   }, [dispatch]);
 
@@ -35,9 +33,13 @@ function VacantionCardParams() {
 
   const editHandler = (event) => {
     event.preventDefault();
-    setActual(() => !actual);
+    setActual(!actual)
     console.log(actual);
+    dispatch(ThunkEditVacantion(id,actual))
+    
   };
+
+ 
 
   return (
     <div>
@@ -56,15 +58,10 @@ function VacantionCardParams() {
              Автор: {vacantion?.contacts}
             </Link>
           </h3>
-          {idStudent === vacantion?.userID || student.admin ? (
-            <form
-              onSubmit={editHandler}
-              action={`/vacantion/${id}`}
-              method="PUT"
-            >
-              <button>Актульность</button>
-            </form>
-          ) : null}
+{ idStudent === vacantion?.userID || student.admin? <form onSubmit={editHandler} action={`/vacantion/${id}`} method="PUT">
+            <button>Актульность</button>
+          </form>:null}
+         
         </div>
       </div>
     </div>

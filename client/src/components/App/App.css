@@ -56,8 +56,9 @@ h6 {
   color: #61dafb;
 }
 
+
 .wrap{
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 @keyframes App-logo-spin {
