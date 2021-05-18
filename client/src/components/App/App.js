@@ -36,6 +36,10 @@ function App() {
                         <Switch>
                             <Route path="/registration" component={Registration}/>
                             <Route exact path="/" component={Login}/>
+                            {/*<Route exact path="/">*/}
+                            {/*    <Registration/>*/}
+                            {/*    <Login/>*/}
+                            {/*</Route>*/}
                         </Switch>
                         : null}
                     {isAuth && !admin ?
@@ -46,7 +50,7 @@ function App() {
                             <Route path="/organizations/org/:id" component={OrganizationView}/>
                             <Route exact path='/vacantions' component={Vacantion}/>
                             <Route exact path='/vacantion/:id' component={VacantionCardParams}/>
-                            <Route path='/vacantionsForm' component={VacantionsForm}/>
+                            {/*<Route path='/vacantionsForm' component={VacantionsForm}/>*/}
                             <Route path='/organizations/add' component={OrganizationAddForm}/>
                             <Redirect to={`/profile/${student._id}`}/>
                         </Switch> : null
@@ -60,7 +64,7 @@ function App() {
                             <Route exact path="/organizations" component={OrganizationList}/>
                             <Route path="/organizations/org/:id" component={OrganizationView}/>
                             <Route exact path='/vacantions' component={Vacantion}/>
-                            <Route path='/vacantionsForm' component={VacantionsForm}/>
+                            {/*<Route path='/vacantionsForm' component={VacantionsForm}/>*/}
                             <Route path='/organizations/add' component={OrganizationAddForm}/>
                             <Route exact path='/vacantion/:id' component={VacantionCardParams}/>
                             <Redirect to='/adminList'/>

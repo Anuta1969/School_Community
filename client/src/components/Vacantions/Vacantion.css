@@ -1,3 +1,76 @@
+
+.vacantion_container{
+  margin-top: 120px;
+ 
+ 
+}
+
+
+
+
+
+.card{
+  margin:15px 0;
+  width: 400px;
+  height: 210px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow:hidden;
+  border-top-left-radius:  60px;
+  border-bottom-right-radius: 60px;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: #5f3fb9;   
+}
+
+.card_text_title{
+  max-width:300px;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color:rgb(243 217 99);
+}
+
+
+.card_text{
+  max-width:300px;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgb(243 217 99);
+  font-size: 22px;
+}
+
+.card_info{
+  background-color: #5f3fb9;
+
+
+}
+
+
+
+
+
+.vacantion {
+    animation: show-loader 1.2s forwards;
+    margin-top: 70px;
+}
+
+
+@keyframes show-loader {
+    0% {
+        opacity: 0;
+        transform: translateY(-200px)
+        /*transform: translate3d(-200px,-200px,0);*/
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        /*transform: translate3d(0,0,0);*/
+    }
+}
+
+
 .vacantion-box{
   padding-top: 6%;
 }
