@@ -31,11 +31,13 @@ function Vacantions(props) {
 
     const formHandler = (event) => {
         event.preventDefault();
-        const vacantion = event.target.vacantion.value
-        dispatch(addVacantion(organization.current.value, vacantion,
+        const vacantionValue = event.target.vacantion.value
+        console.log(vacantionValue,'>>>>>>')
+        dispatch(addVacantion(organization.current.value, vacantionValue,
             description.current.value,salary.current.value, id))
+        setButton(!button)
         event.target.reset()
-        history.push('/vacantions');
+
     };
 
     const sortHandler = (e) => {
@@ -77,7 +79,7 @@ function Vacantions(props) {
                         type="text"
                         placeholder="введите описание"
                         rows="5" cols="15"/>
-                    <button onClick={()=>setButton(!button)} type="submit">Добавить</button>
+                    <button  type="submit">Добавить</button>
                 </form>
             </div>}
 
