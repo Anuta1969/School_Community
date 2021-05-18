@@ -4,35 +4,78 @@ import {ThunkAddResumeUser} from "../../redux/Thunk/ThunkStudent";
 
 function StudentAddRusume({student,id}) {
   const dispatch = useDispatch();
-  // const student = useSelector((state) => state.student);
-  // const idUser = ;
   const resumeStudent= student.resume
   const [resume, setResume] = useState(false);
   const initialUser = useSelector(state=>state.student)
 
-  // console.log("initialUser-",initialUser,"idUser",idUser);
   const saveResumehandler = (e) => {
     e.preventDefault();
     setResume(false);
     const dats = new FormData(e.target);
-    // console.log("resume-------", dats);
     dispatch(ThunkAddResumeUser(id, dats));
-    document.getElementById('student-form__id').classList.toggle('blockBackground')
+    // document.getElementById('student-form__id').classList.toggle('blockBackground')
   };
   useEffect(()=>{
 
     if(resumeStudent){
-      document.getElementById('student-form__id').classList.toggle('blockBackground')
-      // document.querySelector('.react-pdf__Document').classList.toggle('blockLoadingPicture')
+      // document.getElementById('student-form__id').classList.toggle('blockBackground')
     }
 
   },[])
   const addResumeHandler = () => {
     setResume(true);
   };
+
+
+    // for download resume
+  const downLoadResumeHandler = () => {
+    fetch(`${process.env.REACT_APP_URL}/resume/${student.resume}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/pdf",
+      },
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        // Create blob link to download
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `${student.resume}`);
+
+        // Append to html link element page
+        document.body.appendChild(link);
+
+        // Start download
+        link.click();
+
+        // Clean up and remove the link
+        link.parentNode.removeChild(link);
+      });
+  };
+
+
   return (
     <>
-      <div className="student-add__rezume">
+      <div className="student-add__resume">
+        <div className="student-add__btn">
+          {!resume && initialUser._id == id &&  (
+            <button
+              onClick={addResumeHandler}
+              className="student-btn"
+            >
+              Загрузить резюме
+            </button>
+          )}
+          {!resume &&initialUser.admin && (
+            <button
+              onClick={addResumeHandler}
+              className="student-form__photo-btn student-btn"
+            >
+              Загрузить резюме
+            </button>
+          )}
+        </div>
         {resume && (
           <form
             onSubmit={saveResumehandler}
@@ -43,32 +86,22 @@ function StudentAddRusume({student,id}) {
           >
             <input
 
-              className="student-form__photo-input form-control"
+              className="student-form__photo-input "
               type="file"
               name="resume"
             />
-            <button className="student-form__photo-btn btn btn-outline-primary">
+            <button className="student-btn student-form__resume-save ">
               Сохранить
             </button>
           </form>
         )}
-        
-        {!resume && initialUser._id == id &&  (
-          <button
-            onClick={addResumeHandler}
-            className="student-form__photo-btn btn btn-outline-primary"
-          >
-            📃
-          </button>
-        )}
-        {!resume &&initialUser.admin && (
-          <button
-            onClick={addResumeHandler}
-            className="student-form__photo-btn btn btn-outline-primary"
-          >
-            📃
-          </button>
-        )}
+        <div className="save-resume">
+        { student.resume && <button  
+          className="student-btn save-resume__btn"
+            onClick={downLoadResumeHandler}>
+                Скачать резюме
+          </button>}
+         </div>
       </div>
     </>
   );
