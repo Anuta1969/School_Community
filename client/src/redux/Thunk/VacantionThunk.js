@@ -1,13 +1,13 @@
 import { addVacantionAC,initVacantionAC,initOneCardAC,editActualVacantionAC } from '../../redux/actionCreators/actionCreatorVacantion';
 
-export const addVacantion = (organization,vacantion,description,salary,id)=>{
+export const addVacantion = (organization,vacantionValue,description,salary,id)=>{
   return (dispatch)=>{
     fetch(`${process.env.REACT_APP_URL}/vacantion`, {
       method: 'POST',
       headers: { 'Content-Type': 'Application/json' },
       body: JSON.stringify({
         organization: organization,
-        vacantion: vacantion,
+        vacantion: vacantionValue,
         description:description,
         salary:salary,
         id:id})})
@@ -43,7 +43,7 @@ export const ThunkEditVacantion = (id,relevance)=>{
       method: 'PUT',
       headers: { 'Content-Type': 'Application/json' },
       body: JSON.stringify({
-      
+
         relevance:relevance})})
       .then((res) => res.json())
       .then((data) => dispatch(editActualVacantionAC(data)))
