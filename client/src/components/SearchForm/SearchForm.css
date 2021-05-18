@@ -1,0 +1,29 @@
+.searchForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+}
+.inputSearch{
+    height: 30px;
+}
+#searchGroup{
+    height: 30px;
+width: 100px;
+}
+#searchYear{
+    height: 30px;
+    width: 80px;
+}
+#searchCity{
+    height: 30px;
+width: 150px;
+}
+.btnSearch{
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    background: #cec658;
+    font-weight: 500;
+    font-size: 15px;
+}

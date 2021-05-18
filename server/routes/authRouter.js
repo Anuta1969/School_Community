@@ -31,14 +31,15 @@ router.post('/registration',
                 return res.status(400).json({message: "Incorrect request", errors})
             }
     try {
-        const {email, password,name,phone} = req.body
+        const {email, password,name,phone ,year,group,city} = req.body
+        console.log(req.body)
         const photoUser = req.file.filename
             const candidate = await Student.findOne({email})
             if(candidate) {
                 return res.status(201).json({message: `Student with email ${email} already exist`})
             }
             const hashPassword = await bcrypt.hash(password, 8)
-            const student = await Student.create({email, password:hashPassword,name,phone,photo:photoUser})
+            const student = await Student.create({email, password:hashPassword,name,phone,photo:photoUser,year,group,city})
             const request = await AdminList.create({userId:student})
         async function mail(){
             let transporter =  nodemailer.createTransport({

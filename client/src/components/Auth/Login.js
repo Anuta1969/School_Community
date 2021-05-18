@@ -10,7 +10,6 @@ function Login(props) {
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
-        console.log(password,email)
         dispatch(thunkLogin(email, password))
     }
 

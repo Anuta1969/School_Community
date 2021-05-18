@@ -32,7 +32,7 @@ function StudentAbout({ student, id }) {
       socialTelegramm: { value: socialTelegramm },
       socialGitHab: { value: socialGitHab },
       instagramm: { value: instagramm },
-     
+
       placeWork: { value: placeWork },
     } = e.target;
     console.log(group, year);
@@ -52,42 +52,16 @@ function StudentAbout({ student, id }) {
         socialTelegramm,
         socialGitHab,
         instagramm,
-       
+
         placeWork
       )
     );
   };
-  
-  // // for download resume
-  // const downLoadResumeHandler = () => {
-  //   fetch(`${process.env.REACT_APP_URL}/resume/${student.resume}`, {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/pdf",
-  //     },
-  //   })
-  //     .then((response) => response.blob())
-  //     .then((blob) => {
-  //       // Create blob link to download
-  //       const url = window.URL.createObjectURL(new Blob([blob]));
-  //       const link = document.createElement("a");
-  //       link.href = url;
-  //       link.setAttribute("download", `${student.resume}`);
-
-  //       // Append to html link element page
-  //       document.body.appendChild(link);
-
-  //       // Start download
-  //       link.click();
-
-  //       // Clean up and remove the link
-  //       link.parentNode.removeChild(link);
-  //     });
-  // };
+  ;
 
   return (
     <>
-     
+
 
       {!btnUpdate && (
         <>

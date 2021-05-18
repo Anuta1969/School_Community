@@ -1,13 +1,44 @@
 
 .vacantion_container{
   margin-top: 120px;
- 
- 
+    animation: show-loader 1.2s forwards;
+
+}
+.btnAddVac{
+    width: 180px;
+    height: 30px;
+    background: #cec658;
+    /*margin: 20px;*/
+    margin-bottom: 15px;
+    border-radius: 10px;
+
+}
+.formAddVac{
+
+}
+.textareaVac{
+    height: 80px;
+}
+.formSlideVac{
+    width: 300px;
+    margin: 30px auto;
+}
+.addBtnVac{
+    background: #cec658;
+    border-radius: 10px;
+    margin: 5px auto;
+    height: 30px;
+    width: 120px;
+}
+.selectSort{
+    margin: 20px auto;
+    height: 30px;
+    border-radius: 5px;
 }
 
-
-
-
+.selectSort{
+    margin: 5px;
+}
 
 .card{
   margin:15px 0;
@@ -20,7 +51,7 @@
   border-bottom-right-radius: 60px;
   border-bottom-left-radius: 15px;
   border-top-right-radius: 15px;
-  background-color: #5f3fb9;   
+  background-color: #5f3fb9;
 }
 
 .card_text_title{
@@ -30,7 +61,6 @@
   white-space: nowrap;
   color:rgb(243 217 99);
 }
-
 
 .card_text{
   max-width:300px;
@@ -43,17 +73,14 @@
 
 .card_info{
   background-color: #5f3fb9;
-
-
 }
-
-
-
-
 
 .vacantion {
     animation: show-loader 1.2s forwards;
     margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -70,7 +97,9 @@
     }
 }
 
-
 .vacantion-box{
   padding-top: 6%;
+}
+.text-center{
+    /*width: 300px;*/
 }
