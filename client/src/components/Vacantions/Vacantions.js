@@ -3,8 +3,6 @@ import {Link, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux"
 import {addVacantion, ThunkInitVacantion} from '../../redux/Thunk/VacantionThunk';
 import VacantionCard from './VacantionCard'
-
-
 import './Vacantion.css'
 
 function Vacantions(props) {
@@ -50,8 +48,8 @@ function Vacantions(props) {
 
     return (
 
-        <>
-            {!button &&<button onClick={()=>setButton(!button)} className='btn'>Добавить Вакансию</button>}
+        <div className='vacantion_container container m-auto justify-content-center d-flex flex-column'>
+            {!button &&<button onClick={()=>setButton(!button)} className='btn vacantion_container'>Добавить Вакансию</button>}
             {button && <div className="vacantion container d-flex flex-column text-center">
                 <form method="POST" onSubmit={formHandler} className='text-center'>
                     <h3>Добавить Вакансию</h3>
@@ -91,10 +89,10 @@ function Vacantions(props) {
                 </select>
             </div>
 
-            <div className='container d-flex flex-wrap'>
+            <div className='vacantion container d-flex flex-wrap  m-auto text-center justify-content-between'>
                 {newState?.map(vac => <VacantionCard vacantion={vac} key={vac._id}/>)}
             </div>
-        </>
+        </div>
     );
 }
 
