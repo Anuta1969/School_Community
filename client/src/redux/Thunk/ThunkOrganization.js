@@ -1,4 +1,3 @@
-import { initCommentAC } from "../actionCreators/actionCreatorComment";
 import { addCommentAC, addOrganizationAC, initOneOrganizationsAC, initOrganizationsAC } from "../actionCreators/actionCreatorOrganization";
 
 export const thunkOrgListInit = () => {
@@ -14,8 +13,6 @@ export const thunkOrgInit = (id) => {
   return (dispatch) => {
     fetch(`${process.env.REACT_APP_URL}/organizations/org/${id}`)
     .then(res => res.json())
-    // .then(data => console.log(data.organization))
-    // .then(data => dispatch(initOneOrganizationsAC( [data.organization] ), initCommentAC( [data.comment]) ))
     .then(data => dispatch(initOneOrganizationsAC(data)))
     .catch(err => console.log(err))
   }
@@ -61,12 +58,7 @@ export const thunkOrgInit = (id) => {
     export const thunkOrganizationsList = () => {
       return (dispatch) => {
         fetch(`${process.env.REACT_APP_URL}/organizations/initOrganizations`, {
-          // method: 'POST',
           method: 'GET',
-          // headers: { 'Content-Type': 'Application/json' },
-          // body: JSON.stringify({
-          //   organizations: organizations,
-          // }),
         })
         .then((res) => res.json())
         .then((data) => dispatch(addCommentAC(data)))
