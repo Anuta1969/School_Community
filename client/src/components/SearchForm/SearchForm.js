@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {searchRequestStudentsAC} from "../../redux/actionCreators/actionCreatorStudent";
-
+import './SearchForm.css'
 function SearchForm(props) {
     const search = useSelector(state => state.search)
     const dispatch = useDispatch()
@@ -36,9 +36,9 @@ function SearchForm(props) {
                 <h3>Поиск студента</h3>
                 <div className='searchForm'>
                     <form onSubmit={SearchHandler} action="">
-                        <input name='name' type="text"/>
-                        <input name='lastName' type="text"/>
-                        <select name="group" id="">
+                        <input name='name' className='inputSearch' type="text"/>
+                        <input name='lastName' className='inputSearch' type="text"/>
+                        <select name="group" id="searchGroup">
                             <option value=""></option>
                             <option value="Ежи">Ежи</option>
                             <option value="Пчелы">Пчелы</option>
@@ -56,7 +56,7 @@ function SearchForm(props) {
                             <option value="Орлы">Орлы</option>
                             <option value="Совы">Совы</option>
                         </select>
-                        <select name="year" id="">
+                        <select name="year" id="searchYear">
                             <option value=""></option>
                             <option value="2019">2019</option>
                             <option value="2020">2020</option>
@@ -66,7 +66,7 @@ function SearchForm(props) {
                             <option value="2024">2024</option>
                             <option value="2025">2025</option>
                         </select>
-                        <select name="city" id="">
+                        <select name="city" id="searchCity">
                             <option value=""></option>
                             <option value="Москва">Москва</option>
                             <option value="Санкт-Петербург">Санкт-Петербург</option>

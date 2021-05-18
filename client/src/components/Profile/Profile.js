@@ -23,7 +23,7 @@ function Profile(props) {
     return (
         student ?
             <section className="section-student">
-                <div className="container">
+                <div className="container student-container">
                     <div className="student-box">
                         <div className="student-about">
                             <div className="student-img__box">
@@ -39,7 +39,7 @@ function Profile(props) {
                                 </div>
                             </div>
                         </div>
-                        <div id="student-form__id" className="student-form">
+                        <div  className="student-form">
 
                             <ProfileShowResume student={student}/>
                         </div>

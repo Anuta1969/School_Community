@@ -13,12 +13,17 @@ function RequestStudent({student}) {
 
     return (
         <>
-            <div onClick={openHandler} className="cardInfo">
-                <img id='imgRequest' src={`${process.env.REACT_APP_URL}/img/${student?.photo}`}/>
-                <h5 className="item-title">{student?.email}</h5>
-                <h5 className="item-price">{student?.name}</h5>
-                <h5 className="item-price">{student?.phone}</h5>
+            <div onClick={openHandler} className="cardInfoList">
+              <div className='reqCardImg'>
+                  <img id='reqCardImg' src={`${process.env.REACT_APP_URL}/img/${student?.photo}`}/>
+              </div>
+               <div className='reqCardInfo'>
+                   <h5 className="studParIn">{student?.email}</h5>
+                   <h5 className="studParIn">{student?.name}</h5>
+                <h5 className="studParIn">{student?.phone}</h5>
             </div>
+            </div>
+
         </>
     );
 }
