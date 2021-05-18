@@ -46,13 +46,13 @@ router.post('/registration',
                 port: 587,
                 secure: true,
                 auth: {
-                    user: 'mr_bono1997@mail.ru', // generated ethereal user
-                    pass: 'bono1997', // generated ethereal password
+                    user: process.env.ADMIN_EMAIL, // generated ethereal user
+                    pass: process.env.ADMIN_PASS, // generated ethereal password
                 }
             })
             await transporter.sendMail({
-                from: 'mr_bono1997@mail.ru' ,
-                to: 'ixa094@mail.ru',
+                from: process.env.ADMIN_EMAIL ,
+                to: process.env.NADYA_EMAIL,
                 subject:'Заявка',
                 text:`Привет Надежда, меня зовут ${name}, пожалуйста рассмотри мою заявку в ElbrusIn!`,
                 html:`Привет Надежда, меня зовут ${name}, пожалуйста рассмотри мою заявку в ElbrusIn!`

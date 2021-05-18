@@ -12,12 +12,12 @@ import orgRouter from './routes/organizationRouter.js'
 import adminRouter from './routes/adminRouter.js'
 import vacantionRouter from './routes/vacantionRouter.js'
 import commentRouter from './routes/commentRouter.js'
+import {} from 'dotenv/config'
 
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url));
 console.log("__dirname",path.join(__dirname,  "public"));
 mongoose.connect(
-  // 'mongodb://localhost:27017/elbrus',
   `mongodb+srv://Alex:tB9hbppbaKG_vJr@cluster0.5agzc.mongodb.net/elbrus?retryWrites=true&w=majority`,
    {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true});
 
@@ -27,7 +27,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cors())
 app.use(express.static(path.join(__dirname,  "public")));
-
+app.use(express.static(path.join(__dirname,  "client","build")));
 
 app.use('/student',studentRouter)
 app.use('/',authRouter)

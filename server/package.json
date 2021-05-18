@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon"
+    "start": "nodemon",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "type": "module",
   "keywords": [],
@@ -14,6 +15,7 @@
     "bcryptjs": "^2.4.3",
     "config": "^3.3.6",
     "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-validator": "^6.10.1",

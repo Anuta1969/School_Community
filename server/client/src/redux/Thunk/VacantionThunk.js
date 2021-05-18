@@ -1,4 +1,4 @@
-import { addVacantionAC,initVacantionAC,initOneCardAC,editActualVacantionAC } from '../../redux/actionCreators/actionCreatorVacantion';
+import { addVacantionAC,initVacantionAC,initOneCardAC,editActualVacantionAC } from '../actionCreators/actionCreatorVacantion';
 
 export const addVacantion = (organization,vacantionValue,description,salary,id)=>{
   return (dispatch)=>{
