@@ -1,3 +1,6 @@
+.section-student{
+  padding-top: 6%;
+}
 .student-box {
   display: flex;
   justify-content: space-between;
