@@ -6,6 +6,7 @@ import {
   ThunkInitOneVacantion,
   ThunkEditVacantion,
 } from '../../redux/Thunk/VacantionThunk';
+import './Vacantion.css'
 
 function VacantionCardParams() {
   const dispatch = useDispatch();
@@ -27,11 +28,10 @@ function VacantionCardParams() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log('useEffect',actual);
+    console.log('useEffect', actual);
 
     dispatch(ThunkEditVacantion(id, actual));
   }, [actual]);
-
 
   const editHandler = (event) => {
     event.preventDefault();
@@ -41,15 +41,19 @@ function VacantionCardParams() {
 
   return (
     <div>
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">{vacantion?.vacantion}</h5>
-          <p className="card-text">{vacantion?.organization}</p>
-          <p className="card-text">{vacantion?.description}</p>
-          <p className="card-text">{vacantion?.date}</p>
-          <h3>
-            <Link to={`/profile/${vacantion?.userID}`}>
-              {vacantion?.contacts}
+      <div className="">
+        <div className="card_info">
+          <h4 className=" card_text_title">
+            Организация:{vacantion?.organization}
+          </h4>
+          <p className="card-text  card_text">Вакансия: {vacantion?.vacantion}</p>
+          <p className="card-text card_text">Зарплата: {vacantion?.salary}</p>
+
+          <p className="card-text card_text">Описание :{vacantion?.description}</p>
+          <p className="card-text card_text">Дата размещения:{vacantion?.date}</p>
+          <h3 className="card-text card_text">
+            <Link className="card-text card_text" to={`/profile/${vacantion?.userID}`}>
+             Автор: {vacantion?.contacts}
             </Link>
           </h3>
           {idStudent === vacantion?.userID || student.admin ? (

@@ -3,8 +3,7 @@ import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux"
 import {ThunkInitVacantion} from '../../redux/Thunk/VacantionThunk';
 import VacantionCard from './VacantionCard'
-import axios from "axios";
-import Organization from "../Organization/Organization";
+import './Vacantion.css'
 
 function Vacantions(props) {
     const sortInput = useRef()
@@ -31,10 +30,10 @@ function Vacantions(props) {
     }
 
     return (
-        <>
+        <div className='vacantion_container container m-auto justify-content-center d-flex flex-column'>
             <div className="vacantion container d-flex flex-column flex-wrap">
                 <Link to='/vacantionsForm' className="nav-link">
-                    <button>Add Form</button>
+                    <button>Добавить ваканисю</button>
                 </Link>
             </div>
 
@@ -49,10 +48,10 @@ function Vacantions(props) {
 
 
 
-            <div className='container d-flex flex-wrap'>
+            <div className='vacantion container d-flex flex-wrap  m-auto text-center justify-content-between'>
                 {newState?.map(vac => <VacantionCard vacantion={vac} key={vac._id}/>)}
             </div>
-        </>
+        </div>
     );
 }
 
