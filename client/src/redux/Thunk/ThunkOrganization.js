@@ -1,4 +1,4 @@
-import { addCommentAC, addOrganizationAC, initOneOrganizationsAC, initOrganizationsAC } from "../actionCreators/actionCreatorOrganization";
+import { addCommentAC, addOrganizationAC, addOrgVacantionAC, initOneOrganizationsAC, initOrganizationsAC } from "../actionCreators/actionCreatorOrganization";
 
 export const thunkOrgListInit = () => {
   return (dispatch) => {
@@ -19,15 +19,16 @@ export const thunkOrgInit = (id) => {
 };
 
 
-  export const thunkOrgAdd = (organization, comment, rate ) => {
+  export const thunkOrgAdd = (organization, comment, rate, student ) => {
     return (dispatch) => {
         fetch(`${process.env.REACT_APP_URL}/organizations/add`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'Application/json' },
-        body: JSON.stringify({
-          organization: organization,
-          comment: comment,
-          rate: rate
+          method: 'POST',
+          headers: { 'Content-Type': 'Application/json' },
+          body: JSON.stringify({
+            organization: organization,
+            comment: comment,
+            rate: rate,
+            student: student
         }),
       })
         .then((res) => res.json())
@@ -49,7 +50,6 @@ export const thunkOrgInit = (id) => {
           }),
         })
           .then((res) => res.json())
-          // .then((data => console.log(data)))
           .then((data) => dispatch(addCommentAC(data)))
           .catch(err => console.log(err))
       }
@@ -65,3 +65,19 @@ export const thunkOrgInit = (id) => {
         .catch(err => console.log(err))
       }
     }
+
+    // export const thunkOrgVacancysInit = (id) => {
+    //   return (dispatch) => {
+    //     fetch(`${process.env.REACT_APP_URL}/organizations/initOrgVacancy`, {
+    //       method: 'POST',
+    //       headers: { 'Content-Type': 'Application/json' },
+    //       body: JSON.stringify({
+    //         id: id
+    //       }),
+    //     })
+    //     .then((res) => res.json())
+    //     // .then(data => console.log(data))
+    //     .then((data) => dispatch(addOrgVacantionAC(data)))
+    //     .catch(err => console.log(err))
+    //   }
+    // }
