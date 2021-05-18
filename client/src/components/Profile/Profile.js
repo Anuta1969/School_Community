@@ -22,7 +22,7 @@ function Profile(props) {
     
     return (
         student ?
-            <section>
+            <section className="section-student">
                 <div className="container">
                     <div className="student-box">
                         <div className="student-about">
