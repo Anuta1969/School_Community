@@ -4,9 +4,9 @@ function StudentLinck({ student }) {
   return (
     <div className="student-linck">
       {!student.socialGitHab && (
-        <a href="#">
+        <a className="student-linck__item" href="#">
           <img
-            className="student-linck"
+            className="blur student-linck__img"
             src={`${process.env.REACT_APP_URL}/github.png`}
             alt="github"
           />
@@ -15,7 +15,7 @@ function StudentLinck({ student }) {
       {student.socialGitHab && (
         <a href={student.socialGitHab}>
           <img
-            className="student-linck"
+            className="student-linck__img"
             src={`${process.env.REACT_APP_URL}/github.png`}
             alt="github"
           />
@@ -24,7 +24,7 @@ function StudentLinck({ student }) {
       {!student.socialTelegramm &&
       <a href="#">
         <img
-          className="student-linck"
+          className="blur student-linck__img"
           src={`${process.env.REACT_APP_URL}/telegram.png`}
           alt=""
         />
@@ -33,7 +33,7 @@ function StudentLinck({ student }) {
       {student.socialTelegramm &&
       <a href={student.socialTelegramm}>
         <img
-          className="student-linck"
+          className="blur student-linck__img"
           src={`${process.env.REACT_APP_URL}/telegram.png`}
           alt=""
         />
@@ -42,7 +42,7 @@ function StudentLinck({ student }) {
       {!student.phone &&
       <a href="#">
         <img
-          className="student-linck"
+          className="student-linck__img"
           src={`${process.env.REACT_APP_URL}/watapp.png`}
           alt=""
         />
@@ -51,7 +51,7 @@ function StudentLinck({ student }) {
        {student.phone &&
       <a href={`https://wa.me/${student.phone}`}>
         <img
-          className="student-linck"
+          className="student-linck__img"
           src={`${process.env.REACT_APP_URL}/watapp.png`}
           alt=""
         />
@@ -61,7 +61,7 @@ function StudentLinck({ student }) {
       {!student.instagramm &&      
       <a href="#">
         <img
-          className="student-linck"
+          className="blur student-linck__img"
           src={`${process.env.REACT_APP_URL}/insta.png`}
           alt=""
         />
@@ -70,7 +70,7 @@ function StudentLinck({ student }) {
       {student.instagramm &&      
       <a href={student.instagramm}>
         <img
-          className="student-linck"
+          className="student-linck__img"
           src={`${process.env.REACT_APP_URL}/insta.png`}
           alt=""
         />

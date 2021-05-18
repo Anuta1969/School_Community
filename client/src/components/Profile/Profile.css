@@ -1,6 +1,6 @@
 .section-student{
-  padding-top: 6%;
-  height: 100vh;
+  /* padding-top: 6%; */
+  /* height: 100vh; */
 }
 .student-container{
   height: 100%;
@@ -8,7 +8,8 @@
 .student-box {
   display: flex;
   justify-content: space-between;
-  height: 100%;
+  /* height: 100%; */
+  padding: 9% 0 5%;
 }
 
 .student-about {
@@ -16,7 +17,7 @@
   /* padding-top: 10px; */
 }
 .student-form {
-  padding-left: 25px;
+  /* padding-left: 25px; */
   position: relative;
   min-width: 65%;
   max-height: 80%;
@@ -27,8 +28,8 @@
 }
 .student-img {
   background-color: rgb(175, 167, 167);
-  max-width: 430px;
-  max-height: 430px;
+  max-width: 315px;
+  max-height: 315px;
   border-radius: 50%;
 }
 img {
@@ -42,11 +43,11 @@ img {
   /* padding-top: 10px; */
 }
 .student-profile__img{
-  width: 430px;
-  height: 430px;
+  width: 315px;
+  height: 315px;
 }
 .student-add__photo-box{
-  margin-top: 25px;
+  margin-top: 10px;
 }
 .student-add__photo {
   display: flex;
@@ -68,6 +69,7 @@ img {
   /* margin-top: 5px; */
 }
 .student-btn{
+  min-width: 43%;
   padding: 8px;
   border-radius: 5px;
   background-color:rgb(95, 125, 129);
@@ -126,7 +128,7 @@ img {
   overflow: hidden;
   text-overflow: ellipsis;
   /* white-space: nowrap; */
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   border-radius: 8px;
   outline: none;
   font-family: 'Open Sans', sans-serif;
@@ -158,7 +160,7 @@ img {
 
 .react-pdf__Page__canvas {
   height: auto !important;
-  width: 100% !important;
+  width: 80% !important;
   /* margin: 0 auto; */
 }
 .react-pdf__Page__annotations {
@@ -225,18 +227,16 @@ img {
   display: none;
 }
 .resume__without-img{
-  width: 450px;
-  height: 450px;
+  max-width: 450px;
+  max-height: 450px;
+  border-radius: 0;
 }
 .resume__without-text{
   padding-top: 30px;
   font-family: 'Open Sans', sans-serif;
   font-weight:600
 }
-.resume__without-img{
-  border-radius: 0;
 
-}
 .resume-show__add{
   position: absolute;
   top: 0;
@@ -261,16 +261,21 @@ img {
 }
 .save-resume{
   display: flex;
-  margin-top: 8px;
+  margin-top: 16px;
 }
+
+
 
 .student-linck{
   border-radius:0; 
   display: flex;
-  margin-top: 50px;
+  margin-top: 25px;
 }
-.student-linck a img{
+.student-linck__img{
   margin-right: 12px;
   width: 30px;
   height: 30px;
+}
+.blur{
+  filter: blur(1.5px);
 }
