@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+* {
+  user-select: none;
+}
 a {
   text-decoration: none;
   display: inline-block;
@@ -24,6 +27,7 @@ h6 {
 
 .App {
   text-align: center;
+  font-family: sans-serif;
 }
 
 .App-logo {
@@ -50,6 +54,10 @@ h6 {
 
 .App-link {
   color: #61dafb;
+}
+
+.wrap{
+  margin-top: 50px;
 }
 
 @keyframes App-logo-spin {

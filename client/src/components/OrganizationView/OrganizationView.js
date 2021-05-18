@@ -2,26 +2,37 @@ import './OrganizationView.css';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import {useHistory} from 'react-router-dom';
 import { thunkAddComment, thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
 import { ThunkInitVacantion } from '../../redux/Thunk/VacantionThunk';
 import Icon from '@iconify/react';
 import iosStar from '@iconify-icons/ion/ios-star';
 
 
+
 const rating = ['','','','','']  //массив для отрисовки звезд в рейтинге
 
 function OrganizationView() {
 
+  const history = useHistory()
   const dispatch = useDispatch()
   const {id} = useParams()
 
-  const organization = useSelector(state => state.organization).filter(el => el._id === id)[0]
+  // const organization = useSelector(state => state.organization).filter(el => el._id === id)[0]
+  const organizationInitial = useSelector(state => state.organization)
+  const organization = organizationInitial.organization
+  const comments = organizationInitial.comments
+  
   // const activeVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == true)
   // const archiveVacantion = useSelector(state => state.vacantion).filter(el => el.relevance == false)
   const student = useSelector(state => state.student._id)
 
+  
+
+  // const addres = /organizations/org/${organization._id}
   const [activeVacantion, setActiveVacantion] = useState([])
   const [archiveVacantion, setArchiveVacantion] = useState([])
+  // const [comments, setComments] = useState([])
   
   // const activeVacantion = organization.vacantion.filter(el => el.relevance === true)
   // const archiveVacantion = organization.vacantion.filter(el => el.relevance === false)
@@ -33,6 +44,10 @@ function OrganizationView() {
     useEffect( () => {
     setArchiveVacantion( organization?.vacantion.filter(el => el.relevance === false) )
   }, [organization])
+
+  // useEffect( () => {
+  //   setComments( organization?.comment )
+  // }, [organization])
  
   const [showArchiveFlag, setShowArchiveFlag] = useState(false)
   const [showCommentFlag, setShowCommentFlag] = useState(true)
@@ -73,7 +88,7 @@ function OrganizationView() {
       }
     }, [organization])
   
-
+ 
 
   useEffect( () => {
     dispatch( thunkOrgInit(id) )
@@ -82,6 +97,12 @@ function OrganizationView() {
   useEffect( () => {
     dispatch( ThunkInitVacantion() )
   }, [dispatch])
+
+  // useEffect( () => {
+  //   dispatch( ThunkInitComment() )
+  // }, [dispatch])
+
+ 
 
 // обработка добавления отзыва и рейтинга
   const formCommentHandler = (event) => {
@@ -92,9 +113,12 @@ function OrganizationView() {
         newRateInComment,
         student 
         ))
-
+    
     setAddCommentFlag(!addCommentFlag)
+    // history.push(`/organizations/org/${id}`)
+    window.location.href=`/organizations/org/${id}`
   };
+
 
   if (organization) {
     setRateActiveWidth(rate)
@@ -133,28 +157,28 @@ function OrganizationView() {
         </div>
 
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Последний отзыв:&nbsp;{organization?.comment[organization?.comment.length - 1]}
+          <li className="list-group-item">Последний отзыв:&nbsp;{comments?.comment[comments?.comment.length - 1].text}
              <p>  <button onClick={addCommentFunction}> {!addCommentFlag? <h6>оставить отзыв</h6> : <h6>скрыть</h6>  } </button> </p>
 
             {addCommentFlag
               ? <div className="organization container d-flex flex-column">
                 <form method="POST" onSubmit={formCommentHandler}>
-                  
+
                     <p> Оцените организацию {rating.map((el,i) => {
-                          return <Icon 
-                                    name={i} 
-                                    key={i} 
-                                    style={{color: (i+1) <= newRateInComment?"red":"initial"}} 
+                          return <Icon
+                                    name={i}
+                                    key={i}
+                                    style={{color: (i+1) <= newRateInComment?"red":"initial"}}
                                     icon={iosStar} onClick={() => {setNewRateInComment(i+1);}} />
                           })}
-                    </p> 
-          
+                    </p>
+
                     <div className="form-floating">
                       <textarea className="form-control m-3" name="comment" ></textarea>
                       <label className="ms-2" htmlFor="floatingTextarea2">Ваше мнение об организации</label>
                     </div>
-                  
-                    <button type="submit">Добавить</button>  
+
+                    <button type="submit">Добавить</button>
                     </form>
                  </div>
 
@@ -192,8 +216,8 @@ function OrganizationView() {
       {/* блок отрисовки всех комментариев */}
     {showCommentFlag
       ? <div>
-        {organization?.comment
-         ? <div> {organization?.comment.map(el => {return <div key={el}>{`${el}`} Автор отзыва {`${el.author}`}</div> } )}  </div> 
+        {comments?.comment
+         ? <div> {comments?.comment.map(el => {return <div key={el._id}>{`${el.text}`} Автор отзыва {`${el.authorName}`}</div> } )}  </div> 
               
          : <p>Отзывов пока нет</p>
         }

@@ -33,8 +33,10 @@ function Profile(props) {
                                         <StudentAbout key={student._id} id={id} student={student}/>
                                     </ul>
                                 </div>
-                                <StudentAddRusume student={student} id={id}/>
-                                <StudentLinck student={student}/>
+                                <div className="student-add">
+                                  <StudentAddRusume student={student} id={id}/>
+                                  <StudentLinck student={student}/>
+                                </div>
                             </div>
                         </div>
                         <div id="student-form__id" className="student-form">

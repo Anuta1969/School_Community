@@ -1,6 +1,7 @@
 import express from 'express'
 import Comment from '../models/comment.js'
 import Organization from '../models/organization.js'
+import Student from '../models/student.js'
 import Vacantion from '../models/vacantion.js'
 
 
@@ -19,8 +20,13 @@ router
     .get('/org/:id', async (req, res) => {
             const id = req.params.id
             try {
-                const organization = await Organization.findOne({_id: id}).populate({path:'vacantion', model:Vacantion}).populate('Comment');
-                res.json(organization)
+                
+              let organization = await Organization.findOne({_id: id}).populate({path:'vacantion', model:Vacantion})
+               await organization.save()
+              const comments = await Organization.findOne({_id: id}).populate({path:'comment', model:Comment})
+              //  organization = organization.populate({path:'comment', model:Comment})
+               await comments.save()
+                res.json( {organization, comments} )
             } catch (error) {
                 res.send({message: "Server error"})
             }
@@ -44,23 +50,21 @@ router
     .post('/update', async (req, res) => {
       try {
         let {organization, newComment, newRate, student} = req.body
-        let updatedOrg = await Organization.findOne({_id: organization._id})
-
-        await Comment.create({
+        let updatedOrg = await Organization.findOne( {_id: organization._id} )
+        let authorName = await Student.findOne( {_id: student} )
+        
+        const newDBComment = await Comment.create({
           text: newComment,
           author: student,
+          authorName: authorName.name,
           organization: organization._id
         })
-
-        await updatedOrg.comment.push(newComment)
+        
+        await updatedOrg.comment.push(newDBComment._id)
+        await updatedOrg.save()
         await updatedOrg.rate.push(newRate)
         await updatedOrg.save()
-
-        // const newDBComment = 
-       
-
-        // res.status(201).json({newDBComment})
-        res.status(201)
+        res.status(201).json(updatedOrg)
       } catch (error) {
         res.send({message: "Server error"})
       }
