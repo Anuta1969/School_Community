@@ -22,7 +22,9 @@
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "@iconify-icons/ion": "^1.1.2",
+    "@iconify/react": "^1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,9 +49,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@iconify-icons/ion": "^1.1.2",
-    "@iconify/react": "^1.1.4"
   }
+ 
 }
