@@ -43,3 +43,18 @@ export const sideBarUser =[
   'current':false
   }
   ];
+
+
+  export const login = [
+    {
+      "name": "Регистрация",
+      "url": "/registration",
+      'current':true,
+    },
+
+    {
+      "name": "Вход",
+      "url": "/",
+      'current':false},
+    
+  ]
