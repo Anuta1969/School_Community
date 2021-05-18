@@ -5,6 +5,7 @@ import {ThunkInitVacantion} from '../../redux/Thunk/VacantionThunk';
 import VacantionCard from './VacantionCard'
 import axios from "axios";
 import Organization from "../Organization/Organization";
+import './Vacantion.css'
 
 function Vacantions(props) {
     const sortInput = useRef()
@@ -31,7 +32,7 @@ function Vacantions(props) {
     }
 
     return (
-        <>
+        <div className="vacantion-box">
             <div className="vacantion container d-flex flex-column flex-wrap">
                 <Link to='/vacantionsForm' className="nav-link">
                     <button>Add Form</button>
@@ -52,7 +53,7 @@ function Vacantions(props) {
             <div className='container d-flex flex-wrap'>
                 {newState?.map(vac => <VacantionCard vacantion={vac} key={vac._id}/>)}
             </div>
-        </>
+        </div>
     );
 }
 

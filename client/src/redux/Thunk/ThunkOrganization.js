@@ -57,3 +57,19 @@ export const thunkOrgInit = (id) => {
           .catch(err => console.log(err))
       }
     }
+
+    export const thunkOrganizationsList = () => {
+      return (dispatch) => {
+        fetch(`${process.env.REACT_APP_URL}/organizations/initOrganizations`, {
+          // method: 'POST',
+          method: 'GET',
+          // headers: { 'Content-Type': 'Application/json' },
+          // body: JSON.stringify({
+          //   organizations: organizations,
+          // }),
+        })
+        .then((res) => res.json())
+        .then((data) => dispatch(addCommentAC(data)))
+        .catch(err => console.log(err))
+      }
+    }

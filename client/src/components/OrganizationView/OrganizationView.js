@@ -157,7 +157,7 @@ function OrganizationView() {
         </div>
 
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Последний отзыв:&nbsp;{comments?.comment[comments?.comment.length - 1].text}
+          <li className="list-group-item">Последний отзыв:&nbsp;{comments?.comment[comments?.comment.length - 1]?.text}
              <p>  <button onClick={addCommentFunction}> {!addCommentFlag? <h6>оставить отзыв</h6> : <h6>скрыть</h6>  } </button> </p>
 
             {addCommentFlag

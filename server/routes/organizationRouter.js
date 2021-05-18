@@ -22,13 +22,15 @@ router
             try {
                 
               let organization = await Organization.findOne({_id: id}).populate({path:'vacantion', model:Vacantion})
-               await organization.save()
-              const comments = await Organization.findOne({_id: id}).populate({path:'comment', model:Comment})
-              //  organization = organization.populate({path:'comment', model:Comment})
-               await comments.save()
-                res.json( {organization, comments} )
+
+              await organization.save()
+              
+              let comments = await Organization.findOne({_id: id}).populate({path:'comment', model:Comment})
+              await comments.save()
+
+              res.json( {organization, comments} )
             } catch (error) {
-                res.send({message: "Server error"})
+              res.send({message: "Server error"})
             }
         })
 
@@ -64,6 +66,18 @@ router
         await updatedOrg.save()
         await updatedOrg.rate.push(newRate)
         await updatedOrg.save()
+        res.status(201).json(updatedOrg)
+      } catch (error) {
+        res.send({message: "Server error"})
+      }
+    })
+
+    .get('/initOrganizations', async (req, res) => {
+      try {
+        // let {organization} = req.body
+        // let updatedOrg = await Organization.findOne( {_id: organization._id} )
+        let updatedOrg = await Organization.find( )
+        // console.log(updatedOrg);
         res.status(201).json(updatedOrg)
       } catch (error) {
         res.send({message: "Server error"})
