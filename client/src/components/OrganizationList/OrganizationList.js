@@ -2,12 +2,13 @@ import React, {useEffect, useRef, useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Organization from '../Organization/Organization';
 import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
-import { thunkOrgListInit } from '../../redux/Thunk/ThunkOrganization'
+import { thunkOrganizationsList, thunkOrgListInit } from '../../redux/Thunk/ThunkOrganization'
 
 
 function OrganizationList() {
   const sortInput = useRef()
   const organization = useSelector(state => state.organization);
+  const organizations = useSelector(state => state.organizations)
   const dispatch = useDispatch();
   const [newState, setNewState] = useState(null)
 
@@ -16,8 +17,16 @@ function OrganizationList() {
   }, [dispatch])
 
   useEffect(() => {
+    dispatch(thunkOrganizationsList())
+  }, [dispatch])
+
+  useEffect(() => {
     setNewState(() => organization)
   }, [organization])
+
+  useEffect(() => {
+    setNewState(() => organizations)
+  }, [organizations])
 
 
   const sortHandler = (e) => {
@@ -43,7 +52,7 @@ function OrganizationList() {
         </select>
       </div>
     <div className="container d-flex flex-wrap mt-5">
-       { newState?.map((el,i ) => <Organization org={el} ind={i}id={el._id} key={el._id} />) }
+       { newState?.map(( el,i ) => <Organization org={el} ind={i}id={el._id} key={el._id} />) }
     </div>
       </>
   );

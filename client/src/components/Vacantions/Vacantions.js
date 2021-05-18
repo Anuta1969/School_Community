@@ -3,9 +3,8 @@ import {Link, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux"
 import {addVacantion, ThunkInitVacantion} from '../../redux/Thunk/VacantionThunk';
 import VacantionCard from './VacantionCard'
-import axios from "axios";
-import Organization from "../Organization/Organization";
-import VacantionForm from "../VacantionForm/VacantionForm";
+
+
 import './Vacantion.css'
 
 function Vacantions(props) {
@@ -14,7 +13,6 @@ function Vacantions(props) {
     const student = useSelector(state => state.student)
     const id = student._id
     const organization = useRef();
-    // const vacantion = useRef();
     const description = useRef();
     const salary = useRef()
     const vacantion = useSelector(state => state.vacantion)
@@ -51,6 +49,7 @@ function Vacantions(props) {
     }
 
     return (
+
         <>
             {!button &&<button onClick={()=>setButton(!button)} className='btn'>Добавить Вакансию</button>}
             {button && <div className="vacantion container d-flex flex-column text-center">
@@ -82,10 +81,6 @@ function Vacantions(props) {
                     <button  type="submit">Добавить</button>
                 </form>
             </div>}
-
-
-
-
 
             <div className='sort'>
                 Сортировать по:

@@ -30,7 +30,7 @@ function OrganizationAddForm() {
   }
 
   return (
-    <>
+    <div className="organization-box">
         <button onClick={addOrgFunction}><h3>Добавить организацию</h3></button>
     { addOrgFlag? 
       
@@ -62,7 +62,7 @@ function OrganizationAddForm() {
           </form>
           </div>
         : null}
-        </>
+        </div>
   );
 }
 

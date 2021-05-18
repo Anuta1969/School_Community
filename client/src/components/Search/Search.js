@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Search.css'
 import SearchForm from "../SearchForm/SearchForm";
 import SeachList from "../SearchList/SeachList";
 

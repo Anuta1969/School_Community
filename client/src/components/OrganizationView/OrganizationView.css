@@ -55,3 +55,7 @@
   box-sizing: border-box;
   padding: 0px 0px 0px 10px;
 }
+
+.card {
+  word-wrap: unset;
+}
