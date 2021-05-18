@@ -1,24 +1,23 @@
-import React, { useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
-import { ThunkUpdateProfile, } from "../../redux/Thunk/ThunkStudent";
-import {thunkInitStudents} from "../../redux/Thunk/ThunkSearch";
-
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ThunkUpdateProfile } from '../../redux/Thunk/ThunkStudent';
+import { thunkInitStudents } from '../../redux/Thunk/ThunkSearch';
 
 function StudentAbout({ student, id }) {
   const [btnUpdate, setBtnUpdate] = useState(false);
   const dispatch = useDispatch();
-  const [deleteBtnUpdate, setDeleteBtnUpdate ] = useState(true)
+  const [deleteBtnUpdate, setDeleteBtnUpdate] = useState(true);
 
   const btnUpdateHandler = () => {
-    setDeleteBtnUpdate(false)
+    setDeleteBtnUpdate(false);
     setBtnUpdate(true);
   };
   // const id = student?._id;
-  const initialUser = useSelector(state=>state.student)
+  const initialUser = useSelector((state) => state.student);
   // console.log("log-",initialUser, "user-", id);
   const btnFormHandler = (e) => {
     setBtnUpdate(false);
-    setDeleteBtnUpdate(true)
+    setDeleteBtnUpdate(true);
     const {
       name: { value: name },
       lastName: { value: lastName },
@@ -32,12 +31,12 @@ function StudentAbout({ student, id }) {
       socialTelegramm: { value: socialTelegramm },
       socialGitHab: { value: socialGitHab },
       instagramm: { value: instagramm },
-     
+
       placeWork: { value: placeWork },
     } = e.target;
     console.log(group, year);
 
-   dispatch(
+    dispatch(
       ThunkUpdateProfile(
         id,
         name,
@@ -52,15 +51,15 @@ function StudentAbout({ student, id }) {
         socialTelegramm,
         socialGitHab,
         instagramm,
-       
+
         placeWork
       )
     );
   };
-  
+
   // // for download resume
   // const downLoadResumeHandler = () => {
-  //   fetch(`${process.env.REACT_APP_URL}/resume/${student.resume}`, {
+  //   fetch(`/resume/${student.resume}`, {
   //     method: "GET",
   //     headers: {
   //       "Content-Type": "application/pdf",
@@ -87,8 +86,6 @@ function StudentAbout({ student, id }) {
 
   return (
     <>
-     
-
       {!btnUpdate && (
         <>
           <li className="student-about__item">{student?.name}</li>
@@ -146,7 +143,7 @@ function StudentAbout({ student, id }) {
               name="year"
             >
               <option defaultValue={student?.year}>
-                {!student?.year ? "Введите год обучения" : student?.year}
+                {!student?.year ? 'Введите год обучения' : student?.year}
               </option>
               <option value="2019">2019</option>
               <option value="2020">2020</option>
@@ -163,7 +160,7 @@ function StudentAbout({ student, id }) {
               name="group"
             >
               <option defaultValue={student?.group}>
-                {!student?.group ? "Имя группы" : student?.group}
+                {!student?.group ? 'Имя группы' : student?.group}
               </option>
               <option value="Ежи">Ежи</option>
               <option value="Пчелы">Пчелы</option>
@@ -187,7 +184,7 @@ function StudentAbout({ student, id }) {
               name="city"
             >
               <option defaultValue={student?.city}>
-                {!student?.city ? "Город вашего обучения" : student?.city}
+                {!student?.city ? 'Город вашего обучения' : student?.city}
               </option>
               <option value="Москва">Москва</option>
               <option value="Санкт-Петербург">Санкт-Петербург</option>
@@ -240,12 +237,22 @@ function StudentAbout({ student, id }) {
           </form>
         </>
       )}
-      {initialUser._id == id && deleteBtnUpdate && <button className="student-btn student-update__text" onClick={btnUpdateHandler}>
-         Редактировать данные
-      </button>}
-      {initialUser.admin && deleteBtnUpdate &&  <button className="student-btn student-update__text" onClick={btnUpdateHandler}>
-      Редактировать данные
-      </button>}
+      {initialUser._id == id && deleteBtnUpdate && (
+        <button
+          className="student-btn student-update__text"
+          onClick={btnUpdateHandler}
+        >
+          Редактировать данные
+        </button>
+      )}
+      {initialUser.admin && deleteBtnUpdate && (
+        <button
+          className="student-btn student-update__text"
+          onClick={btnUpdateHandler}
+        >
+          Редактировать данные
+        </button>
+      )}
     </>
   );
 }
