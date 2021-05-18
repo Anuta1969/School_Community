@@ -7,8 +7,10 @@ import {thunkInitStudents} from "../../redux/Thunk/ThunkSearch";
 function StudentAbout({ student, id }) {
   const [btnUpdate, setBtnUpdate] = useState(false);
   const dispatch = useDispatch();
-  
+  const [deleteBtnUpdate, setDeleteBtnUpdate ] = useState(true)
+
   const btnUpdateHandler = () => {
+    setDeleteBtnUpdate(false)
     setBtnUpdate(true);
   };
   // const id = student?._id;
@@ -16,6 +18,7 @@ function StudentAbout({ student, id }) {
   // console.log("log-",initialUser, "user-", id);
   const btnFormHandler = (e) => {
     setBtnUpdate(false);
+    setDeleteBtnUpdate(true)
     const {
       name: { value: name },
       lastName: { value: lastName },
@@ -55,42 +58,36 @@ function StudentAbout({ student, id }) {
     );
   };
   
-  // for download resume
-  const downLoadResumeHandler = () => {
-    // console.log("student.resume",student.resume);
-    fetch(`${process.env.REACT_APP_URL}/resume/${student.resume}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/pdf",
-      },
-    })
-      .then((response) => response.blob())
-      .then((blob) => {
-        // Create blob link to download
-        const url = window.URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", `${student.resume}`);
+  // // for download resume
+  // const downLoadResumeHandler = () => {
+  //   fetch(`${process.env.REACT_APP_URL}/resume/${student.resume}`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/pdf",
+  //     },
+  //   })
+  //     .then((response) => response.blob())
+  //     .then((blob) => {
+  //       // Create blob link to download
+  //       const url = window.URL.createObjectURL(new Blob([blob]));
+  //       const link = document.createElement("a");
+  //       link.href = url;
+  //       link.setAttribute("download", `${student.resume}`);
 
-        // Append to html link element page
-        document.body.appendChild(link);
+  //       // Append to html link element page
+  //       document.body.appendChild(link);
 
-        // Start download
-        link.click();
+  //       // Start download
+  //       link.click();
 
-        // Clean up and remove the link
-        link.parentNode.removeChild(link);
-      });
-  };
+  //       // Clean up and remove the link
+  //       link.parentNode.removeChild(link);
+  //     });
+  // };
 
   return (
     <>
-     {initialUser._id == id && <button className="student-update__text" onClick={btnUpdateHandler}>
-        ✎
-      </button>}
-      {initialUser.admin && <button className="student-update__text" onClick={btnUpdateHandler}>
-        ✎
-      </button>}
+     
 
       {!btnUpdate && (
         <>
@@ -108,9 +105,9 @@ function StudentAbout({ student, id }) {
           <li className="student-about__item"> {student?.instagramm}</li> */}
           <li className="student-about__item">{student?.placeWork} </li>
           <li className="student-about__item">
-            <button  onClick={downLoadResumeHandler}>
-              Сохранить резюме
-            </button>
+            {/* <button  onClick={downLoadResumeHandler}>
+              Скачать резюме
+            </button> */}
           </li>
         </>
       )}
@@ -239,10 +236,16 @@ function StudentAbout({ student, id }) {
               defaultValue={student?.placeWork}
             />
 
-            <button className="about-item-btn">Сохранить</button>
+            <button className="about-item-btn student-btn">Сохранить</button>
           </form>
         </>
       )}
+      {initialUser._id == id && deleteBtnUpdate && <button className="student-btn student-update__text" onClick={btnUpdateHandler}>
+         Редактировать данные
+      </button>}
+      {initialUser.admin && deleteBtnUpdate &&  <button className="student-btn student-update__text" onClick={btnUpdateHandler}>
+      Редактировать данные
+      </button>}
     </>
   );
 }
