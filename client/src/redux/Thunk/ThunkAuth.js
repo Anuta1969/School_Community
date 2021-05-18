@@ -4,7 +4,7 @@ import {setUser} from "../actionCreators/actionCreatorAuth";
 export const axiosAuth = () => {
     return (dispatch) => {
         try {
-            axios.get(`${process.env.REACT_APP_URL}/auth`, {
+            axios.get(`/auth`, {
                     headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}})
                 .then((data) => dispatch(setUser(data.data)))
                 .then((data) => localStorage.setItem("token", data.payload.token));
@@ -14,7 +14,7 @@ export const axiosAuth = () => {
 
 export const thunkLogin = (email, password) => {
     return (dispatch) => {
-        axios.post(`${process.env.REACT_APP_URL}/login`,
+        axios.post(`/login`,
             {email, password})
             .then(data => dispatch(setUser(data.data)))
             .then((data) => localStorage.setItem('token', data.payload.token))
@@ -24,7 +24,7 @@ export const thunkLogin = (email, password) => {
 
 export const thunkRegister = (info, e) => {
     return (dispatch) => {
-        fetch(`${process.env.REACT_APP_URL}/registration`, {
+        fetch(`/registration`, {
             method: "POST",
             body: info
         }).then(res => res.json())
