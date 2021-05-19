@@ -33,13 +33,13 @@ function SearchForm(props) {
     return (
         <>
             <div className='searchComponent'>
-                <h3>Поиск студента</h3>
+                <h3 className="search-student">Поиск студента</h3>
                 <div className='searchForm'>
-                    <form onSubmit={SearchHandler} action="">
-                        <input name='name' className='inputSearch' type="text"/>
-                        <input name='lastName' className='inputSearch' type="text"/>
-                        <select name="group" id="searchGroup">
-                            <option value=""></option>
+                    <form className="searchForm-form" onSubmit={SearchHandler} action="">
+                        <input name='name' className='searchForm-item inputSearch' type="text" placeholder="имя"/>
+                        <input name='lastName' className='searchForm-item inputSearch' type="text" placeholder="фамилия"/>
+                        <select name="group" id="searchGroup" className="searchForm-item">
+                            <option value="">группа</option>
                             <option value="Ежи">Ежи</option>
                             <option value="Пчелы">Пчелы</option>
                             <option value="Бобры">Бобры</option>
@@ -56,8 +56,8 @@ function SearchForm(props) {
                             <option value="Орлы">Орлы</option>
                             <option value="Совы">Совы</option>
                         </select>
-                        <select name="year" id="searchYear">
-                            <option value=""></option>
+                        <select name="year" id="searchYear" className="searchForm-item" >
+                            <option value="">год</option>
                             <option value="2019">2019</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -66,8 +66,8 @@ function SearchForm(props) {
                             <option value="2024">2024</option>
                             <option value="2025">2025</option>
                         </select>
-                        <select name="city" id="searchCity">
-                            <option value=""></option>
+                        <select name="city" id="searchCity" className="searchForm-item">
+                            <option value="">город</option>
                             <option value="Москва">Москва</option>
                             <option value="Санкт-Петербург">Санкт-Петербург</option>
                         </select>
