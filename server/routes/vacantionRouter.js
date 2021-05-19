@@ -25,22 +25,31 @@ router
   })
 
   .post('/', async (req, res) => {
+    console.log(req.body);
+  
     try{
       let { vacantion, organization, salary,description, id } = req.body;
-      let dates = Date.now();
-      const searchName = organization.toLowerCase()
-      const organizations = await Organization.find({ findName: searchName });
+     if(vacantion === ""&&organization=== ''){
+       return res.status(400).json({message:'Не заполнены поля,Вакансия и Организация'})
+     }
+        let dates = Date.now();
+        const searchName = organization.toLowerCase()
+        const organizations = await Organization.find({ findName: searchName });
+        const student = await Student.findById(id);
+        const newVacantions = await Vacantion.create({
+          vacantion,
+          organization,
+          description,
+          salary,
+          date: dates,
+          contacts: student.name,
+          userID: student._id,
+        });
+      
       console.log(organizations);
-      const student = await Student.findById(id);
-      const newVacantions = await Vacantion.create({
-        vacantion,
-        organization,
-        description,
-        salary,
-        date: dates,
-        contacts: student.name,
-        userID: student._id,
-      });
+      console.log(newVacantions);
+     
+
       if (organizations.length == 0) {
         await Organization.create({
           name: organization,

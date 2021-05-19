@@ -63,17 +63,20 @@ function Vacantions(props) {
                         name="vacantion"
                         className="form-control text-center"
                         type="text"
-                        placeholder="введите вакансию"/>
+                        placeholder="введите вакансию"
+                        />
                     <input ref={organization}
                            className="form-control text-center"
                            name="organization"
                            type="text"
-                           placeholder="введите организацию"/>
+                           placeholder="введите организацию"
+                           />
                     <input ref={salary}
                            className="form-control text-center"
                            name="salary"
                            type="text"
-                           placeholder="введите зарплату"/>
+                           placeholder="введите зарплату"
+                           />
                     <textarea
                         ref={description}
                         name="description"
@@ -81,7 +84,7 @@ function Vacantions(props) {
                         type="text"
                         placeholder="введите описание"
                         rows="5" cols="15"/>
-                    <button className='addBtnVac' type="submit">Добавить</button>
+                    <button className='addBtnVac'>Добавить</button>
                 </form>
                 </div>
             </div>}
@@ -98,7 +101,7 @@ function Vacantions(props) {
             </div>
 
             <div className='vacantion container d-flex flex-wrap  m-auto text-center justify-content-between'>
-                {newState?.map(vac => <VacantionCard vacantion={vac} key={vac._id}/>)}
+                {newState?.map(vac => <VacantionCard vacantion={vac} key={vac?vac._id:performance.now()}/>)}
             </div>
         </div>
         </div>
