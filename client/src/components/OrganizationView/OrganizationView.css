@@ -32,7 +32,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  color: red
+  color: #ffbc5b;
 }
 
 .ratingItems {
@@ -57,13 +57,7 @@
   padding: 0px 0px 0px 10px;
 }
 
-.card {
-  word-wrap: unset;
-}
 
-.organization_container {
-  margin-top: 120px;
-}
 
 .card_info_org {
   margin: 0 auto;
@@ -76,10 +70,13 @@
   color: grey;
 }
 .paramsOrg{
+  margin: 120px auto;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
   animation: show-oneOrg 1.2s;
+  width: 800px;
 }
 @keyframes show-oneOrg {
   0% {
@@ -93,4 +90,101 @@
     transform: translate3d(0,0,0) scale(1);
 
   }
+}
+.cardOrgBody{
+  width: 600px;
+}
+.linkToVac{
+  margin: 10px auto;
+  font-size: 20px;
+}
+.btnBlockOrg{
+  width: 400px;
+  margin: 15px auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+.card-linkBtn{
+  width: 130px;
+  background-color: #ffbc5b;
+  border-radius: 10px;
+}
+.blockForAll{
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: #8ab93f;
+}
+.blockForVacancy{
+background-color: #5f3fb9;
+  margin: 20px 30px;
+  animation:show-vacArhive 0.9s ;
+}
+.blockForComment{
+  background-color: #4c4c4c;
+  margin: 20px 30px;
+  animation:show-hideReview 0.9s ;
+}
+.h3Org{
+  font-size: 20px;
+  animation:show-vacArhive 0.9s ;
+
+}
+
+@keyframes show-vacArhive {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px)
+    /*transform: translate3d(0,0,-500px) scale(0);*/
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+    /*transform: translate3d(0,0,0) scale(1);*/
+
+  }
+}
+
+@keyframes show-hideReview {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px)
+    /*transform: translate3d(0,0,-500px) scale(0);*/
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px)
+    /*transform: translate3d(0,0,0) scale(1);*/
+
+  }
+}
+.orgReviewCont{
+  width: 450px;
+  animation:show-reviewBlock 0.9s ;
+}
+@keyframes show-reviewBlock {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px)
+    /*transform: translate3d(0,0,-500px) scale(0);*/
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+    /*transform: translate3d(0,0,0) scale(1);*/
+
+  }
+}
+.lastReview{
+  margin: 10px auto;
+}
+.addReview{
+  width: 130px;
+  background: #ffbc5b;
+  border-radius: 10px;
 }
