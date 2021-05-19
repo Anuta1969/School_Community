@@ -15,7 +15,7 @@ import commentRouter from './routes/commentRouter.js'
 import {} from 'dotenv/config'
 
 const app = express()
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url))
 console.log("__dirname",path.join(__dirname,  "public"));
 mongoose.connect(
   `mongodb+srv://Alex:tB9hbppbaKG_vJr@cluster0.5agzc.mongodb.net/elbrus?retryWrites=true&w=majority`,
