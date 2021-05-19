@@ -19,10 +19,12 @@ function OrganizationView() {
   const [showCommentFlag, setShowCommentFlag] = useState(true)
   const [addCommentFlag, setAddCommentFlag] = useState(false)
   const [newRateInComment, setNewRateInComment] = useState(0)
+
   // инициализация организации
   useEffect( () => {
     dispatch( thunkOrgInit(id) )
   }, [dispatch])
+  
   // фильтр для активных вакансий
   useEffect( () => {
     setActiveVacantion( vacancy?.filter(el => el.relevance === true) )
