@@ -23,6 +23,7 @@ function SearchList(props) {
     const searchWotchHandler=()=>{
       setNumber(number+8)
       setFilter(filter+8)
+      
     }
 
     return (
