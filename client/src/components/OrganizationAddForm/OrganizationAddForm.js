@@ -9,12 +9,9 @@ const rating = ['','','','','']
 function OrganizationAddForm() {
 
   const student = useSelector(state => state.student._id)
-  
   const dispatch = useDispatch();
-
   const [addOrgFlag, setaddOrgFlag] = useState(false)
   const [rate, setRate] = useState(0)
-  const [button , setButton] = useState(false)
 
   const formHandler = (event) => {
     event.preventDefault();
@@ -22,21 +19,17 @@ function OrganizationAddForm() {
         event.target.organization.value, 
         event.target.comment.value, 
         rate,
-        student
+        student,
+        event
         ))
       event.target.reset()
       setaddOrgFlag(!addOrgFlag)
-  };
-
-  // const addOrgFunction = (event) => {
-  //   event.preventDefault()
-  //   setaddOrgFlag(!addOrgFlag)
-  // }
+  }
 
   return (
     <div className="organization-box">
-      {!button && <button onClick={()=>setButton(!button)}><h3>Добавить организацию</h3></button>}
-    { button?
+      {!addOrgFlag && <button onClick={()=>setaddOrgFlag(!addOrgFlag)}><h3>Добавить организацию</h3></button>}
+    { addOrgFlag?
 
     <div className="organization container d-flex flex-column">
       <form method="POST" onSubmit={formHandler}>
@@ -46,6 +39,7 @@ function OrganizationAddForm() {
             className="form-control m-3"
             type="text"
             placeholder="название организации"
+            required={true}
           />
 
            <p> Оцените организацию {rating.map((el,i) => {

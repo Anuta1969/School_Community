@@ -3,6 +3,7 @@ import {ADD_VACANTION, INIT_VACANTION, INIT_ONE_VACANTION,EDIT_ACTUAL_VACANTION,
 const vacantionReducer = (state = [], action) => {
     switch (action.type) {
         case INIT_VACANTION:
+     
             return action.payload
 
         case ADD_VACANTION:
