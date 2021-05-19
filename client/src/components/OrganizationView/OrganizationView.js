@@ -24,13 +24,13 @@ function OrganizationView() {
   useEffect( () => {
     dispatch( thunkOrgInit(id) )
   }, [dispatch])
-  
+
   // фильтр для активных вакансий
   useEffect( () => {
     setActiveVacantion( vacancy?.filter(el => el.relevance === true) )
     setArchiveVacantion( vacancy?.filter(el => el.relevance === false) )
     if (organizationInitial.rate && organizationInitial.rate.length) {
-      const currentRating = ( organizationInitial?.rate.reduce( (a, b) =>  (a + b) ) / organizationInitial?.rate.length  )
+      const currentRating = ( organizationInitial?.rate.reduce( (a, b) =>  (a + b) ) / organizationInitial?.rate.length)
       setRateActiveWidth(currentRating)
     } else {
       setRateActiveWidth(0)
