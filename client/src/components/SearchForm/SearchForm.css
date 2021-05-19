@@ -27,3 +27,19 @@ width: 150px;
     font-weight: 500;
     font-size: 15px;
 }
+.searchForm-item{
+  margin-right: 5px;
+  border-radius: 5px;
+  outline: none;
+}
+.searchForm-form{
+  padding: 37px;
+  border: 1px solid #e4e6a1a6;
+  border-radius: 8px;
+  background-color: #d6dae0eb;
+}
+.search-student{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+}

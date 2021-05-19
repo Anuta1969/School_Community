@@ -11,8 +11,17 @@ export const addVacantion = (organization,vacantionValue,description,salary,id)=
         description:description,
         salary:salary,
         id:id})})
-      .then((res) => res.json())
-      .then((data) => dispatch(addVacantionAC(data.newVacantions) ))
+      .then((res) => res.json())     
+      .then((data) => {
+        if(data.message){
+          alert(data.message)
+        }
+
+        else{
+
+          return dispatch(addVacantionAC(data.newVacantions))
+        }
+      })
       .catch(err => console.log(err))
   }
 }
@@ -51,4 +60,4 @@ export const ThunkEditVacantion = (id,relevance)=>{
   }
 }
 
-// dispatch(editActualVacantionAC(data.actualVacantion) )
+
