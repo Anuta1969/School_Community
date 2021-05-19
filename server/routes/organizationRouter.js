@@ -10,7 +10,7 @@ const router = express.Router()
 router
     .get('/', async (req, res) => {
             try {
-                const organization = await Organization.find().populate({path:'vacantion', model:Vacantion})
+                const organization = await Organization.find().populate({path:'vacantion', model:Vacantion}).populate('comment')
                 return res.json(organization)
             } catch (e) {
                 res.send({message: "Server error"})

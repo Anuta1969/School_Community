@@ -55,16 +55,16 @@ export const thunkOrgInit = (id) => {
       }
     }
 
-    export const thunkOrganizationsList = () => {
-      return (dispatch) => {
-        fetch(`${process.env.REACT_APP_URL}/organizations/initOrganizations`, {
-          method: 'GET',
-        })
-        .then((res) => res.json())
-        .then((data) => dispatch(addCommentAC(data)))
-        .catch(err => console.log(err))
-      }
-    }
+    // export const thunkOrganizationsList = () => {
+    //   return (dispatch) => {
+    //     fetch(`${process.env.REACT_APP_URL}/organizations/initOrganizations`, {
+    //       method: 'GET',
+    //     })
+    //     .then((res) => res.json())
+    //     .then((data) => dispatch(addCommentAC(data)))
+    //     .catch(err => console.log(err))
+    //   }
+    // }
 
     // export const thunkOrgVacancysInit = (id) => {
     //   return (dispatch) => {

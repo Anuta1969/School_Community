@@ -31,23 +31,17 @@ function OrganizationView() {
   // фильтр для активных вакансий
   useEffect( () => {
     setActiveVacantion( organization?.vacantion.filter(el => el.relevance === true) )
-  }, [organization])
-  
-  // фильтр для архивных вакансий
-  useEffect( () => {
     setArchiveVacantion( organization?.vacantion.filter(el => el.relevance === false) )
-  }, [organization])
-  
-  // рассчет среднего рейтинга
-  useEffect( () => {
-      if (organization?.rate.length !== 0) {
-        const currentRating = ( organization?.rate.reduce( (a, b) =>  (a + b) ) / organization?.rate.length  )
-        setRateActiveWidth(currentRating)
-      } else {
-        setRateActiveWidth(0)
-      }
-    }, [organization])
 
+    if (organization?.rate.length !== 0) {
+      const currentRating = ( organization?.rate.reduce( (a, b) =>  (a + b) ) / organization?.rate.length  )
+      setRateActiveWidth(currentRating)
+    } else {
+      setRateActiveWidth(0)
+    }
+
+  }, [organization, dispatch])
+  
   // обработка флага для показа архивных вакансий
   const showArchiveFunction = (event) => {
     event.preventDefault()
@@ -172,7 +166,7 @@ function OrganizationView() {
           : null}
      </div>
     </>
-  );
+  )
 }
 
 export default OrganizationView;

@@ -4,22 +4,19 @@ import './Org.css'
 
 function Organization({ org, ind, vacantion }) {
  
-  const [rate, setRate] = useState(org.rate)
-  const actualVacantion = vacantion.filter(el => el?.organization.toLowerCase() == org.findName)
+  // const actualVacantion = vacantion.filter(el => el?.organization.toLowerCase() == org.findName)
   const selector = '.org' + ind + '.ratingActive'
+  const actualVacantion = org.vacantion
+  console.log(actualVacantion);
   
   useEffect( () => {
     if (org.rate.length !== 0) {
       const currentRating = ( org.rate.reduce( (a, b) =>  (a + b) ) / org?.rate.length  )
-      setRate( currentRating )
+      setRateActiveWidth(currentRating)
     } else {
-      setRate(0)
+      setRateActiveWidth(0)
     }
   }, [org.rate])
-  
-  useEffect(() => {
-    setRateActiveWidth(rate)
-  }, [rate])
   
   function setRateActiveWidth(rate) {
     let ratingActive = document.querySelector(selector)
@@ -51,7 +48,7 @@ function Organization({ org, ind, vacantion }) {
                       </div>
                   </div>
                 <p className="card-text">
-                  {/* Последний отзыв: {org?.comment[org?.comment.length - 1]} */}
+                  Последний отзыв: {org?.comment[org?.comment.length - 1].text}
                   </p>
               </div>
               <div className="card-footer">
