@@ -38,7 +38,7 @@ const classHandlerUser = (name)=>{
                         {admin && activeclass.map(el=>{
                           return (
                             <li className="nav-item">
-                              <Link onClick={()=>classHandler(el.name)} to={el.url}
+                              <Link onClick={()=>classHandler(el.name)} to={el.name==='Профиль'?`${el.url}/${student._id}`:el.url}
                               className={`nav-link  ${el.current?'active':''}`}>{el.name}</Link></li>
                           )
                         })}
@@ -64,7 +64,7 @@ const classHandlerUser = (name)=>{
                         {isAuth && activeclassUser.map(el=>{
                           return (
                             <li className="nav-item"><Link onClick={()=>classHandlerUser(el.name)}
-                            to={el.name==='Профиль'?el.url+student._id:el.url}
+                            to={el.name==='Профиль'?`${el.url}/${student._id}`:el.url}
                             className={`nav-link  ${el.current?'active':''}`}>{el.name}</Link></li>)
                         })}
                         </div>

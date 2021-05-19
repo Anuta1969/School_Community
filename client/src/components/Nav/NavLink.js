@@ -3,21 +3,25 @@
 export const sideBarAdmin =[
 {"name": "Заявки",
 "url": "/adminList",
-'current':true},
+"current":true},
+
+{"name": "Профиль",
+  "url": "/profile",
+  "current":false},
 {
   "name": "Вакансии",
 "url": "/vacantions",
-'current':false
+"current":false
 },
 {
   "name": "Поиск",
 "url": "/search",
-'current':false
+"current":false
 },
 {
   "name": "Организации",
 "url": "/organizations",
-'current':false
+"current":false
 }
 ];
 
@@ -26,21 +30,21 @@ export const sideBarAdmin =[
 export const sideBarUser =[
   {"name": "Профиль",
   "url": "/profile",
-  'current':true},
+  "current":true},
   {
     "name": "Вакансии",
   "url": "/vacantions",
-  'current':false
+  "current":false
   },
   {
     "name": "Поиск",
   "url": "/search",
-  'current':false
+  "current":false
   },
   {
     "name": "Организации",
   "url": "/organizations",
-  'current':false
+  "current":false
   }
   ];
 
@@ -49,12 +53,12 @@ export const sideBarUser =[
     {
       "name": "Регистрация",
       "url": "/registration",
-      'current':true,
+      "current":false
     },
 
     {
       "name": "Вход",
       "url": "/",
-      'current':false},
+      "current":true},
     
   ]
