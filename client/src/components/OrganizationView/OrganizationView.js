@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import { thunkAddComment, thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
 import Icon from '@iconify/react';
 import iosStar from '@iconify-icons/ion/ios-star';
+import Comment from '../Сomment/Comment';
 
 const rating = ['','','','','']  //массив для отрисовки звезд в рейтинге
 
@@ -141,12 +142,12 @@ function OrganizationView() {
           :null}
                                                           {/* блок отрисовки всех комментариев */}
         {
-          showCommentFlag ? <div>
-                            {
-                            comments? <div> {comments?.map(el => {return <div key={el._id}>{`${el.text}`} Автор: <a href={`/profile/${el.author}`} > {`${el.authorName}` }</a></div> } )}  </div>
-                            : <p>Отзывов пока нет</p>
-                            }
-                          </div>
+          showCommentFlag ? <div> {
+                            
+                            comments? <div> {comments?.map(el =>  <Comment key={el._id} comment={el}/> ) } </div> 
+                                     : <p>Отзывов пока нет</p>
+                            
+        }</div>
                         : null}
         </div>
      </div>
