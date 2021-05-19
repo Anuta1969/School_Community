@@ -12,7 +12,8 @@ export const addVacantion = (organization,vacantionValue,description,salary,id)=
         salary:salary,
         id:id})})
       .then((res) => res.json())     
-      .then((data) => {
+      .then((data) =>
+       {
         if(data.message){
           alert(data.message)
         }

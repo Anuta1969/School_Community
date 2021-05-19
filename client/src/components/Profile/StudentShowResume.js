@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack'
 import { useSelector } from "react-redux";
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 
@@ -27,16 +28,29 @@ function ProfileShowResume({student}) {
       setPageNumber(numPages)
     }
   }
-
+  const AdminResume = useSelector((state)=>state.search.all).filter(student => student.admin === true)[0].resume
+ 
+console.log("залогинился initialUser",initialUser._id, initialUser);
+console.log("зашли к student", student._id, student);
+// console.log("зашел  к",idAdmin);
   return (
     <div className="resume-show">
+      {/* Для студента который инициализировался */}
       {!initialUser.resume  &&
       <div id="student-form__id" className="resume__without">
           <img className="resume__without-img" src={`${process.env.REACT_APP_URL}/klipartz.com.png`} alt="resume" />
           <h3 className="resume__without-text">Загрузите резюме</h3>
       </div>
       }
-      { initialUser.admin  &&
+      {/* Для  студента к которому зашли */}
+      { !student.resume  &&
+      <div id="student-form__id" className="resume__without">
+          <img className="resume__without-img" src={`${process.env.REACT_APP_URL}/klipartz.com.png`} alt="resume" />
+          <h3 className="resume__without-text">Загрузите резюме</h3>
+      </div>
+      }
+      {/* Для админа */}
+      { !AdminResume  &&
       <div id="student-form__id" className="resume__without">
           <img className="resume__without-img" src={`${process.env.REACT_APP_URL}/klipartz.com.png`} alt="resume" />
           <h3 className="resume__without-text">Загрузите резюме</h3>
