@@ -27,7 +27,7 @@ function OrganizationView() {
   useEffect( () => {
     setActiveVacantion( vacancy?.filter(el => el.relevance === true) )
     setArchiveVacantion( vacancy?.filter(el => el.relevance === false) )
-    if (organizationInitial.rate) {
+    if (organizationInitial.rate && organizationInitial.rate.length) {
       const currentRating = ( organizationInitial?.rate.reduce( (a, b) =>  (a + b) ) / organizationInitial?.rate.length  )
       setRateActiveWidth(currentRating)
     } else {
@@ -92,7 +92,7 @@ function OrganizationView() {
         </div>
                                    {/* блок отзывов */}
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Последний отзыв:&nbsp;{comments? comments[comments.length - 1].text : 'отзывов пока нет'}
+          <li className="list-group-item">Последний отзыв:&nbsp;{comments? comments[comments.length - 1]?.text : 'отзывов пока нет'}
              <p>  <button onClick={addCommentFunction}> {!addCommentFlag? <h6>оставить отзыв</h6> : <h6>скрыть</h6>  } </button> </p>
             {addCommentFlag
               ? <div className="organization container d-flex flex-column">
