@@ -123,9 +123,68 @@
 .blockForVacancy{
 background-color: #5f3fb9;
   margin: 20px 30px;
+  animation:show-vacArhive 0.9s ;
 }
 .blockForComment{
   background-color: #4c4c4c;
   margin: 20px 30px;
+  animation:show-hideReview 0.9s ;
+}
+.h3Org{
+  font-size: 20px;
+  animation:show-vacArhive 0.9s ;
 
+}
+
+@keyframes show-vacArhive {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px)
+    /*transform: translate3d(0,0,-500px) scale(0);*/
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+    /*transform: translate3d(0,0,0) scale(1);*/
+
+  }
+}
+
+@keyframes show-hideReview {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px)
+    /*transform: translate3d(0,0,-500px) scale(0);*/
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px)
+    /*transform: translate3d(0,0,0) scale(1);*/
+
+  }
+}
+.orgReviewCont{
+  width: 450px;
+  animation:show-reviewBlock 0.9s ;
+}
+@keyframes show-reviewBlock {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px)
+    /*transform: translate3d(0,0,-500px) scale(0);*/
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+    /*transform: translate3d(0,0,0) scale(1);*/
+
+  }
+}
+.lastReview{
+  margin: 10px auto;
+}
+.addReview{
+  width: 130px;
+  background: #ffbc5b;
+  border-radius: 10px;
 }

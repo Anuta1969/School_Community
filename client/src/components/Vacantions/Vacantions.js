@@ -51,7 +51,7 @@ function Vacantions(props) {
 
     return (
 
-        <div className='vacantion_container container m-auto justify-content-center d-flex flex-column'>
+        <div className=' vacantion_container container m-auto justify-content-center d-flex flex-column'>
 
            <div className='formAddVac'>
            {!button &&<button onClick={()=>setButton(!button)} className='btnAddVac vacantion_container'>Добавить Вакансию</button>}

@@ -1,7 +1,7 @@
 
 .vacantion_container{
   margin-top: 120px;
-    animation: show-loader 1.2s forwards;
+    animation: show-vacancy 1.2s forwards;
 
 }
 .btnAddVac{
@@ -76,7 +76,7 @@
   font-size: 22px;
 }
 
-.card_info{
+.cardVacancy{
   background-color: #5f3fb9;
 
     animation: show-vacancy 1.2s forwards;
@@ -95,84 +95,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: show-addVacancy 1.2s forwards;
+
 }
 
-
+@keyframes show-addVacancy {
+    0% {
+        opacity: 0;
+        transform: translateY(-200px)
+        /*transform: translate3d(0,0,-500px) scale(0);*/
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        /*transform: translate3d(0,0,0) scale(1);*/
+    }
+}
 
 @keyframes show-vacancy {
     0% {
         opacity: 0;
-        /*transform: translateY(-200px)*/
-        transform: translate3d(0,0,-500px) scale(0);
+        transform: translateY(-200px)
+        /*transform: translate3d(0,0,-500px) scale(0);*/
     }
     100% {
         opacity: 1;
-        /*transform: translateY(0);*/
-        transform: translate3d(0,0,0) scale(1);
+        transform: translateY(0);
+        /*transform: translate3d(0,0,0) scale(1);*/
     }
 }
 
 .vacantion-box{
   padding-top: 6%;
 }
-.h3Org{
-    font-size: 20px;
-}
-.lastReview{
-    margin: 10px auto;
-}
-.addReview{
-    width: 130px;
-    background: #ffbc5b;
-    border-radius: 10px;
-}
-.orgReviewCont{
-    width: 450px;
-    animation:show-reviewBlock 0.9s ;
-}
-@keyframes show-reviewBlock {
-    0% {
-        opacity: 0;
-        transform: translateY(-10px)
-        /*transform: translate3d(0,0,-500px) scale(0);*/
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0)
-        /*transform: translate3d(0,0,0) scale(1);*/
 
-    }
-}
-.blockForVacancy{
-    animation:show-vacArhive 0.9s ;
-}
-@keyframes show-vacArhive {
-    0% {
-        opacity: 0;
-        transform: translateY(-100px)
-        /*transform: translate3d(0,0,-500px) scale(0);*/
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0)
-        /*transform: translate3d(0,0,0) scale(1);*/
 
-    }
-}
-.blockForComment{
-    animation:show-hideReview 0.9s ;
-
-}
-@keyframes show-hideReview {
-    0% {
-        opacity: 0;
-        transform: translateY(-100px)
-        /*transform: translate3d(0,0,-500px) scale(0);*/
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0)
-        /*transform: translate3d(0,0,0) scale(1);*/
-
-    }
-}
