@@ -11,9 +11,10 @@ function OrganizationAddForm() {
   const student = useSelector(state => state.student._id)
   
   const dispatch = useDispatch();
-  
+
   const [addOrgFlag, setaddOrgFlag] = useState(false)
   const [rate, setRate] = useState(0)
+  const [button , setButton] = useState(false)
 
   const formHandler = (event) => {
     event.preventDefault();
@@ -27,19 +28,19 @@ function OrganizationAddForm() {
       setaddOrgFlag(!addOrgFlag)
   };
 
-  const addOrgFunction = (event) => {
-    event.preventDefault()
-    setaddOrgFlag(!addOrgFlag)
-  }
+  // const addOrgFunction = (event) => {
+  //   event.preventDefault()
+  //   setaddOrgFlag(!addOrgFlag)
+  // }
 
   return (
     <div className="organization-box">
-        <button onClick={addOrgFunction}><h3>Добавить организацию</h3></button>
-    { addOrgFlag? 
-      
+      {!button && <button onClick={()=>setButton(!button)}><h3>Добавить организацию</h3></button>}
+    { button?
+
     <div className="organization container d-flex flex-column">
       <form method="POST" onSubmit={formHandler}>
-        
+
           <input
             name="organization"
             className="form-control m-3"
@@ -48,20 +49,20 @@ function OrganizationAddForm() {
           />
 
            <p> Оцените организацию {rating.map((el,i) => {
-                return <Icon 
-                          name={i} 
-                          key={i} 
-                          style={{color: (i+1) <= rate?"red":"initial"}} 
+                return <Icon
+                          name={i}
+                          key={i}
+                          style={{color: (i+1) <= rate?"red":"initial"}}
                           icon={iosStar} onClick={() => {setRate(i+1)}} />
                  })}
-          </p> 
+          </p>
 
           <div className="form-floating">
             <textarea className="form-control m-3" name="comment" ></textarea>
             <label className="ms-2" htmlFor="floatingTextarea2">Ваше мнение об организации</label>
           </div>
-        
-          <button type="submit">Добавить</button>  
+
+          <button type="submit">Добавить</button>
           </form>
           </div>
         : null}

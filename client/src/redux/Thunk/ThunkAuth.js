@@ -33,12 +33,14 @@ export const thunkRegister = (info, e) => {
                 if (data.student) {
                     alert(data.message)
                     e.target.reset()
-                } else {
-                    alert(data.errors.errors[0].msg)
-                    e.target.reset()
                 }
+
+                // else {
+                //     alert(data.errors.errors[0].msg)
+                //     e.target.reset()
+                // }
             })
-            .catch((error) => alert(`status: ${error.response.status} , ${error.response.data.message}`))
+            // .catch((error) => alert(`status: ${error.response.status} , ${error.response.data.message}`))
     }
 }
 

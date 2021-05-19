@@ -37,11 +37,11 @@
     flex-direction: column;
     background: rgba(255,255,255,0.5);
     width: 400px;
-    height: 300px;
+    height: 500px;
     /* margin: 40px auto; */
     /*border-radius: 15px;*/
     position: fixed;
-    margin-top: 35%;
+    margin-top: 900px;
     border-top-left-radius:  60px;
     border-bottom-right-radius: 60px;
     border-bottom-left-radius: 15px;
@@ -66,19 +66,63 @@
     margin: 5px auto;
     height: 30px;
     outline:none;
+    padding-left: 10px;
+
 }
+.regCity{
+    width: 250px;
+    border-top-left-radius:  20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: 5px auto;
+    height: 30px;
+    outline:none;
+    font-weight: 100;
+    color: grey;
+    padding-left: 60px;
+}
+.regGroup{
+    width: 250px;
+    border-top-left-radius:  20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: 5px auto;
+    height: 30px;
+    outline:none;
+    font-weight: 100;
+    color: grey;
+    padding-left: 60px;
+}
+
+.regYear{
+    width: 250px;
+    border-top-left-radius:  20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: 5px auto;
+    height: 30px;
+    outline:none;
+    font-weight: 100;
+    color: grey;
+    padding-left: 70px;
+}
+
 .addPhoto {
     border-radius: 5px;
     margin: 5px auto;
     width: 135px;
     border-radius: 10px;
-    /*border-top-left-radius:  5px;*/
-    /*border-bottom-right-radius: 5px;*/
-    /*border-bottom-left-radius: 5px;*/
-    /*border-top-right-radius: 5px;*/
-    padding:7px;
+    border-top-left-radius:  5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 7px;
     width: 143px;
 
+    height: 40px;
 
   display: flex;
   justify-content: center;
@@ -95,23 +139,7 @@
   justify-content: center;
   align-items: center;
 }
-.formRegister {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: rgba(255,255,255,0.5);
-  width: 400px;
-  height: 300px;
-  /* margin: 40px auto; */
-  /*border-radius: 15px;*/
-  position: fixed;
-  margin-top: 35%;
-  border-top-left-radius:  60px;
-  border-bottom-right-radius: 60px;
-  border-bottom-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
+
 .btnRegister {
   width: 150px;
   /*border-radius: 5px;*/
@@ -224,9 +252,6 @@
 ::placeholder{
     text-align: center;
 }
-
-
-
 
 
 

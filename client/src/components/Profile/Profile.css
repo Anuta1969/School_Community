@@ -1,6 +1,20 @@
 .section-student{
   /* padding-top: 6%; */
   /* height: 100vh; */
+  animation: show-profile 1.2s;
+}
+@keyframes show-profile {
+  0% {
+    opacity: 0;
+    transform: translateX(-400px)
+    /*transform: translate3d(+600px,-200px,0);*/
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    /*transform: translate3d(0,0,0);*/
+
+  }
 }
 .student-container{
   height: 100%;
@@ -52,7 +66,7 @@ img {
 .student-add__photo {
   display: flex;
   justify-content: flex-start;
- 
+
 
 }
 
@@ -84,7 +98,7 @@ img {
   max-width: 125px;
   border-radius: 6px;
   color: transparent;
-  
+
 }
 .student-form__photo-input::after {
   background-color:rgb(168, 200, 204);
@@ -95,7 +109,7 @@ img {
 }
 .student-form__photo-input::-webkit-file-upload-button {
   visibility: hidden;
-} 
+}
 .student-form__photo-input::before{
   content: 'Выберите файл';
   color: rgb(78, 62, 62);
@@ -111,7 +125,7 @@ img {
   font-weight: 700;
   font-size: 10pt;
   background-color:rgb(204, 167, 87);
-  
+
 }
 .student-btn__change-foto{
   margin-left: 70px;
@@ -206,7 +220,7 @@ img {
   border-radius: 10px;
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
 }
 .resume__without{
   height: 60%;
@@ -223,7 +237,7 @@ img {
     border-bottom-left-radius: 15px;
 }
 .blockBackground{
-  
+
   display: none;
 }
 .resume__without-img{
@@ -267,7 +281,7 @@ img {
 
 
 .student-linck{
-  border-radius:0; 
+  border-radius:0;
   display: flex;
   margin-top: 25px;
 }

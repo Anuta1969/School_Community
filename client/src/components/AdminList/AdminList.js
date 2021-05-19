@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import RequestStudent from "../RequestStudent/RequestStudent";
 import {thunkAdminList} from "../../redux/Thunk/ThunkAdmin";
+import './AdminList.css'
 
 function AdminList(props) {
     const admin = useSelector(state => state.admin)
