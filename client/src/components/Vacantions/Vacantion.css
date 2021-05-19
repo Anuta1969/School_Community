@@ -7,7 +7,7 @@
 .btnAddVac{
     width: 180px;
     height: 30px;
-    background: #ffbc5b;
+    background: rgb(243 217 99);
     /*margin: 20px;*/
     margin-bottom: 15px;
     border-radius: 10px;
@@ -24,7 +24,7 @@
     margin: 30px auto;
 }
 .addBtnVac{
-    background: #cec658;
+    background: rgb(243 217 99);
     border-radius: 10px;
     margin: 5px auto;
     height: 30px;
@@ -73,10 +73,11 @@
 
 .card_info{
   background-color: #5f3fb9;
+    animation: show-vacancy 1.2s forwards;
+
 }
 
 .vacantion {
-    animation: show-loader 1.2s forwards;
     margin-top: 70px;
     display: flex;
     justify-content: center;
@@ -94,6 +95,18 @@
         opacity: 1;
         transform: translateY(0);
         /*transform: translate3d(0,0,0);*/
+    }
+}
+@keyframes show-vacancy {
+    0% {
+        opacity: 0;
+        /*transform: translateY(-200px)*/
+        transform: translate3d(0,0,-500px) scale(0);
+    }
+    100% {
+        opacity: 1;
+        /*transform: translateY(0);*/
+        transform: translate3d(0,0,0) scale(1);
     }
 }
 

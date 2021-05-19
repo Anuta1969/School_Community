@@ -9,8 +9,7 @@
     align-items: center;
     width: 80%;
     margin: 50px auto 10px;
-    animation: show-students 1s ;
-
+    animation: show-students 1s forwards;
 }
 
 

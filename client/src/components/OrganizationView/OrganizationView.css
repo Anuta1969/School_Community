@@ -32,7 +32,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  color: red
+  color: #ffbc5b;
 }
 
 .ratingItems {
@@ -57,13 +57,7 @@
   padding: 0px 0px 0px 10px;
 }
 
-.card {
-  word-wrap: unset;
-}
 
-.organization_container {
-  margin-top: 120px;
-}
 
 .card_info_org {
   margin: 0 auto;
@@ -76,10 +70,13 @@
   color: grey;
 }
 .paramsOrg{
+  margin: 120px auto;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
   animation: show-oneOrg 1.2s;
+  width: 800px;
 }
 @keyframes show-oneOrg {
   0% {
@@ -93,4 +90,42 @@
     transform: translate3d(0,0,0) scale(1);
 
   }
+}
+.cardOrgBody{
+  width: 600px;
+}
+.linkToVac{
+  margin: 10px auto;
+  font-size: 20px;
+}
+.btnBlockOrg{
+  width: 400px;
+  margin: 15px auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+.card-linkBtn{
+  width: 130px;
+  background-color: #ffbc5b;
+  border-radius: 10px;
+}
+.blockForAll{
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: #8ab93f;
+}
+.blockForVacancy{
+background-color: #5f3fb9;
+  margin: 20px 30px;
+}
+.blockForComment{
+  background-color: #4c4c4c;
+  margin: 20px 30px;
+
 }
