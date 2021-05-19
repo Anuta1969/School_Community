@@ -106,7 +106,7 @@ function OrganizationView() {
                                                 })}
                       </p>
                       <div className="form-floating">
-                        <textarea className="form-control m-3" name="comment" ></textarea>
+                        <textarea className="form-control m-3" name="comment" required={true} ></textarea>
                         <label className="ms-2" htmlFor="floatingTextarea2">Ваше мнение об организации</label>
                       </div>
                       <button type="submit">Добавить</button>
