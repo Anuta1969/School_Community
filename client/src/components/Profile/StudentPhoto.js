@@ -33,7 +33,7 @@ function StudentPhoto({student, id}) {
       </div>
       <div className="student-add__photo-box">
         <div className="student-btn__photo-btn">
-          {!photo && initialUser._id==id && (
+          {!photo && initialUser._id==id && !initialUser.admin &&(
             <button
               onClick={btnPhotoHandler}
               className="student-btn"
@@ -41,7 +41,7 @@ function StudentPhoto({student, id}) {
               Изменить фото
             </button>
           )}
-          { initialUser.admin &&(
+          {!photo && initialUser.admin &&(
             <button
               onClick={btnPhotoHandler}
               className="student-btn "

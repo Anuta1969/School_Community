@@ -30,13 +30,21 @@ function ProfileShowResume({student}) {
 
   return (
     <div className="resume-show">
-      {!initialUser.resume &&
+      {!initialUser.resume  &&
       <div id="student-form__id" className="resume__without">
           <img className="resume__without-img" src={`${process.env.REACT_APP_URL}/klipartz.com.png`} alt="resume" />
           <h3 className="resume__without-text">Загрузите резюме</h3>
       </div>
       }
+      { initialUser.admin  &&
+      <div id="student-form__id" className="resume__without">
+          <img className="resume__without-img" src={`${process.env.REACT_APP_URL}/klipartz.com.png`} alt="resume" />
+          <h3 className="resume__without-text">Загрузите резюме</h3>
+      </div>
+      }
+      
      {initialUser.resume && <div className="resume-show__add">
+       
         <Document
           file={`${process.env.REACT_APP_URL}/resume/${student.resume}`}
           onLoadSuccess={onDocumentLoadSuccess}
