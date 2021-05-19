@@ -67,12 +67,22 @@
   overflow:hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: rgb(243 217 99);
+  color: rgb(243 217 99) !important;
+  font-size: 22px;
+}
+
+.card_text_params{
+  color: rgb(243 217 99) !important;
   font-size: 22px;
 }
 
 .card_info{
   background-color: #5f3fb9;
+  margin:200px auto 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 600px;
 }
 
 .vacantion {
@@ -100,6 +110,4 @@
 .vacantion-box{
   padding-top: 6%;
 }
-.text-center{
-    /*width: 300px;*/
-}
+
