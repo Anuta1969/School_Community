@@ -14,7 +14,7 @@ export const axiosAuth = () => {
 
 export const thunkLogin = (email, password) => {
     return (dispatch) => {
-        axios.post(`/login`,
+        axios.post(`${process.env.REACT_APP_URL}/login`,
             {email, password})
             .then(data => dispatch(setUser(data.data)))
             .then((data) => localStorage.setItem('token', data.payload.token))
@@ -24,7 +24,7 @@ export const thunkLogin = (email, password) => {
 
 export const thunkRegister = (info, e) => {
     return (dispatch) => {
-        fetch(`/registration`, {
+        fetch(`${process.env.REACT_APP_URL}/registration`, {
             method: "POST",
             body: info
         }).then(res => res.json())

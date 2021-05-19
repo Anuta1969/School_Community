@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ThunkAddResumeUser } from '../../redux/Thunk/ThunkStudent';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {ThunkAddResumeUser} from "../../redux/Thunk/ThunkStudent";
 
-function StudentAddRusume({ student, id }) {
+function StudentAddRusume({student,id}) {
   const dispatch = useDispatch();
-  const resumeStudent = student.resume;
+  const resumeStudent= student.resume
   const [resume, setResume] = useState(false);
-  const initialUser = useSelector((state) => state.student);
+  const initialUser = useSelector(state=>state.student)
 
   const saveResumehandler = (e) => {
     e.preventDefault();
@@ -15,30 +15,33 @@ function StudentAddRusume({ student, id }) {
     dispatch(ThunkAddResumeUser(id, dats));
     // document.getElementById('student-form__id').classList.toggle('blockBackground')
   };
-  useEffect(() => {
-    if (resumeStudent) {
+  useEffect(()=>{
+
+    if(resumeStudent){
       // document.getElementById('student-form__id').classList.toggle('blockBackground')
     }
-  }, []);
+
+  },[])
   const addResumeHandler = () => {
     setResume(true);
   };
 
-  // for download resume
+
+    // for download resume
   const downLoadResumeHandler = () => {
-    fetch(`/resume/${student.resume}`, {
-      method: 'GET',
+    fetch(`${process.env.REACT_APP_URL}/resume/${student.resume}`, {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/pdf',
+        "Content-Type": "application/pdf",
       },
     })
       .then((response) => response.blob())
       .then((blob) => {
         // Create blob link to download
         const url = window.URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement('a');
+        const link = document.createElement("a");
         link.href = url;
-        link.setAttribute('download', `${student.resume}`);
+        link.setAttribute("download", `${student.resume}`);
 
         // Append to html link element page
         document.body.appendChild(link);
@@ -51,16 +54,20 @@ function StudentAddRusume({ student, id }) {
       });
   };
 
+
   return (
     <>
       <div className="student-add__resume">
         <div className="student-add__btn">
-          {!resume && initialUser._id == id && (
-            <button onClick={addResumeHandler} className="student-btn">
+          {!resume && initialUser._id == id &&  (
+            <button
+              onClick={addResumeHandler}
+              className="student-btn"
+            >
               Загрузить резюме
             </button>
           )}
-          {!resume && initialUser.admin && (
+          {!resume &&initialUser.admin && (
             <button
               onClick={addResumeHandler}
               className="student-form__photo-btn student-btn"
@@ -78,6 +85,7 @@ function StudentAddRusume({ student, id }) {
             method="post"
           >
             <input
+
               className="student-form__photo-input "
               type="file"
               name="resume"
@@ -88,15 +96,12 @@ function StudentAddRusume({ student, id }) {
           </form>
         )}
         <div className="save-resume">
-          {student.resume && (
-            <button
-              className="student-btn save-resume__btn"
-              onClick={downLoadResumeHandler}
-            >
-              Скачать резюме
-            </button>
-          )}
-        </div>
+        { student.resume && <button  
+          className="student-btn save-resume__btn"
+            onClick={downLoadResumeHandler}>
+                Скачать резюме
+          </button>}
+         </div>
       </div>
     </>
   );
