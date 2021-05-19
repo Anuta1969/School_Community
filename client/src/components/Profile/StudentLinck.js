@@ -13,7 +13,7 @@ function StudentLinck({ student }) {
         </a>
       )}
       {student.socialGitHab && (
-        <a href={student.socialGitHab}>
+        <a href={student.socialGitHab} target="_blank">
           <img
             className="student-linck__img"
             src={`${process.env.REACT_APP_URL}/github.png`}
@@ -31,9 +31,9 @@ function StudentLinck({ student }) {
       </a>
       }
       {student.socialTelegramm &&
-      <a href={student.socialTelegramm}>
+      <a href={student.socialTelegramm} target="_blank">
         <img
-          className="blur student-linck__img"
+          className="student-linck__img"
           src={`${process.env.REACT_APP_URL}/telegram.png`}
           alt=""
         />
@@ -49,7 +49,7 @@ function StudentLinck({ student }) {
       </a>
       }
        {student.phone &&
-      <a href={`https://wa.me/${student.phone}`}>
+      <a href={`https://wa.me/${student.phone}`} target="_blank">
         <img
           className="student-linck__img"
           src={`${process.env.REACT_APP_URL}/watapp.png`}
@@ -68,7 +68,7 @@ function StudentLinck({ student }) {
       </a>
       }
       {student.instagramm &&      
-      <a href={student.instagramm}>
+      <a href={student.instagramm} target="_blank">
         <img
           className="student-linck__img"
           src={`${process.env.REACT_APP_URL}/insta.png`}

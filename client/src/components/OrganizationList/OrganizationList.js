@@ -39,7 +39,7 @@ function OrganizationList() {
       <OrganizationAddForm />
         <div className='sort'>
           Сортировать по:
-          <select onChange={sortHandler} ref={sortInput} className='selectSort'>
+          <select onChange={sortHandler} ref={sortInput} className='selectSort '>
             <option>умолчанию</option>
             <option>увеличению рейтинга</option>
             <option>уменьшению рейтинга</option>
