@@ -19,16 +19,18 @@ function OrganizationView() {
   const [showCommentFlag, setShowCommentFlag] = useState(true)
   const [addCommentFlag, setAddCommentFlag] = useState(false)
   const [newRateInComment, setNewRateInComment] = useState(0)
+
   // инициализация организации
   useEffect( () => {
     dispatch( thunkOrgInit(id) )
   }, [dispatch])
+
   // фильтр для активных вакансий
   useEffect( () => {
     setActiveVacantion( vacancy?.filter(el => el.relevance === true) )
     setArchiveVacantion( vacancy?.filter(el => el.relevance === false) )
-    if (organizationInitial.rate) {
-      const currentRating = ( organizationInitial?.rate.reduce( (a, b) =>  (a + b) ) / organizationInitial?.rate.length  )
+    if (organizationInitial.rate && organizationInitial.rate.length) {
+      const currentRating = ( organizationInitial?.rate.reduce( (a, b) =>  (a + b) ) / organizationInitial?.rate.length)
       setRateActiveWidth(currentRating)
     } else {
       setRateActiveWidth(0)
@@ -92,7 +94,7 @@ function OrganizationView() {
         </div>
                                    {/* блок отзывов */}
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Последний отзыв:&nbsp;{comments? comments[comments.length - 1].text : 'отзывов пока нет'}
+          <li className="list-group-item">Последний отзыв:&nbsp;{comments? comments[comments.length - 1]?.text : 'отзывов пока нет'}
              <p>  <button onClick={addCommentFunction}> {!addCommentFlag? <h6>оставить отзыв</h6> : <h6>скрыть</h6>  } </button> </p>
             {addCommentFlag
               ? <div className="organization container d-flex flex-column">
