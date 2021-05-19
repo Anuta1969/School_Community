@@ -55,10 +55,10 @@ function OrganizationView() {
   const formCommentHandler = (event) => {
     event.preventDefault();
       dispatch( thunkAddComment(
-        organizationInitial, 
-        event.target.comment.value, 
+        organizationInitial,
+        event.target.comment.value,
         newRateInComment,
-        student 
+        student
         ))
     setAddCommentFlag(!addCommentFlag)
     window.location.href=`/organizations/org/${id}`
@@ -73,6 +73,7 @@ function OrganizationView() {
   return (
     <>
       <div className="organization_container container justify-content-center text-center">
+        <div className='paramsOrg'>
         <div className="card_info">
           <h3 className="card-title card_text_title">{organizationInitial?.name}</h3>
           <div className="card_text">Текущий рейтинг:&nbsp;
@@ -123,9 +124,9 @@ function OrganizationView() {
         <div className="">
           <button onClick={showArchiveFunction} className="card-link">Архив вакансий</button>
           {
-           showCommentFlag 
-            ? <button onClick={showCommentFunction} className="card-link">Скрыть отзывы</button> 
-            : <button onClick={showCommentFunction} className="card-link">Показать отзывы</button> 
+           showCommentFlag
+            ? <button onClick={showCommentFunction} className="card-link">Скрыть отзывы</button>
+            : <button onClick={showCommentFunction} className="card-link">Показать отзывы</button>
           }
         </div>
                                                    {/* блок орисовки архивных вакансий */}
@@ -141,11 +142,12 @@ function OrganizationView() {
         {
           showCommentFlag ? <div>
                             {
-                            comments? <div> {comments?.map(el => {return <div key={el._id}>{`${el.text}`} Автор отзыва {`${el.authorName}`}</div> } )}  </div> 
+                            comments? <div> {comments?.map(el => {return <div key={el._id}>{`${el.text}`} Автор отзыва {`${el.authorName}`}</div> } )}  </div>
                             : <p>Отзывов пока нет</p>
                             }
                           </div>
                         : null}
+        </div>
      </div>
     </>
   )

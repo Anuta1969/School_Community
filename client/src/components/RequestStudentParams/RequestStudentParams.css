@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    animation: show-card 1.2s;
+    animation: show-card 0.5s;
 
 }
 .paramsImg{
@@ -50,13 +50,13 @@ margin: 5px 10px;
 @keyframes show-card {
     0% {
         opacity: 0;
-        transform: translateX(-400px)
-        /*transform: translate3d(+600px,-200px,0);*/
+        /*transform: translateX(-400px)*/
+        transform: translate3d(0,0,-500px) scale(0);
     }
     100% {
         opacity: 1;
-        transform: translateX(0);
-        /*transform: translate3d(0,0,0);*/
+        /*transform: translateX(0);*/
+        transform: translate3d(0,0,0) scale(1);
 
     }
 }
