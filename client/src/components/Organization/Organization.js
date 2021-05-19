@@ -7,7 +7,6 @@ function Organization({ org, ind, vacantion }) {
   // const actualVacantion = vacantion.filter(el => el?.organization.toLowerCase() == org.findName)
   const selector = '.org' + ind + '.ratingActive'
   const actualVacantion = org.vacantion
-  console.log(actualVacantion);
   
   useEffect( () => {
     if (org.rate.length !== 0) {
@@ -48,7 +47,7 @@ function Organization({ org, ind, vacantion }) {
                       </div>
                   </div>
                 <p className="card-text">
-                  Последний отзыв: {org?.comment[org?.comment.length - 1].text}
+                  Последний отзыв: {org.comment.length? org.comment[org.comment.length - 1].text : 'отзывов пока нет'}
                   </p>
               </div>
               <div className="card-footer">

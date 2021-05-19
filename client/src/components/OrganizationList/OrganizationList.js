@@ -12,7 +12,7 @@ function OrganizationList() {
   const dispatch = useDispatch();
   const [newState, setNewState] = useState(null)
   const [newOrgState, setNewOrgState] = useState(null)
-  const [newVacState, setNewVacState] = useState(null)
+  // const [newVacState, setNewVacState] = useState(null)
   
   useEffect(() => {
     dispatch(thunkOrgListInit())
@@ -27,11 +27,11 @@ function OrganizationList() {
   const sortHandler = (e) => {
     e.preventDefault()
     if (sortInput.current.value === 'увеличению рейтинга') {
-      setNewState(()=>[...organization].sort((a, b) => (a.rate - b.rate)))
+      setNewOrgState(()=>[...organization].sort((a, b) => (a.rate - b.rate)))
     } else if (sortInput.current.value === 'уменьшению рейтинга') {
-      setNewState(()=>[...organization].sort((a, b) => (b.rate - a.rate)))
+      setNewOrgState(()=>[...organization].sort((a, b) => (b.rate - a.rate)))
     } else if (sortInput.current.value == 'по умолчанию')
-      setNewState(organization)
+      setNewOrgState(organization)
    }
 
  return (
