@@ -5,7 +5,9 @@ import { useParams } from 'react-router';
 import { thunkAddComment, thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
 import Icon from '@iconify/react';
 import iosStar from '@iconify-icons/ion/ios-star';
+
 const rating = ['','','','','']  //массив для отрисовки звезд в рейтинге
+
 function OrganizationView() {
   const dispatch = useDispatch()
   const {id} = useParams()
@@ -29,28 +31,27 @@ function OrganizationView() {
   useEffect( () => {
     setActiveVacantion( vacancy?.filter(el => el.relevance === true) )
     setArchiveVacantion( vacancy?.filter(el => el.relevance === false) )
-    if (organizationInitial.rate && organizationInitial.rate.length) {
-      const currentRating = ( organizationInitial?.rate.reduce( (a, b) =>  (a + b) ) / organizationInitial?.rate.length)
-      setRateActiveWidth(currentRating)
-    } else {
-      setRateActiveWidth(0)
-    }
+    setRateActiveWidth(organizationInitial.totalRating)
   }, [organizationInitial, dispatch])
+
   // обработка флага для показа архивных вакансий
   const showArchiveFunction = (event) => {
     event.preventDefault()
     setShowArchiveFlag(!showArchiveFlag)
   }
+
   // обработка флага для показа комментариев
   const showCommentFunction = (event) => {
     event.preventDefault()
     setShowCommentFlag(!showCommentFlag)
   }
+
   // обработка флага для открытия формы отзыва
   const addCommentFunction = (event) => {
     event.preventDefault()
     setAddCommentFlag(!addCommentFlag)
   }
+
 // обработка добавления отзыва и рейтинга
   const formCommentHandler = (event) => {
     event.preventDefault();
@@ -136,7 +137,7 @@ function OrganizationView() {
                 Cписок неактивных вакансий:
                 <h4>{archiveVacantion.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}</h4>
               </div>
-            : <h3>У текущей организации пока нет вакансий в архиве</h3>
+            : <h3>{ `У ${organizationInitial?.name} нет вакансий в архиве` }</h3>
           :null}
                                                           {/* блок отрисовки всех комментариев */}
         {

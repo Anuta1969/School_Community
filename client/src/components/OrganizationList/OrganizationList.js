@@ -10,9 +10,7 @@ function OrganizationList() {
   const sortInput = useRef()
   const organization = useSelector(state => state.organization)
   const dispatch = useDispatch();
-  const [newState, setNewState] = useState(null)
-  const [newOrgState, setNewOrgState] = useState(null)
-  // const [newVacState, setNewVacState] = useState(null)
+  const [newOrgState, setNewOrgState] = useState(organization)
 
   useEffect(() => {
     dispatch(thunkOrgListInit())
@@ -24,13 +22,14 @@ function OrganizationList() {
   }, [organization])
 
 
+
   const sortHandler = (e) => {
     e.preventDefault()
     if (sortInput.current.value === 'увеличению рейтинга') {
-      setNewOrgState(()=>[...organization].sort((a, b) => (a.rate - b.rate)))
+      setNewOrgState(()=>[...newOrgState].sort((a, b) => (a.totalRating - b.totalRating)))
     } else if (sortInput.current.value === 'уменьшению рейтинга') {
-      setNewOrgState(()=>[...organization].sort((a, b) => (b.rate - a.rate)))
-    } else if (sortInput.current.value == 'по умолчанию')
+      setNewOrgState(()=>[...newOrgState].sort((a, b) => (b.totalRating - a.totalRating)))
+    } else if (sortInput.current.value == 'умолчанию')
       setNewOrgState(organization)
    }
 
