@@ -2,16 +2,13 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Org.css'
 
-function Organization({ org, ind }) {
+function Organization({ org, rate, ind }) {
  
   const selector = '.org' + ind + '.ratingActive'
   const actualVacantion = org.vacantion
-  const rate = org.totalRating
   
   useEffect( () => {
-
-      setRateActiveWidth(rate)
-
+    setRateActiveWidth(rate)
   }, [org])
   
   function setRateActiveWidth(rate) {
