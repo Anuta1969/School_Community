@@ -17,11 +17,11 @@ function OrganizationAddForm() {
     const formHandler = (event) => {
         event.preventDefault();
         dispatch(thunkOrgAdd(
-            event.target.organization.value,
-            event.target.comment.value,
-            rate,
-            student,
-            event
+          event.target.organization.value,
+          event.target.comment.value,
+          rate,
+          student,
+          event
         ))
         event.target.reset()
         setaddOrgFlag(!addOrgFlag)
@@ -31,7 +31,6 @@ function OrganizationAddForm() {
         <div className="organization-box">
             {!addOrgFlag && <button className='addOrgBtn' onClick={() => setaddOrgFlag(!addOrgFlag)}>Добавить организацию</button>}
             {addOrgFlag ?
-
                 <div className="organization container d-flex flex-column">
                     <div className='orgForm'>
                         <form method="POST" onSubmit={formHandler}>
@@ -63,7 +62,7 @@ function OrganizationAddForm() {
                             <button className='btnAddOrg' type="submit">Добавить</button>
                         </form>
                     </div>
-                </div>
+                  </div>
                 : null}
         </div>
     );

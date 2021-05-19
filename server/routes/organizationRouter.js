@@ -24,9 +24,6 @@ router
               let organization = await Organization.findOne({_id: id}).populate({path:'vacantion', model:Vacantion}).populate('comment')
 
               await organization.save()
-         
-              // let comments = await Organization.findOne({_id: id}).populate({path:'comment', model:Comment})
-              // await comments.save()
 
               res.json(organization)
             } catch (error) {
@@ -37,16 +34,18 @@ router
     .post('/add', async (req, res) => {
       try {
         let {organization, comment, rate, student} = req.body;
+        console.log(req.body);
           if(organization === '') {
             return res.status(400)
           }
         
           const serchOrg = await Organization.findOne({ name: organization })
           if (!serchOrg && organization !== '') {
-            const newOrganization = await Organization.create({
+                const newOrganization = await Organization.create({
                 name: organization,
-                rate,
-                findName:organization.toLowerCase()
+                totalRating: rate,
+                rate: rate,
+                findName: organization.toLowerCase(),
             });
   
             const authorName = await Student.findOne( {_id: student} )
@@ -60,7 +59,6 @@ router
             await newDBComment.save()
             await newOrganization.comment.push(newDBComment._id)
             await newOrganization.save()
-  
             res.status(201).json({newOrganization})
           } else {
             res.status(400).send({ message: `${organization} уже существует` })
@@ -87,6 +85,8 @@ router
         await updatedOrg.save()
         await updatedOrg.rate.push(newRate)
         await updatedOrg.save()
+              updatedOrg.totalRating = updatedOrg.rate.reduce( (a, b) =>  (a + b) ) / updatedOrg?.rate.length
+        await updatedOrg.save() 
         res.status(201).json(updatedOrg)
       } catch (error) {
         res.send({message: "Server error"})
@@ -105,11 +105,8 @@ router
     .post('/initOrgVacancy', async (req, res) => {
       try {
         let {id} = req.body
-        
         const organization = await Organization.findOne( {_id: id} )
-
         const vacancy = await Vacantion.findOne({_id:organization.vacantion })
-
         res.status(201).json(vacancy)
       } catch (error) {
         res.send({message: "Server error"})
