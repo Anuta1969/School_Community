@@ -1,27 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Org.css'
 
-function Organization({ org, ind, vacantion }) {
+function Organization({ org, ind }) {
  
-  // const actualVacantion = vacantion.filter(el => el?.organization.toLowerCase() == org.findName)
   const selector = '.org' + ind + '.ratingActive'
   const actualVacantion = org.vacantion
+  const rate = org.totalRating
   
   useEffect( () => {
-    if (org.rate.length !== 0) {
-      const currentRating = ( org.rate.reduce( (a, b) =>  (a + b) ) / org?.rate.length  )
-      setRateActiveWidth(currentRating)
-    } else {
-      setRateActiveWidth(0)
-    }
-  }, [org.rate])
+
+      setRateActiveWidth(rate)
+
+  }, [org])
   
   function setRateActiveWidth(rate) {
     let ratingActive = document.querySelector(selector)
     const ratingActiveWidth = rate / 0.05
     ratingActive.style.width = `${ratingActiveWidth}%`
- }
+  }
   
   return (
       <Link key={ind} to={`/organizations/org/${org?._id}` }>
