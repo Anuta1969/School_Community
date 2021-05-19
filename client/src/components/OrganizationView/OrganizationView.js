@@ -119,7 +119,7 @@ function OrganizationView() {
                 : null }
           </li>
           <li className="list-group-item">Активные вакансии:&nbsp;
-            {activeVacantion?.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}
+            {activeVacantion?.map(el => {return <p key={el._id}> <a href={`/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}
           </li>
         </ul>
         <div className="">
@@ -143,7 +143,7 @@ function OrganizationView() {
         {
           showCommentFlag ? <div>
                             {
-                            comments? <div> {comments?.map(el => {return <div key={el._id}>{`${el.text}`} Автор отзыва {`${el.authorName}`}</div> } )}  </div>
+                            comments? <div> {comments?.map(el => {return <div key={el._id}>{`${el.text}`} Автор: <a href={`/profile/${el.author}`} > {`${el.authorName}` }</a></div> } )}  </div>
                             : <p>Отзывов пока нет</p>
                             }
                           </div>
