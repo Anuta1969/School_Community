@@ -59,7 +59,7 @@ function StudentAddRusume({student,id}) {
     <>
       <div className="student-add__resume">
         <div className="student-add__btn">
-          {!resume && initialUser._id == id &&  (
+          {!resume && initialUser._id == id && !initialUser.admin && (
             <button
               onClick={addResumeHandler}
               className="student-btn"
@@ -96,7 +96,7 @@ function StudentAddRusume({student,id}) {
           </form>
         )}
         <div className="save-resume">
-        { student.resume && <button  
+        { student.resume && !initialUser.admin && <button  
           className="student-btn save-resume__btn"
             onClick={downLoadResumeHandler}>
                 Скачать резюме
