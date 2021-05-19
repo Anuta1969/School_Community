@@ -1,3 +1,6 @@
+.search{
+  padding-bottom: 30px;
+}
 .searchList{
     display: flex;
     flex-direction: row;
@@ -9,6 +12,8 @@
     animation: show-students 1s ;
 
 }
+
+
 @keyframes show-students {
     0% {
         opacity: 0;
