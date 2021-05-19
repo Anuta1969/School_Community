@@ -173,7 +173,9 @@ img {
 
 .react-pdf__Page__canvas {
   height: auto !important;
-  width: 80% !important;
+  width: 83% !important;
+  margin-left: 35px;
+  z-index: 5;
   /* margin: 0 auto; */
 }
 .react-pdf__Page__annotations {
@@ -183,6 +185,7 @@ img {
 .react-pdf__Document{
   display: flex;
   justify-content: center;
+  margin-bottom: 25px;
   /* height: 100%; */
 }
 .react-pdf__Page{
@@ -222,8 +225,8 @@ img {
   align-items: center;
 }
 .resume__without{
-  height: 60%;
-    width: 80%;
+  height: 55%;
+  width: 64%;
     background-color: rgb(179, 179, 184);
     display: flex;
     flex-direction: column;

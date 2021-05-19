@@ -29,35 +29,36 @@ function ProfileShowResume({student}) {
     }
   }
   const AdminResume = useSelector((state)=>state.search.all).filter(student => student.admin === true)[0].resume
- 
+  const idAdmin = useSelector((state)=>state.search.all).filter(student => student.admin === true)[0]._id
+
 console.log("залогинился initialUser",initialUser._id, initialUser);
 console.log("зашли к student", student._id, student);
 // console.log("зашел  к",idAdmin);
   return (
     <div className="resume-show">
       {/* Для студента который инициализировался */}
-      {!initialUser.resume  &&
-      <div id="student-form__id" className="resume__without">
-          <img className="resume__without-img" src={`${process.env.REACT_APP_URL}/klipartz.com.png`} alt="resume" />
-          <h3 className="resume__without-text">Загрузите резюме</h3>
-      </div>
-      }
-      {/* Для  студента к которому зашли */}
-      { !student.resume  &&
-      <div id="student-form__id" className="resume__without">
-          <img className="resume__without-img" src={`${process.env.REACT_APP_URL}/klipartz.com.png`} alt="resume" />
-          <h3 className="resume__without-text">Загрузите резюме</h3>
-      </div>
-      }
-      {/* Для админа */}
-      { !AdminResume  &&
-      <div id="student-form__id" className="resume__without">
-          <img className="resume__without-img" src={`${process.env.REACT_APP_URL}/klipartz.com.png`} alt="resume" />
-          <h3 className="resume__without-text">Загрузите резюме</h3>
-      </div>
-      }
       
-     {initialUser.resume && <div className="resume-show__add">
+      <div id="student-form__id" className="resume__without">
+          <img className="resume__without-img" src={`${process.env.REACT_APP_URL}/klipartz.com.png`} alt="resume" />
+          <h3 className="resume__without-text">Загрузите резюме</h3>
+      </div>
+      
+      {/* Для  студента к которому зашли */}
+      {/* { ((!student.resume  && !student.admin) ||(!student.resume && idAdmin==initialUser._id && student.admin) ||(!AdminResume && idAdmin==initialUser._id && initialUser.resume) || ( !AdminResume && idAdmin!=initialUser._id && initialUser.resume)) &&
+      <div id="student-form__id" className="resume__without">
+          <img className="resume__without-img" src={`${process.env.REACT_APP_URL}/klipartz.com.png`} alt="resume" />
+          <h3 className="resume__without-text">Загрузите резюме</h3>
+      </div>
+      } */}
+      {/* Для админа */}
+      {/* { !AdminResume  && 
+      <div id="student-form__id" className="resume__without">
+          <img className="resume__without-img" src={`${process.env.REACT_APP_URL}/klipartz.com.png`} alt="resume" />
+          <h3 className="resume__without-text">Загрузите резюме</h3>
+      </div>
+      } */}
+      
+     {(initialUser.resume || initialUser._id != student._id) && <div className="resume-show__add">
        
         <Document
           file={`${process.env.REACT_APP_URL}/resume/${student.resume}`}
