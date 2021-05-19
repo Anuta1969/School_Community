@@ -4,7 +4,7 @@ import Organization from '../Organization/Organization';
 import OrganizationAddForm from '../OrganizationAddForm/OrganizationAddForm';
 import { thunkOrgListInit } from '../../redux/Thunk/ThunkOrganization'
 import { ThunkInitVacantion } from '../../redux/Thunk/VacantionThunk';
-
+import './OrganizationList.css'
 
 function OrganizationList() {
   const sortInput = useRef()
@@ -13,17 +13,17 @@ function OrganizationList() {
   const [newState, setNewState] = useState(null)
   const [newOrgState, setNewOrgState] = useState(null)
   // const [newVacState, setNewVacState] = useState(null)
-  
+
   useEffect(() => {
     dispatch(thunkOrgListInit())
     dispatch(ThunkInitVacantion())
   }, [dispatch])
-   
+
    useEffect(() => {
      setNewOrgState(() => organization)
   }, [organization])
-    
- 
+
+
   const sortHandler = (e) => {
     e.preventDefault()
     if (sortInput.current.value === 'увеличению рейтинга') {
@@ -46,11 +46,11 @@ function OrganizationList() {
           </select>
         </div>
        <div className="container d-flex flex-wrap mt-5">
-     
-       { newOrgState instanceof Array  
+        <div className='orgList'>
+       { newOrgState instanceof Array
         ? newOrgState?.map(( el,i ) => <Organization org={el} ind={i} id={el._id} key={el._id}  />)
         : null }
-
+        </div>
       </div>
      </>
   );

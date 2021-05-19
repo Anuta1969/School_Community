@@ -1,0 +1,19 @@
+.orgList{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: show-allOrg 1.2s;
+}
+@keyframes show-allOrg {
+    0% {
+        opacity: 0;
+        transform: translateY(-200px)
+        /*transform: translate3d(-600px,-200px,-500px) scale(0);*/
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) 
+        /*transform: translate3d(0,0,0) scale(1);*/
+
+    }
+}

@@ -20,17 +20,14 @@ width: 100px;
 width: 150px;
 }
 .btnSearch{
-  width: 80px;
-  height: 30px;
-  border-radius: 5px;
-  background-color: rgb(243 217 99);
-  font-weight: 500;
-  font-size: 15px;
-}
-.btnSearch:hover{
- 
-  background: rgb(232 222 177);
- 
+
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    background: #ffbc5b;
+    font-weight: 500;
+    font-size: 15px;
+
 }
 .searchForm-item{
   margin-right: 5px;
