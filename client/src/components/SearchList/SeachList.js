@@ -16,13 +16,13 @@ function SearchList(props) {
     const searchAll = search.all.slice(0,number)
    
 
-    const [filter, setFilter] = useState(4)
+    const [filter, setFilter] = useState(16)
     const searchFilter = search.filter.slice(0,filter)
     // console.log(search.filter, searchFilter.length, filter);
 
     const searchWotchHandler=()=>{
       setNumber(number+8)
-      setFilter(filter+4)
+      setFilter(filter+8)
     }
 
     return (
