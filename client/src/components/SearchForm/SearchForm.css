@@ -20,10 +20,11 @@ width: 100px;
 width: 150px;
 }
 .btnSearch{
+
     width: 80px;
     height: 30px;
     border-radius: 5px;
-    background: #cec658;
+    background: #ffbc5b;
     font-weight: 500;
     font-size: 15px;
 }
@@ -33,10 +34,14 @@ width: 150px;
   outline: none;
 }
 .searchForm-form{
-  padding: 37px;
+  padding: 38px;
   border: 1px solid #e4e6a1a6;
   border-radius: 8px;
-  background-color: #d6dae0eb;
+  background-color: #4c5b96eb;
+  border-top-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 .search-student{
   font-family: 'Open Sans', sans-serif;

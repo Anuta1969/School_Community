@@ -49,7 +49,7 @@ export const sideBarUser =[
   ];
 
 
-  export const login = [
+export const login = [
     {
       "name": "Регистрация",
       "url": "/registration",

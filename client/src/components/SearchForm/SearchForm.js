@@ -32,9 +32,9 @@ function SearchForm(props) {
 
     return (
         <>
-            <div className='searchComponent'>
-                <h3 className="search-student">Поиск студента</h3>
+            <div className='searchComponent'>             
                 <div className='searchForm'>
+                    {/* <h3 className="search-student">Поиск студента</h3>                   */}
                     <form className="searchForm-form" onSubmit={SearchHandler} action="">
                         <input name='name' className='searchForm-item inputSearch' type="text" placeholder="имя"/>
                         <input name='lastName' className='searchForm-item inputSearch' type="text" placeholder="фамилия"/>
