@@ -21,16 +21,15 @@ router
             const id = req.params.id
             try {
                 
-              let vacancy = await Organization.findOne({_id: id}).populate({path:'vacantion', model:Vacantion})
+              let organization = await Organization.findOne({_id: id}).populate({path:'vacantion', model:Vacantion}).populate('comment')
 
-              await vacancy.save()
-              
-              let comments = await Organization.findOne({_id: id}).populate({path:'comment', model:Comment})
-              await comments.save()
+              await organization.save()
+         
+              // let comments = await Organization.findOne({_id: id}).populate({path:'comment', model:Comment})
+              // await comments.save()
 
-              res.json({ vacancy, comments })
+              res.json(organization)
             } catch (error) {
-              // console.log(error);
               res.send({message: "Server error"})
             }
         })
@@ -38,25 +37,34 @@ router
     .post('/add', async (req, res) => {
       try {
         let {organization, comment, rate, student} = req.body;
-          const newOrganization = await Organization.create({
-              name: organization,
-              rate,
-              findName:organization.toLowerCase()
-          });
-
-          const authorName = await Student.findOne( {_id: student} )
-
-          const newDBComment = await Comment.create({
-            text: comment,
-            author: student,
-            authorName: authorName.name,
-            organization: newOrganization._id
-          }) 
-          await newDBComment.save()
-          await newOrganization.comment.push(newDBComment._id)
-          await newOrganization.save()
-
-          res.status(201).json({newOrganization})
+          if(organization === '') {
+            return res.status(400)
+          }
+        
+          const serchOrg = await Organization.findOne({ name: organization })
+          if (!serchOrg && organization !== '') {
+            const newOrganization = await Organization.create({
+                name: organization,
+                rate,
+                findName:organization.toLowerCase()
+            });
+  
+            const authorName = await Student.findOne( {_id: student} )
+  
+            const newDBComment = await Comment.create({
+              text: comment,
+              author: student,
+              authorName: authorName.name,
+              organization: newOrganization._id
+            }) 
+            await newDBComment.save()
+            await newOrganization.comment.push(newDBComment._id)
+            await newOrganization.save()
+  
+            res.status(201).json({newOrganization})
+          } else {
+            res.status(400).send({ message: `${organization} уже существует` })
+          }
       } catch (error){
           res.send({message: "Server error"})
       }

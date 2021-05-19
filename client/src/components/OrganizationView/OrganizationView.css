@@ -22,6 +22,7 @@
   top: 0;
   left: 0;
   overflow: hidden;
+  color: red
 }
 
 .ratingActive::before {
@@ -31,7 +32,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  color: yellow
+  color: red
 }
 
 .ratingItems {
@@ -70,4 +71,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.card_text{
+  color: grey;
 }
