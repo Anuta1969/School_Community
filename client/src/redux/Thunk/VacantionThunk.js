@@ -60,4 +60,4 @@ export const ThunkEditVacantion = (id,relevance)=>{
   }
 }
 
-// dispatch(editActualVacantionAC(data.actualVacantion) )
+
