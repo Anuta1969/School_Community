@@ -23,7 +23,7 @@ function SearchList(props) {
     const searchWotchHandler=()=>{
       setNumber(number+8)
       setFilter(filter+8)
-      
+
     }
 
     return (
@@ -36,7 +36,6 @@ function SearchList(props) {
                     }
                 </div>
               {searchAll.length== number || search.filter.length ==filter ? <button className="btnSearch" onClick={searchWotchHandler}>еще</button> : null}
-              {/* {search.filter && searchFilter.length >=filter ? <button className="btnSearch" onClick={searchWotchHandler}>еще</button> : null} */}
             </div>
         </>
     );
