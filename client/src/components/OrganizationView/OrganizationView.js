@@ -97,10 +97,10 @@ function OrganizationView() {
                                    {/* блок отзывов */}
         <div className="orgInfo">
           <div className="reviewBlock">
-            <h4> Последний отзыв:&nbsp;</h4><p>{comments? comments[comments.length - 1]?.text : 'отзывов пока нет'}</p>
-             <div>  <button onClick={addCommentFunction}> {!addCommentFlag? <h6>оставить отзыв</h6> : <h6>скрыть</h6>  } </button> </div>
+            <h4 className='lastReview'> Последний отзыв:&nbsp;</h4><p>{comments? comments[comments.length - 1]?.text : 'отзывов пока нет'}</p>
+             <div>  <button className='addReview' onClick={addCommentFunction}> {!addCommentFlag? <h6>Оставить отзыв</h6> : <h6>Скрыть</h6>  } </button> </div>
             {addCommentFlag
-              ? <div className="organization container d-flex flex-column">
+              ? <div className="orgReviewCont organization container d-flex flex-column">
                   <form method="POST" onSubmit={formCommentHandler}>
                       <p> Оцените организацию {rating.map((el,i) => {
                                                 return <Icon
@@ -114,10 +114,11 @@ function OrganizationView() {
                         <textarea className="form-control m-3" name="comment" required={true} ></textarea>
                         <label className="ms-2" htmlFor="floatingTextarea2">Ваше мнение об организации</label>
                       </div>
-                      <button type="submit">Добавить</button>
+                      <button className='addReview' type="submit">Добавить</button>
                     </form>
                  </div>
                 : null }
+
           </div>
           <div className="linkToVac">Активные вакансии:&nbsp;
             {activeVacantion?.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}
@@ -125,6 +126,7 @@ function OrganizationView() {
         </div>
         <div className="btnBlockOrg">
           <button onClick={showArchiveFunction} className="card-linkBtn">Архив вакансий</button>
+
           {
            showCommentFlag
             ? <button onClick={showCommentFunction} className="card-linkBtn">Скрыть отзывы</button>
@@ -142,14 +144,14 @@ function OrganizationView() {
                 Cписок неактивных вакансий:
                 <h4>{archiveVacantion.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}</h4>
               </div>
-            : <h3>{ `У ${organizationInitial?.name} нет вакансий в архиве` }</h3>
+            : <h3 className='h3Org'>{ `У ${organizationInitial?.name} нет вакансий в архиве` }</h3>
           :null}
          </div>
                          <div className='blockForComment'>                                 {/* блок отрисовки всех комментариев */}
         {
           showCommentFlag ? <div>
                             {
-                            comments? <div> {comments?.map(el => {return <div key={el._id}>{`${el.text}`} Автор отзыва {`${el.authorName}`}</div> } )}  </div>
+                            comments? <div> {comments?.map(el => {return <div key={el._id}>{`${el.text}`} Автор: <a href={`/profile/${el.author}`} > {`${el.authorName}` }</a></div> } )}  </div>
                             : <p>Отзывов пока нет</p>
                             }
                           </div>

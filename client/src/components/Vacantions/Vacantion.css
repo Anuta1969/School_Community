@@ -67,13 +67,26 @@
   overflow:hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: rgb(243 217 99);
+  color: rgb(243 217 99) !important;
+  font-size: 22px;
+}
+
+.card_text_params{
+  color: rgb(243 217 99) !important;
   font-size: 22px;
 }
 
 .card_info{
   background-color: #5f3fb9;
+
     animation: show-vacancy 1.2s forwards;
+
+
+  margin:200px auto 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 600px;
 
 }
 
@@ -85,18 +98,7 @@
 }
 
 
-@keyframes show-loader {
-    0% {
-        opacity: 0;
-        transform: translateY(-200px)
-        /*transform: translate3d(-200px,-200px,0);*/
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        /*transform: translate3d(0,0,0);*/
-    }
-}
+
 @keyframes show-vacancy {
     0% {
         opacity: 0;
@@ -113,6 +115,64 @@
 .vacantion-box{
   padding-top: 6%;
 }
-.text-center{
-    /*width: 300px;*/
+.h3Org{
+    font-size: 20px;
+}
+.lastReview{
+    margin: 10px auto;
+}
+.addReview{
+    width: 130px;
+    background: #ffbc5b;
+    border-radius: 10px;
+}
+.orgReviewCont{
+    width: 450px;
+    animation:show-reviewBlock 0.9s ;
+}
+@keyframes show-reviewBlock {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px)
+        /*transform: translate3d(0,0,-500px) scale(0);*/
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+        /*transform: translate3d(0,0,0) scale(1);*/
+
+    }
+}
+.blockForVacancy{
+    animation:show-vacArhive 0.9s ;
+}
+@keyframes show-vacArhive {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px)
+        /*transform: translate3d(0,0,-500px) scale(0);*/
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+        /*transform: translate3d(0,0,0) scale(1);*/
+
+    }
+}
+.blockForComment{
+    animation:show-hideReview 0.9s ;
+
+}
+@keyframes show-hideReview {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px)
+        /*transform: translate3d(0,0,-500px) scale(0);*/
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+        /*transform: translate3d(0,0,0) scale(1);*/
+
+    }
 }
