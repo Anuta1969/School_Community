@@ -10,9 +10,9 @@ function OrganizationList() {
   const sortInput = useRef()
   const organization = useSelector(state => state.organization)
   const dispatch = useDispatch();
-  const [newState, setNewState] = useState(null)
-  const [newOrgState, setNewOrgState] = useState(null)
-  // const [newVacState, setNewVacState] = useState(null)
+  const [newOrgState, setNewOrgState] = useState(organization)
+
+let plusId = ''
 
   useEffect(() => {
     dispatch(thunkOrgListInit())
@@ -26,11 +26,12 @@ function OrganizationList() {
 
   const sortHandler = (e) => {
     e.preventDefault()
+     plusId = Date.now()
     if (sortInput.current.value === 'увеличению рейтинга') {
-      setNewOrgState(()=>[...organization].sort((a, b) => (a.rate - b.rate)))
+      setNewOrgState(()=>[...newOrgState].sort((a, b) => (a.totalRating - b.totalRating)))
     } else if (sortInput.current.value === 'уменьшению рейтинга') {
-      setNewOrgState(()=>[...organization].sort((a, b) => (b.rate - a.rate)))
-    } else if (sortInput.current.value == 'по умолчанию')
+      setNewOrgState(()=>[...newOrgState].sort((a, b) => (b.totalRating - a.totalRating)))
+    } else if (sortInput.current.value == 'умолчанию')
       setNewOrgState(organization)
    }
 
@@ -39,7 +40,7 @@ function OrganizationList() {
       <OrganizationAddForm />
         <div className='sort'>
           Сортировать по:
-          <select onChange={sortHandler} ref={sortInput} className='selectSort'>
+          <select onChange={sortHandler} ref={sortInput} className='selectSort '>
             <option>умолчанию</option>
             <option>увеличению рейтинга</option>
             <option>уменьшению рейтинга</option>
@@ -48,7 +49,7 @@ function OrganizationList() {
        <div className="container d-flex flex-wrap mt-5">
         <div className='orgList'>
        { newOrgState instanceof Array
-        ? newOrgState?.map(( el,i ) => <Organization org={el} ind={i} id={el._id} key={el._id}  />)
+        ? newOrgState?.map(( el,i ) => <Organization org={el} rate={el.totalRating} ind={i} id={el._id} key={el._id + i}  />)
         : null }
         </div>
       </div>

@@ -69,9 +69,9 @@ function StudentAbout({ student, id }) {
           <li className="student-about__item">{student?.lastName}</li>
           <li className="student-about__item">+{student?.phone} </li>
           <li className="student-about__item">{student?.email} </li>
-          <li className="student-about__item"> {student?.year}</li>
-          <li className="student-about__item"> {student?.group}</li>
-          <li className="student-about__item"> {student?.city}</li>
+          {!student.admin && <li className="student-about__item"> {student?.year}</li>}
+          {!student.admin && <li className="student-about__item"> {student?.group}</li>}
+          {!student.admin && <li className="student-about__item"> {student?.city}</li>}
           <li className="student-about__item"> {student?.stack}</li>
           <li className="student-about__item"> {student?.language}</li>
           {/* <li className="student-about__item"> {student?.socialTelegramm}</li>
@@ -214,7 +214,7 @@ function StudentAbout({ student, id }) {
           </form>
         </>
       )}
-      {initialUser._id == id && deleteBtnUpdate && <button className="student-btn student-update__text" onClick={btnUpdateHandler}>
+      {initialUser._id == id && deleteBtnUpdate && !initialUser.admin &&<button className="student-btn student-update__text" onClick={btnUpdateHandler}>
          Редактировать данные
       </button>}
       {initialUser.admin && deleteBtnUpdate &&  <button className="student-btn student-update__text" onClick={btnUpdateHandler}>

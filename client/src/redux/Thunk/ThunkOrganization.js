@@ -29,18 +29,17 @@ import { addCommentAC, addOrganizationAC, addOrgVacantionAC, initOneOrganization
             comment: comment,
             rate: rate,
             student: student
-        }),
-      })
+            }),
+          })
         .then((res) => res.json())
         .then((data) =>  {
-
           if (data.message) {
             alert(data.message)
             event.target.reset()
           } 
           if (data.newOrganization) {
            dispatch(addOrganizationAC(data.newOrganization))
-         }  })
+         }})
         .catch(err => console.log(err))
     }
   }
@@ -62,30 +61,3 @@ import { addCommentAC, addOrganizationAC, addOrgVacantionAC, initOneOrganization
           .catch(err => console.log(err))
       }
     }
-
-    // export const thunkOrganizationsList = () => {
-    //   return (dispatch) => {
-    //     fetch(`${process.env.REACT_APP_URL}/organizations/initOrganizations`, {
-    //       method: 'GET',
-    //     })
-    //     .then((res) => res.json())
-    //     .then((data) => dispatch(addCommentAC(data)))
-    //     .catch(err => console.log(err))
-    //   }
-    // }
-
-    // export const thunkOrgVacancysInit = (id) => {
-    //   return (dispatch) => {
-    //     fetch(`${process.env.REACT_APP_URL}/organizations/initOrgVacancy`, {
-    //       method: 'POST',
-    //       headers: { 'Content-Type': 'Application/json' },
-    //       body: JSON.stringify({
-    //         id: id
-    //       }),
-    //     })
-    //     .then((res) => res.json())
-    //     // .then(data => console.log(data))
-    //     .then((data) => dispatch(addOrgVacantionAC(data)))
-    //     .catch(err => console.log(err))
-    //   }
-    // }
