@@ -10,7 +10,7 @@ const router = express.Router()
 router
     .get('/', async (req, res) => {
             try {
-                const organization = await Organization.find().populate({path:'vacantion', model:Vacantion})
+                const organization = await Organization.find().populate({path:'vacantion', model:Vacantion}).populate('comment')
                 return res.json(organization)
             } catch (e) {
                 res.send({message: "Server error"})
@@ -21,29 +21,42 @@ router
             const id = req.params.id
             try {
                 
-              let organization = await Organization.findOne({_id: id}).populate({path:'vacantion', model:Vacantion})
+              let vacancy = await Organization.findOne({_id: id}).populate({path:'vacantion', model:Vacantion})
 
-              await organization.save()
+              await vacancy.save()
               
               let comments = await Organization.findOne({_id: id}).populate({path:'comment', model:Comment})
               await comments.save()
 
-              res.json( {organization, comments} )
+              res.json({ vacancy, comments })
             } catch (error) {
+              // console.log(error);
               res.send({message: "Server error"})
             }
         })
 
     .post('/add', async (req, res) => {
       try {
-      let {organization, comment, rate} = req.body;
-        const newOrganization = await Organization.create({
-            name: organization,
-            comment,
-            rate,
-            findName:organization.toLowerCase()
-        });
-        res.status(201).json({newOrganization})
+        let {organization, comment, rate, student} = req.body;
+          const newOrganization = await Organization.create({
+              name: organization,
+              rate,
+              findName:organization.toLowerCase()
+          });
+
+          const authorName = await Student.findOne( {_id: student} )
+
+          const newDBComment = await Comment.create({
+            text: comment,
+            author: student,
+            authorName: authorName.name,
+            organization: newOrganization._id
+          }) 
+          await newDBComment.save()
+          await newOrganization.comment.push(newDBComment._id)
+          await newOrganization.save()
+
+          res.status(201).json({newOrganization})
       } catch (error){
           res.send({message: "Server error"})
       }
@@ -74,11 +87,22 @@ router
 
     .get('/initOrganizations', async (req, res) => {
       try {
-        // let {organization} = req.body
-        // let updatedOrg = await Organization.findOne( {_id: organization._id} )
         let updatedOrg = await Organization.find( )
-        // console.log(updatedOrg);
         res.status(201).json(updatedOrg)
+      } catch (error) {
+        res.send({message: "Server error"})
+      }
+    })
+
+    .post('/initOrgVacancy', async (req, res) => {
+      try {
+        let {id} = req.body
+        
+        const organization = await Organization.findOne( {_id: id} )
+
+        const vacancy = await Vacantion.findOne({_id:organization.vacantion })
+
+        res.status(201).json(vacancy)
       } catch (error) {
         res.send({message: "Server error"})
       }

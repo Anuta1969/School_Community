@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { thunkOrgAdd } from '../../redux/Thunk/ThunkOrganization';
 import { Icon } from '@iconify/react';
 import iosStar from '@iconify-icons/ion/ios-star';
@@ -8,6 +8,8 @@ const rating = ['','','','','']
 
 function OrganizationAddForm() {
 
+  const student = useSelector(state => state.student._id)
+  
   const dispatch = useDispatch();
 
   const [addOrgFlag, setaddOrgFlag] = useState(false)
@@ -16,13 +18,14 @@ function OrganizationAddForm() {
 
   const formHandler = (event) => {
     event.preventDefault();
-
-      dispatch(thunkOrgAdd(
-        event.target.organization.value,
-        event.target.comment.value,
-        rate
+    dispatch(thunkOrgAdd( 
+        event.target.organization.value, 
+        event.target.comment.value, 
+        rate,
+        student
         ))
       event.target.reset()
+      setaddOrgFlag(!addOrgFlag)
   };
 
   // const addOrgFunction = (event) => {
