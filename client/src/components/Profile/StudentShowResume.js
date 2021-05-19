@@ -44,6 +44,7 @@ function ProfileShowResume({student}) {
       }
       
      {initialUser.resume && <div className="resume-show__add">
+       
         <Document
           file={`${process.env.REACT_APP_URL}/resume/${student.resume}`}
           onLoadSuccess={onDocumentLoadSuccess}
