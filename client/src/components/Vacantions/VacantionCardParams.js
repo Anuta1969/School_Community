@@ -10,7 +10,9 @@ function VacantionCardParams() {
   const vacantion = useSelector((state) => state.vacantion).filter(
     (el) => el._id === id
   )[0];
-  console.log(vacantion);
+  const organizationLink = useSelector((state)=>state.organization)
+   console.log(vacantion);
+  console.log(organizationLink);
   const student = useSelector((state)=>state.student)
   
   let [actual, setActual] = useState(null)
@@ -34,7 +36,7 @@ function VacantionCardParams() {
   const editHandler = (event) => {
     event.preventDefault();
     setActual(!actual)
-    console.log(actual);
+    
     dispatch(ThunkEditVacantion(id,actual))
     
   };
@@ -42,24 +44,22 @@ function VacantionCardParams() {
  
 
   return (
-    <div>
+    <div className="card_info">
       <div className="">
-        <div className="card_info">
-          <h4 className=" card_text_title">
-            Организация:{vacantion?.organization}
-          </h4>
-          <p className="card-text  card_text">Вакансия: {vacantion?.vacantion}</p>
-          <p className="card-text card_text">Зарплата: {vacantion?.salary}</p>
-
-          <p className="card-text card_text">Описание :{vacantion?.description}</p>
-          <p className="card-text card_text">Дата размещения:{vacantion?.date}</p>
-          <h3 className="card-text card_text">
-            <Link className="card-text card_text" to={`/profile/${vacantion?.userID}`}>
+        <div >
+          <h4 className="card_text_params">
+            <Link className="card-text card_text_params" to={`/organizations/org/${vacantion?.organizationId}`}>Организация:{vacantion?.organization}</Link></h4>
+          <p className="card-text  card_text_params">Вакансия: {vacantion?.vacantion}</p>
+          <p className="card-text card_text_params">Зарплата: {vacantion?.salary}</p>
+          <p className="card-text card_text_params">Описание :{vacantion?.description}</p>
+          <p className="card-text card_text_params">Дата размещения:{vacantion?.date}</p>
+          <h3 className="card-text card_text_params">
+            <Link className="card-text card_text_params" to={`/profile/${vacantion?.userID}`}>
              Автор: {vacantion?.contacts}
             </Link>
           </h3>
 { idStudent === vacantion?.userID || student.admin? <form onSubmit={editHandler} action={`/vacantion/${id}`} method="PUT">
-            <button>Актульность</button>
+            <button>{actual?'Закинуть в архив':'Убрать из архива'}</button>
           </form>:null}
          
         </div>
