@@ -1,5 +1,4 @@
-import { initCommentAC } from "../actionCreators/actionCreatorComment";
-import { addCommentAC, addOrganizationAC, initOneOrganizationsAC, initOrganizationsAC } from "../actionCreators/actionCreatorOrganization";
+import { addCommentAC, addOrganizationAC, addOrgVacantionAC, initOneOrganizationsAC, initOrganizationsAC } from "../actionCreators/actionCreatorOrganization";
 
 export const thunkOrgListInit = () => {
   return (dispatch) => {
@@ -14,23 +13,22 @@ export const thunkOrgInit = (id) => {
   return (dispatch) => {
     fetch(`${process.env.REACT_APP_URL}/organizations/org/${id}`)
     .then(res => res.json())
-    // .then(data => console.log(data.organization))
-    // .then(data => dispatch(initOneOrganizationsAC( [data.organization] ), initCommentAC( [data.comment]) ))
     .then(data => dispatch(initOneOrganizationsAC(data)))
     .catch(err => console.log(err))
   }
 };
 
 
-  export const thunkOrgAdd = (organization, comment, rate ) => {
+  export const thunkOrgAdd = (organization, comment, rate, student ) => {
     return (dispatch) => {
         fetch(`${process.env.REACT_APP_URL}/organizations/add`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'Application/json' },
-        body: JSON.stringify({
-          organization: organization,
-          comment: comment,
-          rate: rate
+          method: 'POST',
+          headers: { 'Content-Type': 'Application/json' },
+          body: JSON.stringify({
+            organization: organization,
+            comment: comment,
+            rate: rate,
+            student: student
         }),
       })
         .then((res) => res.json())
@@ -52,24 +50,34 @@ export const thunkOrgInit = (id) => {
           }),
         })
           .then((res) => res.json())
-          // .then((data => console.log(data)))
           .then((data) => dispatch(addCommentAC(data)))
           .catch(err => console.log(err))
       }
     }
 
-    export const thunkOrganizationsList = () => {
-      return (dispatch) => {
-        fetch(`${process.env.REACT_APP_URL}/organizations/initOrganizations`, {
-          // method: 'POST',
-          method: 'GET',
-          // headers: { 'Content-Type': 'Application/json' },
-          // body: JSON.stringify({
-          //   organizations: organizations,
-          // }),
-        })
-        .then((res) => res.json())
-        .then((data) => dispatch(addCommentAC(data)))
-        .catch(err => console.log(err))
-      }
-    }
+    // export const thunkOrganizationsList = () => {
+    //   return (dispatch) => {
+    //     fetch(`${process.env.REACT_APP_URL}/organizations/initOrganizations`, {
+    //       method: 'GET',
+    //     })
+    //     .then((res) => res.json())
+    //     .then((data) => dispatch(addCommentAC(data)))
+    //     .catch(err => console.log(err))
+    //   }
+    // }
+
+    // export const thunkOrgVacancysInit = (id) => {
+    //   return (dispatch) => {
+    //     fetch(`${process.env.REACT_APP_URL}/organizations/initOrgVacancy`, {
+    //       method: 'POST',
+    //       headers: { 'Content-Type': 'Application/json' },
+    //       body: JSON.stringify({
+    //         id: id
+    //       }),
+    //     })
+    //     .then((res) => res.json())
+    //     // .then(data => console.log(data))
+    //     .then((data) => dispatch(addOrgVacantionAC(data)))
+    //     .catch(err => console.log(err))
+    //   }
+    // }
