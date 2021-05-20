@@ -144,7 +144,7 @@ function OrganizationView() {
           ? archiveVacantion.length
             ? <div className='reviewAuthor '>
                 <p className="reviewAuthor-title">Cписок неактивных вакансий:</p>
-                <div className="reviewAuthor-item">{archiveVacantion.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}</div>
+                <div className="reviewAuthor-item reviewAuthor-item-vacansion">{archiveVacantion.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}</div>
               </div>
             : <h3 className='h3Org'>{ `У ${organizationInitial?.name} нет вакансий в архиве` }</h3>
           :null}

@@ -144,6 +144,11 @@
 .reviewAuthor-title{
 color:rgb(199, 190, 190)
 }
+.reviewAuthor-item-vacansion{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
 .reviewAuthor-item p{
   text-align: start;
   padding-left: 15%;
@@ -156,7 +161,7 @@ color:rgb(199, 190, 190)
 }
 .blockForComment{
   /* padding-left: 13%; */
-  background-color: #4520ab;
+  /* background-color: #4520ab; */
   animation:show-hideReview 0.9s ;
   border-top-left-radius: 70px;
   border-bottom-right-radius: 70px;
