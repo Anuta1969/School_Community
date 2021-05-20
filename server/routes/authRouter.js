@@ -23,7 +23,7 @@ const upload = multer({ storage: storage })
 router.post('/registration',
     upload.single('photo'),[
     check('email', "Uncorrect email").isEmail(),
-    check('password', 'Password must be longer than 3 and shorter than 12').isLength({min:3, max:12})]
+    check('password', 'Пароль должен быть не менее 6 символов').isLength({min:6, max:50})]
    ,async (req, res) => {
 
             const errors = validationResult(req)
@@ -62,7 +62,7 @@ router.post('/registration',
         mail().catch(console.error)
             return   res.json({message: "заявка на рассмотрении",request,student})
         } catch (e) {
-            res.send({message: "Server error"})
+            res.json({message: "Server error"})
         }
     })
 
