@@ -243,8 +243,8 @@ img {
   display: none;
 }
 .resume__without-img{
-  max-width: 450px;
-  max-height: 450px;
+  width: 235px;
+    height: 235px;
   border-radius: 0;
 }
 .resume__without-text{
