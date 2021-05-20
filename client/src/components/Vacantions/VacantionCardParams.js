@@ -18,13 +18,13 @@ function VacantionCardParams() {
   console.log(organizationLink);
   const student = useSelector((state) => state.student);
 
-  let [actual, setActual] = useState(null);
-
+  let [actual, setActual] = useState(true);
+console.log(actual);
   const idStudent = student._id;
   useEffect(() => {
-    if (vacantion) {
-      setActual(true);
-    }
+    // if (vacantion) {
+    //   setActual(true);
+    // }
     dispatch(ThunkInitOneVacantion(id));
   }, [dispatch]);
 
