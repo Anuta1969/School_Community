@@ -52,7 +52,8 @@ export const ThunkUpdateProfile = (id, name, lastName, phone, email, year, group
             }),
         })
         const result = await response.json()
-        dispatch(updateUserProfileAC(result.UserOne))
+        console.log("Прилетел с бека обновленный",result);
+        // dispatch(updateUserProfileAC(result.UserOne))
         dispatch(updateUserFromAllState(result.UserOne ))
             
     };

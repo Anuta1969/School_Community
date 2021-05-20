@@ -58,7 +58,8 @@ router
             instagramm,            
             placeWork,
         } = req.body;
-        try {
+        try { 
+          if(placeWork != ""){
           const searchName = placeWork.toLowerCase()
 const organizations =  await Organization.find({ findName: searchName });
 if (organizations.length == 0) {
@@ -108,7 +109,27 @@ const UserOne = await User.findOne({_id: id});
             await UserOne.save();
             console.log(UserOne+'sdf');
             res.status(200).json({UserOne});
-    }               
+          }
+        }  else{
+          const UserOne = await User.findOne({_id: id});
+            UserOne.name = name;
+            UserOne.lastName = lastName;
+            UserOne.email = email;
+            UserOne.phone = phone;
+            UserOne.year = year;
+            UserOne.group = group;
+            UserOne.city = city;
+            UserOne.stack = stack;
+            UserOne.language = language;
+            UserOne.socialTelegramm = socialTelegramm;
+            UserOne.socialGitHab = socialGitHab;
+            UserOne.instagramm = instagramm;
+            UserOne.placeWork = placeWork;
+            
+            await UserOne.save();
+            console.log(UserOne+'2222');
+            res.status(200).json({UserOne});
+        }             
              
         } catch (error) {
             res.status(404).json({succes: false, msg: error.message});

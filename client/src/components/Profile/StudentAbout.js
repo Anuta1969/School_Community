@@ -8,7 +8,7 @@ function StudentAbout({ student, id }) {
   const [btnUpdate, setBtnUpdate] = useState(false);
   const dispatch = useDispatch();
   const [deleteBtnUpdate, setDeleteBtnUpdate ] = useState(true)
-
+console.log("страничка абаут", id);
   const btnUpdateHandler = () => {
     setDeleteBtnUpdate(false)
     setBtnUpdate(true);
