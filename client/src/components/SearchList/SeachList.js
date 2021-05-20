@@ -12,13 +12,12 @@ function SearchList(props) {
         dispatch(thunkInitStudents())
     }, [dispatch])
 
-    const [number, setNumber] = useState(16)
+    const [number, setNumber] = useState(10)
     const searchAll = search.all.slice(0,number)
-   
 
-    const [filter, setFilter] = useState(16)
+
+    const [filter, setFilter] = useState(10)
     const searchFilter = search.filter.slice(0,filter)
-    // console.log(search.filter, searchFilter.length, filter);
 
     const searchWotchHandler=()=>{
       setNumber(number+8)

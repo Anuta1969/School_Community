@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import { thunkAddComment, thunkOrgInit } from '../../redux/Thunk/ThunkOrganization';
 import Icon from '@iconify/react';
 import iosStar from '@iconify-icons/ion/ios-star';
+import Comment from '../Сomment/Comment';
 
 const rating = ['','','','','']  //массив для отрисовки звезд в рейтинге
 
@@ -73,12 +74,11 @@ function OrganizationView() {
   }
   return (
     <>
-      <div className="organization_container container justify-content-center text-center">
+
         <div className='paramsOrg'>
-        <div className="card_info">
           <h3 className="card-title card_text_title">{organizationInitial?.name}</h3>
-          <div className="card_text">Текущий рейтинг:&nbsp;
-                            {/* Блок для отрисовки рейтинга */}
+          <div className="cardOrgBody"><p>Текущий рейтинг:&nbsp;</p>
+
             <div className='rating' >
               <div className='ratingBody'>
                 <div className='ratingActive'></div>
@@ -92,14 +92,16 @@ function OrganizationView() {
                 </div>
               <div className="ratingValue"></div>
             </div>
-          </div>
-        </div>
+
+
+
                                    {/* блок отзывов */}
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">Последний отзыв:&nbsp;{comments? comments[comments.length - 1]?.text : 'отзывов пока нет'}
-             <p>  <button onClick={addCommentFunction}> {!addCommentFlag? <h6>оставить отзыв</h6> : <h6>скрыть</h6>  } </button> </p>
+        <div className="orgInfo">
+          <div className="reviewBlock">
+            <h4 className='lastReview'> Последний отзыв:&nbsp;</h4><p>{comments? comments[comments.length - 1]?.text : 'отзывов пока нет'}</p>
+             <div>  <button className='addReview' onClick={addCommentFunction}> {!addCommentFlag? <h6>Оставить отзыв</h6> : <h6>Скрыть</h6>  } </button> </div>
             {addCommentFlag
-              ? <div className="organization container d-flex flex-column">
+              ? <div className="orgReviewCont organization container d-flex flex-column">
                   <form method="POST" onSubmit={formCommentHandler}>
                       <p> Оцените организацию {rating.map((el,i) => {
                                                 return <Icon
@@ -113,41 +115,49 @@ function OrganizationView() {
                         <textarea className="form-control m-3" name="comment" required={true} ></textarea>
                         <label className="ms-2" htmlFor="floatingTextarea2">Ваше мнение об организации</label>
                       </div>
-                      <button type="submit">Добавить</button>
+                      <button className='addReview' type="submit">Добавить</button>
                     </form>
                  </div>
                 : null }
-          </li>
-          <li className="list-group-item">Активные вакансии:&nbsp;
+
+          </div>
+          <div className="linkToVac">Активные вакансии:&nbsp;
             {activeVacantion?.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}
-          </li>
-        </ul>
-        <div className="">
-          <button onClick={showArchiveFunction} className="card-link">Архив вакансий</button>
+          </div>
+        </div>
+        <div className="btnBlockOrg">
+          <button onClick={showArchiveFunction} className="card-linkBtn">Архив вакансий</button>
+
           {
            showCommentFlag
-            ? <button onClick={showCommentFunction} className="card-link">Скрыть отзывы</button>
-            : <button onClick={showCommentFunction} className="card-link">Показать отзывы</button>
+            ? <button onClick={showCommentFunction} className="card-linkBtn">Скрыть отзывы</button>
+            : <button onClick={showCommentFunction} className="card-linkBtn">Показать отзывы</button>
           }
         </div>
+          </div>
+
                                                    {/* блок орисовки архивных вакансий */}
+                    <div className='blockForAll'>
+         <div className='blockForVacancy'>
         {showArchiveFlag
           ? archiveVacantion.length
-            ? <div className='container '>
+            ? <div className='reviewAuthor '>
                 Cписок неактивных вакансий:
                 <h4>{archiveVacantion.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}</h4>
               </div>
-            : <h3>{ `У ${organizationInitial?.name} нет вакансий в архиве` }</h3>
+            : <h3 className='h3Org'>{ `У ${organizationInitial?.name} нет вакансий в архиве` }</h3>
           :null}
-                                                          {/* блок отрисовки всех комментариев */}
+         </div>
+                         <div >                                 {/* блок отрисовки всех комментариев */}
         {
-          showCommentFlag ? <div>
-                            {
-                            comments? <div> {comments?.map(el => {return <div key={el._id}>{`${el.text}`} Автор отзыва {`${el.authorName}`}</div> } )}  </div>
-                            : <p>Отзывов пока нет</p>
-                            }
-                          </div>
+          showCommentFlag ? <div className='blockForComment'> {
+
+                            comments? <div> {comments?.map(el =>  <Comment key={el._id} comment={el}/> ) } </div>
+                                     : <p>Отзывов пока нет</p>
+
+        }</div>
                         : null}
+                         </div>
         </div>
      </div>
     </>

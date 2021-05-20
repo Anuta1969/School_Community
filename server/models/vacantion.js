@@ -8,7 +8,8 @@ const Vacantion = mongoose.model('Vacantion', {
     description: {type: String, required: true},
     contacts: {type: String},
     userID: {type: mongoose.Schema.Types.Object, ref: 'Student'},
-    salary:{type:String}
+    salary:{type:String},
+    organizationId:{type:String}
 })
 
 export default Vacantion

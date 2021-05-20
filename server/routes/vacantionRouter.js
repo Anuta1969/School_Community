@@ -45,20 +45,23 @@ router
           contacts: student.name,
           userID: student._id,
         });
-      
-      console.log(organizations);
-      console.log(newVacantions);
      
 
       if (organizations.length == 0) {
-        await Organization.create({
+      const newOrganization =  await Organization.create({
           name: organization,
           findName:searchName,
           vacantion:newVacantions
         });
+
+        newVacantions.organizationId = newOrganization._id
+       await newVacantions.save()
+        // console.log(newVacantions);
       } else {
         await organizations[0].vacantion.push(newVacantions);
         await organizations[0].save();
+        newVacantions.organizationId = organizations[0]._id
+        await newVacantions.save()
       }
       res.status(201).json({ newVacantions });
     }catch (error){

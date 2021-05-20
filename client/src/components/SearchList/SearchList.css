@@ -9,20 +9,19 @@
     align-items: center;
     width: 80%;
     margin: 50px auto 10px;
-    animation: show-students 1s ;
-
+    animation: show-students 1s forwards;
 }
 
 
 @keyframes show-students {
     0% {
         opacity: 0;
-        /*transform: translateY(-200px)*/
-        transform: translate3d(0,0,-500px) scale(0);
+        transform: translateY(-200px)
+        /*transform: translate3d(0,0,-500px) scale(0);*/
     }
     100% {
         opacity: 1;
-        /*transform: translateY(0);*/
-        transform: translate3d(0,0,0) scale(1);
+        transform: translateY(0)
+        /*transform: translate3d(0,0,0) scale(1);*/
     }
 }

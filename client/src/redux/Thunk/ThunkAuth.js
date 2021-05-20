@@ -18,7 +18,7 @@ export const thunkLogin = (email, password) => {
             {email, password})
             .then(data => dispatch(setUser(data.data)))
             .then((data) => localStorage.setItem('token', data.payload.token))
-        // .catch((error) => alert(`status: ${error.response.status} , ${error.response.data.message}`))
+        .catch(({response}) => alert(`${response.data.message}`))
     }
 }
 
