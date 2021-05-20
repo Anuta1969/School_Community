@@ -20,10 +20,11 @@ console.log(comment);
   return (
     <div className="comment-title">
       <div className="comment-item comment-item-text "> 
-      {((commentObj.length>=0) && !textTrue) && commentFiveword.join('').replace("↵","\n")}
+      {((commentObj.length>=0) && !textTrue) && commentFiveword.join('')}
       {textTrue && comment.text}
        </div>
-      {commentObj.length>=50 &&<div className="comment-item comment-item__btn" onClick={allcommentHandler}>Подробнее</div>}
+      {commentObj.length>=49 &&<div className="comment-item comment-item__btn" onClick={allcommentHandler}>Подробнее</div>}
+      
       <div className="comment-item-User"><a href={`/profile/${comment.author}`} >{comment.authorName}</a></div>
     </div>
   );
