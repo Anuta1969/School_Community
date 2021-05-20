@@ -35,6 +35,9 @@ function OrganizationView() {
     setRateActiveWidth(organizationInitial.totalRating)
   }, [organizationInitial, dispatch])
 
+  console.log(activeVacantion);
+  console.log(archiveVacantion);
+
   // обработка флага для показа архивных вакансий
   const showArchiveFunction = (event) => {
     event.preventDefault()
