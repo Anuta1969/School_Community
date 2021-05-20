@@ -70,13 +70,20 @@
   color: grey;
 }
 .paramsOrg{
-  margin: 120px auto;
+  /* height: 100vh; */
+  margin-top: 100px;
+  margin-bottom: 50px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
   animation: show-oneOrg 1.2s;
-  width: 800px;
+  /* width: 800px; */
+}
+.paramsOrg-box{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 @keyframes show-oneOrg {
   0% {
@@ -113,22 +120,55 @@
   border-radius: 10px;
 }
 .blockForAll{
+  min-height: 500px;
   width: 1000px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  background-color: #8ab93f;
+  /* background-color: #8ab93f; */
 }
 .blockForVacancy{
-background-color: #5f3fb9;
-  margin: 20px 30px;
-  animation:show-vacArhive 0.9s ;
+  min-width: 35%;  
+  color: bisque;
+}
+.reviewAuthor {
+  padding-bottom: 20px;
+  padding-top: 10px;
+  background-color: #4520ab;
+  border-top-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  border-bottom-left-radius: 36px;
+  border-top-right-radius: 36px;
+}
+.reviewAuthor-title{
+color:rgb(199, 190, 190)
+}
+.reviewAuthor-item p{
+  text-align: start;
+  padding-left: 15%;
+
+}
+.reviewAuthor-item a{
+  text-decoration: none;
+  display: inline-block;
+  color: bisque;
 }
 .blockForComment{
-  background-color: #4c4c4c;
-  margin: 20px 30px;
+  /* padding-left: 13%; */
+  background-color: #4520ab;
   animation:show-hideReview 0.9s ;
+  border-top-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  border-bottom-left-radius: 36px;
+  border-top-right-radius: 36px;
+}
+.comment-AboutWork{
+  min-width: 35%;
+  width: 50%;
+}
+.comment-AboutBlock{
+  padding: 15px 0;
 }
 .h3Org{
   font-size: 20px;
