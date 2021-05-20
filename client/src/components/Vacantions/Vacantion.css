@@ -93,7 +93,9 @@
   border-bottom-left-radius: 15px;
   border-top-right-radius: 15px;
 }
-
+.card_info_vacantion-box{
+  padding: 17px;
+}
 .vac_span{
   color: rgb(243 217 99) !important;
   font-size: 25px;

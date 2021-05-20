@@ -7,7 +7,7 @@ function StudentAddRusume({student,id}) {
   const resumeStudent= student.resume
   const [resume, setResume] = useState(false);
   const initialUser = useSelector(state=>state.student)
-
+  console.log(student);
   const saveResumehandler = (e) => {
     e.preventDefault();
     setResume(false);
@@ -96,7 +96,7 @@ function StudentAddRusume({student,id}) {
           </form>
         )}
         <div className="save-resume">
-        { student.resume && !initialUser.admin && <button  
+        { ((student.resume && initialUser.admin) || (student.resume && !initialUser.admin)) && <button  
           className="student-btn save-resume__btn"
             onClick={downLoadResumeHandler}>
                 Скачать резюме
