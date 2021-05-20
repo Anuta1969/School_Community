@@ -6,6 +6,7 @@ import './AdminList.css'
 
 function AdminList(props) {
     const admin = useSelector(state => state.admin)
+    console.log(admin);
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(thunkAdminList())
