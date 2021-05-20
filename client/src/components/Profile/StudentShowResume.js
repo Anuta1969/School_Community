@@ -43,6 +43,7 @@ console.log("зашли к student", student._id, student);
           <h3 className="resume__without-text">Загрузите резюме</h3>
       </div>
       
+      
       {/* Для  студента к которому зашли */}
       {/* { ((!student.resume  && !student.admin) ||(!student.resume && idAdmin==initialUser._id && student.admin) ||(!AdminResume && idAdmin==initialUser._id && initialUser.resume) || ( !AdminResume && idAdmin!=initialUser._id && initialUser.resume)) &&
       <div id="student-form__id" className="resume__without">
