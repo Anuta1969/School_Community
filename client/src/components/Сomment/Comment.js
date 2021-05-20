@@ -17,6 +17,7 @@ function Comment({comment}) {
       setTextComment(commentReturnText)
     }
     // console.log(commentObj);
+    
   }
 
 
