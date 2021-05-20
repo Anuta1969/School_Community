@@ -31,8 +31,8 @@ function ProfileShowResume({student}) {
   const AdminResume = useSelector((state)=>state.search.all).filter(student => student.admin === true)[0].resume
   const idAdmin = useSelector((state)=>state.search.all).filter(student => student.admin === true)[0]._id
 
-console.log("залогинился initialUser",initialUser._id, initialUser);
-console.log("зашли к student", student._id, student);
+// console.log("залогинился initialUser",initialUser._id, initialUser);
+// console.log("зашли к student", student._id, student);
 // console.log("зашел  к",idAdmin);
   return (
     <div className="resume-show">
