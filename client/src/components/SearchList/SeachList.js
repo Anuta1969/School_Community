@@ -7,10 +7,14 @@ import {thunkInitStudents} from '../../redux/Thunk/ThunkSearch';
 function SearchList(props) {
     const dispatch = useDispatch()
     const search = useSelector(state => state.search)
-
+    // const [state,setState] = useState(search)
     useEffect(() => {
         dispatch(thunkInitStudents())
     }, [dispatch])
+
+    // useEffect(()=>{
+    //     setState(search)
+    // },[search])
 
     const [number, setNumber] = useState(10)
     const searchAll = search.all.slice(0,number)
