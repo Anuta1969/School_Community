@@ -3,6 +3,7 @@ import User from "../models/student.js";
 import path from "path";
 import multer from "multer";
 import Student from "../models/student.js";
+import Organization from "../models/organization.js";
 
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -58,8 +59,16 @@ router
             placeWork,
         } = req.body;
         try {
-            const UserOne = await User.findOne({_id: id});
-            console.log(UserOne);
+          const searchName = placeWork.toLowerCase()
+const organizations =  await Organization.find({ findName: searchName });
+if (organizations.length == 0) {
+
+  const newOrganization =  await Organization.create({
+      name: placeWork,
+      findName:searchName,
+    });
+
+    const UserOne = await User.findOne({_id: id});
             UserOne.name = name;
             UserOne.lastName = lastName;
             UserOne.email = email;
@@ -73,9 +82,34 @@ router
             UserOne.socialGitHab = socialGitHab;
             UserOne.instagramm = instagramm;
             UserOne.placeWork = placeWork;
-
+            UserOne.jobId= newOrganization._id
             await UserOne.save();
+            console.log(UserOne+'1111');
             res.status(200).json({UserOne});
+  }
+    else{
+
+
+const UserOne = await User.findOne({_id: id});
+            UserOne.name = name;
+            UserOne.lastName = lastName;
+            UserOne.email = email;
+            UserOne.phone = phone;
+            UserOne.year = year;
+            UserOne.group = group;
+            UserOne.city = city;
+            UserOne.stack = stack;
+            UserOne.language = language;
+            UserOne.socialTelegramm = socialTelegramm;
+            UserOne.socialGitHab = socialGitHab;
+            UserOne.instagramm = instagramm;
+            UserOne.placeWork = placeWork;
+            UserOne.jobId= organizations[0]._id
+            await UserOne.save();
+            console.log(UserOne+'sdf');
+            res.status(200).json({UserOne});
+    }               
+             
         } catch (error) {
             res.status(404).json({succes: false, msg: error.message});
         }

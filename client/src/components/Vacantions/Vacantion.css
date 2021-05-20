@@ -75,13 +75,41 @@
   font-size: 22px;
 }
 
-.card_info{
+.card_text_params_title{
+  color: rgb(243 217 99) !important;
+  font-size: 22px;
+  margin: 15px auto;
+}
+
+.card_info_vacantion{
   background-color: #5f3fb9;
   margin:200px auto 0 auto;
   text-align: center;
   display: flex;
   justify-content: center;
   width: 600px;
+  border-top-left-radius:  60px;
+  border-bottom-right-radius: 60px;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.vac_span{
+  color: rgb(243 217 99) !important;
+  font-size: 25px;
+  font-weight: bold;
+ 
+}
+
+.vac_description{
+  
+}
+
+.vac_btn{
+  margin: 15px auto;
+  border-radius: 10px;
+  background-color:  rgb(243 217 99);
+  padding: 5px;
 }
 
 .vacantion {
