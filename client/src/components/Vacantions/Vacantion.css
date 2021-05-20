@@ -1,13 +1,12 @@
-
 .vacantion_container{
   margin-top: 120px;
-    animation: show-vacancy 1.2s forwards;
+    animation: show-loader 1.2s forwards;
 
 }
 .btnAddVac{
     width: 180px;
     height: 30px;
-    background: rgb(243 217 99);
+    background: #ffbc5b;
     /*margin: 20px;*/
     margin-bottom: 15px;
     border-radius: 10px;
@@ -24,7 +23,7 @@
     margin: 30px auto;
 }
 .addBtnVac{
-    background: rgb(243 217 99);
+    background: #cec658;
     border-radius: 10px;
     margin: 5px auto;
     height: 30px;
@@ -76,12 +75,8 @@
   font-size: 22px;
 }
 
-.cardVacancy{
+.card_info{
   background-color: #5f3fb9;
-
-    animation: show-vacancy 1.2s forwards;
-
-
   margin:200px auto 0 auto;
   text-align: center;
   display: flex;
@@ -90,42 +85,27 @@
 }
 
 .vacantion {
+    animation: show-loader 1.2s forwards;
     margin-top: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: show-addVacancy 1.2s forwards;
-
 }
 
-@keyframes show-addVacancy {
+
+@keyframes show-loader {
     0% {
         opacity: 0;
         transform: translateY(-200px)
-        /*transform: translate3d(0,0,-500px) scale(0);*/
+        /*transform: translate3d(-200px,-200px,0);*/
     }
     100% {
         opacity: 1;
         transform: translateY(0);
-        /*transform: translate3d(0,0,0) scale(1);*/
-    }
-}
-
-@keyframes show-vacancy {
-    0% {
-        opacity: 0;
-        transform: translateY(-200px)
-        /*transform: translate3d(0,0,-500px) scale(0);*/
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        /*transform: translate3d(0,0,0) scale(1);*/
+        /*transform: translate3d(0,0,0);*/
     }
 }
 
 .vacantion-box{
   padding-top: 6%;
 }
-
-

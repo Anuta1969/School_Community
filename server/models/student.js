@@ -15,6 +15,7 @@ const Student = mongoose.model('Student',{
     instagramm:{type: String},
     socialGitHab: {type: String},
     placeWork:{type: String},
+
     vacancy:[{type:mongoose.Schema.Types.ObjectId , ref: "Vacantion"}],
     comment:[{type:mongoose.Schema.Types.ObjectId , ref: "Comment"}],
     resume:{type: String},
