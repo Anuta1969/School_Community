@@ -74,11 +74,11 @@ router.post('/login',
             const {email, password} = req.body
             const student = await Student.findOne({email})
             if (!student || !student.isAuth) {
-                return res.status(404).json({message: "User not found"})
+                return res.status(404).json({message: "Пользователь не найден"})
             }
             const isPassValid = bcrypt.compareSync(password, student.password)
             if (!isPassValid) {
-                return res.status(400).json({message: "Invalid password"})
+                return res.status(400).json({message: "Не верный пароль"})
             }
             const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return res.json({

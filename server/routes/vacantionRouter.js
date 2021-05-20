@@ -45,9 +45,6 @@ router
           contacts: student.name,
           userID: student._id,
         });
-      
-      // console.log(organizations);
-      // console.log(newVacantions);
      
 
       if (organizations.length == 0) {
@@ -59,7 +56,7 @@ router
 
         newVacantions.organizationId = newOrganization._id
        await newVacantions.save()
-        console.log(newVacantions);
+        // console.log(newVacantions);
       } else {
         await organizations[0].vacantion.push(newVacantions);
         await organizations[0].save();
