@@ -19,26 +19,26 @@ function VacantionCardParams() {
   const student = useSelector((state) => state.student);
 
   let [actual, setActual] = useState(true);
-console.log(actual);
+  
+
   const idStudent = student._id;
   useEffect(() => {
-    // if (vacantion) {
-    //   setActual(true);
-    // }
+    
     dispatch(ThunkInitOneVacantion(id));
+    
   }, [dispatch]);
 
   useEffect(() => {
-    console.log('useEffect', actual);
+  vacantion && setActual(vacantion.relevance)
 
-    dispatch(ThunkEditVacantion(id, actual));
-  }, [actual]);
+  }, [vacantion]);
 
   const editHandler = (event) => {
     event.preventDefault();
-    setActual(!actual);
+    
 
-    dispatch(ThunkEditVacantion(id, actual));
+    dispatch(ThunkEditVacantion(id, !actual));
+    setActual(!actual);
   };
 
   return (
@@ -80,7 +80,7 @@ console.log(actual);
               method="PUT"
             >
               <button>
-                {actual ? 'Закинуть в архив' : 'Убрать из архива'}
+                {actual ? 'Добавить в архив' : 'Убрать из архива'}
               </button>
             </form>
           ) : null}

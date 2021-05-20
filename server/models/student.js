@@ -21,6 +21,7 @@ const Student = mongoose.model('Student',{
     phone: {type: Number},
     isAuth:{type:Boolean, default:false},
     admin:{type:Boolean, default:false},
+    jobId:{type: String},
 })
 
 export default Student
