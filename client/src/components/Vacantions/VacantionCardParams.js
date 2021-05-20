@@ -19,58 +19,60 @@ function VacantionCardParams() {
   const student = useSelector((state) => state.student);
 
   let [actual, setActual] = useState(true);
-console.log(actual);
+  
+
   const idStudent = student._id;
   useEffect(() => {
-    // if (vacantion) {
-    //   setActual(true);
-    // }
+    
     dispatch(ThunkInitOneVacantion(id));
+    
   }, [dispatch]);
 
   useEffect(() => {
-    console.log('useEffect', actual);
+  vacantion && setActual(vacantion.relevance)
 
-    dispatch(ThunkEditVacantion(id, actual));
-  }, [actual]);
+  }, [vacantion]);
 
   const editHandler = (event) => {
     event.preventDefault();
-    setActual(!actual);
+    
 
-    dispatch(ThunkEditVacantion(id, actual));
+    dispatch(ThunkEditVacantion(id, !actual));
+    setActual(!actual);
   };
+ 
 
   return (
-    <div className="card_info">
+    <div className="card_info_vacantion">
       <div className="">
         <div>
-          <h4 className="card_text_params">
+          <p className="card_text_params">
             <Link
-              className="card-text card_text_params"
+              className="card-text card_text_params_title"
               to={`/organizations/org/${vacantion?.organizationId}`}
             >
-              Организация:{vacantion?.organization}
+             Организация : <span className='vac_span'>{vacantion?.organization}</span>
             </Link>
-          </h4>
+          </p>
           <p className="card-text  card_text_params">
-            Вакансия: {vacantion?.vacantion}
+            Вакансия: <span className='vac_span'>{vacantion?.vacantion}</span>
           </p>
           <p className="card-text card_text_params">
-            Зарплата: {vacantion?.salary}
+            Зарплата: <span className='vac_span'>{vacantion?.salary}</span>
+          </p>
+          <p className="card-text card_text_params vac_description">
+            Описание : <span className='vac_description'>{vacantion?.description}</span>
           </p>
           <p className="card-text card_text_params">
-            Описание :{vacantion?.description}
-          </p>
-          <p className="card-text card_text_params">
-            Дата размещения:{vacantion?.date}
+            Дата размещения: <span>{vacantion?.date.slice(0,10)}</span>
+              
           </p>
           <h3 className="card-text card_text_params">
             <Link
               className="card-text card_text_params"
               to={`/profile/${vacantion?.userID}`}
             >
-              Автор: {vacantion?.contacts}
+              Автор: <span className='vac_span'>{vacantion?.contacts}</span>
             </Link>
           </h3>
           {idStudent === vacantion?.userID || student.admin ? (
@@ -79,8 +81,8 @@ console.log(actual);
               action={`/vacantion/${id}`}
               method="PUT"
             >
-              <button>
-                {actual ? 'Закинуть в архив' : 'Убрать из архива'}
+              <button className='vac_btn'>
+                {actual ? 'Добавить в архив' : 'Убрать из архива'}
               </button>
             </form>
           ) : null}

@@ -78,7 +78,8 @@ function OrganizationView() {
   return (
     <>
 
-        <div className='paramsOrg'>
+        <div className='container paramsOrg'>
+          <div className= "paramsOrg-box">
           <h3 className="card-title card_text_title">{organizationInitial?.name}</h3>
           <div className="cardOrgBody"><p>Текущий рейтинг:&nbsp;</p>
 
@@ -145,22 +146,23 @@ function OrganizationView() {
         {showArchiveFlag
           ? archiveVacantion.length
             ? <div className='reviewAuthor '>
-                Cписок неактивных вакансий:
-                <h4>{archiveVacantion.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}</h4>
+                <p className="reviewAuthor-title">Cписок неактивных вакансий:</p>
+                <div className="reviewAuthor-item">{archiveVacantion.map(el => {return <p key={el._id}> <a href={`http://localhost:3000/vacantion/${el._id}`}>  {el.vacantion} </a> </p> })}</div>
               </div>
             : <h3 className='h3Org'>{ `У ${organizationInitial?.name} нет вакансий в архиве` }</h3>
           :null}
          </div>
-                         <div >                                 {/* блок отрисовки всех комментариев */}
+                         <div className="comment-AboutWork">                                 {/* блок отрисовки всех комментариев */}
         {
           showCommentFlag ? <div className='blockForComment'> {
 
-                            comments? <div> {comments?.map(el =>  <Comment key={el._id} comment={el}/> ) } </div>
+                            comments? <div className="comment-AboutBlock"> {comments?.map(el =>  <Comment key={el._id} comment={el}/> ) } </div>
                                      : <p>Отзывов пока нет</p>
 
         }</div>
                         : null}
                          </div>
+        </div>
         </div>
      </div>
     </>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { ThunkUpdateProfile, } from "../../redux/Thunk/ThunkStudent";
 import {thunkInitStudents} from "../../redux/Thunk/ThunkSearch";
-
+import {Link} from "react-router-dom";
 
 function StudentAbout({ student, id }) {
   const [btnUpdate, setBtnUpdate] = useState(false);
@@ -77,7 +77,10 @@ function StudentAbout({ student, id }) {
           {/* <li className="student-about__item"> {student?.socialTelegramm}</li>
           <li className="student-about__item"> {student?.socialGitHab}</li>
           <li className="student-about__item"> {student?.instagramm}</li> */}
-          <li className="student-about__item">{student?.placeWork} </li>
+          
+          <li className="student-about__item"><Link to={`/organizations/org/${student?.jobId}`}>{student?.placeWork}   </Link></li>
+        
+          
           <li className="student-about__item">
             {/* <button  onClick={downLoadResumeHandler}>
               Скачать резюме
