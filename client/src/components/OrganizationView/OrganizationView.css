@@ -71,7 +71,7 @@
 }
 .paramsOrg{
   /* height: 100vh; */
-  margin-top: 100px;
+  margin-top: 150px;
   margin-bottom: 50px;
   display: flex;
   justify-content: center;
@@ -129,7 +129,7 @@
   /* background-color: #8ab93f; */
 }
 .blockForVacancy{
-  min-width: 35%;  
+  min-width: 35%;
   color: bisque;
 }
 .reviewAuthor {
@@ -178,6 +178,7 @@ color:rgb(199, 190, 190)
 .h3Org{
   font-size: 20px;
   animation:show-vacArhive 0.9s ;
+  color: red;
 
 }
 
