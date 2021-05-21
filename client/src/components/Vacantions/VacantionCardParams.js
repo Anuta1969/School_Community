@@ -44,7 +44,7 @@ function VacantionCardParams() {
 
   return (
     <div className="card_info_vacantion">
-      <div className="">
+      <div className="card_info_vacantion-box">
         <div>
           <p className="card_text_params">
             <Link
