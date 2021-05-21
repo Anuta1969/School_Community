@@ -32,7 +32,7 @@ export const thunkRegister = (info, e) => {
                 console.log(data)
                 if (data.student) {
                     alert(data.message)
-                    // e.target.reset()
+                    e.target.reset()
                 }
 
                 else {

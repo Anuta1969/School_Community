@@ -69,7 +69,7 @@
   overflow:hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: rgb(33 33 31);
+    color: rgb(243 217 99) !important;
 }
 
 .card_text{

@@ -42,12 +42,12 @@ router
                     port: 587,
                     secure: true,
                     auth: {
-                        user: 'mr_bono1997@mail.ru', // generated ethereal user
-                        pass: 'bono1997', // generated ethereal password
+                        user: 'elbrus-in@mail.ru', // generated ethereal user
+                        pass: 'rORTytyU2a3*', // generated ethereal password
                     }
                 })
                 await transporter.sendMail({
-                    from: 'mr_bono1997@mail.ru',
+                    from: 'elbrus-in@mail.ru' ,
                     to: student.email,
                     subject:'Ответ',
                     text:`Заявка отклонена ElbrusIn`,
@@ -77,12 +77,12 @@ router
                     port: 587,
                     secure: true,
                     auth: {
-                        user: 'mr_bono1997@mail.ru', // generated ethereal user
-                        pass: 'bono1997', // generated ethereal password
+                        user: 'elbrus-in@mail.ru', // generated ethereal user
+                        pass: 'rORTytyU2a3*', // generated ethereal password
                     }
                 })
                 await transporter.sendMail({
-                    from: 'mr_bono1997@mail.ru',
+                    from: 'elbrus-in@mail.ru' ,
                     to: student.email,
                     subject:'Заявка',
                     text:`Заявка одобрена в ElbrusIn`,

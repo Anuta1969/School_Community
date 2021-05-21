@@ -6,7 +6,7 @@ function Organization({ org, rate, ind }) {
 
   const selector = '.org' + ind + '.ratingActive'
   const actualVacantion = org.vacantion
-  console.log(org)
+  
   useEffect( () => {
     setRateActiveWidth(rate)
   }, [org])
