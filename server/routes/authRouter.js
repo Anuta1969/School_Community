@@ -23,7 +23,7 @@ const upload = multer({ storage: storage })
 router.post('/registration',
     upload.single('photo'),[
     check('email', "Uncorrect email").isEmail(),
-    check('password', 'Password must be longer than 3 and shorter than 12').isLength({min:3, max:12})]
+    check('password', 'Пароль должен быть не менее 6 символов').isLength({min:6, max:50})]
    ,async (req, res) => {
 
             const errors = validationResult(req)
@@ -31,56 +31,54 @@ router.post('/registration',
                 return res.status(400).json({message: "Incorrect request", errors})
             }
     try {
-        const {email, password,name,phone} = req.body
+        const {email, password,name,phone ,year,group,city} = req.body
+        console.log(req.body)
         const photoUser = req.file.filename
-            // const {email, password,name,phone} = req.body
             const candidate = await Student.findOne({email})
             if(candidate) {
                 return res.status(201).json({message: `Student with email ${email} already exist`})
             }
             const hashPassword = await bcrypt.hash(password, 8)
-            const student = await Student.create({email, password:hashPassword,name,phone,photo:photoUser})
+            const student = await Student.create({email, password:hashPassword,name,phone,photo:photoUser,year,group,city})
             const request = await AdminList.create({userId:student})
-            // const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
         async function mail(){
             let transporter =  nodemailer.createTransport({
                 service: 'Mail.ru',
                 port: 587,
                 secure: true,
                 auth: {
-                    user: 'mr_bono1997@mail.ru', // generated ethereal user
-                    pass: 'bono1997', // generated ethereal password
+                    user: 'elbrus-in@mail.ru', // generated ethereal user
+                    pass: 'rORTytyU2a3*', // generated ethereal password
                 }
             })
             await transporter.sendMail({
-                from: 'mr_bono1997@mail.ru' ,
-                to: 'ixa094@mail.ru',
+                from: 'elbrus-in@mail.ru' ,
+                to: 'hr@elbrusboot.camp',
                 subject:'Заявка',
                 text:`Привет Надежда, меня зовут ${name}, пожалуйста рассмотри мою заявку в ElbrusIn!`,
                 html:`Привет Надежда, меня зовут ${name}, пожалуйста рассмотри мою заявку в ElbrusIn!`
             })
-
         }
         mail().catch(console.error)
-
             return   res.json({message: "заявка на рассмотрении",request,student})
         } catch (e) {
-            res.send({message: "Server error"})
+            res.json({message: "Server error"})
         }
     })
+
+
 router.post('/login',
     async (req, res) => {
+        console.log(req.body)
         try {
             const {email, password} = req.body
-            // console.log(req.body);
             const student = await Student.findOne({email})
-            // console.log(student+'111');
             if (!student || !student.isAuth) {
-                return res.status(404).json({message: "User not found"})
+                return res.status(404).json({message: "Пользователь не найден"})
             }
             const isPassValid = bcrypt.compareSync(password, student.password)
             if (!isPassValid) {
-                return res.status(400).json({message: "Invalid password"})
+                return res.status(400).json({message: "Не верный пароль"})
             }
             const token = jwt.sign({id: student.id}, config.get("secretKey"), {expiresIn: "1h"})
             return res.json({
@@ -91,6 +89,7 @@ router.post('/login',
             res.send({message: "Server error"})
         }
     })
+
 router.get('/auth', authMiddleware,
     async (req, res) => {
         try {
@@ -106,4 +105,6 @@ router.get('/auth', authMiddleware,
             res.send({message: "Server error"})
         }
     })
+
+
 export default router

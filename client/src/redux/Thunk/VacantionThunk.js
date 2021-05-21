@@ -1,35 +1,38 @@
-import { addVacantionAC,initVacantionAC,initOneCardAC } from '../../redux/actionCreators/actionCreatorVacantion';
+import { addVacantionAC,initVacantionAC,initOneCardAC,editActualVacantionAC } from '../../redux/actionCreators/actionCreatorVacantion';
 
-
-
-export const addVacantion = (organization,vacantion,description,id)=>{
+export const addVacantion = (organization,vacantionValue,description,salary,id)=>{
   return (dispatch)=>{
-
     fetch(`${process.env.REACT_APP_URL}/vacantion`, {
       method: 'POST',
       headers: { 'Content-Type': 'Application/json' },
       body: JSON.stringify({
-
         organization: organization,
-        vacantion: vacantion,
+        vacantion: vacantionValue,
         description:description,
-        id:id
+        salary:salary,
+        id:id})})
+      .then((res) => res.json())     
+      .then((data) =>
+       {
+        if(data.message){
+          alert(data.message)
+        }
 
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => dispatch(addVacantionAC(data.newVacantions) ));
-      
+        else{
+
+          return dispatch(addVacantionAC(data.newVacantions))
+        }
+      })
+      .catch(err => console.log(err))
   }
 }
-
-
 
 export const ThunkInitVacantion = ()=>{
   return (dispatch)=>{
     fetch(`${process.env.REACT_APP_URL}/vacantion`)
     .then(res=>res.json())
     .then(data=>dispatch(initVacantionAC(data)))
+    .catch(err => console.log(err))
   }
 }
 
@@ -39,5 +42,23 @@ export const ThunkInitOneVacantion = (id)=>{
     fetch(`${process.env.REACT_APP_URL}/vacantion/${id}`)
     .then(res=>res.json())
     .then(data=>dispatch(initOneCardAC([data])))
+    .catch(err => console.log(err))
   }
 }
+
+
+export const ThunkEditVacantion = (id,relevance)=>{
+  return (dispatch)=>{
+    fetch(`${process.env.REACT_APP_URL}/vacantion/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'Application/json' },
+      body: JSON.stringify({
+
+        relevance:relevance})})
+      .then((res) => res.json())
+      .then((data) => dispatch(editActualVacantionAC(data)))
+      .catch(err => console.log(err))
+  }
+}
+
+

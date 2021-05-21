@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
-
+import React from 'react';
+import './Search.css'
 import SearchForm from "../SearchForm/SearchForm";
 import SeachList from "../SearchList/SeachList";
-import { useSelector} from "react-redux";
 
 function Posts(props) {
 
     return (
         <div className='searchPage'>
-            <SearchForm  />
+            <SearchForm/>
             <SeachList/>
         </div>
     );

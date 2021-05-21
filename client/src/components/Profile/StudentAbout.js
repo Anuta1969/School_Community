@@ -1,17 +1,24 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { ThunkUpdateProfile } from "../../redux/Thunk/ThunkStudent";
+import { useDispatch,useSelector } from "react-redux";
+import { ThunkUpdateProfile, } from "../../redux/Thunk/ThunkStudent";
+import {thunkInitStudents} from "../../redux/Thunk/ThunkSearch";
+import {Link} from "react-router-dom";
 
-function StudentAbout({ student }) {
+function StudentAbout({ student, id }) {
   const [btnUpdate, setBtnUpdate] = useState(false);
   const dispatch = useDispatch();
+  const [deleteBtnUpdate, setDeleteBtnUpdate ] = useState(true)
+console.log("страничка абаут", id);
   const btnUpdateHandler = () => {
+    setDeleteBtnUpdate(false)
     setBtnUpdate(true);
   };
-  const id = student._id;
-
+  // const id = student?._id;
+  const initialUser = useSelector(state=>state.student)
+  // console.log("log-",initialUser, "user-", id);
   const btnFormHandler = (e) => {
     setBtnUpdate(false);
+    setDeleteBtnUpdate(true)
     const {
       name: { value: name },
       lastName: { value: lastName },
@@ -22,12 +29,15 @@ function StudentAbout({ student }) {
       city: { value: city },
       stack: { value: stack },
       language: { value: language },
-      socialLinkedin: { value: socialLinkedin },
+      socialTelegramm: { value: socialTelegramm },
       socialGitHab: { value: socialGitHab },
+      instagramm: { value: instagramm },
+
       placeWork: { value: placeWork },
     } = e.target;
     console.log(group, year);
-    dispatch(
+
+   dispatch(
       ThunkUpdateProfile(
         id,
         name,
@@ -39,68 +49,46 @@ function StudentAbout({ student }) {
         city,
         stack,
         language,
-        socialLinkedin,
+        socialTelegramm,
         socialGitHab,
+        instagramm,
+
         placeWork
       )
     );
   };
-  
-  // for download resume
-  const downLoadResumeHandler = () => {
-
-    fetch(`${process.env.REACT_APP_URL}/resume/${student.resume}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/pdf",
-      },
-    })
-      .then((response) => response.blob())
-      .then((blob) => {
-        // Create blob link to download
-        const url = window.URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", `${student.resume}`);
-
-        // Append to html link element page
-        document.body.appendChild(link);
-
-        // Start download
-        link.click();
-
-        // Clean up and remove the link
-        link.parentNode.removeChild(link);
-      });
-  };
+  ;
 
   return (
     <>
-      <button className="student-update__text" onClick={btnUpdateHandler}>
-        ✎
-      </button>
+
 
       {!btnUpdate && (
         <>
           <li className="student-about__item">{student?.name}</li>
           <li className="student-about__item">{student?.lastName}</li>
-          <li className="student-about__item">{student?.phone} </li>
+          <li className="student-about__item">+{student?.phone} </li>
           <li className="student-about__item">{student?.email} </li>
-          <li className="student-about__item"> {student?.year}</li>
-          <li className="student-about__item"> {student?.group}</li>
-          <li className="student-about__item"> {student?.city}</li>
+          {!student.admin && <li className="student-about__item"> {student?.year}</li>}
+          {!student.admin && <li className="student-about__item"> {student?.group}</li>}
+          {!student.admin && <li className="student-about__item"> {student?.city}</li>}
           <li className="student-about__item"> {student?.stack}</li>
           <li className="student-about__item"> {student?.language}</li>
-          <li className="student-about__item"> {student?.socialLinkedin}</li>
+          {/* <li className="student-about__item"> {student?.socialTelegramm}</li>
           <li className="student-about__item"> {student?.socialGitHab}</li>
-          <li className="student-about__item">{student?.placeWork} </li>
+          <li className="student-about__item"> {student?.instagramm}</li> */}
+          
+          <li className="student-about__item"><Link to={`/organizations/org/${student?.jobId}`}>{student?.placeWork}   </Link></li>
+        
+          
           <li className="student-about__item">
-            <button  onClick={downLoadResumeHandler}>
-              Загрузить резюме
-            </button>
+            {/* <button  onClick={downLoadResumeHandler}>
+              Скачать резюме
+            </button> */}
           </li>
         </>
       )}
+
       {btnUpdate && (
         <>
           <form className="about-form__update" onSubmit={btnFormHandler}>
@@ -199,16 +187,23 @@ function StudentAbout({ student }) {
             <input
               className="about-item__change"
               type="text"
-              name="socialLinkedin"
-              placeholder="Linkedin"
-              defaultValue={student?.socialLinkedin}
+              name="socialTelegramm"
+              placeholder="telegram"
+              defaultValue={student?.socialTelegramm}
             />
             <input
               className="about-item__change"
               type="text"
               name="socialGitHab"
               placeholder="GitHub"
-              defaultValue={student.socialGitHab}
+              defaultValue={student?.socialGitHab}
+            />
+            <input
+              className="about-item__change"
+              type="text"
+              name="instagramm"
+              placeholder="instagramm"
+              defaultValue={student?.instagramm}
             />
             <input
               className="about-item__change"
@@ -218,10 +213,16 @@ function StudentAbout({ student }) {
               defaultValue={student?.placeWork}
             />
 
-            <button className="about-item-btn">Сохранить</button>
+            <button className="about-item-btn student-btn">Сохранить</button>
           </form>
         </>
       )}
+      {initialUser._id == id && deleteBtnUpdate && !initialUser.admin &&<button className="student-btn student-update__text" onClick={btnUpdateHandler}>
+         Редактировать данные
+      </button>}
+      {initialUser.admin && deleteBtnUpdate &&  <button className="student-btn student-update__text" onClick={btnUpdateHandler}>
+      Редактировать данные
+      </button>}
     </>
   );
 }

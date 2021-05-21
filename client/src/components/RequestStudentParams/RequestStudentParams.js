@@ -1,60 +1,50 @@
-import React, {useEffect} from 'react';
-import {useHistory, useParams} from "react-router-dom";
+import {useEffect} from 'react';
+import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
-import {initRequestStudentParamsAC} from "../../redux/actionCreators/actionCreatorAdmin";
+import './RequestStudentParams.css'
+
 import {thunkApplyStudentRequest, thunkDelStudentRequest, thunkInitRequestStudent} from "../../redux/Thunk/ThunkAdmin";
 
 function RequestStudent(props) {
 
-    const history  = useHistory()
     const dispatch = useDispatch()
     const {id} = useParams()
     const admin = useSelector(state => state.admin).filter(el => el._id === id)[0]
-    useEffect(()=>{
-        // axios.get(`/admin/student/${id}`)
-        //     // .then(data => console.log(data))
-        //     .then(({data:{student}})=>dispatch(initRequestStudentParamsAC([student])))
-        //     .catch(err => console.log(err))
 
+    useEffect(() => {
         dispatch(thunkInitRequestStudent(id))
-    },[dispatch])
+    }, [dispatch])
 
-
-    const applyHandler =(e)=>{
+    const applyHandler = (e) => {
         e.preventDefault()
-            // axios.post(`/admin/student/${id}`)
-            // .then(data => console.log(data))
-            // .then(el => history.push('/'))
-            // .catch(err => console.log(err))
-
         dispatch(thunkApplyStudentRequest(id))
         window.location.href = '/'
-
     }
 
-    const delHandler =(e)=>{
+    const delHandler = (e) => {
         e.preventDefault()
-        // axios.delete(`/admin/student/${id}`)
-        //     .then(data => console.log(data))
-        //     .then(el => history.push('/'))
-        //     .catch(err => console.log(err))
-
         dispatch(thunkDelStudentRequest(id))
         window.location.href = '/'
-
     }
 
     return (
         <>
-            <div>RequestForm</div>
+            <div className='requestForm'>
             <div className="cardInfo">
-                <img src= {`${process.env.REACT_APP_URL}/img/${admin?.photo}`} />
-                <h5 className="item-title">{admin?.email}</h5>
-                <h5 className="item-price">{admin?.name}</h5>
-                <h5 className="item-price">{admin?.phone}</h5>
-                <button onClick={applyHandler} className='btnAdmin'>Принять</button>
-                <button onClick={delHandler} className='btnAdmin'>Отклонить</button>
+                <div className='paramsImg'><img src={`${process.env.REACT_APP_URL}/img/${admin?.photo}`}/></div>
+                <div className='paramsInfo'>
+                <h5 className="params-h5">{admin?.email}</h5>
+                <h5 className="params-h5">{admin?.name}</h5>
+                <h5 className="params-h5">{admin?.phone}</h5>
+                <h5 className="params-h5">{admin?.year}</h5>
+                <h5 className="params-h5">{admin?.group}</h5>
+                <h5 className="params-h5">{admin?.city}</h5>
+                <div className='btnBlockAdmin'>
+                <button onClick={delHandler} className='btnAdminCancel'>Отклонить</button>
+                <button onClick={applyHandler} className='btnAdminApply'>Принять</button>
+                </div>
+                </div>
+            </div>
             </div>
         </>
     );

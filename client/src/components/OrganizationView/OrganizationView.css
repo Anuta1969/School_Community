@@ -1,5 +1,6 @@
 .rating {
   display: flex;
+  justify-content: center;
   align-items: flex-end;
   font-size: 40px;
   line-height: 0.75;
@@ -21,6 +22,7 @@
   top: 0;
   left: 0;
   overflow: hidden;
+  color: red
 }
 
 .ratingActive::before {
@@ -30,7 +32,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  color: yellow
+  color: #ffbc5b;
 }
 
 .ratingItems {
@@ -53,4 +55,182 @@
   line-height: 1;
   box-sizing: border-box;
   padding: 0px 0px 0px 10px;
+}
+
+
+
+.card_info_org {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card_text{
+  color: grey;
+}
+.paramsOrg{
+  /* height: 100vh; */
+  margin-top: 150px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  animation: show-oneOrg 1.2s;
+  /* width: 800px; */
+}
+.paramsOrg-box{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes show-oneOrg {
+  0% {
+    opacity: 0;
+    /*transform: translateY(-200px)*/
+    transform: translate3d(0,0,-500px) scale(0);
+  }
+  100% {
+    opacity: 1;
+    /*transform: translateY(0)*/
+    transform: translate3d(0,0,0) scale(1);
+
+  }
+}
+.cardOrgBody{
+  width: 600px;
+}
+.linkToVac{
+  margin: 10px auto;
+  font-size: 20px;
+}
+.btnBlockOrg{
+  width: 400px;
+  margin: 15px auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+.card-linkBtn{
+  width: 130px;
+  background-color: #ffbc5b;
+  border-radius: 10px;
+}
+.blockForAll{
+  min-height: 500px;
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  /* background-color: #8ab93f; */
+}
+.blockForVacancy{
+  min-width: 35%;
+  color: bisque;
+}
+.reviewAuthor {
+  padding-bottom: 20px;
+  padding-top: 10px;
+  background-color: #4520ab;
+  border-top-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  border-bottom-left-radius: 36px;
+  border-top-right-radius: 36px;
+}
+.reviewAuthor-title{
+color:rgb(199, 190, 190)
+}
+.reviewAuthor-item-vacansion{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+.reviewAuthor-item p{
+  text-align: start;
+  padding-left: 15%;
+
+}
+.reviewAuthor-item a{
+  text-decoration: none;
+  display: inline-block;
+  color: bisque;
+}
+.blockForComment{
+  /* padding-left: 13%; */
+  /* background-color: #4520ab; */
+  animation:show-hideReview 0.9s ;
+  border-top-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  border-bottom-left-radius: 36px;
+  border-top-right-radius: 36px;
+}
+.comment-AboutWork{
+  min-width: 35%;
+  width: 50%;
+}
+.comment-AboutBlock{
+  padding: 15px 0;
+}
+.h3Org{
+  font-size: 20px;
+  animation:show-vacArhive 0.9s ;
+  color: red;
+
+}
+
+@keyframes show-vacArhive {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px)
+    /*transform: translate3d(0,0,-500px) scale(0);*/
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+    /*transform: translate3d(0,0,0) scale(1);*/
+
+  }
+}
+
+@keyframes show-hideReview {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px)
+    /*transform: translate3d(0,0,-500px) scale(0);*/
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px)
+    /*transform: translate3d(0,0,0) scale(1);*/
+
+  }
+}
+.orgReviewCont{
+  width: 450px;
+  animation:show-reviewBlock 0.9s ;
+}
+@keyframes show-reviewBlock {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px)
+    /*transform: translate3d(0,0,-500px) scale(0);*/
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+    /*transform: translate3d(0,0,0) scale(1);*/
+
+  }
+}
+.lastReview{
+  margin: 10px auto;
+}
+.addReview{
+  width: 130px;
+  background: #ffbc5b;
+  border-radius: 10px;
 }

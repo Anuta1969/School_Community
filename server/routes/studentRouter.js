@@ -3,11 +3,9 @@ import User from "../models/student.js";
 import path from "path";
 import multer from "multer";
 import Student from "../models/student.js";
+import Organization from "../models/organization.js";
 
 const router = express.Router();
-
-
-// for photo
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         console.log(123);
@@ -17,21 +15,15 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + path.extname(file.originalname)); //Appending extension
     },
 });
-console.log("1111111", storage);
 const upload = multer({storage: storage});
-
-
-// for resume
 const storagePdf = multer.diskStorage({
     destination: function (req, file, cb) {
-        console.log("resume-----------");
         cb(null, "public/resume");
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname)); //Appending extension
     },
 });
-console.log("res-----55", storagePdf);
 const pdfUpload = multer({storage: storagePdf});
 
 
@@ -49,9 +41,9 @@ router
         }
     })
 
-    .put("/changetext", async (req, res) => {
+    .put("/:id", async (req, res) => {
+                const id = req.params.id
         const {
-            id,
             name,
             lastName,
             phone,
@@ -61,14 +53,23 @@ router
             city,
             stack,
             language,
-            socialLinkedin,
+            socialTelegramm,
             socialGitHab,
+            instagramm,            
             placeWork,
         } = req.body;
-        console.log(city);
-        try {
-            const UserOne = await User.findOne({_id: id});
-            console.log(UserOne);
+        try { 
+          if(placeWork != ""){
+          const searchName = placeWork.toLowerCase()
+const organizations =  await Organization.find({ findName: searchName });
+if (organizations.length == 0) {
+
+  const newOrganization =  await Organization.create({
+      name: placeWork,
+      findName:searchName,
+    });
+
+    const UserOne = await User.findOne({_id: id});
             UserOne.name = name;
             UserOne.lastName = lastName;
             UserOne.email = email;
@@ -78,12 +79,58 @@ router
             UserOne.city = city;
             UserOne.stack = stack;
             UserOne.language = language;
-            UserOne.socialLinkedin = socialLinkedin;
+            UserOne.socialTelegramm = socialTelegramm;
             UserOne.socialGitHab = socialGitHab;
+            UserOne.instagramm = instagramm;
             UserOne.placeWork = placeWork;
-
+            UserOne.jobId= newOrganization._id
             await UserOne.save();
+            console.log(UserOne+'1111');
             res.status(200).json({UserOne});
+  }
+    else{
+
+
+const UserOne = await User.findOne({_id: id});
+            UserOne.name = name;
+            UserOne.lastName = lastName;
+            UserOne.email = email;
+            UserOne.phone = phone;
+            UserOne.year = year;
+            UserOne.group = group;
+            UserOne.city = city;
+            UserOne.stack = stack;
+            UserOne.language = language;
+            UserOne.socialTelegramm = socialTelegramm;
+            UserOne.socialGitHab = socialGitHab;
+            UserOne.instagramm = instagramm;
+            UserOne.placeWork = placeWork;
+            UserOne.jobId= organizations[0]._id
+            await UserOne.save();
+            console.log(UserOne+'sdf');
+            res.status(200).json({UserOne});
+          }
+        }  else{
+          const UserOne = await User.findOne({_id: id});
+            UserOne.name = name;
+            UserOne.lastName = lastName;
+            UserOne.email = email;
+            UserOne.phone = phone;
+            UserOne.year = year;
+            UserOne.group = group;
+            UserOne.city = city;
+            UserOne.stack = stack;
+            UserOne.language = language;
+            UserOne.socialTelegramm = socialTelegramm;
+            UserOne.socialGitHab = socialGitHab;
+            UserOne.instagramm = instagramm;
+            UserOne.placeWork = placeWork;
+            
+            await UserOne.save();
+            console.log(UserOne+'2222');
+            res.status(200).json({UserOne});
+        }             
+             
         } catch (error) {
             res.status(404).json({succes: false, msg: error.message});
         }
@@ -93,15 +140,11 @@ router
     .post('/addresume/:id', pdfUpload.single("resume"), async (req, res) => {
         const resume = req.file.filename
         const {id} = req.params
-
         try {
             const UserOne = await User.findById({_id: id});
-
             UserOne.resume = resume;
             await UserOne.save();
-
-            res.status(200).json(resume);
-
+            res.status(200).json(UserOne);
         } catch (error) {
             res.status(404).json({succes: false, msg: error.message});
         }
@@ -112,11 +155,9 @@ router
         try {
             const list = await Student.find()
             res.status(200).json({succes: true, list});
-
         } catch (error) {
             res.status(404).json({succes: false, msg: error.message});
         }
-
     })
 
 

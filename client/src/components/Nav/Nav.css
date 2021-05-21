@@ -1,0 +1,70 @@
+
+
+
+.backe{
+  width: 100%;
+  background-color: #4520ab;
+  position: fixed;
+    height: 80px;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 25px;
+    z-index: 999;
+    /* margin-bottom: 50px; */
+}
+.navs{
+  
+  background-color: transparent !important;
+    position: fixed;
+    height: 80px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100000;
+    margin-bottom: 50px;
+    
+    
+}
+
+
+.navbar-light .navbar-nav .nav-link{
+  color: #3a8eed ;
+  font-size: 25px;
+}
+
+.navbar-light  .nav-link.active{
+  color: #66eefb !important;
+}
+
+
+
+.navbar-light .navbar-nav .nav-link:hover{
+  color: #66eefb;
+}
+
+
+.nav_div{
+padding-right: 300px;
+}
+
+
+.navbar-light .navbar-nav .nav-link.exit{
+  color: rgb(243 217 99);
+}
+
+
+ul #logo_elrus {
+  width: 137px;
+  height: 80px;
+  position: relative;
+  margin-right: 2rem;
+  border-radius: 0;
+  object-fit: none;
+     object-position: 0;
+}
+
+
+ .nav-item.login_reg:first-child{
+  margin-right:120px;
+}

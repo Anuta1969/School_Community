@@ -1,0 +1,33 @@
+.comment-title{
+  border: 2px solid orange;
+  background-color: #4520ab;
+  margin-bottom: 15px;
+  padding: 15px 0;
+  border-top-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  border-bottom-left-radius: 36px;
+  border-top-right-radius: 36px;
+}
+.comment-item{
+  text-align: start;
+  margin-left: 45px;
+  margin-right: 15px;
+  color:rgb(241, 226, 137);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  white-space: break-spaces ;
+}
+
+.comment-item-User a{
+  color: #0deefd;
+  text-align: start;
+}
+.comment-item-User{
+  text-align: end;
+  padding-right: 64px;
+}
+.comment-item__btn{
+  color: rgb(129 182 83);
+  cursor: pointer;
+}

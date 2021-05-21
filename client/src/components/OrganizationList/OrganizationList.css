@@ -1,0 +1,35 @@
+.orgList{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: show-allOrg 1.2s;
+}
+.sort {
+  padding: 25px;
+    border: 1px solid #e4e6a1a6;
+    margin: 15px auto 0;
+    max-width: 45%;
+    border-radius: 8px;
+    color: wheat;
+    background-color: #4c5b96eb;
+    border-top-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.selectSort{
+  outline: none;
+}
+@keyframes show-allOrg {
+    0% {
+        opacity: 0;
+        transform: translateY(-200px)
+        /*transform: translate3d(-600px,-200px,-500px) scale(0);*/
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) 
+        /*transform: translate3d(0,0,0) scale(1);*/
+
+    }
+}

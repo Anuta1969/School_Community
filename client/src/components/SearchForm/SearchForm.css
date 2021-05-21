@@ -1,0 +1,50 @@
+.searchForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+}
+.inputSearch{
+    height: 30px;
+}
+#searchGroup{
+    height: 30px;
+width: 100px;
+}
+#searchYear{
+    height: 30px;
+    width: 80px;
+}
+#searchCity{
+    height: 30px;
+width: 150px;
+}
+.btnSearch{
+
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    background: #ffbc5b;
+    font-weight: 500;
+    font-size: 15px;
+}
+.searchForm-item{
+  margin-right: 5px;
+  border-radius: 5px;
+  outline: none;
+}
+.searchForm-form{
+  padding: 38px;
+  border: 1px solid #e4e6a1a6;
+  border-radius: 8px;
+  background-color: #4c5b96eb;
+  border-top-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.search-student{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+}

@@ -3,8 +3,15 @@
     width:370px;
     margin:0 auto;
   }
+  .organization-box{
+    padding-top: 6%;
+  }
 .organization{
   width: 450px;
+}
+
+.cardOrgList{
+  background-color: #4520ab;
 }
 
 .rating {
@@ -13,14 +20,22 @@
   font-size: 40px;
   line-height: 0.75;
 }
+.card-titleOrg{
+  color:rgb(243 217 99);
+  margin: 10px auto;
+  font-weight: bold;
+
+}
 
 .ratingBody {
   position: relative;
+  color: #4c4c4c;
 }
 
 .ratingBody::before {
   content: "★★★★★";
   display: block;
+
 }
 
 .ratingActive {
@@ -62,4 +77,12 @@
   line-height: 1;
   box-sizing: border-box;
   padding: 0px 0px 0px 10px;
+}
+.card-textOrg{
+  color: white;
+  margin-top: 15px;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
 }

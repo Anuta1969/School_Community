@@ -1,20 +1,48 @@
+.section-student{
+  /* padding-top: 6%; */
+  /* height: 100vh; */
+  animation: show-profile 1.2s;
+}
+@keyframes show-profile {
+  0% {
+    opacity: 0;
+    transform: translateX(-400px)
+    /*transform: translate3d(+600px,-200px,0);*/
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+
+  }
+}
+.student-container{
+  height: 100%;
+}
 .student-box {
   display: flex;
   justify-content: space-between;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* height: 100%; */
+  padding: 9% 0 5%;
 }
+
 .student-about {
   min-width: 35%;
   /* padding-top: 10px; */
 }
 .student-form {
+  /* padding-left: 25px; */
+  position: relative;
   min-width: 65%;
+  max-height: 80%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
 }
 .student-img {
   background-color: rgb(175, 167, 167);
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 315px;
+  max-height: 315px;
   border-radius: 50%;
 }
 img {
@@ -24,38 +52,101 @@ img {
   height: 300px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: 0% 15%;
+  object-position: 0% 5%;
   /* padding-top: 10px; */
+}
+.student-profile__img{
+  width: 315px;
+  height: 315px;
+}
+.student-add__photo-box{
+  margin-top: 10px;
 }
 .student-add__photo {
   display: flex;
   justify-content: flex-start;
+  
+
 }
+
 .student-form__photo {
   display: flex;
   justify-content: flex-start;
-  flex-direction: column;
-  margin-top: 15px;
+  /* margin-top: 15px; */
+  width: 100%;
 }
 .student-btn__photo-btn {
   display: flex;
   justify-content: flex-start;
-  margin-top: 5px;
+
+  /* margin-top: 5px; */
 }
-.student-form__photo-btn {
-  max-width: 40%;
-  margin-top: 10px;
+.student-btn{
+  min-width: 43%;
+  padding: 8px;
+  border-radius: 5px;
+  background-color:rgb(95, 125, 129);
+  color:rgb(248, 247, 247)
 }
+.student-btn:hover{
+  background-color:rgb(168, 200, 204);
+  color:rgb(0, 0, 0)
+}
+
 .student-form__photo-input {
-  border: 1px solid black;
-  max-width: 300px;
+  max-width: 125px;
+  border-radius: 6px;
+  color: transparent;
+
 }
+.student-form__photo-input::after {
+  background-color:rgb(168, 200, 204);
+  color:rgb(0, 0, 0)
+}
+.student-form__photo-input:active {
+  outline: 0;
+}
+.student-form__photo-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.student-form__photo-input::before{
+  content: 'Выберите файл';
+  color: rgb(78, 62, 62);
+  display: inline-block;
+/*   background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3); */
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 10px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  /* text-shadow: 1px 1px #fff; */
+  font-weight: 700;
+  font-size: 10pt;
+  background-color:rgb(204, 167, 87);
+
+}
+.student-btn__change-foto{
+  margin-left: 70px;
+}
+.student-about-text{
+  margin-top: 17px;
+}
+
 .student-about__title {
   text-align: start;
 }
 .student-about__item {
-  display: flex;
-  max-width: 50%;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
+  margin-bottom: 5px;
+  border-radius: 8px;
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight:600;
 }
 .about-item__box {
   display: flex;
@@ -64,9 +155,13 @@ img {
 }
 .about-item__change {
   max-width: 50%;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  outline: none;
 }
 .about-item-btn {
   border: none;
+  width: 50%;
 }
 .about-form__update {
   display: flex;
@@ -77,24 +172,26 @@ img {
 }
 
 .react-pdf__Page__canvas {
-  height: 100% !important;
-  min-width: 100%;
-  margin: 0 auto;
+  height: auto !important;
+  width: 83% !important;
+  margin-left: 35px;
+  z-index: 5;
+  /* margin: 0 auto; */
 }
 .react-pdf__Page__annotations {
   display: none;
 }
-.student-form {
-  position: relative;
-}
+
 .react-pdf__Document{
   display: flex;
   justify-content: center;
-  height: 100%;
+  margin-bottom: 25px;
+  /* height: 100%; */
 }
 .react-pdf__Page{
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: flex;justify-content: flex-start;
 }
 .pdf-prev {
   border: 0;
@@ -116,26 +213,85 @@ img {
   right: 0;
   transition: all 0.5s;
 }
-.student-form{
 
-  min-height: 100vh;
+
+.resume-show{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('../../public/zuglushka-rezume1.png') no-repeat center center ;
-  background-size: cover;
+}
+.resume__without{
+  height: 55%;
+  width: 64%;
+    background-color: rgb(179, 179, 184);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    border-top-left-radius: 70px;
+    border-bottom-right-radius: 70px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 .blockBackground{
-  background:none;
+
+  display: none;
 }
-.resume-show{
-  width: 100%;
-  height: 100%;
+.resume__without-img{
+  width: 235px;
+    height: 235px;
+  border-radius: 0;
+}
+.resume__without-text{
+  padding-top: 30px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight:600
+}
+
+.resume-show__add{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 .blockLoadingPicture{
   /* display: none !important;  */
 }
-/* .resume-show div{
-  height: 100%;
-} */
+.student-add{
+  margin-top: 16px;
+  max-width: 100%;
+}
+.student-add__resume{
 
+}
+.student-form__resume-save {
+  margin-left: 70px;
+}
+.student-add__btn{
+  display: flex;
+}
+.save-resume{
+  display: flex;
+  margin-top: 16px;
+}
+
+
+
+.student-linck{
+  border-radius:0;
+  display: flex;
+  margin-top: 25px;
+}
+.student-linck__img{
+  margin-right: 12px;
+  width: 30px;
+  height: 30px;
+}
+.blur{
+  filter: blur(1.5px);
+}

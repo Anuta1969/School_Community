@@ -1,0 +1,62 @@
+.requestForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 70px auto;
+}
+.cardInfo{
+    padding-top: 90px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    animation: show-card 0.5s;
+
+}
+.paramsImg{
+margin: 15px;
+}
+.paramsInfo{
+display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+
+}
+.params-h5{
+margin: 5px auto;
+    font-size: 25px;
+}
+.btnBlockAdmin{
+margin: 20px auto;
+}
+.btnAdminCancel{
+margin: 5px 10px;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    background: #ec4747;
+    font-weight: 600;
+    font-size: 16px;
+}
+.btnAdminApply{
+    margin: 5px 10px;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    background: green;
+    font-weight: 600;
+    font-size: 16px;
+}
+@keyframes show-card {
+    0% {
+        opacity: 0;
+        /*transform: translateX(-400px)*/
+        transform: translate3d(0,0,-500px) scale(0);
+    }
+    100% {
+        opacity: 1;
+        /*transform: translateX(0);*/
+        transform: translate3d(0,0,0) scale(1);
+
+    }
+}

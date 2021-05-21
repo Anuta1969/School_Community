@@ -1,0 +1,48 @@
+.orgForm{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 400px;
+    min-height: 270px;
+    background-color: #7954de;
+    border-radius: 15px;
+    animation: show-orgForm 1.2s;
+}
+@keyframes show-orgForm {
+    0% {
+        opacity: 0;
+        transform: translateY(-200px)
+        /*transform: translate3d(-600px,-200px,-500px) scale(0);*/
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+        /*transform: translate3d(0,0,0) scale(1);*/
+
+    }
+}
+
+
+.ratingOrg{
+    font-size: 18px;
+}
+.textariaOrg{
+    width: 92%;
+    margin: 5px auto;
+}
+.inputAddOrg{
+    width: 92%;
+    margin: 5px auto;
+
+}
+.btnAddOrg{
+    width: 120px;
+    background-color: #ffbc5b;
+    border-radius: 10px;
+}
+.addOrgBtn{
+    width: 220px;
+    background-color: #ffbc5b;
+    border-radius: 10px;
+
+}
